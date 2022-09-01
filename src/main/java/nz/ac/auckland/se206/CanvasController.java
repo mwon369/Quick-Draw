@@ -380,7 +380,7 @@ public class CanvasController {
           .append(" : ")
           .append(classification.getClassName().replace("_", " "))
           .append(" : ")
-          .append(String.format("%.2f%%", 100 * classification.getProbability()))
+          .append(String.format("%.0f%%", 100 * classification.getProbability()))
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
