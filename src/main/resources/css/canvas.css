@@ -50,7 +50,7 @@
 
 .button, .button:focused{
 	-fx-text-fill: white;
-	-fx-padding: 8 15 12 15;
+	-fx-padding: 6 15 10 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 10 0, 0 0 7 0;
     -fx-background-radius: 12;
     -fx-background-color: 
@@ -64,6 +64,7 @@
 
 .button:pressed{
 	-fx-translate-y: 4;
-	-fx-padding: 8 15 8 15;
+	-fx-padding: 6 15 6 15;
 	-fx-background-insets:0;
 }
+
