@@ -13,7 +13,7 @@ public class MenuController {
   /**
    * This method switches the root of the scene from the main menu to the canvas
    *
-   * @param event an action representing when the play button has been clicked
+   * @param event an ActionEvent representing when the play button has been clicked
    */
   @FXML
   private void onPlay(ActionEvent event) {
@@ -21,5 +21,18 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.CANVAS));
+  }
+
+  /**
+   * This method switches the root of the scene from the main menu to the login page
+   *
+   * @param event an ActionEvent representing when the logout button has been clicked
+   */
+  @FXML
+  private void onLogout(ActionEvent event) {
+    // retrive the source of button and switch to the login page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
   }
 }

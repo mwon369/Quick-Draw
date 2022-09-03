@@ -7,7 +7,9 @@ public class SceneManager {
   // enum representing the different root nodes
   public enum AppUi {
     MENU,
-    CANVAS
+    CANVAS,
+    LOGIN,
+    USER_CREATION
   }
 
   // hashmap that maps enum AppUi to the corresponding root note

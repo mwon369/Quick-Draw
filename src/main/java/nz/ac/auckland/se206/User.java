@@ -4,19 +4,17 @@ import java.util.List;
 
 public class User {
 
-  private int userId;
+  private String username; // first column
 
-  private String username;
+  private String password; // second column
 
-  private String password;
+  private int wins; // third column
+
+  private int losses; // fourth column
+
+  private int fastestWin; // fifth column
 
   private List<String> wordsGiven;
-
-  private int wins;
-
-  private int losses;
-
-  private int fastestWin;
 
   public User(String username, String password) {
     // assign the fields for each new user created
@@ -30,5 +28,29 @@ public class User {
 
   public String getPassword() {
     return this.password;
+  }
+
+  public int getWins() {
+    return this.wins;
+  }
+
+  public int getLosses() {
+    return this.losses;
+  }
+
+  public int getFastestWin() {
+    return this.fastestWin;
+  }
+
+  public void setWins(int numWins) {
+    this.wins = numWins;
+  }
+
+  public void setLosses(int numLosses) {
+    this.losses = numLosses;
+  }
+
+  public void setFastestWin(int fastestWin) {
+    this.fastestWin = fastestWin;
   }
 }
