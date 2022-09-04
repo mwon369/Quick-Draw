@@ -545,8 +545,20 @@ public class CanvasController {
     fileChooser.setInitialDirectory(new File("drawings"));
     fileChooser.setTitle("Save");
 
-    // save as .bmp file type
-    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("bmp", ".bmp"));
+    // files by default will be named the category given to the user alongside the current time & date
+    String[] timeStamp = java.time.LocalDateTime.now().toString().split("\\.");
+    String timeAndDate = timeStamp[0].replaceAll(":", "-").replace("T", "-");
+    StringBuilder sb = new StringBuilder();
+    sb.append(targetCategory);
+    sb.append(" - ");
+    // only append the time & date
+    sb.append(timeAndDate);
+    fileChooser.setInitialFileName(sb.toString());
+
+    // save as .bmp, .PNG or .jpg file type
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("bmp", ".bmp"),
+            new ExtensionFilter(".png", "*.PNG"),
+            new ExtensionFilter(".jpg", "*.jpg"));
 
     // open save dialog
     File fileToSave =
