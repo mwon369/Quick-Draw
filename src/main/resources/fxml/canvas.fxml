@@ -41,7 +41,7 @@
          <children>
             <StackPane id="canvasStackPane" fx:id="canvasStackPane" prefHeight="272.0" prefWidth="400.0">
                <children>
-                <Canvas fx:id="canvas" height="313.0" width="400.0" StackPane.alignment="CENTER">
+                <Canvas fx:id="canvas" height="313.0" onDragDetected="#isDrawing" width="400.0" StackPane.alignment="CENTER">
                   <cursor>
                     <Cursor fx:constant="HAND" />
                   </cursor>
