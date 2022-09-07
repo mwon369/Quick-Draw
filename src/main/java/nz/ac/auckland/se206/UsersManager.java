@@ -104,7 +104,7 @@ public class UsersManager {
 				} catch (ArrayIndexOutOfBoundsException e) {
 					// if no more details, add user and try next user
 					UsersManager.loadUser(user);
-					// UsersManager.loadWordList();
+					UsersManager.loadWordList();
 					continue;
 				}
 			}
@@ -173,4 +173,27 @@ public class UsersManager {
 		writer.close();
 	}
 
+	private static List<String[]> getWordList() throws IOException, CsvException, URISyntaxException {
+		File fileName = new File("src/main/resources/words_given.csv");
+		// if file does not exist, create one and put headers
+		if (!fileName.isFile()) {
+			fileName.createNewFile();
+			saveWordsGiven();
+		}
+		try (FileReader fr = new FileReader(fileName, StandardCharsets.UTF_8); CSVReader reader = new CSVReader(fr)) {
+			// returns a list of string array where each string array is each line in the
+			// csv file
+			// each word in each string array is separated by commas in each line in the csv
+			// file
+			List<String[]> wordList = reader.readAll();
+			return wordList;
+		}
+	}
+
+	private static void loadWordList() throws IOException, CsvException, URISyntaxException {
+		for (String[] wordList : getWordList()) {
+			User user = usersMap.get(wordList[0]);
+			user.setWordsGiven(wordList);
+		}
+	}
 }
