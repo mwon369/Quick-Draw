@@ -28,6 +28,8 @@ public class User {
 		// assign the fields for each new user created
 		this.username = username;
 		this.password = password;
+		wordsGiven = new ArrayList<String>();
+		wordsGiven.add(username);
 	}
 
 	public String getUsername() {
@@ -70,12 +72,13 @@ public class User {
 		CategorySelector selector;
 		try {
 			selector = new CategorySelector();
-			wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
+			wordList.addAll((ArrayList<String>) selector.getWordList(Difficulty.E));
 			// Checks if there are words given to the user
-			if (!wordsGiven.isEmpty()) {
+			if (wordsGiven.size() != 1) {
 				wordList.removeAll(wordsGiven);
+				// remove username in wordList
+				wordList.remove(wordsGiven.get(0));
 			}
-
 		} catch (IOException | CsvException | URISyntaxException e) {
 			return;
 		}
@@ -91,5 +94,15 @@ public class User {
 	public void updateWordList(String word) {
 		wordList.remove(word);
 		wordsGiven.add(word);
+	}
+
+	public ArrayList<String> getWordsGiven() {
+		return wordsGiven;
+	}
+
+	public void setWordsGiven(String[] words) {
+		for (String word : words) {
+			wordsGiven.add(word);
+		}
 	}
 }

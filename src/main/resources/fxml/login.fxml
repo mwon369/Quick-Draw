@@ -20,6 +20,11 @@
             <Insets bottom="120.0" top="90.0" />
          </VBox.margin>
       </Label>
+      <HBox alignment="CENTER">
+         <children>
+            <Label fx:id="errorMessageLabel" text="Error Message" textFill="RED" visible="false" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER" prefWidth="200.0" spacing="30.0">
          <children>
             <Label alignment="CENTER_RIGHT" minWidth="60.0" text="Username:" />
