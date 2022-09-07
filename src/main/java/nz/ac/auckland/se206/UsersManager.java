@@ -18,6 +18,7 @@ public class UsersManager {
 
 	// hashmap will map each username to a User object
 	private static HashMap<String, User> usersMap = new HashMap<String, User>();
+	private static User userSelected;
 
 	public static User getUser(String username) {
 		return usersMap.get(username);
@@ -42,6 +43,7 @@ public class UsersManager {
 		loadUser(user);
 		try {
 			saveUsers();
+			saveWordsGiven();
 		} catch (URISyntaxException | IOException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +72,7 @@ public class UsersManager {
 			writer.writeNext(details);
 		}
 		writer.close();
+		saveWordsGiven();
 	}
 
 	/**
@@ -101,6 +104,7 @@ public class UsersManager {
 				} catch (ArrayIndexOutOfBoundsException e) {
 					// if no more details, add user and try next user
 					UsersManager.loadUser(user);
+					// UsersManager.loadWordList();
 					continue;
 				}
 			}
@@ -139,11 +143,34 @@ public class UsersManager {
 		}
 	}
 
+	/**
+	 * canLogIn checks if the user has entered the correct user details of an
+	 * existing user
+	 * 
+	 * @param username username given by user
+	 * @param password password given by user
+	 * @return true if a user with the correct username and password is entered.
+	 *         False otherwise
+	 */
 	public static boolean canLogIn(String username, String password) {
 		User user = usersMap.get(username);
+		// checks if valid user details have been added
 		if (user == null || !user.getPassword().equals(password)) {
 			return false;
 		}
+		userSelected = user;
 		return true;
 	}
+
+	private static void saveWordsGiven() throws IOException {
+		File fileName = new File("src/main/resources/words_given.csv");
+		CSVWriter writer = new CSVWriter(new FileWriter(fileName));
+		for (User user : usersMap.values()) {
+			String[] words = new String[user.getWordsGiven().size()];
+			words = user.getWordsGiven().toArray(words);
+			writer.writeNext(words);
+		}
+		writer.close();
+	}
+
 }
