@@ -39,11 +39,15 @@ public class LoginController {
     if (usernameField.getText().isBlank() || passwordField.getText().isBlank()) {
       errorMessageLabel.setText("You have not entered a username and/or a password");
       errorMessageLabel.setVisible(true);
+      usernameField.clear();
+      passwordField.clear();
       return;
     }
     // Prints error message when user enters wrong username or password
     errorMessageLabel.setText("You have entered the wrong username and/or password");
     errorMessageLabel.setVisible(true);
+    usernameField.clear();
+    passwordField.clear();
     return;
   }
 
@@ -58,5 +62,8 @@ public class LoginController {
     Hyperlink hyperlink = (Hyperlink) event.getSource();
     Scene sceneHyperlinkIsIn = hyperlink.getScene();
     sceneHyperlinkIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    usernameField.clear();
+    passwordField.clear();
+    errorMessageLabel.setText("");
   }
 }
