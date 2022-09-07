@@ -71,6 +71,7 @@ public class User {
 		try {
 			selector = new CategorySelector();
 			wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
+			// Checks if there are words given to the user
 			if (!wordsGiven.isEmpty()) {
 				wordList.removeAll(wordsGiven);
 			}
@@ -79,5 +80,16 @@ public class User {
 			return;
 		}
 
+	}
+
+	/**
+	 * updateWordList saves the new word given to the user and updates what words
+	 * can be given to the user for a new game
+	 * 
+	 * @param word word given to user for the round
+	 */
+	public void updateWordList(String word) {
+		wordList.remove(word);
+		wordsGiven.add(word);
 	}
 }
