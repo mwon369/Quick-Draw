@@ -95,7 +95,9 @@ public class User {
 
   public void setWordsGiven(String[] words) {
     for (int i = 1; i < words.length; i++) {
-      wordsGiven.add(words[i]);
+      if (!words[i].equals("")) {
+        wordsGiven.add(words[i]);
+      }
     }
   }
 
