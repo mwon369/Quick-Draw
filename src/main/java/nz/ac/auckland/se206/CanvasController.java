@@ -253,7 +253,6 @@ public class CanvasController {
     user = UsersManager.getSelectedUser();
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
-
     // configure, disable and clear the canvas, disable the ready button
     onSelectPen();
     canvas.setDisable(true);

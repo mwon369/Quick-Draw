@@ -22,6 +22,7 @@ public class User {
 
   private ArrayList<String> wordsGiven;
   private ArrayList<String> wordList;
+  private CategorySelector selector;
 
   public User(String username, String password) {
     // assign the fields for each new user created
@@ -29,6 +30,11 @@ public class User {
     this.password = password;
     wordsGiven = new ArrayList<String>();
     wordsGiven.add(username);
+    try {
+      selector = new CategorySelector();
+    } catch (IOException | CsvException | URISyntaxException e) {
+      e.printStackTrace();
+    }
   }
 
   public String getUsername() {
@@ -65,16 +71,10 @@ public class User {
 
   /** setWordList method fills the ArrayList wordList with words the user has not been given */
   public void setWordList() {
-    CategorySelector selector;
-    try {
-      selector = new CategorySelector();
-      wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
-      // Checks if there are words given to the user
-      if (wordsGiven.size() != 1) {
-        wordList.removeAll(wordsGiven);
-      }
-    } catch (IOException | CsvException | URISyntaxException e) {
-      return;
+    wordList = (ArrayList<String>) this.selector.getWordList(Difficulty.E);
+    // Checks if there are words given to the user
+    if (wordsGiven.size() != 1) {
+      wordList.removeAll(wordsGiven);
     }
   }
 
@@ -107,11 +107,10 @@ public class User {
   public String giveWordToDraw() {
     // resets wordList if user has drawn all words
     if (wordList.isEmpty()) {
-      wordList.addAll(wordsGiven);
+      wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
       // resetting words given to user once all words have been given
       wordsGiven.clear();
-      wordsGiven.add(wordList.get(0));
-      wordList.remove(0);
+      wordsGiven.add(username);
     }
     return wordList.get(new Random().nextInt(wordList.size()));
   }

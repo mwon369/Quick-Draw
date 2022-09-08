@@ -113,8 +113,8 @@ public class UsersManager {
           UsersManager.loadWordList();
           continue;
         }
-        UsersManager.loadWordList();
       }
+      UsersManager.loadWordList();
     } catch (NumberFormatException | IOException | CsvException | URISyntaxException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -219,7 +219,8 @@ public class UsersManager {
    * @throws URISyntaxException
    */
   private static void loadWordList() throws IOException, CsvException, URISyntaxException {
-    for (String[] wordList : getWordList()) {
+    List<String[]> userWords = getWordList();
+    for (String[] wordList : userWords) {
       User currentUser = usersMap.get(wordList[0]);
       currentUser.setWordsGiven(wordList);
       currentUser.setWordList();
