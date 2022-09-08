@@ -63,7 +63,7 @@ public class User {
     this.fastestWin = fastestWin;
   }
 
-  /** setWordList method fills the HashSet wordList with words the user has not been given */
+  /** setWordList method fills the ArrayList wordList with words the user has not been given */
   public void setWordList() {
     CategorySelector selector;
     try {
@@ -99,9 +99,18 @@ public class User {
     }
   }
 
+  /**
+   * giveWordToDraw returns a word for the user to draw, which they have not drawn before
+   *
+   * @return word for user to draw
+   */
   public String giveWordToDraw() {
+    // resets wordList if user has drawn all words
     if (wordList.isEmpty()) {
-      wordList = wordsGiven;
+      wordList.addAll(wordsGiven);
+      // resetting words given to user once all words have been given
+      wordsGiven.clear();
+      wordsGiven.add(wordList.get(0));
       wordList.remove(0);
     }
     return wordList.get(new Random().nextInt(wordList.size()));

@@ -461,6 +461,7 @@ public class CanvasController {
     // set and display the win/loss
     winLossLabel.setText(isWin ? "You win!" : "You Lose!");
     winLossLabel.setVisible(true);
+    // update and save wordlist after game ends
     user.updateWordList(targetCategory);
     try {
       UsersManager.saveUsers();
