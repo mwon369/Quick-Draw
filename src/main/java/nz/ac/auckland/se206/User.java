@@ -28,6 +28,7 @@ public class User {
     this.username = username;
     this.password = password;
     wordsGiven = new ArrayList<String>();
+    wordsGiven.add(username);
   }
 
   public String getUsername() {
@@ -93,7 +94,7 @@ public class User {
   }
 
   public void setWordsGiven(String[] words) {
-    for (int i = 0; i < words.length; i++) {
+    for (int i = 1; i < words.length; i++) {
       wordsGiven.add(words[i]);
     }
   }

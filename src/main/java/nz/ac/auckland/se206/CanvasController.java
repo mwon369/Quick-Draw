@@ -111,7 +111,6 @@ public class CanvasController {
    */
   public void initialize() throws ModelException, IOException {
     graphic = canvas.getGraphicsContext2D();
-
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
         e -> {

@@ -47,9 +47,11 @@ public class UsersManager {
    */
   public static void createUser(User user) {
     loadUser(user);
+
     try {
       saveUsers();
-    } catch (URISyntaxException | IOException e) {
+      loadWordList();
+    } catch (URISyntaxException | IOException | CsvException e) {
       e.printStackTrace();
     }
   }
@@ -105,13 +107,13 @@ public class UsersManager {
           user.setLosses(Integer.valueOf(line[3]));
           user.setFastestWin(Integer.valueOf(line[4]));
           UsersManager.loadUser(user);
-          UsersManager.loadWordList();
         } catch (ArrayIndexOutOfBoundsException e) {
           // if no more details, add user and try next user
           UsersManager.loadUser(user);
           UsersManager.loadWordList();
           continue;
         }
+        UsersManager.loadWordList();
       }
     } catch (NumberFormatException | IOException | CsvException | URISyntaxException e) {
       // TODO Auto-generated catch block
