@@ -110,7 +110,6 @@ public class UsersManager {
         } catch (ArrayIndexOutOfBoundsException e) {
           // if no more details, add user and try next user
           UsersManager.loadUser(user);
-          UsersManager.loadWordList();
           continue;
         }
       }
