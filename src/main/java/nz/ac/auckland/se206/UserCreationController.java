@@ -52,7 +52,7 @@ public class UserCreationController {
   }
 
   /**
-   * Thie method switches from the user creation page to the login page
+   * The method switches from the user creation page to the login page
    *
    * @param event an ActionEvent representing when the back to login button has been clicked
    */

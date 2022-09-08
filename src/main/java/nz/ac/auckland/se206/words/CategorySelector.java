@@ -55,9 +55,15 @@ public class CategorySelector {
 
     try (FileReader fr = new FileReader(fileName, StandardCharsets.UTF_8);
         CSVReader reader = new CSVReader(fr)) {
-      // returns a list of string array where each string array is each line in the csv file
-      // each word in each string array is separated by commas in each line in the csv file
+      // returns a list of string array where each string array is each line in the
+      // csv file
+      // each word in each string array is separated by commas in each line in the csv
+      // file
       return reader.readAll();
     }
+  }
+
+  public List<String> getWordList(Difficulty difficulty) {
+    return difficultyToCategories.get(difficulty);
   }
 }
