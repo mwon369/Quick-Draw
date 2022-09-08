@@ -26,6 +26,7 @@ public class LoginController {
     // Checks if the user details entered is valid for an existing user
     if (UsersManager.canLogIn(usernameField.getText(), passwordField.getText())) {
       // retrieve the source of button and switch to the menu
+      UsersManager.setSelectedUser(usernameField.getText());
       Button button = (Button) event.getSource();
       Scene sceneButtonIsIn = button.getScene();
       sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));

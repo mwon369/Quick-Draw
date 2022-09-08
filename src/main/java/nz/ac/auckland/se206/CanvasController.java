@@ -5,7 +5,6 @@ import static nz.ac.auckland.se206.ml.DoodlePrediction.printPredictions;
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
-import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,8 +39,6 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
-import nz.ac.auckland.se206.words.CategorySelector;
-import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -78,8 +75,6 @@ public class CanvasController {
 
   private DoodlePrediction model;
 
-  @FXML private CategorySelector categorySelector;
-
   @FXML private ListView<String> predictionsListView;
   private List<Classification> classifications;
 
@@ -101,6 +96,7 @@ public class CanvasController {
   private Timer speakPredictionsTimer;
   private boolean isGameOver;
   private boolean isDrawing;
+  private User user;
 
   // mouse coordinates
   private double currentX;
@@ -153,14 +149,6 @@ public class CanvasController {
     // configure canvas
     onSelectPen();
     canvas.setDisable(true);
-
-    // initialise a category selector
-    try {
-      categorySelector = new CategorySelector();
-    } catch (IOException | CsvException | URISyntaxException e1) {
-      System.out.println("Error occured whilst selecting a random category");
-      e1.printStackTrace();
-    }
 
     readyButton.setDisable(true);
     winLossLabel.setVisible(false);
@@ -263,7 +251,8 @@ public class CanvasController {
     isGameOver = true;
     isDrawing = false;
     // select and display random category (easy)
-    targetCategory = categorySelector.getRandomCategory(Difficulty.E);
+    user = UsersManager.getSelectedUser();
+    targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
 
     // configure, disable and clear the canvas, disable the ready button
@@ -473,7 +462,12 @@ public class CanvasController {
     // set and display the win/loss
     winLossLabel.setText(isWin ? "You win!" : "You Lose!");
     winLossLabel.setVisible(true);
-
+    user.updateWordList(targetCategory);
+    try {
+      UsersManager.saveUsers();
+    } catch (URISyntaxException | IOException e1) {
+      e1.printStackTrace();
+    }
     isGameOver = true;
 
     // speak whether user won or lost

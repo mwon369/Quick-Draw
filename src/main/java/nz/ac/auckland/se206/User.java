@@ -4,6 +4,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Random;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
@@ -27,7 +28,6 @@ public class User {
     this.username = username;
     this.password = password;
     wordsGiven = new ArrayList<String>();
-    wordsGiven.add(username);
   }
 
   public String getUsername() {
@@ -67,7 +67,7 @@ public class User {
     CategorySelector selector;
     try {
       selector = new CategorySelector();
-      wordList.addAll((ArrayList<String>) selector.getWordList(Difficulty.E));
+      wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
       // Checks if there are words given to the user
       if (wordsGiven.size() != 1) {
         wordList.removeAll(wordsGiven);
@@ -93,8 +93,16 @@ public class User {
   }
 
   public void setWordsGiven(String[] words) {
-    for (String word : words) {
-      wordsGiven.add(word);
+    for (int i = 0; i < words.length; i++) {
+      wordsGiven.add(words[i]);
     }
+  }
+
+  public String giveWordToDraw() {
+    if (wordList.isEmpty()) {
+      wordList = wordsGiven;
+      wordList.remove(0);
+    }
+    return wordList.get(new Random().nextInt(wordList.size()));
   }
 }

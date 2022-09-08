@@ -23,6 +23,14 @@ public class UsersManager {
     return usersMap.get(username);
   }
 
+  public static User getSelectedUser() {
+    return userSelected;
+  }
+
+  public static void setSelectedUser(String username) {
+    userSelected = usersMap.get(username);
+  }
+
   /**
    * This method returns a set of all usernames
    *
@@ -97,6 +105,7 @@ public class UsersManager {
           user.setLosses(Integer.valueOf(line[3]));
           user.setFastestWin(Integer.valueOf(line[4]));
           UsersManager.loadUser(user);
+          UsersManager.loadWordList();
         } catch (ArrayIndexOutOfBoundsException e) {
           // if no more details, add user and try next user
           UsersManager.loadUser(user);
@@ -151,7 +160,6 @@ public class UsersManager {
     if (user == null || !user.getPassword().equals(password)) {
       return false;
     }
-    userSelected = user;
     return true;
   }
 
@@ -210,8 +218,9 @@ public class UsersManager {
    */
   private static void loadWordList() throws IOException, CsvException, URISyntaxException {
     for (String[] wordList : getWordList()) {
-      User user = usersMap.get(wordList[0]);
-      user.setWordsGiven(wordList);
+      User currentUser = usersMap.get(wordList[0]);
+      currentUser.setWordsGiven(wordList);
+      currentUser.setWordList();
     }
   }
 }
