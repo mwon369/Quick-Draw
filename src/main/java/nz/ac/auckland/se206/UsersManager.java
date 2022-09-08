@@ -41,7 +41,6 @@ public class UsersManager {
     loadUser(user);
     try {
       saveUsers();
-      saveWordsGiven();
     } catch (URISyntaxException | IOException e) {
       e.printStackTrace();
     }

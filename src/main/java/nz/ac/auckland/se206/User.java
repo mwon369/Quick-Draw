@@ -71,8 +71,6 @@ public class User {
       // Checks if there are words given to the user
       if (wordsGiven.size() != 1) {
         wordList.removeAll(wordsGiven);
-        // remove username in wordList
-        wordList.remove(wordsGiven.get(0));
       }
     } catch (IOException | CsvException | URISyntaxException e) {
       return;
