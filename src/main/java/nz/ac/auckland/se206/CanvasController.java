@@ -328,7 +328,7 @@ public class CanvasController {
                       // check if player has won
                       if (isWin(classifications, 3)) {
                         timer.cancel();
-                        stopGame(true, time);
+                        stopGame(true, timerLabel.getText());
                         return;
                       }
                     }
@@ -346,7 +346,7 @@ public class CanvasController {
               timer.cancel();
               Platform.runLater(
                   () -> {
-                    stopGame(false, time);
+                    stopGame(false, timerLabel.getText());
                   });
               return;
             } else {
@@ -458,7 +458,7 @@ public class CanvasController {
    *
    * @param isWin boolean representing whether the user won the game or not
    */
-  private void stopGame(boolean isWin, int time) {
+  private void stopGame(boolean isWin, String timeString) {
     canvas.setDisable(true);
     // disable mouse dragging on canvas
     canvas.setOnMouseDragged(e -> {});
@@ -468,6 +468,7 @@ public class CanvasController {
     winLossLabel.setVisible(true);
 
     // update stats after the game ends
+    int time = Integer.parseInt(timeString);
     if (isWin) {
       user.setWins(++userWins);
       if (60 - time < userFastestWin) {
