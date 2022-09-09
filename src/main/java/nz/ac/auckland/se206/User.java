@@ -4,6 +4,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Random;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
@@ -21,6 +22,7 @@ public class User {
 
   private ArrayList<String> wordsGiven;
   private ArrayList<String> wordList;
+  private CategorySelector selector;
 
   public User(String username, String password) {
     // assign the fields for each new user created
@@ -28,6 +30,11 @@ public class User {
     this.password = password;
     wordsGiven = new ArrayList<String>();
     wordsGiven.add(username);
+    try {
+      selector = new CategorySelector();
+    } catch (IOException | CsvException | URISyntaxException e) {
+      e.printStackTrace();
+    }
   }
 
   public String getUsername() {
@@ -62,18 +69,12 @@ public class User {
     this.fastestWin = fastestWin;
   }
 
-  /** setWordList method fills the HashSet wordList with words the user has not been given */
+  /** setWordList method fills the ArrayList wordList with words the user has not been given */
   public void setWordList() {
-    CategorySelector selector;
-    try {
-      selector = new CategorySelector();
-      wordList.addAll((ArrayList<String>) selector.getWordList(Difficulty.E));
-      // Checks if there are words given to the user
-      if (wordsGiven.size() != 1) {
-        wordList.removeAll(wordsGiven);
-      }
-    } catch (IOException | CsvException | URISyntaxException e) {
-      return;
+    wordList = (ArrayList<String>) this.selector.getWordList(Difficulty.E);
+    // Checks if there are words given to the user
+    if (wordsGiven.size() != 1) {
+      wordList.removeAll(wordsGiven);
     }
   }
 
@@ -93,8 +94,26 @@ public class User {
   }
 
   public void setWordsGiven(String[] words) {
-    for (String word : words) {
-      wordsGiven.add(word);
+    for (int i = 1; i < words.length; i++) {
+      if (!words[i].equals("")) {
+        wordsGiven.add(words[i]);
+      }
     }
+  }
+
+  /**
+   * giveWordToDraw returns a word for the user to draw, which they have not drawn before
+   *
+   * @return word for user to draw
+   */
+  public String giveWordToDraw() {
+    // resets wordList if user has drawn all words
+    if (wordList.isEmpty()) {
+      wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
+      // resetting words given to user once all words have been given
+      wordsGiven.clear();
+      wordsGiven.add(username);
+    }
+    return wordList.get(new Random().nextInt(wordList.size()));
   }
 }

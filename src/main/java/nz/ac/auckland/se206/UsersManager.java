@@ -23,6 +23,14 @@ public class UsersManager {
     return usersMap.get(username);
   }
 
+  public static User getSelectedUser() {
+    return userSelected;
+  }
+
+  public static void setSelectedUser(String username) {
+    userSelected = usersMap.get(username);
+  }
+
   /**
    * This method returns a set of all usernames
    *
@@ -39,9 +47,11 @@ public class UsersManager {
    */
   public static void createUser(User user) {
     loadUser(user);
+
     try {
       saveUsers();
-    } catch (URISyntaxException | IOException e) {
+      loadWordList();
+    } catch (URISyntaxException | IOException | CsvException e) {
       e.printStackTrace();
     }
   }
@@ -100,10 +110,10 @@ public class UsersManager {
         } catch (ArrayIndexOutOfBoundsException e) {
           // if no more details, add user and try next user
           UsersManager.loadUser(user);
-          UsersManager.loadWordList();
           continue;
         }
       }
+      UsersManager.loadWordList();
     } catch (NumberFormatException | IOException | CsvException | URISyntaxException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -151,7 +161,6 @@ public class UsersManager {
     if (user == null || !user.getPassword().equals(password)) {
       return false;
     }
-    userSelected = user;
     return true;
   }
 
@@ -209,9 +218,11 @@ public class UsersManager {
    * @throws URISyntaxException
    */
   private static void loadWordList() throws IOException, CsvException, URISyntaxException {
-    for (String[] wordList : getWordList()) {
-      User user = usersMap.get(wordList[0]);
-      user.setWordsGiven(wordList);
+    List<String[]> userWords = getWordList();
+    for (String[] wordList : userWords) {
+      User currentUser = usersMap.get(wordList[0]);
+      currentUser.setWordsGiven(wordList);
+      currentUser.setWordList();
     }
   }
 }
