@@ -49,6 +49,11 @@ public class UserCreationController {
     UsersManager.createUser(newUser);
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
+
+    // clear all fields
+    usernameField.clear();
+    passwordField.clear();
+    passwordCheckerField.clear();
   }
 
   /**

@@ -95,6 +95,12 @@ public class UserStatsController {
         userWinRatioLabel.setVisible(false);
         userFastestWinLabel.setVisible(false);
         noGamesPlayedLabel.setVisible(false);
+
+        // change title label back to default
+        sb.append("Profile Statistics For: ");
+        statsTitleLabel.setText(sb.toString());
+        sb.setLength(0);
+
         // retrieve the source of button and switch to the login page
         Button button = (Button) event.getSource();
         Scene sceneButtonIsIn = button.getScene();
