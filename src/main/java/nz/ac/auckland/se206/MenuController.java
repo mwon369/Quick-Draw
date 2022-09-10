@@ -30,9 +30,17 @@ public class MenuController {
    */
   @FXML
   private void onLogout(ActionEvent event) {
-    // retrive the source of button and switch to the login page
+    // retrieve the source of button and switch to the login page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
+  }
+
+  @FXML
+  private void onCheckStats(ActionEvent event) {
+    // retrieve the source of button and switch to the user stats page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_STATS));
   }
 }

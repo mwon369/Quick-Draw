@@ -28,6 +28,7 @@ public class User {
     // assign the fields for each new user created
     this.username = username;
     this.password = password;
+    this.fastestWin = 60;
     wordsGiven = new ArrayList<String>();
     wordsGiven.add(username);
     try {
@@ -55,6 +56,11 @@ public class User {
 
   public int getFastestWin() {
     return this.fastestWin;
+  }
+
+  public double getWinRatio() {
+    int totalGames = wins + losses;
+    return (double)wins / totalGames * 100;
   }
 
   public void setWins(int numWins) {

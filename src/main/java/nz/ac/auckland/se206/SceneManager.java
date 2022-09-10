@@ -9,7 +9,8 @@ public class SceneManager {
     MENU,
     CANVAS,
     LOGIN,
-    USER_CREATION
+    USER_CREATION,
+    USER_STATS,
   }
 
   // hashmap that maps enum AppUi to the corresponding root note

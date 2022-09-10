@@ -97,6 +97,9 @@ public class CanvasController {
   private boolean isGameOver;
   private boolean isDrawing;
   private User user;
+  private int userWins;
+  private int userLosses;
+  private int userFastestWin;
 
   // mouse coordinates
   private double currentX;
@@ -251,6 +254,9 @@ public class CanvasController {
     isDrawing = false;
     // select and display random category (easy)
     user = UsersManager.getSelectedUser();
+    userWins = user.getWins();
+    userLosses = user.getLosses();
+    userFastestWin = user.getFastestWin();
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
@@ -322,7 +328,7 @@ public class CanvasController {
                       // check if player has won
                       if (isWin(classifications, 3)) {
                         timer.cancel();
-                        stopGame(true);
+                        stopGame(true, timerLabel.getText());
                         return;
                       }
                     }
@@ -340,7 +346,7 @@ public class CanvasController {
               timer.cancel();
               Platform.runLater(
                   () -> {
-                    stopGame(false);
+                    stopGame(false, timerLabel.getText());
                   });
               return;
             } else {
@@ -452,7 +458,7 @@ public class CanvasController {
    *
    * @param isWin boolean representing whether the user won the game or not
    */
-  private void stopGame(boolean isWin) {
+  private void stopGame(boolean isWin, String timeString) {
     canvas.setDisable(true);
     // disable mouse dragging on canvas
     canvas.setOnMouseDragged(e -> {});
@@ -460,6 +466,18 @@ public class CanvasController {
     // set and display the win/loss
     winLossLabel.setText(isWin ? "You win!" : "You Lose!");
     winLossLabel.setVisible(true);
+
+    // update stats after the game ends
+    int time = Integer.parseInt(timeString);
+    if (isWin) {
+      user.setWins(++userWins);
+      if (60 - time < userFastestWin) {
+        user.setFastestWin(60 - time);
+      }
+    } else {
+      user.setLosses(++userLosses);
+    }
+
     // update and save wordlist after game ends
     user.updateWordList(targetCategory);
     try {
@@ -467,6 +485,7 @@ public class CanvasController {
     } catch (URISyntaxException | IOException e1) {
       e1.printStackTrace();
     }
+
     isGameOver = true;
 
     // speak whether user won or lost

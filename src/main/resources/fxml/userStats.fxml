@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="720.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
+    <children>
+        <Label fx:id="statsTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Profile Statistics For: " textAlignment="CENTER">
+            <font>
+                <Font name="Bradley Hand ITC" size="36.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="80.0" />
+            </VBox.margin>
+        </Label>
+      <HBox alignment="CENTER" minHeight="36.0">
+         <children>
+            <Label fx:id="noGamesPlayedLabel" text="You haven't played any games yet!" visible="false" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="-25.0" top="25.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" minHeight="36.0">
+         <children>
+            <Label fx:id="userWinsLabel" text="Total Wins:  " visible="false" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" minHeight="36.0">
+         <children>
+            <Label fx:id="userLossesLabel" text="Total Losses:  " visible="false" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" minHeight="36.0">
+         <children>
+            <Label fx:id="userWinRatioLabel" text="Win Ratio:  " visible="false" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" minHeight="36.0">
+         <children>
+            <Label fx:id="userFastestWinLabel" text="Fastest Win Time:  " visible="false">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="-150.0" />
+         </VBox.margin>
+      </HBox>
+        <HBox alignment="CENTER" minHeight="36.0">
+            <children>
+                <Button fx:id="retrieveStatsButton" mnemonicParsing="false" onAction="#onRetrieveStats" text="Get My Stats!">
+                    <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                    </padding>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="200.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox alignment="CENTER" minHeight="36.0">
+            <children>
+                <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onGoBackToMenu" text="Back to Main Menu">
+                    <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                    </padding>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

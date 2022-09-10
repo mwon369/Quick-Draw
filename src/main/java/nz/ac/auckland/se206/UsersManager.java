@@ -221,6 +221,12 @@ public class UsersManager {
     List<String[]> userWords = getWordList();
     for (String[] wordList : userWords) {
       User currentUser = usersMap.get(wordList[0]);
+      // if there are no users that currently exist, currentUser will = null
+      // so check for this otherwise we will get nullPointerException on the
+      // first run of the app
+      if (currentUser == null) {
+        continue;
+      }
       currentUser.setWordsGiven(wordList);
       currentUser.setWordList();
     }
