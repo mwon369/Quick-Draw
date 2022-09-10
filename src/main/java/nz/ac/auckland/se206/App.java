@@ -45,6 +45,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
+    SceneManager.addUi(AppUi.USER_STATS, loadFxml("userStats"));
 
     // Load users
     UsersManager.loadUsersFromCSV();

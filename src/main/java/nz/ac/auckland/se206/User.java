@@ -58,6 +58,11 @@ public class User {
     return this.fastestWin;
   }
 
+  public double getWinRatio() {
+    int totalGames = wins + losses;
+    return (double)wins / totalGames * 100;
+  }
+
   public void setWins(int numWins) {
     this.wins = numWins;
   }
