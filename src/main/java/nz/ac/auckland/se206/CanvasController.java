@@ -96,6 +96,7 @@ public class CanvasController {
   private Timer speakPredictionsTimer;
   private boolean isGameOver;
   private boolean isDrawing;
+  private boolean isPenDrawn = false;
   private User user;
   private int userWins;
   private int userLosses;
@@ -123,6 +124,7 @@ public class CanvasController {
 
     canvas.setOnMouseDragged(
         e -> {
+          isPenDrawn = true;
           // Brush size (you can change this, it should not be too small or too large).
           final double size = 6;
 
@@ -164,6 +166,7 @@ public class CanvasController {
   @FXML
   private void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    isPenDrawn = false;
     isDrawing = false;
     predictionsListView.getItems().setAll("");
   }
@@ -217,6 +220,7 @@ public class CanvasController {
    */
   @FXML
   private void switchToMainMenu(ActionEvent event) {
+    isPenDrawn = false;
     isGameOver = true;
     // reset the category label
     wordLabel.setText("");
@@ -250,6 +254,7 @@ public class CanvasController {
    */
   @FXML
   private void onStartNewGame() {
+    isPenDrawn = false;
     isGameOver = true;
     isDrawing = false;
     // select and display random category (easy)
@@ -361,7 +366,9 @@ public class CanvasController {
 
   @FXML
   private void isDrawing() {
-    isDrawing = true;
+    if (isPenDrawn) {
+      isDrawing = true;
+    }
   }
 
   /**
@@ -518,6 +525,7 @@ public class CanvasController {
   private void onSelectPen() {
     canvas.setOnMouseDragged(
         e -> {
+          isPenDrawn = true;
           // Brush size (you can change this, it should not be too small or too large).
           final double size = 6;
 
