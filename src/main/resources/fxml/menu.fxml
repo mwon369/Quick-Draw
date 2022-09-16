@@ -3,49 +3,71 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="720.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
    <children>
-      <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
-         <font>
-            <Font name="Bradley Hand ITC" size="36.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="80.0" />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER" minHeight="36.0">
+      <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground9to8.jpg" />
+         </image>
+      </ImageView>
+      <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="555.0" spacing="15.0">
          <children>
-            <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" text="Play">
-               <padding>
-                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-               </padding>
-            </Button>
+            <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+               <font>
+                  <Font name="Bradley Hand ITC" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" styleClass="mainMenuButton" text="Play">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" styleClass="mainMenuButton" text="My Profile">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" styleClass="mainMenuButton" text="Logout">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-         <VBox.margin>
-            <Insets top="200.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER" minHeight="36.0">
-         <children>
-            <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" text="My Profile">
-               <padding>
-                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-               </padding>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" minHeight="36.0">
-         <children>
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" text="Logout">
-               <padding>
-                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-               </padding>
-            </Button>
-         </children>
-      </HBox>
+      </VBox>
    </children>
-</VBox>
+</StackPane>

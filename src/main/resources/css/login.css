@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
 
-#loginVbox {
+#loginVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;
+	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-opacity: 97%
 }
 
-#title {
+.title {
 	-fx-font-family: 'Indie Flower', cursive;
 	-fx-font-style: normal;
 	-fx-font-weight: 400;
@@ -63,8 +65,8 @@
 }
 
 .button:pressed{
-	-fx-translate-y: 4;
-	-fx-padding: 6 15 6 15;
+	-fx-translate-y: 3;
+	-fx-padding: 6 15 10 15;
 	-fx-background-insets:0;
 }
 

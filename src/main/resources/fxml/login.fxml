@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane prefHeight="643.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.LoginController">
    <children>
       <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
@@ -20,9 +19,9 @@
             <Image url="@../images/DoodleBackground9to8.jpg" />
          </image>
       </ImageView>
-      <VBox id="loginVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" style="-fx-opacity: 97%;">
+      <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0">
          <children>
-            <Label id="title" text="Welcome to Quick, Draw!">
+            <Label styleClass="title" text="Welcome to Quick, Draw!">
                <font>
                   <Font size="42.0" />
                </font>
