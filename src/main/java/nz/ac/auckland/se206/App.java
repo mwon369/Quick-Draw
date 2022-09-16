@@ -45,7 +45,6 @@ public class App extends Application {
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
-    SceneManager.addUi(AppUi.USER_STATS, loadFxml("userStats"));
 
     // Load users
     UsersManager.loadUsersFromCSV();
@@ -53,6 +52,8 @@ public class App extends Application {
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
     scene.getStylesheets().add("/css/canvas.css");
     scene.getStylesheets().add("/css/menu.css");
+    scene.getStylesheets().add("/css/login.css");
+    scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Gafata");
     stage.setScene(scene);
     stage.show();
 

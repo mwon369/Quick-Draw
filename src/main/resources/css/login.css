@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
+
+#loginVbox {
+	-fx-background-color: #F8ECC4;
+	-fx-background-radius: 10px;
+}
+
+#title {
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 42px;
+}
+
+#signInTitle{
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 32px;
+	-fx-text-align: center;
+}
+
+.textFieldLabel{
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 24px;
+	-fx-display: flex;
+	-fx-align-items: center;
+}
+
+.errorMessage{
+	-fx-text-fill: red;
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-size: 20px;
+}
+
+.textField{
+	-fx-width: 248px;
+	-fx-height: 45px;	
+	-fx-background-color: #FFFFFF;
+	-fx-opacity: 0.5;
+	-fx-background-radius: 10px;	
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+	-fx-display: flex;
+	-fx-align-items: center;
+}
+
+.button, .button:focused{
+	-fx-text-fill: black;
+    -fx-background-radius: 10px;
+    -fx-background-color: #E29F00;
+    -fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-border-radius: 10px;
+    -fx-font-family: 'Amatic SC', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 700;
+	-fx-font-size: 22px;
+}
+
+.button:pressed{
+	-fx-translate-y: 4;
+	-fx-padding: 6 15 6 15;
+	-fx-background-insets:0;
+}
+
+.loginPageButton{
+	-fx-width: 101px;
+	-fx-height: 46px;
+}
