@@ -2,13 +2,36 @@ package nz.ac.auckland.se206;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+import java.io.IOException;
+
 public class MenuController {
 
+  Parent userStatsScene;
+  UserStatsController userStatsController;
+
   @FXML private Button playButton;
+
+  /**
+   * This method loads the userStats FXML when the menu FXML is loaded. The reason
+   * we load it here instead of in App.java is because this class needs a reference
+   * to the corresponding controller for the userStats FXML.
+   *
+   * That way when userStatsController.onRetrieveStats() the FXML elements in the
+   * loaded userStats scene are actually updated
+   * @throws IOException
+   */
+  public void initialize() throws IOException {
+    FXMLLoader loader =  new FXMLLoader(App.class.getResource("/fxml/userStats.fxml"));
+    userStatsScene = loader.load();
+    userStatsController = loader.getController();
+    SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
+  }
 
   /**
    * This method switches the root of the scene from the main menu to the canvas
@@ -42,5 +65,6 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_STATS));
+    userStatsController.onRetrieveStats();
   }
 }
