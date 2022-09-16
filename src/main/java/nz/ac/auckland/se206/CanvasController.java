@@ -332,7 +332,6 @@ public class CanvasController {
                       // check if player has won
                       if (isWin(classifications, 3)) {
                         timer.cancel();
-                        savePane.setDisable(false);
                         stopGame(true, timerLabel.getText());
                         return;
                       }
@@ -466,6 +465,7 @@ public class CanvasController {
    * @param isWin boolean representing whether the user won the game or not
    */
   private void stopGame(boolean isWin, String timeString) {
+    savePane.setDisable(false);
     canvas.setDisable(true);
     // disable mouse dragging on canvas
     canvas.setOnMouseDragged(e -> {});
