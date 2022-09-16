@@ -43,7 +43,7 @@
                <children>
                 <Canvas fx:id="canvas" height="313.0" onDragDetected="#isDrawing" width="400.0" StackPane.alignment="CENTER">
                   <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="CROSSHAIR" />
                   </cursor>
                      <StackPane.margin>
                         <Insets />
