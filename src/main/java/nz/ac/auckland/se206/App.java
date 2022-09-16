@@ -53,6 +53,8 @@ public class App extends Application {
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
     scene.getStylesheets().add("/css/canvas.css");
     scene.getStylesheets().add("/css/menu.css");
+    scene.getStylesheets().add("/css/login.css");
+    scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Gafata");
     stage.setScene(scene);
     stage.show();
 

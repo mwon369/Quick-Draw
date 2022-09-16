@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,7 +13,8 @@ public class LoginController {
   @FXML private TextField usernameField;
   @FXML private PasswordField passwordField;
   @FXML private Label errorMessageLabel;
-  @FXML private Hyperlink createUserLink;
+  @FXML private Button registerButton;
+  @FXML private Button loginButton;
 
   /**
    * This method switches from the login page to the menu page
@@ -58,11 +58,11 @@ public class LoginController {
    * @param event an ActionEvent representing when the create user button has been clicked
    */
   @FXML
-  private void onCreateUser(ActionEvent event) {
+  private void onRegister(ActionEvent event) {
     // retrieve the source of hyperlink and switch to the create user scene
-    Hyperlink hyperlink = (Hyperlink) event.getSource();
-    Scene sceneHyperlinkIsIn = hyperlink.getScene();
-    sceneHyperlinkIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
     usernameField.clear();
     passwordField.clear();
     errorMessageLabel.setText("");
