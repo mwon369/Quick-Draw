@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-
-import java.io.IOException;
 
 public class MenuController {
 
@@ -18,16 +17,17 @@ public class MenuController {
   @FXML private Button playButton;
 
   /**
-   * This method loads the userStats FXML when the menu FXML is loaded. The reason
-   * we load it here instead of in App.java is because this class needs a reference
-   * to the corresponding controller for the userStats FXML.
+   * This method loads the userStats FXML when the menu FXML is loaded. The reason we load it here
+   * instead of in App.java is because this class needs a reference to the corresponding controller
+   * for the userStats FXML.
    *
-   * That way when userStatsController.onRetrieveStats() the FXML elements in the
-   * loaded userStats scene are actually updated
+   * <p>That way when userStatsController.onRetrieveStats() the FXML elements in the loaded
+   * userStats scene are actually updated
+   *
    * @throws IOException
    */
   public void initialize() throws IOException {
-    FXMLLoader loader =  new FXMLLoader(App.class.getResource("/fxml/userStats.fxml"));
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/userStats.fxml"));
     userStatsScene = loader.load();
     userStatsController = loader.getController();
     SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
