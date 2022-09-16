@@ -478,8 +478,10 @@ public class CanvasController {
       user.setLosses(++userLosses);
     }
 
-    // update and save wordlist after game ends
+    // update and save both instance word lists fields after game ends
     user.updateWordList(targetCategory);
+    user.updateLastThreeWords(targetCategory);
+
     try {
       UsersManager.saveUsers();
     } catch (URISyntaxException | IOException e1) {

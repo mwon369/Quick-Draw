@@ -24,17 +24,33 @@ public class User {
   private ArrayList<String> wordList;
   private CategorySelector selector;
 
+  private ArrayList<String> lastThreeWords;
+
   public User(String username, String password) {
     // assign the fields for each new user created
     this.username = username;
     this.password = password;
     this.fastestWin = 60;
+    this.lastThreeWords = new ArrayList<String>();
+
     wordsGiven = new ArrayList<String>();
     wordsGiven.add(username);
     try {
       selector = new CategorySelector();
     } catch (IOException | CsvException | URISyntaxException e) {
       e.printStackTrace();
+    }
+
+    // wordsGiven >= size 4 means at least three words has been played
+    // since first index contains the username
+    if (wordsGiven.size() >= 4) {
+      for (int i = wordsGiven.size() - 1; i > wordsGiven.size() - 4; i--) {
+        lastThreeWords.add(wordsGiven.get(i));
+      }
+    } else {
+      for (int i = wordsGiven.size() - 1; i > 0; i--) {
+        lastThreeWords.add(wordsGiven.get(i));
+      }
     }
   }
 
@@ -121,5 +137,16 @@ public class User {
       wordsGiven.add(username);
     }
     return wordList.get(new Random().nextInt(wordList.size()));
+  }
+
+  public void updateLastThreeWords(String category) {
+    lastThreeWords.add(0, category);
+    if (lastThreeWords.size() > 3) {
+      lastThreeWords.remove(lastThreeWords.size() - 1);
+    }
+  }
+
+  public ArrayList<String> getLastThreeWords() {
+    return this.lastThreeWords;
   }
 }
