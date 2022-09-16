@@ -21,8 +21,7 @@ public class UserStatsController {
    * This method retrieves and displays the user's profile statistics when they click the "Get My
    * Stats!" button.
    */
-  @FXML
-  private void onRetrieveStats() {
+  protected void onRetrieveStats() {
     User currentUser = UsersManager.getSelectedUser();
 
     // change title label

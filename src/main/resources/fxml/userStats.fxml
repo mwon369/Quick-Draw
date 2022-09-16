@@ -55,13 +55,6 @@
          </VBox.margin>
       </HBox>
         <HBox alignment="CENTER" minHeight="36.0">
-            <children>
-                <Button fx:id="retrieveStatsButton" mnemonicParsing="false" onAction="#onRetrieveStats" text="Get My Stats!">
-                    <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                    </padding>
-                </Button>
-            </children>
             <VBox.margin>
                 <Insets top="200.0" />
             </VBox.margin>
