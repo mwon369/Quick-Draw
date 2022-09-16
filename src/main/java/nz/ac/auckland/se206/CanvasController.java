@@ -166,6 +166,7 @@ public class CanvasController {
   @FXML
   private void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    isPenDrawn = false;
     isDrawing = false;
     predictionsListView.getItems().setAll("");
   }
