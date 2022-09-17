@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="720.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
+<VBox fx:id="userStatsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="720.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
     <children>
         <Label fx:id="statsTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Profile Statistics For: " textAlignment="CENTER">
             <font>
@@ -19,7 +19,7 @@
         </Label>
       <HBox alignment="CENTER" minHeight="36.0">
          <children>
-            <Label fx:id="noGamesPlayedLabel" text="You haven't played any games yet!" visible="false" />
+            <Label fx:id="noGamesPlayedLabel" styleClass="statLabel" text="You haven't played any games yet!" visible="false" />
          </children>
          <VBox.margin>
             <Insets bottom="-25.0" top="25.0" />
@@ -27,7 +27,7 @@
       </HBox>
       <HBox alignment="CENTER" minHeight="36.0">
          <children>
-            <Label fx:id="userWinsLabel" text="Total Wins:  " visible="false" />
+            <Label fx:id="userWinsLabel" styleClass="statLabel" text="Total Wins:  " visible="false" />
          </children>
          <VBox.margin>
             <Insets />
@@ -35,17 +35,17 @@
       </HBox>
       <HBox alignment="CENTER" minHeight="36.0">
          <children>
-            <Label fx:id="userLossesLabel" text="Total Losses:  " visible="false" />
+            <Label fx:id="userLossesLabel" styleClass="statLabel" text="Total Losses:  " visible="false" />
          </children>
       </HBox>
       <HBox alignment="CENTER" minHeight="36.0">
          <children>
-            <Label fx:id="userWinRatioLabel" text="Win Ratio:  " visible="false" />
+            <Label fx:id="userWinRatioLabel" styleClass="statLabel" text="Win Ratio:  " visible="false" />
          </children>
       </HBox>
       <HBox alignment="CENTER" minHeight="36.0">
          <children>
-            <Label fx:id="userFastestWinLabel" text="Fastest Win Time:  " visible="false">
+            <Label fx:id="userFastestWinLabel" styleClass="statLabel" text="Fastest Win Time:  " visible="false">
                <HBox.margin>
                   <Insets />
                </HBox.margin></Label>

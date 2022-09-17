@@ -53,6 +53,7 @@ public class App extends Application {
     scene.getStylesheets().add("/css/canvas.css");
     scene.getStylesheets().add("/css/menu.css");
     scene.getStylesheets().add("/css/login.css");
+    scene.getStylesheets().add("/css/userStats.css");
     stage.setScene(scene);
     stage.show();
 

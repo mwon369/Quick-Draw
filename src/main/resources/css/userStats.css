@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
+
+#userStatsVBox {
+	-fx-background-color: #F8ECC4;
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-opacity: 97%
+}
+
+.statLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 24px;
+    -fx-line-height: 35px;
+    -fx-text-align: right;
+}
+
+#statsTitleLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 42px;
+    -fx-line-height: 61px;
+    -fx-text-align: center;
+}
