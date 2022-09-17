@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -10,69 +11,87 @@ public class UserStatsController {
 
   private final StringBuilder sb = new StringBuilder();
 
-  @FXML private Label statsTitleLabel;
   @FXML private Label userWinsLabel;
   @FXML private Label userLossesLabel;
   @FXML private Label userWinRatioLabel;
   @FXML private Label userFastestWinLabel;
-  @FXML private Label noGamesPlayedLabel;
+  @FXML private Label userLabel;
+  @FXML private Label totalGamesLabel;
+  @FXML private Label previousWordsLabel;
 
-  /**
-   * This method retrieves and displays the user's profile statistics when they click the "Get My
-   * Stats!" button.
-   */
+  /** This method retrieves and displays the user's profile statistics */
   protected void onRetrieveStats() {
     User currentUser = UsersManager.getSelectedUser();
 
-    // change title label
-    sb.append("Profile Statistics For: ");
+    // change username label
     sb.append(currentUser.getUsername());
-    statsTitleLabel.setText(sb.toString());
+    userLabel.setText(sb.toString());
     sb.setLength(0);
 
-    // check if the user has played no games
-    if (currentUser.getWins() + currentUser.getLosses() == 0) {
-      noGamesPlayedLabel.setVisible(true);
-      return;
-    }
+    // show total games
+    sb.append("Total Games: ");
+    sb.append(currentUser.getWins() + currentUser.getLosses());
+    totalGamesLabel.setText(sb.toString());
+    sb.setLength(0);
 
     // show wins
     sb.append("Total Wins:  ");
     sb.append(currentUser.getWins());
     userWinsLabel.setText(sb.toString());
-    userWinsLabel.setVisible(true);
     sb.setLength(0);
 
     // show losses
     sb.append("Total Losses:  ");
     sb.append(currentUser.getLosses());
     userLossesLabel.setText(sb.toString());
-    userLossesLabel.setVisible(true);
     sb.setLength(0);
 
-    // show win ratio
-    sb.append("Win Ratio:  ");
-    sb.append(String.format("%.1f", currentUser.getWinRatio()));
-    sb.append("%");
-    userWinRatioLabel.setText(sb.toString());
-    userWinRatioLabel.setVisible(true);
+    // show win ratio and previous words but only if user has played
+    // at least one game
+    if (currentUser.getWins() + currentUser.getLosses() == 0) {
+      // win ratio
+      sb.append("Win Ratio: N/A");
+      userWinRatioLabel.setText(sb.toString());
+      sb.setLength(0);
+
+      // previous words
+      sb.append("Previous Words: N/A");
+      previousWordsLabel.setText(sb.toString());
+
+    } else {
+      sb.append("Win Ratio:  ");
+      sb.append(String.format("%.1f", currentUser.getWinRatio()));
+      sb.append("%");
+      userWinRatioLabel.setText(sb.toString());
+      sb.setLength(0);
+
+      ArrayList<String> previousWords = currentUser.getLastThreeWords();
+      System.out.println(previousWords.toString());
+      sb.append("Previous Words: ");
+
+      int wordNumber = 0;
+      for (String word : previousWords) {
+        sb.append(word);
+        wordNumber++;
+        if (wordNumber != previousWords.size()) {
+          sb.append(", ");
+        }
+      }
+      previousWordsLabel.setText(sb.toString());
+      previousWords.clear();
+    }
     sb.setLength(0);
 
-    // check if the user has never won before
+    // show the wins but only if the user has won before
     if (currentUser.getWins() == 0) {
       sb.append("Fastest Win Time:  N/A");
-      userFastestWinLabel.setText(sb.toString());
-      userFastestWinLabel.setVisible(true);
-      sb.setLength(0);
-      return;
+    } else {
+      // show the fastest win time
+      sb.append("Fastest Win Time:  ");
+      sb.append(currentUser.getFastestWin());
+      sb.append(" seconds");
     }
-
-    // show the fastest win time
-    sb.append("Fastest Win Time:  ");
-    sb.append(currentUser.getFastestWin());
-    sb.append(" seconds");
     userFastestWinLabel.setText(sb.toString());
-    userFastestWinLabel.setVisible(true);
     sb.setLength(0);
   }
 
@@ -83,18 +102,6 @@ public class UserStatsController {
    */
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
-    // reset visibility of labels
-    userWinsLabel.setVisible(false);
-    userLossesLabel.setVisible(false);
-    userWinRatioLabel.setVisible(false);
-    userFastestWinLabel.setVisible(false);
-    noGamesPlayedLabel.setVisible(false);
-
-    // change title label back to default
-    sb.append("Profile Statistics For: ");
-    statsTitleLabel.setText(sb.toString());
-    sb.setLength(0);
-
     // retrieve the source of button and switch to the login page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
