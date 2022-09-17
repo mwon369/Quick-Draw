@@ -65,20 +65,19 @@ public class UserStatsController {
       userWinRatioLabel.setText(sb.toString());
       sb.setLength(0);
 
-      ArrayList<String> previousWords = currentUser.getLastThreeWords();
-      System.out.println(previousWords.toString());
       sb.append("Previous Words: ");
+      ArrayList<String> previousWords = currentUser.getLastThreeWords();
 
-      int wordNumber = 0;
-      for (String word : previousWords) {
-        sb.append(word);
-        wordNumber++;
-        if (wordNumber != previousWords.size()) {
-          sb.append(", ");
+      // iterate through the words and append to string builder
+      for (int i = 0; i < previousWords.size(); i++) {
+        sb.append(previousWords.get(i));
+        // if we're at the last word, continue so that we don't append a comma
+        if (i == previousWords.size() - 1) {
+          continue;
         }
+        sb.append(", ");
       }
       previousWordsLabel.setText(sb.toString());
-      previousWords.clear();
     }
     sb.setLength(0);
 
@@ -86,7 +85,6 @@ public class UserStatsController {
     if (currentUser.getWins() == 0) {
       sb.append("Fastest Win Time:  N/A");
     } else {
-      // show the fastest win time
       sb.append("Fastest Win Time:  ");
       sb.append(currentUser.getFastestWin());
       sb.append(" seconds");

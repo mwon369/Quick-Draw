@@ -40,18 +40,6 @@ public class User {
     } catch (IOException | CsvException | URISyntaxException e) {
       e.printStackTrace();
     }
-
-    // wordsGiven >= size 4 means at least three words has been played
-    // since first index contains the username
-    if (wordsGiven.size() >= 4) {
-      for (int i = wordsGiven.size() - 1; i > wordsGiven.size() - 4; i--) {
-        lastThreeWords.add(wordsGiven.get(i));
-      }
-    } else {
-      for (int i = wordsGiven.size() - 1; i > 0; i--) {
-        lastThreeWords.add(wordsGiven.get(i));
-      }
-    }
   }
 
   public String getUsername() {
@@ -143,6 +131,15 @@ public class User {
     lastThreeWords.add(0, category);
     if (lastThreeWords.size() > 3) {
       lastThreeWords.remove(lastThreeWords.size() - 1);
+    }
+  }
+
+  public void setLastThreeWords() {
+    for (int i = wordsGiven.size() - 1; i > 0; i--) {
+      lastThreeWords.add(wordsGiven.get(i));
+      if (lastThreeWords.size() == 3) {
+        break;
+      }
     }
   }
 

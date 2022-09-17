@@ -229,6 +229,7 @@ public class UsersManager {
       }
       currentUser.setWordsGiven(wordList);
       currentUser.setWordList();
+      currentUser.setLastThreeWords();
     }
   }
 }
