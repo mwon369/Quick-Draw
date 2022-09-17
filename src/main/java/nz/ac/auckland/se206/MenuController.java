@@ -21,8 +21,8 @@ public class MenuController {
    * instead of in App.java is because this class needs a reference to the corresponding controller
    * for the userStats FXML.
    *
-   * <p>That way when userStatsController.onRetrieveStats() is called the FXML elements in the loaded
-   * userStats scene are actually updated
+   * <p>That way when userStatsController.onRetrieveStats() is called the FXML elements in the
+   * loaded userStats scene are actually updated
    *
    * @throws IOException
    */

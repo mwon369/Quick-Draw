@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206;
 
 import static nz.ac.auckland.se206.ml.DoodlePrediction.printPredictions;
+
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications.Classification;
+import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.imageio.ImageIO;
-import ai.djl.ModelException;
-import ai.djl.modality.Classifications.Classification;
-import ai.djl.translate.TranslateException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -35,6 +35,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -44,11 +45,9 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
  * DL model should be automatically queried in the background every second.
  *
- * <p>
- * !! IMPORTANT !!
+ * <p>!! IMPORTANT !!
  *
- * <p>
- * Although we added the scale of the image, you need to be careful when changing the size of the
+ * <p>Although we added the scale of the image, you need to be careful when changing the size of the
  * drawable canvas and the brush size. If you make the brush too big or too small with respect to
  * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
  * the canvas and brush sizes, make sure that the prediction works fine.
@@ -57,55 +56,39 @@ public class CanvasController {
 
   private static final int TIMER_START_TIME = 60;
 
-  @FXML
-  private Canvas canvas;
+  @FXML private Canvas canvas;
 
-  @FXML
-  private Label wordLabel;
+  @FXML private Label wordLabel;
   private String targetCategory;
 
   // items for the timer
-  @FXML
-  private Label timerLabel;
+  @FXML private Label timerLabel;
   private Timer timer;
 
-  @FXML
-  private Button mainMenuButton;
+  @FXML private Button mainMenuButton;
 
-  @FXML
-  private Button startNewGameButton;
+  @FXML private Button startNewGameButton;
 
-  @FXML
-  private Button readyButton;
+  @FXML private Button readyButton;
 
   private GraphicsContext graphic;
 
   private DoodlePrediction model;
 
-  @FXML
-  private ListView<String> predictionsListView;
+  @FXML private ListView<String> predictionsListView;
   private List<Classification> classifications;
 
-  @FXML
-  private Label winLossLabel;
+  @FXML private Label winLossLabel;
 
   // items for the canvas tools
-  @FXML
-  private Pane penPane;
-  @FXML
-  private Pane eraserPane;
-  @FXML
-  private Pane clearPane;
-  @FXML
-  private Pane savePane;
-  @FXML
-  private ImageView penIcon;
-  @FXML
-  private ImageView eraserIcon;
-  @FXML
-  private ImageView clearIcon;
-  @FXML
-  private ImageView saveIcon;
+  @FXML private Pane penPane;
+  @FXML private Pane eraserPane;
+  @FXML private Pane clearPane;
+  @FXML private Pane savePane;
+  @FXML private ImageView penIcon;
+  @FXML private ImageView eraserIcon;
+  @FXML private ImageView clearIcon;
+  @FXML private ImageView saveIcon;
 
   private List<Pane> toolPanes;
 
@@ -134,30 +117,32 @@ public class CanvasController {
     savePane.setDisable(true);
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
-    canvas.setOnMousePressed(e -> {
-      currentX = e.getX();
-      currentY = e.getY();
-    });
+    canvas.setOnMousePressed(
+        e -> {
+          currentX = e.getX();
+          currentY = e.getY();
+        });
 
-    canvas.setOnMouseDragged(e -> {
-      isPenDrawn = true;
-      // Brush size (you can change this, it should not be too small or too large).
-      final double size = 6;
+    canvas.setOnMouseDragged(
+        e -> {
+          isPenDrawn = true;
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 6;
 
-      final double x = e.getX() - size / 2;
-      final double y = e.getY() - size / 2;
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
 
-      // This is the colour of the brush.
-      graphic.setFill(Color.BLACK);
-      graphic.setLineWidth(size);
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.setLineWidth(size);
 
-      // Create a line that goes from the point (currentX, currentY) and (x,y)
-      graphic.strokeLine(currentX, currentY, x, y);
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
 
-      // update the coordinates
-      currentX = x;
-      currentY = y;
-    });
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
 
     model = new DoodlePrediction();
 
@@ -304,13 +289,14 @@ public class CanvasController {
     isGameOver = false;
 
     // tell the player to start drawing
-    Task<Void> startDrawingSpeechTask = new Task<Void>() {
-      @Override
-      protected Void call() throws Exception {
-        textToSpeech.speak("Start Drawing!");
-        return null;
-      }
-    };
+    Task<Void> startDrawingSpeechTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            textToSpeech.speak("Start Drawing!");
+            return null;
+          }
+        };
     Thread startDrawingSpeechThread = new Thread(startDrawingSpeechTask);
     startDrawingSpeechThread.start();
 
@@ -326,50 +312,55 @@ public class CanvasController {
    */
   private void startTimer() {
     // schedule task every 1000 milliseconds = 1 second
-    timer.scheduleAtFixedRate(new TimerTask() {
-      private int time = TIMER_START_TIME;
+    timer.scheduleAtFixedRate(
+        new TimerTask() {
+          private int time = TIMER_START_TIME;
 
-      @Override
-      public void run() {
-        // create temporary variable for the time
-        int temp = time;
-        Platform.runLater(() -> {
-          try {
-            // Only starts predicting once the player has started drawing
-            if (isDrawing) {
-              // retrieve predictions list and update the JavaFx ListView component
-              classifications = model.getPredictions(getCurrentSnapshot(), 10);
-              List<String> predictionsList = getPredictionsListForDisplay(classifications);
-              predictionsListView.getItems().setAll(predictionsList);
-              // check if player has won
-              if (isWin(classifications, 3)) {
-                timer.cancel();
-                stopGame(true, timerLabel.getText());
-                return;
-              }
+          @Override
+          public void run() {
+            // create temporary variable for the time
+            int temp = time;
+            Platform.runLater(
+                () -> {
+                  try {
+                    // Only starts predicting once the player has started drawing
+                    if (isDrawing) {
+                      // retrieve predictions list and update the JavaFx ListView component
+                      classifications = model.getPredictions(getCurrentSnapshot(), 10);
+                      List<String> predictionsList = getPredictionsListForDisplay(classifications);
+                      predictionsListView.getItems().setAll(predictionsList);
+                      // check if player has won
+                      if (isWin(classifications, 3)) {
+                        timer.cancel();
+                        stopGame(true, timerLabel.getText());
+                        return;
+                      }
+                    }
+                  } catch (TranslateException e) {
+                    System.out.println("Unable to retrieve predictions");
+                    e.printStackTrace();
+                  }
+
+                  // update timer
+                  timerLabel.setText(String.valueOf(temp));
+                });
+
+            // if time has run out, cancel timer
+            if (time == 0) {
+              timer.cancel();
+              Platform.runLater(
+                  () -> {
+                    stopGame(false, timerLabel.getText());
+                  });
+              return;
+            } else {
+              // otherwise, decrement the time by 1 second
+              time -= 1;
             }
-          } catch (TranslateException e) {
-            System.out.println("Unable to retrieve predictions");
-            e.printStackTrace();
           }
-
-          // update timer
-          timerLabel.setText(String.valueOf(temp));
-        });
-
-        // if time has run out, cancel timer
-        if (time == 0) {
-          timer.cancel();
-          Platform.runLater(() -> {
-            stopGame(false, timerLabel.getText());
-          });
-          return;
-        } else {
-          // otherwise, decrement the time by 1 second
-          time -= 1;
-        }
-      }
-    }, 0, 1000);
+        },
+        0,
+        1000);
   }
 
   @FXML
@@ -384,9 +375,9 @@ public class CanvasController {
    * be printed to display a prediction
    *
    * @param predictionsListClassification the predictions list that is a list of Classification
-   *        objects
+   *     objects
    * @return a formatted list of predictions. Each string is of the format "n : classification :
-   *         xx.xx%" where n is the top n prediction and xx.xx is the probability
+   *     xx.xx%" where n is the top n prediction and xx.xx is the probability
    */
   private List<String> getPredictionsListForDisplay(
       List<Classification> predictionsListClassification) {
@@ -396,8 +387,11 @@ public class CanvasController {
     // predictionsListForDisplay
     for (Classification classification : predictionsListClassification) {
       StringBuilder sb = new StringBuilder();
-      sb.append(i).append(" : ").append(classification.getClassName().replace("_", " "))
-          .append(" : ").append(String.format("%.0f%%", 100 * classification.getProbability()))
+      sb.append(i)
+          .append(" : ")
+          .append(classification.getClassName().replace("_", " "))
+          .append(" : ")
+          .append(String.format("%.0f%%", 100 * classification.getProbability()))
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
@@ -427,38 +421,41 @@ public class CanvasController {
    */
   private void speakPredictions() {
     // schedule the speaking for every 10 seconds and starts after 1 second
-    speakPredictionsTimer.schedule(new TimerTask() {
-      @Override
-      public void run() {
-        if (isGameOver) {
-          this.cancel();
-          return;
-        }
-        // checks to see if the player has started drawing
-        if (!isDrawing) {
-          return;
-        }
-        textToSpeech.speak("I see ");
-        // retrieve the classifications list and store in temporary list for speaking
-        List<Classification> temporaryList = classifications;
+    speakPredictionsTimer.schedule(
+        new TimerTask() {
+          @Override
+          public void run() {
+            if (isGameOver) {
+              this.cancel();
+              return;
+            }
+            // checks to see if the player has started drawing
+            if (!isDrawing) {
+              return;
+            }
+            textToSpeech.speak("I see ");
+            // retrieve the classifications list and store in temporary list for speaking
+            List<Classification> temporaryList = classifications;
 
-        // run through the top three predictions
-        for (int i = 0; i < 3; i++) {
-          if (isGameOver) {
-            this.cancel();
-            return;
-          }
+            // run through the top three predictions
+            for (int i = 0; i < 3; i++) {
+              if (isGameOver) {
+                this.cancel();
+                return;
+              }
 
-          // get each prediction and speak it
-          textToSpeech.speak(temporaryList.get(i).getClassName().replace("_", " "));
-          if (isGameOver) {
-            this.cancel();
-            return;
+              // get each prediction and speak it
+              textToSpeech.speak(temporaryList.get(i).getClassName().replace("_", " "));
+              if (isGameOver) {
+                this.cancel();
+                return;
+              }
+              textToSpeech.speak(i != 2 ? " orrrrr " : "");
+            }
           }
-          textToSpeech.speak(i != 2 ? " orrrrr " : "");
-        }
-      }
-    }, 1000, 10000);
+        },
+        1000,
+        10000);
   }
 
   /**
@@ -471,8 +468,7 @@ public class CanvasController {
     savePane.setDisable(false);
     canvas.setDisable(true);
     // disable mouse dragging on canvas
-    canvas.setOnMouseDragged(e -> {
-    });
+    canvas.setOnMouseDragged(e -> {});
 
     // set and display the win/loss
     winLossLabel.setText(isWin ? "You win!" : "You Lose!");
@@ -502,13 +498,14 @@ public class CanvasController {
     isGameOver = true;
 
     // speak whether user won or lost
-    Task<Void> endSpeechTask = new Task<Void>() {
-      @Override
-      protected Void call() throws Exception {
-        textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");
-        return null;
-      }
-    };
+    Task<Void> endSpeechTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");
+            return null;
+          }
+        };
 
     Thread endSpeechThread = new Thread(endSpeechTask);
     endSpeechThread.start();
@@ -517,35 +514,37 @@ public class CanvasController {
   /** This method changes the user's input to simulate an eraser for the canvas */
   @FXML
   private void onSelectEraser() {
-    canvas.setOnMouseDragged(e -> {
-      // clear where the user touches
-      graphic.clearRect(e.getX() - 2, e.getY() - 2, 10, 10);
-    });
+    canvas.setOnMouseDragged(
+        e -> {
+          // clear where the user touches
+          graphic.clearRect(e.getX() - 2, e.getY() - 2, 10, 10);
+        });
     colorCurrentTool("eraserPane");
   }
 
   /** This method changes the user's input to simulate a black pen for the canvas */
   @FXML
   private void onSelectPen() {
-    canvas.setOnMouseDragged(e -> {
-      isPenDrawn = true;
-      // Brush size (you can change this, it should not be too small or too large).
-      final double size = 6;
+    canvas.setOnMouseDragged(
+        e -> {
+          isPenDrawn = true;
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 6;
 
-      final double x = e.getX() - size / 2;
-      final double y = e.getY() - size / 2;
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
 
-      // This is the colour of the brush.
-      graphic.setFill(Color.BLACK);
-      graphic.setLineWidth(size);
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.setLineWidth(size);
 
-      // Create a line that goes from the point (currentX, currentY) and (x,y)
-      graphic.strokeLine(currentX, currentY, x, y);
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
 
-      // update the coordinates
-      currentX = x;
-      currentY = y;
-    });
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
     colorCurrentTool("penPane");
   }
 
@@ -560,9 +559,10 @@ public class CanvasController {
     for (Pane toolPane : toolPanes) {
       // if id is equal, change the color to a specific color, otherwise, change to
       // transparent
-      toolPane.setBackground(toolPane.getId().equals(toolPaneId)
-          ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
-          : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+      toolPane.setBackground(
+          toolPane.getId().equals(toolPaneId)
+              ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
+              : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
     }
   }
 
@@ -595,12 +595,17 @@ public class CanvasController {
     fileChooser.setInitialFileName(sb.toString());
 
     // save as .bmp, .PNG or .jpg file type
-    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("bmp", ".bmp"),
-        new ExtensionFilter(".png", "*.PNG"), new ExtensionFilter(".jpg", "*.jpg"));
+    fileChooser
+        .getExtensionFilters()
+        .addAll(
+            new ExtensionFilter("bmp", ".bmp"),
+            new ExtensionFilter(".png", "*.PNG"),
+            new ExtensionFilter(".jpg", "*.jpg"));
 
     // open save dialog
-    File fileToSave = fileChooser.showSaveDialog(
-        Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null));
+    File fileToSave =
+        fileChooser.showSaveDialog(
+            Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null));
     if (fileToSave != null) {
       try {
 
