@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
+@font-face {
+    src: url("IndieFlower-Regular.ttf"),
+}
+
+@font-face {
+    src: url("AmaticSC-Bold.ttf"),
+}
 
 #loginVBox {
 	-fx-background-color: #F8ECC4;

@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
+@font-face {
+    src: url("IndieFlower-Regular.ttf"),
+}
+
+@font-face {
+    src: url("AmaticSC-Bold.ttf"),
+}
 
 #menuVBox {
 	-fx-background-color: #F8ECC4;
@@ -6,7 +12,6 @@
 	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
 	-fx-opacity: 97%
 }
-
 
 .mainMenuButton{
 	-fx-pref-width: 125px;
