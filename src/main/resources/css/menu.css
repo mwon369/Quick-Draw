@@ -1,24 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Indie+Flower&display=swap');
+
 #menuVBox {
-	-fx-background-color: #FFF3BD;
+	-fx-background-color: #F8ECC4;
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-opacity: 97%
 }
 
-.button, .button:focused{
-	-fx-text-fill: white;
-	-fx-padding: 6 15 10 15;
-    -fx-background-insets: 0,0 0 5 0, 0 0 10 0, 0 0 7 0;
-    -fx-background-radius: 12;
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #916703 0%, #916703 100%),
-        #E29F00
-        #E29F00
-        radial-gradient(center 50% 50%, radius 100%, #E29F00, #916703);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
-    -fx-font-weight: bold;
-}
 
-.button:pressed{
-	-fx-translate-y: 4;
-	-fx-padding: 6 15 6 15;
-	-fx-background-insets:0;
+.mainMenuButton{
+	-fx-pref-width: 125px;
+	-fx-max-height: 20px;
+	-fx-font-size: 24px;
 }
-
