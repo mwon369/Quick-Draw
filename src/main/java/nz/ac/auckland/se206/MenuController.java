@@ -21,7 +21,7 @@ public class MenuController {
    * instead of in App.java is because this class needs a reference to the corresponding controller
    * for the userStats FXML.
    *
-   * <p>That way when userStatsController.onRetrieveStats() the FXML elements in the loaded
+   * <p>That way when userStatsController.onRetrieveStats() is called the FXML elements in the loaded
    * userStats scene are actually updated
    *
    * @throws IOException
@@ -31,6 +31,7 @@ public class MenuController {
     userStatsScene = loader.load();
     userStatsController = loader.getController();
     SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
+    SceneManager.getUiRoot(AppUi.USER_STATS).getStylesheets().add("/css/userStats.css");
   }
 
   /**
