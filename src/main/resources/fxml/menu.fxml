@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
    <children>
       <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true">
@@ -30,7 +29,7 @@
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" styleClass="mainMenuButton" text="Play">
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" text="Play">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -45,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" styleClass="mainMenuButton" text="My Profile">
+                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" text="My Profile">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -57,7 +56,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" styleClass="mainMenuButton" text="Logout">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" text="Logout">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
