@@ -114,6 +114,7 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
+    savePane.setDisable(true);
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -220,19 +221,7 @@ public class CanvasController {
    */
   @FXML
   private void switchToMainMenu(ActionEvent event) {
-    isPenDrawn = false;
-    isGameOver = true;
-    // reset the category label
-    wordLabel.setText("");
-
-    // configure, disable and clear the canvas
-    onSelectPen();
-    canvas.setDisable(true);
-    onClear();
-    readyButton.setDisable(true);
-
-    winLossLabel.setVisible(false);
-
+    resetCanvas();
     // reset the timer and cancel the timer if needed
     timerLabel.setText(String.valueOf(TIMER_START_TIME));
     if (timer != null) {
@@ -248,15 +237,28 @@ public class CanvasController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
 
+  private void resetCanvas() {
+    isPenDrawn = false;
+    isGameOver = true;
+    // reset the category label
+    wordLabel.setText("");
+
+    // configure, disable and clear the canvas
+    onSelectPen();
+    canvas.setDisable(true);
+    onClear();
+    readyButton.setDisable(true);
+    savePane.setDisable(true);
+    winLossLabel.setVisible(false);
+  }
+
   /**
    * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
    * the ready button
    */
   @FXML
   private void onStartNewGame() {
-    isPenDrawn = false;
-    isGameOver = true;
-    isDrawing = false;
+    resetCanvas();
     // select and display random category (easy)
     user = UsersManager.getSelectedUser();
     userWins = user.getWins();
@@ -265,9 +267,6 @@ public class CanvasController {
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
-    onSelectPen();
-    canvas.setDisable(true);
-    onClear();
     readyButton.setDisable(false);
     winLossLabel.setVisible(false);
 
@@ -466,6 +465,7 @@ public class CanvasController {
    * @param isWin boolean representing whether the user won the game or not
    */
   private void stopGame(boolean isWin, String timeString) {
+    savePane.setDisable(false);
     canvas.setDisable(true);
     // disable mouse dragging on canvas
     canvas.setOnMouseDragged(e -> {});
