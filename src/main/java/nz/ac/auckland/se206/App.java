@@ -42,28 +42,30 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // Add scenes
     SceneManager.addUi(AppUi.MENU, loadFxml("menu"));
-    SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
-    SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
-    SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
+    SceneManager.getUiRoot(AppUi.MENU).getStylesheets().add("/css/menu.css");
 
+    SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
+    SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
+
+    SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
+    SceneManager.getUiRoot(AppUi.USER_CREATION).getStylesheets().add("/css/userCreation.css");
+
+    SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
+    SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
     // Load users
     UsersManager.loadUsersFromCSV();
 
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
-    scene.getStylesheets().add("/css/canvas.css");
-    scene.getStylesheets().add("/css/menu.css");
-    scene.getStylesheets().add("/css/login.css");
     stage.setScene(scene);
     stage.show();
 
     // ensure everything terminates when user closes the window
-    stage.setOnCloseRequest(
-        new EventHandler<WindowEvent>() {
-          @Override
-          public void handle(WindowEvent event) {
-            Platform.exit();
-            System.exit(0);
-          }
-        });
+    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      @Override
+      public void handle(WindowEvent event) {
+        Platform.exit();
+        System.exit(0);
+      }
+    });
   }
 }
