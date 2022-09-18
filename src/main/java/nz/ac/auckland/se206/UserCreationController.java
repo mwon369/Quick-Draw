@@ -63,6 +63,7 @@ public class UserCreationController {
    */
   @FXML
   private void onLoginPage(ActionEvent event) {
+    errorMessageLabel.setText("");
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
