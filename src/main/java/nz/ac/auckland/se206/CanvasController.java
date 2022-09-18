@@ -561,7 +561,7 @@ public class CanvasController {
       // transparent
       toolPane.setBackground(
           toolPane.getId().equals(toolPaneId)
-              ? new Background(new BackgroundFill(Color.web("#faebd7"), null, null))
+              ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
               : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
     }
   }

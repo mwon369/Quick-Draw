@@ -41,11 +41,12 @@
 	-fx-font-style: normal;
 	-fx-font-weight: 700;
 	-fx-font-size: 22px;
+	-fx-padding: 6 0 5 0;
 }
 
 .button:pressed{
-	-fx-translate-y: 3;
-	-fx-padding: 6 15 10 15;
+	-fx-translate-y: 4;
+	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;
 }
 
