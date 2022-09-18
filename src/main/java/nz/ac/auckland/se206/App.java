@@ -40,7 +40,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Add scenes
+    // Add scenes and stylesheets
     SceneManager.addUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.getUiRoot(AppUi.MENU).getStylesheets().add("/css/menu.css");
 
@@ -52,8 +52,9 @@ public class App extends Application {
 
     SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
     SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
+
     // Load users
-    UsersManager.loadUsersFromCSV();
+    UsersManager.loadUsersFromJson();
 
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
     stage.setScene(scene);

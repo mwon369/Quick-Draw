@@ -22,7 +22,7 @@ public class User {
 
   private ArrayList<String> wordsGiven;
   private ArrayList<String> wordList;
-  private CategorySelector selector;
+  private transient CategorySelector selector; // transient means not saved to json file
 
   private ArrayList<String> lastThreeWords;
 
@@ -34,12 +34,13 @@ public class User {
     this.lastThreeWords = new ArrayList<String>();
 
     wordsGiven = new ArrayList<String>();
-    wordsGiven.add(username);
+
     try {
       selector = new CategorySelector();
     } catch (IOException | CsvException | URISyntaxException e) {
       e.printStackTrace();
     }
+    wordList = (ArrayList<String>) this.selector.getWordList(Difficulty.E);
   }
 
   public String getUsername() {
@@ -79,15 +80,6 @@ public class User {
     this.fastestWin = fastestWin;
   }
 
-  /** setWordList method fills the ArrayList wordList with words the user has not been given */
-  public void setWordList() {
-    wordList = (ArrayList<String>) this.selector.getWordList(Difficulty.E);
-    // Checks if there are words given to the user
-    if (wordsGiven.size() != 1) {
-      wordList.removeAll(wordsGiven);
-    }
-  }
-
   /**
    * updateWordList saves the new word given to the user and updates what words can be given to the
    * user for a new game
@@ -103,14 +95,6 @@ public class User {
     return wordsGiven;
   }
 
-  public void setWordsGiven(String[] words) {
-    for (int i = 1; i < words.length; i++) {
-      if (!words[i].equals("")) {
-        wordsGiven.add(words[i]);
-      }
-    }
-  }
-
   /**
    * giveWordToDraw returns a word for the user to draw, which they have not drawn before
    *
@@ -122,24 +106,20 @@ public class User {
       wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
       // resetting words given to user once all words have been given
       wordsGiven.clear();
-      wordsGiven.add(username);
     }
     return wordList.get(new Random().nextInt(wordList.size()));
   }
 
+  /**
+   * This method updates the last three words that the user has been given with a new additional
+   * word
+   *
+   * @param category the new word to add in
+   */
   public void updateLastThreeWords(String category) {
     lastThreeWords.add(0, category);
     if (lastThreeWords.size() > 3) {
       lastThreeWords.remove(lastThreeWords.size() - 1);
-    }
-  }
-
-  public void setLastThreeWords() {
-    for (int i = wordsGiven.size() - 1; i > 0; i--) {
-      lastThreeWords.add(wordsGiven.get(i));
-      if (lastThreeWords.size() == 3) {
-        break;
-      }
     }
   }
 
