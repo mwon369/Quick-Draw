@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -490,8 +489,8 @@ public class CanvasController {
     user.updateLastThreeWords(targetCategory);
 
     try {
-      UsersManager.saveUsers();
-    } catch (URISyntaxException | IOException e1) {
+      UsersManager.saveUsersToJson();
+    } catch (IOException e1) {
       e1.printStackTrace();
     }
 

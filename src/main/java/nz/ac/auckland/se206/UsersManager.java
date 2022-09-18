@@ -1,22 +1,22 @@
 package nz.ac.auckland.se206;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
+import java.io.Reader;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class UsersManager {
 
   // hashmap will map each username to a User object
-  private static HashMap<String, User> usersMap = new HashMap<String, User>();
+  private static HashMap<String, User> usersMap;
   private static User userSelected;
 
   public static User getUser(String username) {
@@ -41,110 +41,69 @@ public class UsersManager {
   }
 
   /**
-   * This method creates a loads a user into the hashmap and saves the user to the fil
+   * This method creates and loads a user into the hashmap and saves the user to the json file
    *
    * @param user the User object to create
    */
   public static void createUser(User user) {
-    loadUser(user);
-
-    try {
-      saveUsers();
-      loadWordList();
-    } catch (URISyntaxException | IOException | CsvException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * This method saves all users' details to a csv file
-   *
-   * @throws URISyntaxException
-   * @throws IOException
-   */
-  public static void saveUsers() throws URISyntaxException, IOException {
-    File fileName = new File("src/main/resources/users.csv");
-    CSVWriter writer = new CSVWriter(new FileWriter(fileName));
-    // first, write out the headers
-    String[] headers = {"Username", "Password", "Wins", "Losses", "Fastest Time"};
-    writer.writeNext(headers);
-    // write each user detail on a new row
-    for (User user : usersMap.values()) {
-      String[] details = new String[5];
-      details[0] = user.getUsername();
-      details[1] = user.getPassword();
-      details[2] = String.valueOf(user.getWins());
-      details[3] = String.valueOf(user.getLosses());
-      details[4] = String.valueOf(user.getFastestWin());
-      writer.writeNext(details);
-    }
-    writer.close();
-    saveWordsGiven();
-  }
-
-  /**
-   * This method puts a user onto the hashMap of users
-   *
-   * @param user the user of User type to put into the hashMap
-   */
-  public static void loadUser(User user) {
     usersMap.put(user.getUsername(), user);
-  }
-
-  /**
-   * This method loads all users from the user details CSV file and puts each user into the hashMap
-   */
-  public static void loadUsersFromCSV() {
     try {
-      for (String[] line : getLines()) {
-        // create a new user - username and password should always exist in the csv file
-        // (mandatory
-        // fields)
-        User user = new User(line[0], line[1]);
-        // try to add details if available
-        try {
-          user.setWins(Integer.valueOf(line[2]));
-          user.setLosses(Integer.valueOf(line[3]));
-          user.setFastestWin(Integer.valueOf(line[4]));
-          UsersManager.loadUser(user);
-        } catch (ArrayIndexOutOfBoundsException e) {
-          // if no more details, add user and try next user
-          UsersManager.loadUser(user);
-          continue;
-        }
-      }
-      UsersManager.loadWordList();
-    } catch (NumberFormatException | IOException | CsvException | URISyntaxException e) {
-      // TODO Auto-generated catch block
+      saveUsersToJson();
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
   /**
-   * This method reads the CSV file for user details and returns a list of the user details
+   * This method will save the hashmap to a json map representation. Saves to a .json file
    *
-   * @return A list of String[] where each String[] represents a user and their details
    * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
    */
-  private static List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
-    File fileName = new File("src/main/resources/users.csv");
-    // if file does not exist, create one and put headers
-    if (!fileName.isFile()) {
-      fileName.createNewFile();
-      saveUsers();
+  public static void saveUsersToJson() throws IOException {
+    // check if .profiles exists. If not, make it
+    File directory = new File(".profiles");
+    if (!directory.exists()) {
+      directory.mkdirs();
     }
-    try (FileReader fr = new FileReader(fileName, StandardCharsets.UTF_8);
-        CSVReader reader = new CSVReader(fr)) {
-      // returns a list of string array where each string array is each line in the
-      // csv file
-      // each word in each string array is separated by commas in each line in the csv
-      // file
-      List<String[]> data = reader.readAll();
-      // need to remove the headers
-      data.remove(0);
-      return data;
+
+    // check if userData.json exists within .profiles folder. If not, make it.
+    File dataFile = new File(".profiles/userData.json");
+    if (!dataFile.exists()) {
+      dataFile.createNewFile();
+    }
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    FileWriter dataWriter = new FileWriter(dataFile);
+
+    gson.toJson(usersMap, new TypeToken<Map<String, User>>() {}.getType(), dataWriter);
+    dataWriter.close();
+  }
+
+  /**
+   * Load users from Json file, making use of GSON. Will put the users to a hashmap
+   *
+   * @throws IOException
+   */
+  public static void loadUsersFromJson() throws IOException {
+    // check if .profiles exists. If not, make it
+    File directory = new File(".profiles");
+    if (!directory.exists()) {
+      directory.mkdirs();
+    }
+
+    // check if userData.json exists within .profiles folder. If not, make it.
+    File dataFile = new File(".profiles/userData.json");
+    if (!dataFile.exists()) {
+      dataFile.createNewFile();
+    }
+    Reader reader = new BufferedReader(new FileReader(dataFile));
+    Gson gson = new Gson();
+
+    // retrieve the json map and convert to HashMap<String, User>
+    usersMap = gson.fromJson(reader, new TypeToken<HashMap<String, User>>() {}.getType());
+
+    // if data file is empty, usersMap should be initialised
+    if (usersMap == null) {
+      usersMap = new HashMap<String, User>();
     }
   }
 
@@ -162,74 +121,5 @@ public class UsersManager {
       return false;
     }
     return true;
-  }
-
-  /**
-   * saveWordsGiven method saves the words encountered by each user into words_given.csv file
-   *
-   * @throws IOException
-   */
-  private static void saveWordsGiven() throws IOException {
-    File fileName = new File("src/main/resources/words_given.csv");
-    CSVWriter writer = new CSVWriter(new FileWriter(fileName));
-    // for loop to save each user's words encountered per line, with the first
-    // element being the username of the user
-    for (User user : usersMap.values()) {
-      // create an array to write into csv file
-      String[] words = new String[user.getWordsGiven().size()];
-      words = user.getWordsGiven().toArray(words);
-      writer.writeNext(words);
-    }
-    writer.close();
-  }
-
-  /**
-   * getWordList method loads all words encountered by each user into a list of string arrays. Each
-   * element of the list contains an array of string of words a specific user has encountered
-   *
-   * @return a list of string arrays containing the words encountered by each user
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
-   */
-  private static List<String[]> getWordList() throws IOException, CsvException, URISyntaxException {
-    File fileName = new File("src/main/resources/words_given.csv");
-    // if file does not exist, create one and put headers
-    if (!fileName.isFile()) {
-      fileName.createNewFile();
-      saveWordsGiven();
-    }
-    try (FileReader fr = new FileReader(fileName, StandardCharsets.UTF_8);
-        CSVReader reader = new CSVReader(fr)) {
-      // returns a list of string array where each string array is each line in the
-      // csv file
-      // each word in each string array is separated by commas in each line in the csv
-      // file
-      List<String[]> wordList = reader.readAll();
-      return wordList;
-    }
-  }
-
-  /**
-   * loadWordList loads the wordlist of each user into their respective instance field wordsGiven
-   *
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
-   */
-  private static void loadWordList() throws IOException, CsvException, URISyntaxException {
-    List<String[]> userWords = getWordList();
-    for (String[] wordList : userWords) {
-      User currentUser = usersMap.get(wordList[0]);
-      // if there are no users that currently exist, currentUser will = null
-      // so check for this otherwise we will get nullPointerException on the
-      // first run of the app
-      if (currentUser == null) {
-        continue;
-      }
-      currentUser.setWordsGiven(wordList);
-      currentUser.setWordList();
-      currentUser.setLastThreeWords();
-    }
   }
 }
