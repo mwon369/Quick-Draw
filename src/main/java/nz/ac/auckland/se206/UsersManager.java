@@ -1,8 +1,5 @@
 package nz.ac.auckland.se206;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,12 +9,16 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class UsersManager {
 
   // hashmap will map each username to a User object
   private static HashMap<String, User> usersMap;
   private static User userSelected;
+
 
   public static User getUser(String username) {
     return usersMap.get(username);
@@ -60,8 +61,15 @@ public class UsersManager {
    * @throws IOException
    */
   public static void saveUsersToJson() throws IOException {
-    File dataFile = new File("src/main/resources/userData.json");
-    if (!dataFile.isFile()) {
+    // check if .profiles exists. If not, make it
+    File directory = new File(".profiles");
+    if (!directory.exists()) {
+      directory.mkdirs();
+    }
+
+    // check if userData.json exists within .profiles folder. If not, make it.
+    File dataFile = new File(".profiles/userData.json");
+    if (!dataFile.exists()) {
       dataFile.createNewFile();
     }
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -77,8 +85,15 @@ public class UsersManager {
    * @throws IOException
    */
   public static void loadUsersFromJson() throws IOException {
-    File dataFile = new File("src/main/resources/userData.json");
-    if (!dataFile.isFile()) {
+    // check if .profiles exists. If not, make it
+    File directory = new File(".profiles");
+    if (!directory.exists()) {
+      directory.mkdirs();
+    }
+
+    // check if userData.json exists within .profiles folder. If not, make it.
+    File dataFile = new File(".profiles/userData.json");
+    if (!dataFile.exists()) {
       dataFile.createNewFile();
     }
     Reader reader = new BufferedReader(new FileReader(dataFile));
