@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,16 +12,12 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class UsersManager {
 
   // hashmap will map each username to a User object
   private static HashMap<String, User> usersMap;
   private static User userSelected;
-
 
   public static User getUser(String username) {
     return usersMap.get(username);
