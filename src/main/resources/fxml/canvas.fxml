@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
    <children>
       <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
@@ -67,7 +66,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Pane fx:id="clearPane" prefHeight="71.0">
+                              <Pane fx:id="clearPane" prefHeight="30.0">
                                  <children>
                                     <ImageView fx:id="clearIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onClear" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
@@ -84,6 +83,15 @@
                                     <ImageView fx:id="saveIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onSave" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
                                           <Image url="@../images/saveIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="soundPane" prefHeight="30.0">
+                                 <children>
+                                    <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                       <image>
+                                          <Image url="@../images/unmute.png" />
                                        </image>
                                     </ImageView>
                                  </children>

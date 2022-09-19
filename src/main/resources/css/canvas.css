@@ -85,7 +85,7 @@
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0.0, 0.0);
 	}
 
-#penPane, #eraserPane, #clearPane, #savePane {
+#penPane, #eraserPane, #clearPane, #savePane, #soundPane {
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0.0, 0.0);
 	-fx-border-color: rgba(0,0,0,0.1);
 	-fx-border-width: 0 1 0 0;	
@@ -102,7 +102,7 @@
 }
 
 
-#clearPane:pressed, #savePane:pressed  {
+#clearPane:pressed, #savePane:pressed, #soundPane:pressed  {
 	-fx-background-color: #E29F00;
 }
 
