@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -84,10 +85,12 @@ public class CanvasController {
   @FXML private Pane eraserPane;
   @FXML private Pane clearPane;
   @FXML private Pane savePane;
+  @FXML private Pane soundPane;
   @FXML private ImageView penIcon;
   @FXML private ImageView eraserIcon;
   @FXML private ImageView clearIcon;
   @FXML private ImageView saveIcon;
+  @FXML private ImageView soundIcon;
 
   private List<Pane> toolPanes;
 
@@ -96,6 +99,7 @@ public class CanvasController {
   private boolean isGameOver;
   private boolean isDrawing;
   private boolean isPenDrawn = false;
+  private boolean isMuted;
   private User user;
   private int userWins;
   private int userLosses;
@@ -113,6 +117,7 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
+    isMuted = false;
     savePane.setDisable(true);
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
@@ -220,6 +225,8 @@ public class CanvasController {
    */
   @FXML
   private void switchToMainMenu(ActionEvent event) {
+    isMuted = false;
+    soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
     // reset the timer and cancel the timer if needed
     timerLabel.setText(String.valueOf(TIMER_START_TIME));
@@ -429,7 +436,7 @@ public class CanvasController {
               return;
             }
             // checks to see if the player has started drawing
-            if (!isDrawing) {
+            if (!isDrawing || isMuted) {
               return;
             }
             textToSpeech.speak("I see ");
@@ -455,6 +462,24 @@ public class CanvasController {
         },
         1000,
         10000);
+  }
+
+  @FXML
+  private void onToggleSound() {
+    isMuted = isMuted ? false : true;
+    String soundState = isMuted ? "mute" : "unmute";
+    soundIcon.setImage(loadImage(soundState));
+  }
+
+  private Image loadImage(String soundState) {
+    try {
+      File file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
+      BufferedImage bufferImage = ImageIO.read(file);
+      return SwingFXUtils.toFXImage(bufferImage, null);
+    } catch (URISyntaxException | IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   /**
