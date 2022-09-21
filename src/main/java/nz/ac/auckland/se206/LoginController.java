@@ -49,7 +49,6 @@ public class LoginController {
     errorMessageLabel.setVisible(true);
     usernameField.clear();
     passwordField.clear();
-    return;
   }
 
   /**

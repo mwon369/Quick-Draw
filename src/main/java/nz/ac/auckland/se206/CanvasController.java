@@ -222,9 +222,11 @@ public class CanvasController {
    * Switches to the main menu. Clears the word label and canvas, disables the readyButton
    *
    * @param event an ActionEvent representing the type of action that occurred
+   * @throws IOException
+   * @throws URISyntaxException
    */
   @FXML
-  private void switchToMainMenu(ActionEvent event) {
+  private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
     isMuted = false;
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
@@ -474,7 +476,8 @@ public class CanvasController {
 
   private Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
-    File file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
+    File file;
+    file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
     BufferedImage bufferImage = ImageIO.read(file);
     return SwingFXUtils.toFXImage(bufferImage, null);
   }
