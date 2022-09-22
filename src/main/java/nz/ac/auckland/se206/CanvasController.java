@@ -222,9 +222,11 @@ public class CanvasController {
    * Switches to the main menu. Clears the word label and canvas, disables the readyButton
    *
    * @param event an ActionEvent representing the type of action that occurred
+   * @throws IOException
+   * @throws URISyntaxException
    */
   @FXML
-  private void switchToMainMenu(ActionEvent event) {
+  private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
     isMuted = false;
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
@@ -306,6 +308,7 @@ public class CanvasController {
     Thread startDrawingSpeechThread = new Thread(startDrawingSpeechTask);
     startDrawingSpeechThread.start();
 
+    // Starting the game and begin the timer and predictions
     canvas.setDisable(false);
     readyButton.setDisable(true);
     startTimer();
@@ -465,21 +468,18 @@ public class CanvasController {
   }
 
   @FXML
-  private void onToggleSound() {
+  private void onToggleSound() throws URISyntaxException, IOException {
     isMuted = isMuted ? false : true;
     String soundState = isMuted ? "mute" : "unmute";
     soundIcon.setImage(loadImage(soundState));
   }
 
-  private Image loadImage(String soundState) {
-    try {
-      File file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
-      BufferedImage bufferImage = ImageIO.read(file);
-      return SwingFXUtils.toFXImage(bufferImage, null);
-    } catch (URISyntaxException | IOException e) {
-      e.printStackTrace();
-    }
-    return null;
+  private Image loadImage(String soundState) throws URISyntaxException, IOException {
+    // load an image to switch to
+    File file;
+    file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
+    BufferedImage bufferImage = ImageIO.read(file);
+    return SwingFXUtils.toFXImage(bufferImage, null);
   }
 
   /**
