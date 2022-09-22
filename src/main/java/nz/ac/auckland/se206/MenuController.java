@@ -11,8 +11,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
 
-  Parent userStatsScene;
-  UserStatsController userStatsController;
+  private Parent userStatsScene;
+  private UserStatsController userStatsController;
 
   @FXML private Button playButton;
 
