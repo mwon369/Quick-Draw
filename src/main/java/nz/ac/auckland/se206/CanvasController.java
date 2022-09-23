@@ -24,6 +24,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -338,6 +339,8 @@ public class CanvasController {
                       classifications = model.getPredictions(getCurrentSnapshot(), 10);
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
+                      // topNum value will depend on game difficulty later on
+                      colourTopPredictions(predictionsListView, 3);
                       // check if player has won
                       if (isWin(classifications, 3)) {
                         timer.cancel();
@@ -370,6 +373,35 @@ public class CanvasController {
         },
         0,
         1000);
+  }
+
+  private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
+
+    // set the CellFactory field for the ListView
+    predictionsListView.setCellFactory(
+        list -> {
+          // now we can edit & return specific cells in the ListView
+          return new ListCell<String>() {
+            @Override
+            protected void updateItem(String prediction, boolean empty) {
+              super.updateItem(prediction, empty);
+              // check if cell is empty
+              if (empty || prediction.equals("")) {
+                // reset color & text for each sell so ListView is blank
+                setStyle("-fx-background-color: white;");
+                setText("");
+              } else {
+                // set the colour for the top x model predictions
+                setStyle(
+                    getIndex() < topNum
+                        ? "-fx-background-color: #DEC98A;"
+                        : "-fx-background-color: white;");
+                // set the text to the prediction for each cell
+                setText(prediction);
+              }
+            }
+          };
+        });
   }
 
   @FXML
