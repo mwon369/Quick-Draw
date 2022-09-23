@@ -385,9 +385,9 @@ public class CanvasController {
             @Override
             protected void updateItem(String prediction, boolean empty) {
               super.updateItem(prediction, empty);
-              // check if cell is empty
+              // check if prediction text is empty
               if (empty || prediction.equals("")) {
-                // reset color & text for each sell so ListView is blank
+                // reset color & text for each cell so ListView is blank
                 setStyle("-fx-background-color: white;");
                 setText("");
               } else {
