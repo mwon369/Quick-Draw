@@ -120,7 +120,21 @@
 	-fx-font-weight: 400;
 	-fx-font-size: 52px;
 }
+#helpMenuButton{
+	-fx-background-radius: 10px;
+    -fx-background-color: #E29F00;
+    -fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-border-radius: 10px;
+	-fx-padding: 6 0 5 0;
+}
 
+#infoMenuItem{
+	-fx-text-fill: black;
+     -fx-font-family: 'Amatic SC', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 700;
+	-fx-font-size: 22px;
+}
 .button, .button:focused{
 	-fx-text-fill: black;
     -fx-background-radius: 10px;
