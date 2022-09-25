@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206;
 
-import static nz.ac.auckland.se206.ml.DoodlePrediction.printPredictions;
-
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
@@ -11,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,7 +57,6 @@ public class CanvasController {
   private static final int TIMER_START_TIME = 60;
 
   @FXML private Canvas canvas;
-
   @FXML private Label wordLabel;
   private String targetCategory;
 
@@ -67,13 +65,10 @@ public class CanvasController {
   private Timer timer;
 
   @FXML private Button mainMenuButton;
-
   @FXML private Button startNewGameButton;
-
   @FXML private Button readyButton;
 
   private GraphicsContext graphic;
-
   private DoodlePrediction model;
 
   @FXML private ListView<String> predictionsListView;
@@ -119,7 +114,6 @@ public class CanvasController {
    */
   public void initialize() throws ModelException, IOException {
     isMuted = false;
-    savePane.setDisable(true);
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -128,40 +122,13 @@ public class CanvasController {
           currentY = e.getY();
         });
 
-    canvas.setOnMouseDragged(
-        e -> {
-          isPenDrawn = true;
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 6;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.setLineWidth(size);
-
-          // Create a line that goes from the point (currentX, currentY) and (x,y)
-          graphic.strokeLine(currentX, currentY, x, y);
-
-          // update the coordinates
-          currentX = x;
-          currentY = y;
-        });
-
     model = new DoodlePrediction();
 
     // initialise tool panes and add each tool pane
-    toolPanes = new ArrayList<Pane>();
-    toolPanes.add(penPane);
-    toolPanes.add(eraserPane);
+    toolPanes = Arrays.asList(penPane, eraserPane);
 
     // configure canvas
-    onSelectPen();
-    canvas.setDisable(true);
-
-    readyButton.setDisable(true);
-    winLossLabel.setVisible(false);
+    resetCanvas();
 
     // initialise text to speech
     textToSpeech = new TextToSpeech();
@@ -178,25 +145,6 @@ public class CanvasController {
   }
 
   /**
-   * This method executes when the user clicks the "Predict" button. It gets the current drawing,
-   * queries the DL model and prints on the console the top 5 predictions of the DL model and the
-   * elapsed time of the prediction in milliseconds.
-   *
-   * @throws TranslateException If there is an error in reading the input/output of the DL model.
-   */
-  @FXML
-  private void onPredict() throws TranslateException {
-    System.out.println("==== PREDICTION  ====");
-    System.out.println("Top 5 predictions");
-
-    final long start = System.currentTimeMillis();
-
-    printPredictions(model.getPredictions(getCurrentSnapshot(), 5));
-
-    System.out.println("prediction performed in " + (System.currentTimeMillis() - start) + " ms");
-  }
-
-  /**
    * Get the current snapshot of the canvas.
    *
    * @return The BufferedImage corresponding to the current canvas content.
@@ -210,12 +158,10 @@ public class CanvasController {
         new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
 
     final Graphics2D graphics = imageBinary.createGraphics();
-
     graphics.drawImage(image, 0, 0, null);
 
     // To release memory we dispose.
     graphics.dispose();
-
     return imageBinary;
   }
 
@@ -276,8 +222,8 @@ public class CanvasController {
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
+
     readyButton.setDisable(false);
-    winLossLabel.setVisible(false);
 
     // reset the timer label and cancel previous timer if needed
     timerLabel.setText(String.valueOf(TIMER_START_TIME));
