@@ -48,6 +48,19 @@ public class MenuController {
   }
 
   /**
+   * This method switches the root of the scene from the main menu to the hidden word mode
+   *
+   * @param event an ActionEvent representing when the play button has been clicked
+   */
+  @FXML
+  private void onPlayHiddenWord(ActionEvent event) {
+    // retrieve the source of button and switch to the canvas
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.HIDDEN_WORD));
+  }
+
+  /**
    * This method switches the root of the scene from the main menu to the login page
    *
    * @param event an ActionEvent representing when the logout button has been clicked

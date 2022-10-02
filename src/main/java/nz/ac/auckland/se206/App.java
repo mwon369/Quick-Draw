@@ -47,6 +47,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
     SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
 
+    SceneManager.addUi(AppUi.HIDDEN_WORD, loadFxml("hiddenWordCanvas"));
+    SceneManager.getUiRoot(AppUi.HIDDEN_WORD).getStylesheets().add("/css/canvas.css");
+
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.getUiRoot(AppUi.USER_CREATION).getStylesheets().add("/css/userCreation.css");
 
