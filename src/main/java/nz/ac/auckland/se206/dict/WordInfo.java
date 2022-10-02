@@ -7,7 +7,7 @@ public class WordInfo {
   private String word;
   private List<WordEntry> entries;
 
-  WordInfo(String word, List<WordEntry> entries) {
+  public WordInfo(String word, List<WordEntry> entries) {
     this.word = word;
     this.entries = entries;
   }

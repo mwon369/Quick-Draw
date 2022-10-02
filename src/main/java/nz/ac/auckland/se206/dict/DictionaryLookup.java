@@ -17,13 +17,15 @@ public class DictionaryLookup {
 
   public static WordInfo searchWordInfo(String query) throws IOException, WordNotFoundException {
 
+    // call the API
     OkHttpClient client = new OkHttpClient();
     Request request = new Request.Builder().url(API_URL + query).build();
     Response response = client.newCall(request).execute();
     ResponseBody responseBody = response.body();
-
+    // parse API response to a string
     String jsonString = responseBody.string();
 
+    // get title and message
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
       String title = jsonObj.getString("title");
@@ -32,16 +34,20 @@ public class DictionaryLookup {
     } catch (ClassCastException e) {
     }
 
+    // parse API response into a JSON array
     JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
     List<WordEntry> entries = new ArrayList<WordEntry>();
 
+    // loop through the JSON array
     for (int e = 0; e < jArray.length(); e++) {
       JSONObject jsonEntryObj = jArray.getJSONObject(e);
       JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
 
+      // make variables to store returned data from API
       String partOfSpeech = "[not specified]";
       List<String> definitions = new ArrayList<String>();
 
+      // assign all meanings for each word and assign to JSON object
       for (int m = 0; m < jsonMeanings.length(); m++) {
         JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(m);
         String pos = jsonMeaningObj.getString("partOfSpeech");
@@ -50,7 +56,11 @@ public class DictionaryLookup {
           partOfSpeech = pos;
         }
 
+        // use the JSON object to get an array of definitions in JSON format
         JSONArray jsonDefinitions = jsonMeaningObj.getJSONArray("definitions");
+
+        // loop through all the definition objects and append their string
+        // type versions to our list of definitions that we will return
         for (int d = 0; d < jsonDefinitions.length(); d++) {
           JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(d);
 
@@ -61,6 +71,7 @@ public class DictionaryLookup {
         }
       }
 
+      // create wordEntry object
       WordEntry wordEntry = new WordEntry(partOfSpeech, definitions);
       entries.add(wordEntry);
     }
