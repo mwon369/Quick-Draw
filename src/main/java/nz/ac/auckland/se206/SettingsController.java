@@ -71,6 +71,12 @@ public class SettingsController {
    */
   @FXML
   private void onMenu(ActionEvent event) {
+    // save user difficulties
+    try {
+      UsersManager.saveUsersToJson();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     // retrieve the source of button and switch to the menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
