@@ -9,10 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="settingsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.SettingsController">
+<VBox id="settingsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="720.0" spacing="40.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.SettingsController">
    <children>
-      <Label styleClass="title" text="Choose your difficulty" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <Label styleClass="title" text="Choose your difficulty">
+         <VBox.margin>
+            <Insets top="40.0" />
+         </VBox.margin></Label>
+      <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
          <children>
             <Label styleClass="setting" text="Accuracy:" />
             <RadioButton fx:id="easyAccuracy" mnemonicParsing="false" text="Easy">
@@ -23,6 +26,9 @@
             <RadioButton fx:id="mediumAccuracy" mnemonicParsing="false" text="Medium" toggleGroup="$accuracy" />
             <RadioButton fx:id="hardAccuracy" mnemonicParsing="false" text="Hard" toggleGroup="$accuracy" />
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
       <HBox alignment="CENTER_LEFT" minHeight="36.0">
          <children>
