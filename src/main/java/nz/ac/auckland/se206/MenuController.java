@@ -14,15 +14,17 @@ public class MenuController {
   private Parent userStatsScene;
   private UserStatsController userStatsController;
 
-  @FXML private Button playButton;
+  @FXML
+  private Button playButton;
 
   /**
    * This method loads the userStats FXML when the menu FXML is loaded. The reason we load it here
    * instead of in App.java is because this class needs a reference to the corresponding controller
    * for the userStats FXML.
    *
-   * <p>That way when userStatsController.onRetrieveStats() is called the FXML elements in the
-   * loaded userStats scene are actually updated
+   * <p>
+   * That way when userStatsController.onRetrieveStats() is called the FXML elements in the loaded
+   * userStats scene are actually updated
    *
    * @throws IOException
    */
@@ -67,5 +69,13 @@ public class MenuController {
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_STATS));
     userStatsController.onRetrieveStats();
+  }
+
+  @FXML
+  private void onSettings(ActionEvent event) {
+    // retrieve the source of button and switch to the login page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.SETTINGS));
   }
 }

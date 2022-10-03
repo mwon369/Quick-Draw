@@ -53,6 +53,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
     SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
 
+    SceneManager.addUi(AppUi.SETTINGS, loadFxml("settings"));
+    SceneManager.getUiRoot(AppUi.SETTINGS).getStylesheets().add("/css/settings.css");
+
     // Load users
     UsersManager.loadUsersFromJson();
 
@@ -61,13 +64,12 @@ public class App extends Application {
     stage.show();
 
     // ensure everything terminates when user closes the window
-    stage.setOnCloseRequest(
-        new EventHandler<WindowEvent>() {
-          @Override
-          public void handle(WindowEvent event) {
-            Platform.exit();
-            System.exit(0);
-          }
-        });
+    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      @Override
+      public void handle(WindowEvent event) {
+        Platform.exit();
+        System.exit(0);
+      }
+    });
   }
 }

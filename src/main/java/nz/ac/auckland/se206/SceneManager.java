@@ -6,11 +6,7 @@ import javafx.scene.Parent;
 public class SceneManager {
   // enum representing the different root nodes
   public enum AppUi {
-    MENU,
-    CANVAS,
-    LOGIN,
-    USER_CREATION,
-    USER_STATS,
+    MENU, CANVAS, LOGIN, USER_CREATION, USER_STATS, SETTINGS,
   }
 
   // hashmap that maps enum AppUi to the corresponding root note
