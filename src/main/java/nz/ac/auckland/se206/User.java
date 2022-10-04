@@ -6,6 +6,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 import nz.ac.auckland.se206.DifficultyManager.Difficulty;
+import nz.ac.auckland.se206.badges.Badge;
+import nz.ac.auckland.se206.badges.BadgeData;
+import nz.ac.auckland.se206.badges.BadgeFactory;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
@@ -23,6 +26,7 @@ public class User {
 
   private int winStreak; // sixth column
 
+  private ArrayList<BadgeData> badgeDataList;
   private ArrayList<String> wordsGiven;
   private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
@@ -32,6 +36,7 @@ public class User {
   // difficulty settings
   private Difficulty accuracyDifficulty;
   private Difficulty timeLimitDifficulty;
+  private transient ArrayList<Badge> badgeList;
 
   public User(String username, String password) {
     // assign the fields for each new user created
@@ -39,6 +44,13 @@ public class User {
     this.password = password;
     this.fastestWin = 60;
     this.lastThreeWords = new ArrayList<String>();
+    this.badgeList = new ArrayList<>();
+    this.badgeDataList = new ArrayList<>();
+
+    for (int i = 1; i < 11; i++) {
+      badgeList.add(BadgeFactory.createBadge(i, false));
+      badgeDataList.add(new BadgeData(i, false));
+    }
 
     wordsGiven = new ArrayList<String>();
 
@@ -79,6 +91,10 @@ public class User {
   public double getWinRatio() {
     int totalGames = wins + losses;
     return (double) wins / totalGames * 100;
+  }
+
+  public ArrayList<Badge> getBadgeList() {
+    return badgeList;
   }
 
   public void setWins(int numWins) {
@@ -158,5 +174,12 @@ public class User {
 
   public ArrayList<String> getLastThreeWords() {
     return this.lastThreeWords;
+  }
+
+  public void loadBadgeList() {
+    badgeList = new ArrayList<>();
+    for (BadgeData data : badgeDataList) {
+      badgeList.add(BadgeFactory.createBadge(data.getBadgeID(), data.isCompleted()));
+    }
   }
 }
