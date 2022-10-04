@@ -54,22 +54,22 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class ZenCanvasController {
 
   @FXML private Canvas canvas;
-  @FXML private Label wordLabel;
-  private String targetCategory;
+  @FXML protected Label wordLabel;
+  @FXML private Label outcomeLabel;
+
+  protected String targetCategory;
 
   private Timer timer;
 
   @FXML private Button mainMenuButton;
-  @FXML private Button startNewGameButton;
-  @FXML private Button readyButton;
+  @FXML protected Button readyButton;
+  @FXML private Button chooseWordButton;
 
   private GraphicsContext graphic;
   private DoodlePrediction model;
 
   @FXML private ListView<String> predictionsListView;
   private List<Classification> classifications;
-
-  @FXML private Label outcomeLabel;
 
   // items for the canvas tools
   @FXML private Pane penPane;
@@ -118,7 +118,10 @@ public class ZenCanvasController {
     wordChooserController = loader.getController();
     SceneManager.addUi(AppUi.WORD_CHOOSER, wordChooserScene);
     SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/canvas.css");
-    wordChooserController.loadAllWords();
+
+    // will need to reference this controller from the wordChooserController
+    // in order to set the target category during word selection
+    wordChooserController.zenCanvasController = this;
 
     isMuted = true;
     graphic = canvas.getGraphicsContext2D();
@@ -199,6 +202,9 @@ public class ZenCanvasController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
 
+  /**
+   * This method clears the canvas and resets all interactive UI elements to their default values
+   */
   private void resetCanvas() {
     isPenDrawn = false;
     isGameOver = true;
@@ -215,20 +221,23 @@ public class ZenCanvasController {
   }
 
   /**
-   * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
-   * the ready button
+   * This method switches the scene and sets the target category to whatever the user selects in the
+   * wordChooser FXML scene
+   *
+   * @param event, a button click
    */
   @FXML
-  private void onStartNewGame() {
+  private void onChooseWord(ActionEvent event) {
+
+    // retrieve the source of button and switch to word chooser scene
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
+
+    // erase all drawing on canvas
     resetCanvas();
-    // select and display random category (easy)
-    user = UsersManager.getSelectedUser();
-    targetCategory = user.giveWordToDraw();
-    wordLabel.setText("Your word is: " + targetCategory);
-    // configure, disable and clear the canvas, disable the ready button
 
-    readyButton.setDisable(false);
-
+    // reset timer
     if (timer != null) {
       timer.cancel();
     }
@@ -303,6 +312,13 @@ public class ZenCanvasController {
         1000);
   }
 
+  /**
+   * This method colours the top 'x' predictions so that the user can have an easier time seeing the
+   * top predictions made by the model
+   *
+   * @param predictionsListView, a list of the top 10 guesses
+   * @param topNum, an integer specifying how many 'x' predictions should be coloured
+   */
   private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
 
     // set the CellFactory field for the ListView
@@ -427,6 +443,12 @@ public class ZenCanvasController {
         10000);
   }
 
+  /**
+   * This method changes the state of the mute button
+   *
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
     isMuted = isMuted ? false : true;
@@ -434,6 +456,14 @@ public class ZenCanvasController {
     soundIcon.setImage(loadImage(soundState));
   }
 
+  /**
+   * This method changes the mute button icon depending on the mute button's state
+   *
+   * @param soundState, a string to indicate the state of the mute button
+   * @return Image, based on the state
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   private Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
@@ -546,13 +576,5 @@ public class ZenCanvasController {
         e.printStackTrace();
       }
     }
-  }
-
-  @FXML
-  private void onChooseWord(ActionEvent event) {
-    // retrieve the source of button and switch to word chooser scene
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
   }
 }

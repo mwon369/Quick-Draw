@@ -23,7 +23,7 @@
             </HBox>
                 <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
                <children>
-                  <Label fx:id="wordChosenLabel" text="Current word chosen: ">
+                  <Label fx:id="chosenWordLabel" text="Current word chosen: ">
                      <HBox.margin>
                         <Insets bottom="30.0" top="40.0" />
                      </HBox.margin></Label>
