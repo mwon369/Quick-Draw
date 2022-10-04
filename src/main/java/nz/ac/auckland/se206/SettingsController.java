@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,12 +16,15 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class SettingsController {
   @FXML private ToggleGroup accuracy;
-
-  @FXML public RadioButton easyAccuracy;
-
+  @FXML private RadioButton easyAccuracy;
   @FXML private RadioButton mediumAccuracy;
-
   @FXML private RadioButton hardAccuracy;
+
+  @FXML private ToggleGroup timeLimit;
+  @FXML private RadioButton easyTimeLimit;
+  @FXML private RadioButton mediumTimeLimit;
+  @FXML private RadioButton hardTimeLimit;
+  @FXML private RadioButton masterTimeLimit;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We add a listener to the accuracy
@@ -29,14 +33,13 @@ public class SettingsController {
    * @throws IOException
    */
   public void initialize() throws IOException {
+    // add toggle listener to accuracy group
     accuracy
         .selectedToggleProperty()
         .addListener(
             new ChangeListener<Toggle>() {
               public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
-
                 RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
-
                 if (rb != null) {
                   UsersManager.getSelectedUser()
                       .setAccuracyDifficulty(
@@ -44,23 +47,49 @@ public class SettingsController {
                 }
               }
             });
+
+    // add toggle listener to time limit group
+    timeLimit
+        .selectedToggleProperty()
+        .addListener(
+            new ChangeListener<Toggle>() {
+              public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                RadioButton rb = (RadioButton) timeLimit.getSelectedToggle();
+                if (rb != null) {
+                  UsersManager.getSelectedUser()
+                      .setTimeLimitDifficulty(
+                          Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
+                }
+              }
+            });
   }
 
-  /** This method loads the user's selected difficulties */
+  /** This method loads the user's selected difficulties and makes certain radio buttons selected */
   protected void loadUserDifficulties() {
-    String accuracyId =
+    ArrayList<String> difficultyRbIds = new ArrayList<String>();
+
+    // add the radio button ids to be selected for each setting
+    difficultyRbIds.add(
         String.valueOf(UsersManager.getSelectedUser().getAccuracyDifficulty())
             .toLowerCase()
-            .concat("Accuracy");
-    try {
-      RadioButton rb = (RadioButton) this.getClass().getDeclaredField(accuracyId).get(this);
-      rb.setSelected(true);
-      rb.requestFocus();
-    } catch (NoSuchFieldException
-        | SecurityException
-        | IllegalArgumentException
-        | IllegalAccessException e) {
-      e.printStackTrace();
+            .concat("Accuracy"));
+    difficultyRbIds.add(
+        String.valueOf(UsersManager.getSelectedUser().getTimeLimitDifficulty())
+            .toLowerCase()
+            .concat("TimeLimit"));
+
+    // select each radio button for each setting
+    for (String rbId : difficultyRbIds) {
+      try {
+        RadioButton rb = (RadioButton) this.getClass().getDeclaredField(rbId).get(this);
+        rb.setSelected(true);
+        rb.requestFocus();
+      } catch (NoSuchFieldException
+          | SecurityException
+          | IllegalArgumentException
+          | IllegalAccessException e) {
+        e.printStackTrace();
+      }
     }
   }
 

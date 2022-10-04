@@ -30,6 +30,19 @@
             <Insets />
          </VBox.margin>
       </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label styleClass="setting" text="Time Limit" />
+            <RadioButton fx:id="easyTimeLimit" mnemonicParsing="false" text="Easy">
+               <toggleGroup>
+                  <ToggleGroup fx:id="timeLimit" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="mediumTimeLimit" mnemonicParsing="false" text="Medium" toggleGroup="$timeLimit" />
+            <RadioButton fx:id="hardTimeLimit" mnemonicParsing="false" text="Hard" toggleGroup="$timeLimit" />
+            <RadioButton fx:id="masterTimeLimit" mnemonicParsing="false" text="Master" toggleGroup="$timeLimit" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" minHeight="36.0">
          <children>
             <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu">

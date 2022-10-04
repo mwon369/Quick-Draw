@@ -17,6 +17,9 @@ public class MenuController {
   private Parent settingsScene;
   private SettingsController settingsController;
 
+  private Parent canvasScene;
+  private CanvasController canvasController;
+
   @FXML private Button playButton;
 
   /**
@@ -38,11 +41,17 @@ public class MenuController {
     SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
     SceneManager.getUiRoot(AppUi.USER_STATS).getStylesheets().add("/css/userStats.css");
 
-    FXMLLoader loader2 = new FXMLLoader(App.class.getResource("/fxml/settings.fxml"));
-    settingsScene = loader2.load();
-    settingsController = loader2.getController();
+    loader = new FXMLLoader(App.class.getResource("/fxml/settings.fxml"));
+    settingsScene = loader.load();
+    settingsController = loader.getController();
     SceneManager.addUi(AppUi.SETTINGS, settingsScene);
     SceneManager.getUiRoot(AppUi.SETTINGS).getStylesheets().add("/css/settings.css");
+
+    loader = new FXMLLoader(App.class.getResource("/fxml/canvas.fxml"));
+    canvasScene = loader.load();
+    canvasController = loader.getController();
+    SceneManager.addUi(AppUi.CANVAS, canvasScene);
+    SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
   }
 
   /**
@@ -52,6 +61,9 @@ public class MenuController {
    */
   @FXML
   private void onPlay(ActionEvent event) {
+    // load the time limit for the set dificulty
+    canvasController.setUpDifficulty();
+
     // retrieve the source of button and switch to the canvas
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
