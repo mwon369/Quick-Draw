@@ -105,6 +105,9 @@ public class CanvasController {
   private double currentX;
   private double currentY;
 
+  // difficulties
+  private int accuracy;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -213,12 +216,17 @@ public class CanvasController {
    */
   @FXML
   private void onStartNewGame() {
+
     resetCanvas();
     // select and display random category (easy)
     user = UsersManager.getSelectedUser();
     userWins = user.getWins();
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
+
+    // initialise difficulties
+    accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
+
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
@@ -286,9 +294,9 @@ public class CanvasController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourTopPredictions(predictionsListView, 3);
+                      colourTopPredictions(predictionsListView, accuracy);
                       // check if player has won
-                      if (isWin(classifications, 3)) {
+                      if (isWin(classifications, accuracy)) {
                         timer.cancel();
                         stopGame(true, timerLabel.getText());
                         return;

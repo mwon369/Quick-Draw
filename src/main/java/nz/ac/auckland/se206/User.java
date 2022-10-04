@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
+import nz.ac.auckland.se206.DifficultyManager.Difficulty;
 import nz.ac.auckland.se206.words.CategorySelector;
-import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
+import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 public class User {
 
@@ -26,6 +27,9 @@ public class User {
 
   private ArrayList<String> lastThreeWords;
 
+  // difficulty settings
+  private Difficulty accuracyDifficulty;
+
   public User(String username, String password) {
     // assign the fields for each new user created
     this.username = username;
@@ -40,7 +44,8 @@ public class User {
     } catch (IOException | CsvException | URISyntaxException e) {
       e.printStackTrace();
     }
-    wordList = (ArrayList<String>) this.selector.getWordList(Difficulty.E);
+    wordList = (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E);
+    accuracyDifficulty = Difficulty.EASY;
   }
 
   public String getUsername() {
@@ -80,6 +85,14 @@ public class User {
     this.fastestWin = fastestWin;
   }
 
+  public Difficulty getAccuracyDifficulty() {
+    return this.accuracyDifficulty;
+  }
+
+  public void setAccuracyDifficulty(Difficulty difficulty) {
+    this.accuracyDifficulty = difficulty;
+  }
+
   /**
    * updateWordList saves the new word given to the user and updates what words can be given to the
    * user for a new game
@@ -103,7 +116,7 @@ public class User {
   public String giveWordToDraw() {
     // resets wordList if user has drawn all words
     if (wordList.isEmpty()) {
-      wordList = (ArrayList<String>) selector.getWordList(Difficulty.E);
+      wordList = (ArrayList<String>) selector.getWordList(CategoryDifficulty.E);
       // resetting words given to user once all words have been given
       wordsGiven.clear();
     }

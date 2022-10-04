@@ -15,24 +15,24 @@ import java.util.Random;
 
 public class CategorySelector {
 
-  public enum Difficulty {
+  public enum CategoryDifficulty {
     E,
     M,
     H
   }
 
-  private Map<Difficulty, List<String>> difficultyToCategories;
+  private Map<CategoryDifficulty, List<String>> difficultyToCategories;
 
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyToCategories = new HashMap<>();
-    for (Difficulty difficulty : Difficulty.values()) {
+    for (CategoryDifficulty difficulty : CategoryDifficulty.values()) {
       // creates an empty ArrayList for each difficulty
       difficultyToCategories.put(difficulty, new ArrayList<>());
     }
 
     for (String[] line : getLines()) {
       // adds each word on each line to its corresponding difficulty ArrayList
-      difficultyToCategories.get(Difficulty.valueOf(line[1])).add(line[0]);
+      difficultyToCategories.get(CategoryDifficulty.valueOf(line[1])).add(line[0]);
     }
   }
 
@@ -42,7 +42,7 @@ public class CategorySelector {
    * @param difficulty difficulty of words to select from
    * @return
    */
-  public String getRandomCategory(Difficulty difficulty) {
+  public String getRandomCategory(CategoryDifficulty difficulty) {
     // returns a random category of a specified difficulty
     return difficultyToCategories
         .get(difficulty)
@@ -63,7 +63,7 @@ public class CategorySelector {
     }
   }
 
-  public List<String> getWordList(Difficulty difficulty) {
+  public List<String> getWordList(CategoryDifficulty difficulty) {
     return difficultyToCategories.get(difficulty);
   }
 }
