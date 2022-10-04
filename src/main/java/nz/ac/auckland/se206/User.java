@@ -21,6 +21,8 @@ public class User {
 
   private int fastestWin; // fifth column
 
+  private int winStreak; // sixth column
+
   private ArrayList<String> wordsGiven;
   private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
@@ -70,6 +72,10 @@ public class User {
     return this.fastestWin;
   }
 
+  public int getWinStreak() {
+    return this.winStreak;
+  }
+
   public double getWinRatio() {
     int totalGames = wins + losses;
     return (double) wins / totalGames * 100;
@@ -81,6 +87,10 @@ public class User {
 
   public void setLosses(int numLosses) {
     this.losses = numLosses;
+  }
+
+  public void setWinStreak(int streak) {
+    this.winStreak = streak;
   }
 
   public void setFastestWin(int fastestWin) {
