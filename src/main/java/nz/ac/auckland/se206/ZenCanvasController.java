@@ -21,10 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -78,11 +75,14 @@ public class ZenCanvasController {
   @FXML private Pane clearPane;
   @FXML private Pane savePane;
   @FXML private Pane soundPane;
+  @FXML private Pane colorPane;
   @FXML private ImageView penIcon;
   @FXML private ImageView eraserIcon;
   @FXML private ImageView clearIcon;
   @FXML private ImageView saveIcon;
   @FXML private ImageView soundIcon;
+  @FXML private ImageView colorIcon;
+  @FXML private ColorPicker colorPicker;
 
   private List<Pane> toolPanes;
 
@@ -93,9 +93,6 @@ public class ZenCanvasController {
   private boolean isPenDrawn = false;
   private boolean isMuted;
   private User user;
-  private int userWins;
-  private int userLosses;
-  private int userFastestWin;
 
   // mouse coordinates
   private double currentX;
@@ -211,9 +208,6 @@ public class ZenCanvasController {
     resetCanvas();
     // select and display random category (easy)
     user = UsersManager.getSelectedUser();
-    userWins = user.getWins();
-    userLosses = user.getLosses();
-    userFastestWin = user.getFastestWin();
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
@@ -457,7 +451,7 @@ public class ZenCanvasController {
           final double y = e.getY() - size / 2;
 
           // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
+          graphic.setStroke(colorPicker.getValue());
           graphic.setLineWidth(size);
 
           // Create a line that goes from the point (currentX, currentY) and (x,y)

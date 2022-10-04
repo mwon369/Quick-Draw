@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.ZenCanvasController">
@@ -114,6 +116,20 @@
                                           <Image url="@../images/unmute.png" />
                                        </image>
                                     </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="colorPane" prefHeight="30.0" prefWidth="30.0">
+                                 <children>
+                                    <ImageView fx:id="colorIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                       <image>
+                                          <Image url="@../images/colouricon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ColorPicker fx:id="colorPicker" layoutY="5.0" opacity="0.0">
+                                       <value>
+                                          <Color />
+                                       </value>
+                                    </ColorPicker>
                                  </children>
                               </Pane>
                            </children>
