@@ -24,7 +24,7 @@
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="50.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
@@ -39,7 +39,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
@@ -57,6 +57,18 @@
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
                   <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" text="My Profile">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" text="Settings">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>

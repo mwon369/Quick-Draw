@@ -42,9 +42,9 @@ public class WordChooserController {
     }
 
     // get words from every difficulty
-    words.addAll(categorySelector.getWordList(CategorySelector.Difficulty.E));
-    words.addAll(categorySelector.getWordList(CategorySelector.Difficulty.M));
-    words.addAll(categorySelector.getWordList(CategorySelector.Difficulty.H));
+    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.E));
+    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.M));
+    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.H));
 
     // set list view to contain all the words loaded
     wordListView.getItems().setAll(words);

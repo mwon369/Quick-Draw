@@ -54,7 +54,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class CanvasController {
 
-  private static final int TIMER_START_TIME = 60;
+  private int timeLimit;
 
   @FXML private Canvas canvas;
   @FXML private Label wordLabel;
@@ -105,6 +105,9 @@ public class CanvasController {
   private double currentX;
   private double currentY;
 
+  // difficulties
+  private int accuracy;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -133,6 +136,16 @@ public class CanvasController {
     // initialise text to speech
     textToSpeech = new TextToSpeech();
     speakPredictionsTimer = new Timer();
+  }
+
+  /** This method sets up the difficulties */
+  protected void setUpDifficulty() {
+    user = UsersManager.getSelectedUser();
+    // initialise difficulties
+    accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
+    timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
+
+    timerLabel.setText(String.valueOf(timeLimit));
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -178,7 +191,7 @@ public class CanvasController {
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
     // reset the timer and cancel the timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
+    timerLabel.setText(String.valueOf(timeLimit));
     if (timer != null) {
       timer.cancel();
     }
@@ -213,12 +226,13 @@ public class CanvasController {
    */
   @FXML
   private void onStartNewGame() {
+
     resetCanvas();
     // select and display random category (easy)
-    user = UsersManager.getSelectedUser();
     userWins = user.getWins();
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
+
     targetCategory = user.giveWordToDraw();
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
@@ -226,7 +240,7 @@ public class CanvasController {
     readyButton.setDisable(false);
 
     // reset the timer label and cancel previous timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
+    timerLabel.setText(String.valueOf(timeLimit));
     if (timer != null) {
       timer.cancel();
     }
@@ -270,7 +284,7 @@ public class CanvasController {
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
-          private int time = TIMER_START_TIME;
+          private int time = timeLimit;
 
           @Override
           public void run() {
@@ -286,9 +300,9 @@ public class CanvasController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourTopPredictions(predictionsListView, 3);
+                      colourTopPredictions(predictionsListView, accuracy);
                       // check if player has won
-                      if (isWin(classifications, 3)) {
+                      if (isWin(classifications, accuracy)) {
                         timer.cancel();
                         stopGame(true, timerLabel.getText());
                         return;
@@ -480,8 +494,8 @@ public class CanvasController {
     int time = Integer.parseInt(timeString);
     if (isWin) {
       user.setWins(++userWins);
-      if (60 - time < userFastestWin) {
-        user.setFastestWin(60 - time);
+      if (timeLimit - time < userFastestWin) {
+        user.setFastestWin(timeLimit - time);
       }
     } else {
       user.setLosses(++userLosses);

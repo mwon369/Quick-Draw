@@ -44,9 +44,6 @@ public class App extends Application {
     SceneManager.addUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.getUiRoot(AppUi.MENU).getStylesheets().add("/css/menu.css");
 
-    SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
-    SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
-
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.getUiRoot(AppUi.USER_CREATION).getStylesheets().add("/css/userCreation.css");
 
