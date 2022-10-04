@@ -33,9 +33,9 @@
 	-fx-font-weight: 400;
 	-fx-font-size: 20px;
 	-fx-pref-width: 250px;
-	-fx-fixed-cell-size: 43px;
+	-fx-fixed-cell-size: 45px;
 	-fx-border-color: white;
-	-fx-pref-height: 440px;
+	-fx-pref-height: 350px;
 }
 
 #wordListView:focused {
@@ -62,4 +62,10 @@
 	-fx-translate-y: 4;
 	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;
+}
+
+#searchButton, #searchButton:hover {
+	-fx-pref-width: 30;
+	-fx-pref-height: 30;
+	-fx-cursor: hand;
 }
