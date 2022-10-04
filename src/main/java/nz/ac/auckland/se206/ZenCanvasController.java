@@ -70,7 +70,7 @@ public class ZenCanvasController {
   @FXML private ListView<String> predictionsListView;
   private List<Classification> classifications;
 
-  @FXML private Label winLossLabel;
+  @FXML private Label outcomeLabel;
 
   // items for the canvas tools
   @FXML private Pane penPane;
@@ -199,7 +199,7 @@ public class ZenCanvasController {
     onClear();
     readyButton.setDisable(true);
     savePane.setDisable(true);
-    winLossLabel.setVisible(false);
+    outcomeLabel.setVisible(false);
   }
 
   /**
@@ -276,7 +276,12 @@ public class ZenCanvasController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourCategory(predictionsListView, targetCategory);
+                      colourTopPredictions(predictionsListView, 1);
+                      if (isWin(classifications, 1)) {
+                        outcomeLabel.setText(
+                            "Nice job! Your word is the #1 guess. Feel free to keep drawing :)");
+                        outcomeLabel.setVisible(true);
+                      }
                     }
                   } catch (TranslateException e) {
                     System.out.println("Unable to retrieve predictions");
@@ -289,7 +294,7 @@ public class ZenCanvasController {
         1000);
   }
 
-  private void colourCategory(ListView<String> predictionsListView, String targetCategory) {
+  private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
 
     // set the CellFactory field for the ListView
     predictionsListView.setCellFactory(
@@ -307,7 +312,7 @@ public class ZenCanvasController {
               } else {
                 // set the colour for the top x model predictions
                 setStyle(
-                    getItem().equals(targetCategory)
+                    getIndex() < topNum
                         ? "-fx-background-color: #DEC98A;"
                         : "-fx-background-color: white;");
                 // set the text to the prediction for each cell

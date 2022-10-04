@@ -114,12 +114,22 @@
 	-fx-background-color: rgba(220,220,220,0.5);
 	-fx-background-radius: 5;
 	-fx-padding: 3 8 3 8;
-	-fx-text-fill: #ffcf5c;	
+	-fx-text-fill: #ffcf5c;
     -fx-font-family: 'Indie Flower', cursive;
     -fx-font-style: normal;
 	-fx-font-weight: 400;
 	-fx-font-size: 52px;
 }
+
+#outcomeLabel{
+	-fx-text-fill: black;
+    -fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+	-fx-margin: 10 50 10 50;
+}
+
 #helpMenuButton{
 	-fx-background-radius: 10px;
     -fx-background-color: #E29F00;
