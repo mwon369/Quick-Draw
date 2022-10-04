@@ -10,6 +10,6 @@ public class OneSecondWonderBadge extends Badge {
 
   @Override
   public void checkCompletion(User user) {
-    isCompleted = user.getFastestWin() == 1;
+    isCompleted = user.getFastestWin() <= 1;
   }
 }
