@@ -54,14 +54,10 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class ZenCanvasController {
 
-  private static final int TIMER_START_TIME = 60;
-
   @FXML private Canvas canvas;
   @FXML private Label wordLabel;
   private String targetCategory;
 
-  // items for the timer
-  @FXML private Label timerLabel;
   private Timer timer;
 
   @FXML private Button mainMenuButton;
@@ -177,8 +173,7 @@ public class ZenCanvasController {
     isMuted = false;
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
-    // reset the timer and cancel the timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
+
     if (timer != null) {
       timer.cancel();
     }
@@ -225,8 +220,6 @@ public class ZenCanvasController {
 
     readyButton.setDisable(false);
 
-    // reset the timer label and cancel previous timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
     if (timer != null) {
       timer.cancel();
     }
@@ -270,12 +263,9 @@ public class ZenCanvasController {
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
-          private int time = TIMER_START_TIME;
 
           @Override
           public void run() {
-            // create temporary variable for the time
-            int temp = time;
             Platform.runLater(
                 () -> {
                   try {
@@ -286,42 +276,20 @@ public class ZenCanvasController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourTopPredictions(predictionsListView, 3);
-                      // check if player has won
-                      if (isWin(classifications, 3)) {
-                        timer.cancel();
-                        stopGame(true, timerLabel.getText());
-                        return;
-                      }
+                      colourCategory(predictionsListView, targetCategory);
                     }
                   } catch (TranslateException e) {
                     System.out.println("Unable to retrieve predictions");
                     e.printStackTrace();
                   }
-
-                  // update timer
-                  timerLabel.setText(String.valueOf(temp));
                 });
-
-            // if time has run out, cancel timer
-            if (time == 0) {
-              timer.cancel();
-              Platform.runLater(
-                  () -> {
-                    stopGame(false, timerLabel.getText());
-                  });
-              return;
-            } else {
-              // otherwise, decrement the time by 1 second
-              time -= 1;
-            }
           }
         },
         0,
         1000);
   }
 
-  private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
+  private void colourCategory(ListView<String> predictionsListView, String targetCategory) {
 
     // set the CellFactory field for the ListView
     predictionsListView.setCellFactory(
@@ -339,7 +307,7 @@ public class ZenCanvasController {
               } else {
                 // set the colour for the top x model predictions
                 setStyle(
-                    getIndex() < topNum
+                    getItem().equals(targetCategory)
                         ? "-fx-background-color: #DEC98A;"
                         : "-fx-background-color: white;");
                 // set the text to the prediction for each cell
@@ -458,59 +426,6 @@ public class ZenCanvasController {
     file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
     BufferedImage bufferImage = ImageIO.read(file);
     return SwingFXUtils.toFXImage(bufferImage, null);
-  }
-
-  /**
-   * This method stops the game and disables the canvas. It displays "You win!" or "You lose" if
-   * user wins or loses the game respectively
-   *
-   * @param isWin boolean representing whether the user won the game or not
-   */
-  private void stopGame(boolean isWin, String timeString) {
-    savePane.setDisable(false);
-    canvas.setDisable(true);
-    // disable mouse dragging on canvas
-    canvas.setOnMouseDragged(e -> {});
-
-    // set and display the win/loss
-    winLossLabel.setText(isWin ? "You win!" : "You Lose!");
-    winLossLabel.setVisible(true);
-
-    // update stats after the game ends
-    int time = Integer.parseInt(timeString);
-    if (isWin) {
-      user.setWins(++userWins);
-      if (60 - time < userFastestWin) {
-        user.setFastestWin(60 - time);
-      }
-    } else {
-      user.setLosses(++userLosses);
-    }
-
-    // update and save both instance word lists fields after game ends
-    user.updateWordList(targetCategory);
-    user.updateLastThreeWords(targetCategory);
-
-    try {
-      UsersManager.saveUsersToJson();
-    } catch (IOException e1) {
-      e1.printStackTrace();
-    }
-
-    isGameOver = true;
-
-    // speak whether user won or lost
-    Task<Void> endSpeechTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");
-            return null;
-          }
-        };
-
-    Thread endSpeechThread = new Thread(endSpeechTask);
-    endSpeechThread.start();
   }
 
   /** This method changes the user's input to simulate an eraser for the canvas */
