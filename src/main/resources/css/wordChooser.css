@@ -69,3 +69,10 @@
 	-fx-pref-height: 30;
 	-fx-cursor: hand;
 }
+
+#searchTextField {
+    -fx-background-radius: 20;
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-size: 16px;
+	-fx-font-style: normal;
+}
