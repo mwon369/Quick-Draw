@@ -9,7 +9,7 @@ public class DiscoverGreatWallBadge extends Badge {
   }
 
   @Override
-  protected void checkCompletion(User user) {
+  public void checkCompletion(User user) {
     isCompleted = user.getWordsGiven().contains("The Great Wall of China");
   }
 }

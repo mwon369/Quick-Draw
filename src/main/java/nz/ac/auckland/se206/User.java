@@ -182,4 +182,13 @@ public class User {
       badgeList.add(BadgeFactory.createBadge(data.getBadgeID(), data.isCompleted()));
     }
   }
+
+  public void updateBadges() {
+    for (int i = 0; i < badgeList.size(); i++) {
+      if (!badgeList.get(i).isCompleted()) {
+        badgeList.get(i).checkCompletion(this);
+        badgeDataList.get(i).setCompleted(badgeList.get(i).isCompleted());
+      }
+    }
+  }
 }

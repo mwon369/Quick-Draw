@@ -504,7 +504,7 @@ public class CanvasController {
       user.setLosses(++userLosses);
       user.setWinStreak(0);
     }
-
+    user.updateBadges();
     // update and save both instance word lists fields after game ends
     user.updateWordList(targetCategory);
     user.updateLastThreeWords(targetCategory);

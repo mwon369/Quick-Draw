@@ -9,7 +9,7 @@ public class OneSecondWonderBadge extends Badge {
   }
 
   @Override
-  protected void checkCompletion(User user) {
+  public void checkCompletion(User user) {
     isCompleted = user.getFastestWin() == 1;
   }
 }

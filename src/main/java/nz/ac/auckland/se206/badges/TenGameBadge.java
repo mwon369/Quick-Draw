@@ -9,7 +9,7 @@ public class TenGameBadge extends Badge {
   }
 
   @Override
-  protected void checkCompletion(User user) {
+  public void checkCompletion(User user) {
     isCompleted = user.getLosses() + user.getWins() == 10;
   }
 }
