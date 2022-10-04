@@ -94,7 +94,6 @@ public class ZenCanvasController {
   private boolean isDrawing;
   private boolean isPenDrawn = false;
   private boolean isMuted;
-  private User user;
 
   // mouse coordinates
   private double currentX;
