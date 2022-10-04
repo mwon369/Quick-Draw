@@ -18,6 +18,8 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -98,6 +100,9 @@ public class ZenCanvasController {
   private double currentX;
   private double currentY;
 
+  private Parent wordChooserScene;
+  private WordChooserController wordChooserController;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -106,6 +111,15 @@ public class ZenCanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
+    // load in wordChooser FXML and its respective controller so that we can
+    // reference it from this controller
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/wordChooser.fxml"));
+    wordChooserScene = loader.load();
+    wordChooserController = loader.getController();
+    SceneManager.addUi(AppUi.WORD_CHOOSER, wordChooserScene);
+    SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/canvas.css");
+    wordChooserController.loadAllWords();
+
     isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
@@ -532,5 +546,13 @@ public class ZenCanvasController {
         e.printStackTrace();
       }
     }
+  }
+
+  @FXML
+  private void onChooseWord(ActionEvent event) {
+    // retrieve the source of button and switch to word chooser scene
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
   }
 }

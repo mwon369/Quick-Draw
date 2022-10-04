@@ -173,7 +173,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
-                  <Button mnemonicParsing="false" text="Choose Word" />
+                  <Button fx:id="chooseWordButton" mnemonicParsing="false" onAction="#onChooseWord" text="Choose Word" />
                   <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" text="New Game" />
                   <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
                </children>
