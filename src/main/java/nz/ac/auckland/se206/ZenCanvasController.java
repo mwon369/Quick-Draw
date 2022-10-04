@@ -117,7 +117,7 @@ public class ZenCanvasController {
     wordChooserScene = loader.load();
     wordChooserController = loader.getController();
     SceneManager.addUi(AppUi.WORD_CHOOSER, wordChooserScene);
-    SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/canvas.css");
+    SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/wordChooser.css");
 
     // will need to reference this controller from the wordChooserController
     // in order to set the target category during word selection
@@ -216,8 +216,11 @@ public class ZenCanvasController {
     canvas.setDisable(true);
     onClear();
     readyButton.setDisable(true);
-    savePane.setDisable(true);
+    // user will be able to save their drawing at any point in zen mode
+    savePane.setDisable(false);
     outcomeLabel.setVisible(false);
+    // reset pen colour to black
+    colorPicker.setValue(Color.BLACK);
   }
 
   /**
@@ -228,13 +231,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onChooseWord(ActionEvent event) {
-
-    // retrieve the source of button and switch to word chooser scene
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
-
-    // erase all drawing on canvas
+    // erase all drawing and reset all GUI elements
     resetCanvas();
 
     // reset timer
@@ -245,6 +242,11 @@ public class ZenCanvasController {
 
     // clear the predictions list
     predictionsListView.getItems().clear();
+
+    // retrieve the source of button and switch to word chooser scene
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
   }
 
   /**
@@ -297,7 +299,7 @@ public class ZenCanvasController {
                       colourTopPredictions(predictionsListView, 1);
                       if (isWin(classifications, 1)) {
                         outcomeLabel.setText(
-                            "Nice job! Your word is the #1 guess. Feel free to keep drawing :)");
+                            "Nice, you've won! Feel free to keep drawing or choose a new word!");
                         outcomeLabel.setVisible(true);
                       }
                     }

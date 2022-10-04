@@ -63,7 +63,6 @@
 	-fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;
     -fx-padding: 1;
-    
 }
 
 #canvasStackPane {
@@ -127,7 +126,6 @@
     -fx-font-style: normal;
 	-fx-font-weight: 400;
 	-fx-font-size: 20px;
-	-fx-margin: 10 50 10 50;
 }
 
 #helpMenuButton{

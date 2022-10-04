@@ -14,18 +14,21 @@
             <children>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
                <children>
-                  <Label fx:id="titleLabel" text="Choose a word!">
+                  <Label fx:id="titleLabel" text="Click on a word to choose it!">
                      <HBox.margin>
-                        <Insets />
+                        <Insets bottom="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="-15.0" />
+               </VBox.margin>
             </HBox>
                 <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
                <children>
                   <Label fx:id="chosenWordLabel" text="Current word chosen: ">
                      <HBox.margin>
-                        <Insets bottom="30.0" top="40.0" />
+                        <Insets bottom="15.0" />
                      </HBox.margin></Label>
                </children>
                 </HBox>
@@ -33,7 +36,7 @@
                     <children>
                         <VBox alignment="TOP_CENTER">
                             <children>
-                                  <ListView fx:id="wordListView" fixedCellSize="30.0" prefHeight="424.0" prefWidth="261.0">
+                                  <ListView fx:id="wordListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0">
                                       <VBox.margin>
                                           <Insets />
                                       </VBox.margin>
@@ -44,7 +47,10 @@
                 </HBox>
                 <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                     <children>
-                        <Button fx:id="backToGameButton" mnemonicParsing="false" onAction="#onGoBackToGame" text="Back to Game" />
+                        <Button fx:id="backToGameButton" mnemonicParsing="false" onAction="#onGoBackToGame" text="Back to Game">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />
