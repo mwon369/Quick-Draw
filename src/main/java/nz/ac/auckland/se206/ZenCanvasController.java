@@ -106,7 +106,7 @@ public class ZenCanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
-    isMuted = false;
+    isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -167,8 +167,9 @@ public class ZenCanvasController {
    */
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
-    isMuted = false;
-    soundIcon.setImage(loadImage("unmute"));
+    isMuted = true;
+    soundIcon.setImage(loadImage("mute"));
+    colorPicker.setValue(Color.BLACK);
     resetCanvas();
 
     if (timer != null) {
@@ -246,7 +247,7 @@ public class ZenCanvasController {
     canvas.setDisable(false);
     readyButton.setDisable(true);
     startTimer();
-    speakPredictions();
+    speakPredictions(1);
   }
 
   /**
@@ -373,7 +374,7 @@ public class ZenCanvasController {
    * This method speaks the top 3 predictions of the user's drawings every 10 seconds, terminating
    * whenever the game is over
    */
-  private void speakPredictions() {
+  private void speakPredictions(int topNum) {
     // schedule the speaking for every 10 seconds and starts after 1 second
     speakPredictionsTimer.schedule(
         new TimerTask() {
@@ -392,7 +393,7 @@ public class ZenCanvasController {
             List<Classification> temporaryList = classifications;
 
             // run through the top three predictions
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < topNum; i++) {
               if (isGameOver) {
                 this.cancel();
                 return;

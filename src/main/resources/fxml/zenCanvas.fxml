@@ -113,7 +113,7 @@
                                  <children>
                                     <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
-                                          <Image url="@../images/unmute.png" />
+                                          <Image url="@../images/mute.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -125,7 +125,7 @@
                                           <Image url="@../images/colouricon.png" />
                                        </image>
                                     </ImageView>
-                                    <ColorPicker fx:id="colorPicker" layoutY="5.0" opacity="0.0">
+                                    <ColorPicker fx:id="colorPicker" layoutY="5.0" minHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="30.0">
                                        <value>
                                           <Color />
                                        </value>
@@ -173,6 +173,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
+                  <Button mnemonicParsing="false" text="Choose Word" />
                   <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" text="New Game" />
                   <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
                </children>
