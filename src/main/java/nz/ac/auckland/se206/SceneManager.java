@@ -11,6 +11,8 @@ public class SceneManager {
     LOGIN,
     USER_CREATION,
     USER_STATS,
+    ZEN_MODE,
+    WORD_CHOOSER,
     SETTINGS,
   }
 

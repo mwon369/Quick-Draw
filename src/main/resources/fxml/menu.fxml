@@ -29,7 +29,7 @@
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" text="Play">
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" text="Classic Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -41,6 +41,18 @@
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" text="Zen Mode">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>

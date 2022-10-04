@@ -50,6 +50,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
     SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
 
+    SceneManager.addUi(AppUi.ZEN_MODE, loadFxml("zenCanvas"));
+    SceneManager.getUiRoot(AppUi.ZEN_MODE).getStylesheets().add("/css/canvas.css");
+
     // Load users
     UsersManager.loadUsersFromJson();
 

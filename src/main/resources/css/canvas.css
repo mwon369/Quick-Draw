@@ -63,7 +63,6 @@
 	-fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;
     -fx-padding: 1;
-    
 }
 
 #canvasStackPane {
@@ -85,7 +84,7 @@
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0.0, 0.0);
 	}
 
-#penPane, #eraserPane, #clearPane, #savePane, #soundPane {
+#penPane, #eraserPane, #clearPane, #savePane, #soundPane, #colorPane {
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0.0, 0.0);
 	-fx-border-color: rgba(0,0,0,0.1);
 	-fx-border-width: 0 1 0 0;	
@@ -114,12 +113,21 @@
 	-fx-background-color: rgba(220,220,220,0.5);
 	-fx-background-radius: 5;
 	-fx-padding: 3 8 3 8;
-	-fx-text-fill: #ffcf5c;	
+	-fx-text-fill: #ffcf5c;
     -fx-font-family: 'Indie Flower', cursive;
     -fx-font-style: normal;
 	-fx-font-weight: 400;
 	-fx-font-size: 52px;
 }
+
+#outcomeLabel{
+	-fx-text-fill: black;
+    -fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+}
+
 #helpMenuButton{
 	-fx-background-radius: 10px;
     -fx-background-color: #E29F00;
@@ -153,4 +161,8 @@
 	-fx-translate-y: 4;
 	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;
+}
+
+#colorPicker:hover {
+    -fx-cursor: hand;
 }

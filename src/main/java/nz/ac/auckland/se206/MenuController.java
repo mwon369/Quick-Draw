@@ -97,6 +97,14 @@ public class MenuController {
     userStatsController.onRetrieveStats();
   }
 
+  @FXML
+  private void onPlayZenMode(ActionEvent event) {
+    // retrieve the source of button and switch to zen mode canvas
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.ZEN_MODE));
+  }
+
   /**
    * This method switches the root of the scene from the main menu to the settings page
    *
