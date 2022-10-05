@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.words.CategoryManager;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -58,6 +59,8 @@ public class App extends Application {
 
     // Load users
     UsersManager.loadUsersFromJson();
+    // Load category info
+    CategoryManager.loadCategoryInfoFromJson();
 
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
     stage.setScene(scene);
