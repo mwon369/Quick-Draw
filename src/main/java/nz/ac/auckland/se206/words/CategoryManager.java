@@ -29,7 +29,7 @@ public class CategoryManager {
     }
 
     // test code
-    System.out.println(categoryMap.get("aircraft carrier").getDefinition());
+    System.out.println(categoryMap.size());
   }
 
   public static Category getCategory(String category) {

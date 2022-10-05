@@ -119,5 +119,125 @@
     "hints": [
       "The ball used in this sport is big, orange and has black stripes"
     ]
+  },
+  "bat": {
+    "definition": "An animal with big leathery wings that often live in caves",
+    "hints": [
+      "These animals hang themselves upside down when they sleep"
+    ]
+  },
+  "bathtub": {
+    "definition": "A large container you use to clean yourself",
+    "hints": [
+      "This is similar to a shower but instead you fill it with water and sit in it"
+    ]
+  },
+  "beach": {
+    "definition": "A place next to the ocean with lots of sand",
+    "hints": [
+      "You'll often find lots of people here during Summer"
+    ]
+  },
+  "bear": {
+    "definition": "A big, round and furry animal which walks on four legs",
+    "hints": [
+      "These animals have big teeth and claws"
+    ]
+  },
+  "beard": {
+    "definition": "Facial hair that men grown on their cheeks and chin",
+    "hints": [
+      "Santa Claus has one of these which is very white and long"
+    ]
+  },
+  "bed": {
+    "definition": "A piece of furniture that you use sleep on",
+    "hints": [
+      "Sometimes your mum might tuck you into this before you sleep"
+    ]
+  },
+  "bee": {
+    "definition": "A black and yellow insect with wings and a stinger",
+    "hints": [
+      "They make honey"
+    ]
+  },
+  "belt": {
+    "definition": "A strip of fabric or leather worn around the waist",
+    "hints": [
+      "These are used to help pants stay in place"
+    ]
+  },
+  "bench": {
+    "definition": "A long seat made out of word or stone",
+    "hints": [
+      "You can often find these in parks"
+    ]
+  },
+  "bicycle": {
+    "definition": "A vehicle with two wheels",
+    "hints": [
+      "These have two pedals and handlebars"
+    ]
+  },
+  "binoculars": {
+    "definition": "Something you use to help you see things from very far away",
+    "hints": [
+      "Spies use these to spy on people"
+    ]
+  },
+  "bird": {
+    "definition": "An animal which has a beak and wings",
+    "hints": [
+      "You often hear these chirping in your backyard"
+    ]
+  },
+  "birthday cake": {
+    "definition": "A food you usually eat on your birthday",
+    "hints": [
+      "This food usually has a lot of cream or icing and sometimes sprinkles"
+    ]
+  },
+  "blackberry": {
+    "definition": "A type of fruit which is black and has its seeds on the outside",
+    "hints": [
+      "They look like raspberries but aren't raspberries"
+    ]
+  },
+  "blueberry": {
+    "definition": "A small, round blue fruit",
+    "hints": [
+      "These can be found in orchards and fruit farms"
+    ]
+  },
+  "book": {
+    "definition": "Something you can read and write with",
+    "hints": [
+      "You use these a lot at school to do work"
+    ]
+  },
+  "boomerang": {
+    "definition": "A curved flat piece of wood used for hunting",
+    "hints": [
+      "It returns to you after being thrown"
+    ]
+  },
+  "bottlecap": {
+    "definition": "A small circular thing that's used to seal the top of your bottle",
+    "hints": [
+      "You twist these to open and close them"
+    ]
+  },
+  "bowtie": {
+    "definition": "A piece of clothing with a knot worn around the neck",
+    "hints": [
+      "People wearing suits often wear these as well"
+    ]
+  },
+  "bracelet": {
+    "definition": "A fashion accessory people wear around their wrists",
+    "hints": [
+      "Best friends sometimes make these for each other"
+    ]
   }
 }
