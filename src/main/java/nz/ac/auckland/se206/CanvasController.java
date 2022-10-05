@@ -36,7 +36,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.imageio.ImageIO;
-import nz.ac.auckland.se206.DifficultyManager.Difficulty;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -511,18 +510,30 @@ public class CanvasController {
     }
     user.updateBadges();
     // update and save both instance word lists fields after game ends
-    Difficulty wordDifficulty = user.getWordDifficulty();
-    // if wordDifficulty is EASY, MEDIUM or HARD, just use the first character as the category enum
-    if (!user.getWordDifficulty().equals(Difficulty.MASTER)) {
-      user.updateWordList(
-          Enum.valueOf(CategoryDifficulty.class, wordDifficulty.toString().substring(0, 1)),
-          targetCategory);
-    } else {
-      for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
-        if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
-          user.updateWordList(categoryDifficulty, targetCategory);
+
+    // update the word list
+    switch (user.getWordDifficulty()) {
+      case EASY:
+        user.updateWordList(CategoryDifficulty.E, targetCategory);
+        break;
+      case MEDIUM:
+        for (CategoryDifficulty categoryDifficulty :
+            Arrays.asList(CategoryDifficulty.E, CategoryDifficulty.M)) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
         }
-      }
+        break;
+      case HARD:
+        for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
+        }
+        break;
+      case MASTER:
+        user.updateWordList(CategoryDifficulty.H, targetCategory);
+        break;
     }
     user.updateLastThreeWords(targetCategory);
 
