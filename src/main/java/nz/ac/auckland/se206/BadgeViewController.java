@@ -36,6 +36,15 @@ public class BadgeViewController {
   @FXML private ImageView badgeIconTen;
   @FXML private Pane badgeOnePane;
   @FXML private Pane badgeTwoPane;
+  @FXML private Pane badgeThreePane;
+  @FXML private Pane badgeFourPane;
+  @FXML private Pane badgeFivePane;
+  @FXML private Pane badgeSixPane;
+  @FXML private Pane badgeSevenPane;
+  @FXML private Pane badgeEightPane;
+  @FXML private Pane badgeNinePane;
+  @FXML private Pane badgeTenPane;
+
   @FXML private Label badgeTitleLabel;
   @FXML private Label badgeDescriptionLabel;
   private List<ImageView> badgeIcons;
@@ -57,7 +66,18 @@ public class BadgeViewController {
             badgeIconEight,
             badgeIconNine,
             badgeIconTen);
-    badgePanes = Arrays.asList(badgeOnePane, badgeTwoPane);
+    badgePanes =
+        Arrays.asList(
+            badgeOnePane,
+            badgeTwoPane,
+            badgeThreePane,
+            badgeFourPane,
+            badgeFivePane,
+            badgeSixPane,
+            badgeSevenPane,
+            badgeEightPane,
+            badgeNinePane,
+            badgeTenPane);
   }
 
   @FXML
@@ -93,7 +113,7 @@ public class BadgeViewController {
   }
 
   @FXML
-  private void onbadgeOneSelect() {
+  private void onBadgeOneSelect() {
     badgeTitleLabel.setText(badgeList.get(0).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(0).getDescription());
     badgeTitleLabel.setVisible(true);
@@ -102,12 +122,84 @@ public class BadgeViewController {
   }
 
   @FXML
-  private void onbadgeTwoSelect() {
+  private void onBadgeTwoSelect() {
     badgeTitleLabel.setText(badgeList.get(1).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(1).getDescription());
     badgeTitleLabel.setVisible(true);
     badgeDescriptionLabel.setVisible(true);
     this.colorCurrentTool("badgeTwoPane");
+  }
+
+  @FXML
+  private void onBadgeThreeSelect() {
+    badgeTitleLabel.setText(badgeList.get(2).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(2).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeThreePane");
+  }
+
+  @FXML
+  private void onBadgeFourSelect() {
+    badgeTitleLabel.setText(badgeList.get(3).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(3).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeFourPane");
+  }
+
+  @FXML
+  private void onBadgeFiveSelect() {
+    badgeTitleLabel.setText(badgeList.get(4).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(4).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeFivePane");
+  }
+
+  @FXML
+  private void onBadgeSixSelect() {
+    badgeTitleLabel.setText(badgeList.get(5).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(5).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeSixPane");
+  }
+
+  @FXML
+  private void onBadgeSevenSelect() {
+    badgeTitleLabel.setText(badgeList.get(6).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(6).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeSevenPane");
+  }
+
+  @FXML
+  private void onBadgeEightSelect() {
+    badgeTitleLabel.setText(badgeList.get(7).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(7).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeEightPane");
+  }
+
+  @FXML
+  private void onBadgeNineSelect() {
+    badgeTitleLabel.setText(badgeList.get(8).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(8).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeNinePane");
+  }
+
+  @FXML
+  private void onBadgeTenSelect() {
+    badgeTitleLabel.setText(badgeList.get(9).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(9).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeTenPane");
   }
 
   private void colorCurrentTool(String badgePaneId) {
