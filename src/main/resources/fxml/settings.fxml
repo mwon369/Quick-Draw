@@ -43,6 +43,19 @@
             <RadioButton fx:id="masterTimeLimit" mnemonicParsing="false" text="Master" toggleGroup="$timeLimit" />
          </children>
       </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label styleClass="setting" text="Confidence" />
+            <RadioButton fx:id="easyConfidence" mnemonicParsing="false" text="Easy">
+               <toggleGroup>
+                  <ToggleGroup fx:id="confidence" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="mediumConfidence" mnemonicParsing="false" text="Medium" toggleGroup="$confidence" />
+            <RadioButton fx:id="hardConfidence" mnemonicParsing="false" text="Hard" toggleGroup="$confidence" />
+            <RadioButton fx:id="masterConfidence" mnemonicParsing="false" text="Master" toggleGroup="$confidence" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" minHeight="36.0">
          <children>
             <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu">
