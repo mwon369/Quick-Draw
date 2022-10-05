@@ -1,8 +1,123 @@
 {
   "aircraft carrier": {
-    "definition": "A large boat used to help aircrafts take off and land",
+    "definition": "A vehicle used to carry planes",
     "hints": [
-      "These often have a lot of aircrafts on them"
+      "These are large boats which help aircrafts take off and land"
+    ]
+  },
+  "airplane": {
+    "definition": "A big flying vehicle",
+    "hints": [
+      "They have big wings and make a lot of noise"
+    ]
+  },
+  "alarm clock": {
+    "definition": "A special type of clock that reminds you to do things",
+    "hints": [
+      "A lot of people use this to help them wake up in the morning"
+    ]
+  },
+  "ambulance": {
+    "definition": "An emergency vehicle for sick and injured people",
+    "hints": [
+      "They have sirens and can often be often found at hospitals"
+    ]
+  },
+  "angel": {
+    "definition": "A person who is very good or kind",
+    "hints": [
+      "They have wings and a bright ring on top of their head"
+    ]
+  },
+  "animal migration": {
+    "definition": "Something animals do when they have travelled a long distance",
+    "hints": [
+      "Animals do this to find new homes"
+    ]
+  },
+  "ant": {
+    "definition": "A small six-legged insect",
+    "hints": [
+      "You often see these either outside or crawling over rotting fruits"
+    ]
+  },
+  "anvil": {
+    "definition": "A big iron block which is used to shape pieces of metal",
+    "hints": [
+      "Blacksmiths use these to make swords",
+      "A block in Minecraft which lets you combine enchantments"
+    ]
+  },
+  "apple": {
+    "definition": "A red (but sometimes green) fruit with seeds in the centre",
+    "hints": [
+      "You may see your teachers at school eating this often"
+    ]
+  },
+  "arm": {
+    "definition": "A type of body part attached to peoples upper body",
+    "hints": [
+      "You use this body part everyday when you need to reach for things"
+    ]
+  },
+  "asparagus": {
+    "definition": "A long green vegetable",
+    "hints": [
+      "They look like paintbrushes"
+    ]
+  },
+  "axe": {
+    "definition": "A tool that people use to cut wood",
+    "hints": [
+      "Lumberjacks use these to cut down trees"
+    ]
+  },
+  "backpack": {
+    "definition": "Something you wear on your back to help you carry things",
+    "hints": [
+      "You bring this to school everyday to hold your books"
+    ]
+  },
+  "banana": {
+    "definition": "A long, yellow and curved fruit",
+    "hints": [
+      "Monkeys like to eat these a lot"
+    ]
+  },
+  "bandage": {
+    "definition": "Something you use cover cuts and injuries",
+    "hints": [
+      "Another word for plaster"
+    ]
+  },
+  "barn": {
+    "definition": "A big red building found on farms",
+    "hints": [
+      "These are often used to store farm animals"
+    ]
+  },
+  "baseball": {
+    "definition": "A sport people play that involves hitting a ball with a bat",
+    "hints": [
+      "This sport is not cricket"
+    ]
+  },
+  "baseball bat": {
+    "definition": "A long piece of metal used to hit a baseball",
+    "hints": [
+      "You often see people using these in baseball"
+    ]
+  },
+  "basket": {
+    "definition": "Something used to help hold or carry things",
+    "hints": [
+      "These are often made from woven strips of cane or wire"
+    ]
+  },
+  "basketball": {
+    "definition": "A sport where people shoot a ball into a hoop",
+    "hints": [
+      "The ball used in this sport is big, orange and has black stripes"
     ]
   }
 }
