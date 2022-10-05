@@ -4,6 +4,9 @@ import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import nz.ac.auckland.se206.DifficultyManager.Difficulty;
 import nz.ac.auckland.se206.badges.Badge;
@@ -27,8 +30,10 @@ public class User {
   private int winStreak; // sixth column
 
   private ArrayList<BadgeData> badgeDataList;
-  private ArrayList<String> wordsGiven;
-  private ArrayList<String> wordList;
+  private Map<CategoryDifficulty, ArrayList<String>> wordsGiven;
+  private Map<CategoryDifficulty, ArrayList<String>> wordList;
+  // private ArrayList<String> wordsGiven;
+  // private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
 
   private ArrayList<String> lastThreeWords;
@@ -37,6 +42,7 @@ public class User {
   private Difficulty accuracyDifficulty;
   private Difficulty timeLimitDifficulty;
   private Difficulty confidenceDifficulty;
+  private Difficulty wordDifficulty;
 
   private transient ArrayList<Badge> badgeList;
 
@@ -54,17 +60,31 @@ public class User {
       badgeDataList.add(new BadgeData(i, false));
     }
 
-    wordsGiven = new ArrayList<String>();
+    wordsGiven = new HashMap<CategoryDifficulty, ArrayList<String>>();
+    wordsGiven.put(CategoryDifficulty.E, new ArrayList<String>());
+    wordsGiven.put(CategoryDifficulty.M, new ArrayList<String>());
+    wordsGiven.put(CategoryDifficulty.H, new ArrayList<String>());
 
     try {
       selector = new CategorySelector();
     } catch (IOException | CsvException | URISyntaxException e) {
       e.printStackTrace();
     }
-    wordList = (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E);
+
+    // initialise map of category difficulty to its list of words
+    wordList = new HashMap<CategoryDifficulty, ArrayList<String>>();
+    wordList.put(
+        CategoryDifficulty.E, (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E));
+    wordList.put(
+        CategoryDifficulty.M, (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.M));
+    wordList.put(
+        CategoryDifficulty.H, (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.H));
+
+    // initialise default difficulties
     accuracyDifficulty = Difficulty.EASY;
     timeLimitDifficulty = Difficulty.EASY;
     confidenceDifficulty = Difficulty.EASY;
+    wordDifficulty = Difficulty.EASY;
   }
 
   public String getUsername() {
@@ -140,19 +160,31 @@ public class User {
     this.confidenceDifficulty = difficulty;
   }
 
+  public Difficulty getWordDifficulty() {
+    return this.wordDifficulty;
+  }
+
+  public void setWordDifficulty(Difficulty difficulty) {
+    this.wordDifficulty = difficulty;
+  }
+
+  public Map<CategoryDifficulty, ArrayList<String>> getWordList() {
+    return this.wordList;
+  }
+
   /**
    * updateWordList saves the new word given to the user and updates what words can be given to the
    * user for a new game
    *
    * @param word word given to user for the round
    */
-  public void updateWordList(String word) {
-    wordList.remove(word);
-    wordsGiven.add(word);
+  public void updateWordList(CategoryDifficulty difficulty, String word) {
+    wordList.get(difficulty).remove(word);
+    wordsGiven.get(difficulty).add(word);
   }
 
-  public ArrayList<String> getWordsGiven() {
-    return wordsGiven;
+  public ArrayList<String> getWordsGiven(CategoryDifficulty difficulty) {
+    return wordsGiven.get(difficulty);
   }
 
   /**
@@ -160,14 +192,92 @@ public class User {
    *
    * @return word for user to draw
    */
-  public String giveWordToDraw() {
-    // resets wordList if user has drawn all words
-    if (wordList.isEmpty()) {
-      wordList = (ArrayList<String>) selector.getWordList(CategoryDifficulty.E);
-      // resetting words given to user once all words have been given
-      wordsGiven.clear();
+  public String giveWordToDraw(Difficulty difficulty) {
+    switch (difficulty) {
+      case EASY:
+        // resets wordList if user has drawn all easy words
+        if (wordList.get(CategoryDifficulty.E).isEmpty()) {
+          wordList.put(
+              CategoryDifficulty.E,
+              (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E));
+          // resetting words given to user once all words have been given
+          wordsGiven.get(CategoryDifficulty.E).clear();
+        }
+        return wordList
+            .get(CategoryDifficulty.E)
+            .get(new Random().nextInt(wordList.get(CategoryDifficulty.E).size()));
+      case MEDIUM:
+        // retrieve an arraylist of all easy and medium
+        ArrayList<String> easyMediumCategories = new ArrayList<String>();
+        easyMediumCategories.addAll(wordList.get(CategoryDifficulty.E));
+        easyMediumCategories.addAll(wordList.get(CategoryDifficulty.M));
+        if (easyMediumCategories.isEmpty()) {
+          // resets all wordlists if user has drawn all easy and medium words
+          for (CategoryDifficulty categoryDifficulty :
+              Arrays.asList(CategoryDifficulty.E, CategoryDifficulty.M)) {
+            wordList.put(
+                categoryDifficulty,
+                (ArrayList<String>) this.selector.getWordList(categoryDifficulty));
+            // clear words given
+            wordsGiven.get(categoryDifficulty).clear();
+            // add to all categories
+            easyMediumCategories.addAll(wordList.get(categoryDifficulty));
+          }
+        }
+        return easyMediumCategories.get(
+            new Random()
+                .nextInt(
+                    wordList.get(CategoryDifficulty.E).size()
+                        + wordList.get(CategoryDifficulty.M).size()));
+      case HARD:
+        // retrieve an arraylist of all words
+        ArrayList<String> allCategories = new ArrayList<String>();
+        allCategories.addAll(wordList.get(CategoryDifficulty.E));
+        allCategories.addAll(wordList.get(CategoryDifficulty.M));
+        allCategories.addAll(wordList.get(CategoryDifficulty.H));
+        if (allCategories.isEmpty()) {
+          // resets all wordlists if user has drawn all words
+          for (CategoryDifficulty categoryDifficulty : CategoryDifficulty.values()) {
+            wordList.put(
+                categoryDifficulty,
+                (ArrayList<String>) this.selector.getWordList(categoryDifficulty));
+            // clear words given
+            wordsGiven.get(categoryDifficulty).clear();
+            // add to all categories
+            allCategories.addAll(wordList.get(categoryDifficulty));
+          }
+        }
+        return allCategories.get(
+            new Random()
+                .nextInt(
+                    wordList.get(CategoryDifficulty.E).size()
+                        + wordList.get(CategoryDifficulty.M).size()
+                        + wordList.get(CategoryDifficulty.H).size()));
+      case MASTER:
+        // resets wordList if user has drawn all hard words
+        if (wordList.get(CategoryDifficulty.H).isEmpty()) {
+          wordList.put(
+              CategoryDifficulty.H,
+              (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.H));
+          // resetting words given to user once all hard words have been given
+          wordsGiven.get(CategoryDifficulty.H).clear();
+        }
+        return wordList
+            .get(CategoryDifficulty.H)
+            .get(new Random().nextInt(wordList.get(CategoryDifficulty.H).size()));
+      default:
+        // resets wordList if user has drawn all easy words
+        if (wordList.get(CategoryDifficulty.E).isEmpty()) {
+          wordList.put(
+              CategoryDifficulty.E,
+              (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E));
+          // resetting words given to user once all easy words have been given
+          wordsGiven.get(CategoryDifficulty.E).clear();
+        }
+        return wordList
+            .get(CategoryDifficulty.E)
+            .get(new Random().nextInt(wordList.get(CategoryDifficulty.E).size()));
     }
-    return wordList.get(new Random().nextInt(wordList.size()));
   }
 
   /**

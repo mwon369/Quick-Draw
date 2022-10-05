@@ -39,6 +39,7 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -235,7 +236,7 @@ public class CanvasController {
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
 
-    targetCategory = user.giveWordToDraw();
+    targetCategory = user.giveWordToDraw(user.getWordDifficulty());
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
 
@@ -509,7 +510,31 @@ public class CanvasController {
     }
     user.updateBadges();
     // update and save both instance word lists fields after game ends
-    user.updateWordList(targetCategory);
+
+    // update the word list
+    switch (user.getWordDifficulty()) {
+      case EASY:
+        user.updateWordList(CategoryDifficulty.E, targetCategory);
+        break;
+      case MEDIUM:
+        for (CategoryDifficulty categoryDifficulty :
+            Arrays.asList(CategoryDifficulty.E, CategoryDifficulty.M)) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
+        }
+        break;
+      case HARD:
+        for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
+        }
+        break;
+      case MASTER:
+        user.updateWordList(CategoryDifficulty.H, targetCategory);
+        break;
+    }
     user.updateLastThreeWords(targetCategory);
 
     try {

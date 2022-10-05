@@ -32,6 +32,12 @@ public class SettingsController {
   @FXML private RadioButton hardConfidence;
   @FXML private RadioButton masterConfidence;
 
+  @FXML private ToggleGroup word;
+  @FXML private RadioButton easyWord;
+  @FXML private RadioButton mediumWord;
+  @FXML private RadioButton hardWord;
+  @FXML private RadioButton masterWord;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. We add a listener to the accuracy
    * difficulty radio buttons
@@ -83,6 +89,20 @@ public class SettingsController {
                 }
               }
             });
+
+    // add toggle listener to words group
+    word.selectedToggleProperty()
+        .addListener(
+            new ChangeListener<Toggle>() {
+              public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                RadioButton rb = (RadioButton) word.getSelectedToggle();
+                if (rb != null) {
+                  UsersManager.getSelectedUser()
+                      .setWordDifficulty(
+                          Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
+                }
+              }
+            });
   }
 
   /** This method loads the user's selected difficulties and makes certain radio buttons selected */
@@ -102,6 +122,10 @@ public class SettingsController {
         String.valueOf(UsersManager.getSelectedUser().getConfidenceDifficulty())
             .toLowerCase()
             .concat("Confidence"));
+    difficultyRbIds.add(
+        String.valueOf(UsersManager.getSelectedUser().getWordDifficulty())
+            .toLowerCase()
+            .concat("Word"));
 
     // select each radio button for each setting
     for (String rbId : difficultyRbIds) {

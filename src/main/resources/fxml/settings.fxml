@@ -43,7 +43,7 @@
             </HBox>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label styleClass="setting" text="Time Limit" />
+                  <Label styleClass="setting" text="Time Limit:" />
                   <RadioButton fx:id="easyTimeLimit" mnemonicParsing="false" text="Easy">
                      <toggleGroup>
                         <ToggleGroup fx:id="timeLimit" />
@@ -56,7 +56,7 @@
             </HBox>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label styleClass="setting" text="Confidence" />
+                  <Label styleClass="setting" text="Confidence:" />
                   <RadioButton fx:id="easyConfidence" mnemonicParsing="false" text="Easy">
                      <toggleGroup>
                         <ToggleGroup fx:id="confidence" />
@@ -67,7 +67,20 @@
                   <RadioButton fx:id="masterConfidence" mnemonicParsing="false" text="Master" toggleGroup="$confidence" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" minHeight="36.0">
+            <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+         		<children>
+            		<Label styleClass="setting" text="Words:" />
+            		<RadioButton fx:id="easyWord" mnemonicParsing="false" text="Easy">
+               		<toggleGroup>
+                  		<ToggleGroup fx:id="word" />
+               		</toggleGroup>
+            		</RadioButton>
+		            <RadioButton fx:id="mediumWord" mnemonicParsing="false" text="Medium" toggleGroup="$word" />
+		            <RadioButton fx:id="hardWord" mnemonicParsing="false" text="Hard" toggleGroup="$word" />
+		            <RadioButton fx:id="masterWord" mnemonicParsing="false" text="Master" toggleGroup="$word" />
+				</children>
+	      	</HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
                <children>
                   <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu">
                      <padding>
@@ -78,13 +91,10 @@
                      </font>
                   </Button>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <padding>
-                  <Insets left="30.0" />
+                  <Insets left="30.0" right="30.0" />
                </padding>
-            </HBox>
+			</HBox>
          </children>
       </VBox>
    </children>
