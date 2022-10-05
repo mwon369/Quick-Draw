@@ -7,7 +7,6 @@ import com.opencsv.exceptions.CsvException;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.*;
-import nz.ac.auckland.se206.User;
 
 public class CategoryManager {
 
@@ -45,7 +44,7 @@ public class CategoryManager {
     FileWriter dataWriter = new FileWriter(dataFile);
 
     // write the categoryLinkedMap to JSON
-    gson.toJson(categoryLinkedMap, new TypeToken<Map<String, User>>() {}.getType(), dataWriter);
+    gson.toJson(categoryLinkedMap, new TypeToken<Map<String, Category>>() {}.getType(), dataWriter);
     dataWriter.close();
   }
 
