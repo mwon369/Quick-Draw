@@ -811,7 +811,7 @@
   },
   "firetruck": {
     "word": "firetruck",
-    "definition": "A red long emergency vehicle",
+    "definition": "A red, long emergency vehicle with a siren",
     "hints": [
       "These are driven by firefighters"
     ]
@@ -889,7 +889,7 @@
   },
   "frying pan": {
     "word": "frying pan",
-    "definition": "A heated up tool used in the kitchen to cook food",
+    "definition": "A tool used in the kitchen that is heated up to cook food",
     "hints": [
       "They are put on top of a stove"
     ]
@@ -1017,7 +1017,7 @@
     "word": "hexagon",
     "definition": "A 6 sided shape with 6 corners",
     "hints": [
-      "Their internal angles add up to 720 degrees"
+      "The internal angles of this shape add up to 720 degrees"
     ]
   },
   "hockey puck": {
@@ -1380,358 +1380,500 @@
   },
   "nail": {
     "word": "nail",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small metal spike that joins pieces of wood together",
+    "hints": [
+      "Hammers are used to drill these things into place"
+    ]
   },
   "necklace": {
     "word": "necklace",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of jewelery worn around the neck",
+    "hints": [
+      "Usually a chain made out of expensive materials"
+    ]
   },
   "nose": {
     "word": "nose",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "This is on your face and it has two holes",
+    "hints": [
+      "Used to smell things"
+    ]
   },
   "ocean": {
     "word": "ocean",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large area of water that boats travel across",
+    "hints": [
+      "This is next to the beach"
+    ]
   },
   "octagon": {
     "word": "octagon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An 8 sided shape with 8 corners",
+    "hints": [
+      "The Internal angles of this shape add up to 1080 degrees"
+    ]
   },
   "octopus": {
     "word": "octopus",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sea animal with a big, round head and tentacles",
+    "hints": [
+      "This animal has 8 tentacles"
+    ]
   },
   "onion": {
     "word": "onion",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A round vegetable with multiple layers and a strong smell and flavour",
+    "hints": [
+      "Shrek uses this word to describe ogres"
+    ]
   },
   "oven": {
     "word": "oven",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A kitchen appliance which can be used for baking AND cooking",
+    "hints": [
+      "This is not a stove or microwave"
+    ]
   },
   "owl": {
     "word": "owl",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of bird with big eyes that is mainly awake at night",
+    "hints": [
+      "Makes a 'hoot hoot' sound"
+    ]
   },
   "paintbrush": {
     "word": "paintbrush",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to paint",
+    "hints": [
+      "Has a handle with bristles on the end"
+    ]
   },
   "paint can": {
     "word": "paint can",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A container for paint",
+    "hints": [
+      "They are usually cylinder shaped"
+    ]
   },
   "palm tree": {
     "word": "palm tree",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of large tree with very long, green fan-shaped laves",
+    "hints": [
+      "You can find a lot of these trees in tropical areas"
+    ]
   },
   "panda": {
     "word": "panda",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A black and white bear-shaped animal",
+    "hints": [
+      "These animals love to eat bamboo"
+    ]
   },
   "pants": {
     "word": "pants",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing worn over people's legs",
+    "hints": [
+      "Sometimes this is worn with a belt"
+    ]
   },
   "paper clip": {
     "word": "paper clip",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small piece of metal used to hold pieces of paper together",
+    "hints": [
+      "Oval shaped and can be bent easily"
+    ]
   },
   "parachute": {
     "word": "parachute",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large piece of cloth used to make people fall slowly",
+    "hints": [
+      "Skydivers have these attached to them when they jump out of planes"
+    ]
   },
   "parrot": {
     "word": "parrot",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A bright coloured bird with a short and sharp beak",
+    "hints": [
+      "Sometimes these birds can mimic human voices"
+    ]
   },
   "passport": {
     "word": "passport",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A document used when travelling by plane",
+    "hints": [
+      "You bring this with you to the airport"
+    ]
   },
   "peanut": {
     "word": "peanut",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An oval shaped nut that is often eaten as a snack",
+    "hints": [
+      "People use these nuts to make butter that goes on jelly sandwiches"
+    ]
   },
   "pear": {
     "word": "pear",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A fruit that is wider at the bottom and narrower at the top",
+    "hints": [
+      "Rhymes with bear"
+    ]
   },
   "peas": {
     "word": "peas",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small, green circular vegetable that is soft on the inside",
+    "hints": [
+      "This vegetable grows in a pod"
+    ]
   },
   "pencil": {
     "word": "pencil",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long piece of wood or metal with lead at the tip that is used to write",
+    "hints": [
+      "The markings made by this tool can be rubbed out by an eraser"
+    ]
   },
   "penguin": {
     "word": "penguin",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A black and white bird which swims but cannot fly",
+    "hints": [
+      "Often found in cold parts of the world like Antarctica"
+    ]
   },
   "piano": {
     "word": "piano",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large, usually black, keyboard musical instrument which has two or three pedals",
+    "hints": [
+      "Has a lot of black and white keys"
+    ]
   },
   "pickup truck": {
     "word": "pickup truck",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of car with an open space at the back used for moving large items",
+    "hints": [
+      "A vehicle that all DIY dads have"
+    ]
   },
   "picture frame": {
     "word": "picture frame",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to hold and display pictures",
+    "hints": [
+      "This is usually hung up on walls for display"
+    ]
   },
   "pig": {
     "word": "pig",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A pink, usually fat farm animal with a big nose",
+    "hints": [
+      "Oink oink"
+    ]
   },
   "pillow": {
     "word": "pillow",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A cloth bag stuffed with soft materials used for your head when sleeping",
+    "hints": [
+      "Having fights with these can be pretty fun"
+    ]
   },
   "pineapple": {
     "word": "pineapple",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A yellow, sweet tropical fruit with long leaves on the top",
+    "hints": [
+      "SpongeBob lives in one of these under the sea"
+    ]
   },
   "pizza": {
     "word": "pizza",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A circular food often topped with melted cheese and tomato sauce",
+    "hints": [
+      "This food originally comes from Italy"
+    ]
   },
   "pliers": {
     "word": "pliers",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool use to grip small objects with its pincers",
+    "hints": [
+      "Rhymes with fliers"
+    ]
   },
   "police car": {
     "word": "police car",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An emergency vehicle used to help stop crime",
+    "hints": [
+      "Has blue and red lights on the top"
+    ]
   },
   "pond": {
     "word": "pond",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small area of still, fresh water",
+    "hints": [
+      "Often has a lot of plants growing around the edges and sometimes frogs hopping around"
+    ]
   },
   "pool": {
     "word": "pool",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something people use to swim in for fun",
+    "hints": [
+      "It is a bad idea to pee in this"
+    ]
   },
   "popsicle": {
     "word": "popsicle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of flavoured ice on a stick",
+    "hints": [
+      "These are eaten a lot in Summer"
+    ]
   },
   "postcard": {
     "word": "postcard",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A card used for sending messages",
+    "hints": [
+      "These typically have a photograph or stamp on one side"
+    ]
   },
   "potato": {
     "word": "potato",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A brown, starchy vegetable that can be mashed",
+    "hints": [
+      "Used to make french fries at fast food restaurants"
+    ]
   },
   "power outlet": {
     "word": "power outlet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A place to plug in wires and cables",
+    "hints": [
+      "Used to charge your electronic devices"
+    ]
   },
   "purse": {
     "word": "purse",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small pouch that is used to carry money",
+    "hints": [
+      "These are usually used by women"
+    ]
   },
   "rabbit": {
     "word": "rabbit",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An animal that hops around and has two big ears",
+    "hints": [
+      "They like eating hay and carrots"
+    ]
   },
   "raccoon": {
     "word": "raccoon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A grey animal with a fluffy tail that can be found digging through dumpsters sometimes",
+    "hints": [
+      "They look like foxes and have black fur around their eyes"
+    ]
   },
   "radio": {
     "word": "radio",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device used to broadcast messages",
+    "hints": [
+      "Your parents and grandparents definitely listened to these a lot when they were younger"
+    ]
   },
   "rain": {
     "word": "rain",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Water that falls from the sky",
+    "hints": [
+      "Rhymes with pain"
+    ]
   },
   "rainbow": {
     "word": "rainbow",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A colourful semi-circle of colours seen in the sky",
+    "hints": [
+      "This appears after it has just rained"
+    ]
   },
   "rake": {
     "word": "rake",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool used to sweep leaves in people's backyards",
+    "hints": [
+      "Rhymes with fake"
+    ]
   },
   "remote control": {
     "word": "remote control",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to control the TV",
+    "hints": [
+      "Has a lot of buttons and can switch channels or change the volume"
+    ]
   },
   "rhinoceros": {
     "word": "rhinoceros",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large, grey animal with one or two large horns on its head",
+    "hints": [
+      "They are native to Africa and Southern Asia"
+    ]
   },
   "rifle": {
     "word": "rifle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of gun",
+    "hints": [
+      "Rhymes with stifle"
+    ]
   },
   "river": {
     "word": "river",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A natural stream of water found in the wild",
+    "hints": [
+      "These lead to the sea or a lake"
+    ]
   },
   "roller coaster": {
     "word": "roller coaster",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A railway track with carts that people can ride for fun and thrills",
+    "hints": [
+      "Every amusement park has one of these"
+    ]
   },
   "rollerskates": {
     "word": "rollerskates",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A pair of shoes that have wheels on the bottom",
+    "hints": [
+      "These are used for skating over flat ground"
+    ]
   },
   "sailboat": {
     "word": "sailboat",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of boat that uses the wind to help it move",
+    "hints": [
+      "These boats are made up of 'masts' and 'hulls'"
+    ]
   },
   "sandwich": {
     "word": "sandwich",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of food which has two pieces of bread and some filling in between",
+    "hints": [
+      "Grilled cheese or peanut butter and jelly are often popular fillings for this type of food"
+    ]
   },
   "saw": {
     "word": "saw",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A hand tool used to cut wood",
+    "hints": [
+      "This is not an axe. It cuts wood by being moved forwards and backwards"
+    ]
   },
   "saxophone": {
     "word": "saxophone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A brass instrument that is used in jazz music",
+    "hints": [
+      "It is shaped like the letter 'J'"
+    ]
   },
   "school bus": {
     "word": "school bus",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long vehicle that can carry a lot of students",
+    "hints": [
+      "Used to help students get to and from school"
+    ]
   },
   "scissors": {
     "word": "scissors",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool used to cut paper",
+    "hints": [
+      "It has two blades and two handles with holes"
+    ]
   },
   "scorpion": {
     "word": "scorpion",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A six-legged animal that has pincers and a stinger and looks like a lobster",
+    "hints": [
+      "This animal can be commonly found in the desert"
+    ]
   },
   "screwdriver": {
     "word": "screwdriver",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool used to screw and unscrew things",
+    "hints": [
+      "To use this you need to rotate it"
+    ]
   },
   "sea turtle": {
     "word": "sea turtle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large marine animal with a shell and flippers",
+    "hints": [
+      "These animals can live for a very long time"
+    ]
   },
   "see saw": {
     "word": "see saw",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long plank balanced in the middle that lets children swing up and down",
+    "hints": [
+      "These are often found at playgrounds"
+    ]
   },
   "shark": {
     "word": "shark",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A very big type of fish with sharp teeth",
+    "hints": [
+      "They can smell blood very well"
+    ]
   },
   "sheep": {
     "word": "sheep",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A fluffy farm animal that has wool",
+    "hints": [
+      "Baaaaa"
+    ]
   },
   "shoe": {
     "word": "shoe",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "What you wear on your feet",
+    "hints": [
+      "Rhymes with 'who'"
+    ]
   },
   "shorts": {
     "word": "shorts",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing worn over people's legs that only covers up to the knees",
+    "hints": [
+      "Often worn in Summer when it is hot"
+    ]
   },
   "shovel": {
     "word": "shovel",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool used to dig holes and move dirt",
+    "hints": [
+      "The bigger version of a spade"
+    ]
   },
   "sink": {
     "word": "sink",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "The name for a container that catches the water coming out of your water taps",
+    "hints": [
+      "Rhymes with 'pink'"
+    ]
   },
   "skateboard": {
     "word": "skateboard",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A board with four wheels that people stand on and ride",
+    "hints": [
+      "You see people ride these at skate parks"
+    ]
   },
   "skull": {
     "word": "skull",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large bone found inside of your head",
+    "hints": [
+      "This bone has space inside of it to store your brain"
+    ]
   },
   "skyscraper": {
     "word": "skyscraper",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A very tall building",
+    "hints": [
+      "These types of buildings are often found in big cities"
+    ]
   },
   "sleeping bag": {
     "word": "sleeping bag",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A warm and portable bed that people can sleep in",
+    "hints": [
+      "Lots of people use these to sleep when they go camping"
+    ]
   },
   "smiley face": {
     "word": "smiley face",
