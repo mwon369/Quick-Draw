@@ -8,7 +8,7 @@
   },
   "airplane": {
     "word": "airplane",
-    "definition": "A big flying vehicle",
+    "definition": "A big flying vehicle that can hold a lot of people",
     "hints": [
       "They have big wings and make a lot of noise"
     ]
@@ -170,7 +170,7 @@
   },
   "beard": {
     "word": "beard",
-    "definition": "Facial hair that men grown on their cheeks and chin",
+    "definition": "Facial hair that men grown around their jaw and chin",
     "hints": [
       "Santa Claus has one of these which is very white and long"
     ]
@@ -433,678 +433,950 @@
     "word": "car",
     "definition": "A normal vehicle with 4 wheels",
     "hints": [
-      ""
+      "These are commonly driven around everywhere"
     ]
   },
   "carrot": {
     "word": "carrot",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long orange vegetable",
+    "hints": [
+      "Eating this is a good source of Vitamin A",
+      "Rabbits like to eat this"
+    ]
   },
   "castle": {
     "word": "castle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An old-fashioned large building with lots of towers and thick walls",
+    "hints": [
+      "These were commonly built for royal families in the mideval times"
+    ]
   },
   "cat": {
     "word": "cat",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A common house pet which love catching mice",
+    "hints": [
+      "Meow"
+    ]
   },
   "ceiling fan": {
     "word": "ceiling fan",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something attached to the ceiling of buildings used to cool people down",
+    "hints": [
+      "This thing has blades that spin a lot"
+    ]
   },
   "cello": {
     "word": "cello",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of musical string instrument that is played with a bow",
+    "hints": [
+      "The larger, lower pitched version of the violin"
+    ]
   },
   "cell phone": {
     "word": "cell phone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A portable device that lets you make calls and send messages",
+    "hints": [
+      "These can also be used to play Clash of Clans",
+      "They are often touch screen"
+    ]
   },
   "chair": {
     "word": "chair",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something you sit on",
+    "hints": [
+      "This thing usually has four legs and a backrest"
+    ]
   },
   "chandelier": {
     "word": "chandelier",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A fancy type of light",
+    "hints": [
+      "These are often seen hanging from the ceiling above staircases"
+    ]
   },
   "church": {
     "word": "church",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A religious place",
+    "hints": [
+      "People go here to worship their God"
+    ]
   },
   "circle": {
     "word": "circle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A round shape with a constant diameter",
+    "hints": [
+      "It's very hard to draw one of these perfectly by hand"
+    ]
   },
   "clarinet": {
     "word": "clarinet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of musical woodwind instrument",
+    "hints": [
+      "Squidword from SpongeBob plays this instrument"
+    ]
   },
   "clock": {
     "word": "clock",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device used to tell the time",
+    "hints": [
+      "It makes a 'tick tock' sound"
+    ]
   },
   "cloud": {
     "word": "cloud",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "White things that can be seen floating in the sky",
+    "hints": [
+      "These often have funny shapes and are made of water vapour"
+    ]
   },
   "coffee cup": {
     "word": "coffee cup",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to hold coffee",
+    "hints": [
+      "Takeaway coffee is stored in this"
+    ]
   },
   "compass": {
     "word": "compass",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device that uses a needle to give directions",
+    "hints": [
+      "Could also be a something that is used to help draw perfect circles"
+    ]
   },
   "computer": {
     "word": "computer",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An electronic device which can do a lot of things",
+    "hints": [
+      "They are usually connected to a screen, mouse and keyboard"
+    ]
   },
   "cookie": {
     "word": "cookie",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sweet, crunchy food that is usually circle shaped",
+    "hints": [
+      "Santa Claus likes to eat these with milk"
+    ]
   },
   "cooler": {
     "word": "cooler",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A container used to keep food or bottles cool",
+    "hints": [
+      "These are usually blue and rectangular"
+    ]
   },
   "couch": {
     "word": "couch",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long piece of furniture used for sitting",
+    "hints": [
+      "You will often find these in the living rooms of people's houses"
+    ]
   },
   "cow": {
     "word": "cow",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A black and white farm animal which makes milk",
+    "hints": [
+      "Moo"
+    ]
   },
   "crab": {
     "word": "crab",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An ocean animal with many legs and a pair of pincers/claws",
+    "hints": [
+      "They have very hard shells and look a bit like spiders"
+    ]
   },
   "crayon": {
     "word": "crayon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A colourful pencil",
+    "hints": [
+      "These are used for drawing"
+    ]
   },
   "crocodile": {
     "word": "crocodile",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A big reptile animal that can live on land and in water",
+    "hints": [
+      "They have pointy noses, long tails and very sharp teeth"
+    ]
   },
   "crown": {
     "word": "crown",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something worn on the head by kings and queens",
+    "hints": [
+      "They are usually made out of expensive materials like gold"
+    ]
   },
   "cruise ship": {
     "word": "cruise ship",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large boat that people ride to go on vacation",
+    "hints": [
+      "They usually travel around the ocean for several weeks at a time"
+    ]
   },
   "cup": {
     "word": "cup",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to hold liquid",
+    "hints": [
+      "You drink things out of it"
+    ]
   },
   "diamond": {
     "word": "diamond",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An expensive, shiny jewel",
+    "hints": [
+      "You often see these on fancy earrings or necklaces"
+    ]
   },
   "dishwasher": {
     "word": "dishwasher",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device used to clean plates and cutlery automatically",
+    "hints": [
+      "You don't have to do the dish washing chores if you have one of these in your kitchen"
+    ]
   },
   "diving board": {
     "word": "diving board",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "People jump off this to dive into swimming pools",
+    "hints": [
+      "They are very flexible and elastic"
+    ]
   },
   "dog": {
     "word": "dog",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A common house pet which love playing fetch",
+    "hints": [
+      "Woof"
+    ]
   },
   "dolphin": {
     "word": "dolphin",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A grey sea animal that has a long nose and a round head",
+    "hints": [
+      "They make 'whistle' and 'click' noises"
+    ]
   },
   "donut": {
     "word": "donut",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A round pastry food with a hole in the middle",
+    "hints": [
+      "They often come topped with icing, sugar or sprinkles"
+    ]
   },
   "door": {
     "word": "door",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something you open to get into your house",
+    "hints": [
+      "These can also be locked"
+    ]
   },
   "dragon": {
     "word": "dragon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A mythical creature that breathes fire",
+    "hints": [
+      "These creatures can fly and have wings"
+    ]
   },
   "dresser": {
     "word": "dresser",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of furniture with drawers",
+    "hints": [
+      "Often found in bedrooms and is used by people to get ready"
+    ]
   },
   "drill": {
     "word": "drill",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A building tool that can rotate very quickly",
+    "hints": [
+      "These are used to make holes or screw in nails or bolts"
+    ]
   },
   "drums": {
     "word": "drums",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A musical percussion instrument",
+    "hints": [
+      "These multiple parts like a snare, kick and symbol"
+    ]
   },
   "duck": {
     "word": "duck",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of bird that can swim and has a flat beak",
+    "hints": [
+      "Quack"
+    ]
   },
   "dumbbell": {
     "word": "dumbbell",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A short bar with a weight at each end",
+    "hints": [
+      "These are used to help people exercise and train their muscles"
+    ]
   },
   "ear": {
     "word": "ear",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have one of these on each side of your head",
+    "hints": [
+      "They are used to hear sound"
+    ]
   },
   "elbow": {
     "word": "elbow",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A joint that connects your forearm and upper arm",
+    "hints": [
+      "It's also sometimes called a 'funnybone'"
+    ]
   },
   "elephant": {
     "word": "elephant",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large grey animal with big ears, tusks and a trunk",
+    "hints": [
+      "These animals make loud noises that sound like trumpets"
+    ]
   },
   "envelope": {
     "word": "envelope",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to hold written letters",
+    "hints": [
+      "You will get these in your mailbox"
+    ]
   },
   "eraser": {
     "word": "eraser",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tool used to remove pencil markings",
+    "hints": [
+      "They are often made out of rubber"
+    ]
   },
   "eye": {
     "word": "eye",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have one of these on each side of your face",
+    "hints": [
+      "They are used to see things"
+    ]
   },
   "eyeglasses": {
     "word": "eyeglasses",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something people wear to help them see",
+    "hints": [
+      "They come with two lenses"
+    ]
   },
   "face": {
     "word": "face",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "The front of someones head",
+    "hints": [
+      "It has your eyes, nose and lips on it"
+    ]
   },
   "fan": {
     "word": "fan",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to cool people down",
+    "hints": [
+      "This thing has blades that spin a lot"
+    ]
   },
   "feather": {
     "word": "feather",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Soft things that cover the bodies of birds",
+    "hints": [
+      "They were used as pens in the olden days"
+    ]
   },
   "fence": {
     "word": "fence",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A barrier between two houses",
+    "hints": [
+      "Sometimes your neighbour might accidentally throw their ball over this"
+    ]
   },
   "finger": {
     "word": "finger",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have 5 of these on each hand",
+    "hints": [
+      "Used to hold and grab things"
+    ]
   },
   "fire hydrant": {
     "word": "fire hydrant",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A red metal pipe attached to the ground, often seen on public streets",
+    "hints": [
+      "Firefighters attach their fire hoses to these during emergencies"
+    ]
   },
   "fireplace": {
     "word": "fireplace",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A place inside of a house that is used to keep you warm",
+    "hints": [
+      "These places have fires lit in them"
+    ]
   },
   "firetruck": {
     "word": "firetruck",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A red long emergency vehicle",
+    "hints": [
+      "These are driven by firefighters"
+    ]
   },
   "fish": {
     "word": "fish",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sea animal with gills and fins",
+    "hints": [
+      "A lot of people eat these"
+    ]
   },
   "flamingo": {
     "word": "flamingo",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A pink bird with a long neck",
+    "hints": [
+      "These birds represent love and passion"
+    ]
   },
   "flashlight": {
     "word": "flashlight",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A handheld tool used to light up areas",
+    "hints": [
+      "Another word for torch"
+    ]
   },
   "flip flops": {
     "word": "flip flops",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of shoe that is often worn at the beach or when it is hot",
+    "hints": [
+      "Another word for it is 'jandals'"
+    ]
   },
   "floor lamp": {
     "word": "floor lamp",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A light that stands on its own legs",
+    "hints": [
+      "Sometimes these are used as reading lights"
+    ]
   },
   "flower": {
     "word": "flower",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of plant that blossoms and is pretty",
+    "hints": [
+      "People buy these for special occasions"
+    ]
   },
   "flying saucer": {
     "word": "flying saucer",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A round, disc-shaped aircraft",
+    "hints": [
+      "These are said to have aliens flying in them"
+    ]
   },
   "foot": {
     "word": "foot",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have one of these on each of your legs",
+    "hints": [
+      "They are used to walk and have toes"
+    ]
   },
   "fork": {
     "word": "fork",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of cutlery that is used to poke food",
+    "hints": [
+      "They have a handle and multiple spikes"
+    ]
   },
   "frog": {
     "word": "frog",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A green animal that can be found hopping around in ponds",
+    "hints": [
+      "They have long tongues that are used to eat flies",
+      "They can be seen sitting on lilly pads"
+    ]
   },
   "frying pan": {
     "word": "frying pan",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A heated up tool used in the kitchen to cook food",
+    "hints": [
+      "They are put on top of a stove"
+    ]
   },
   "garden": {
     "word": "garden",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A place where you can grow plants, vegetables and fruit",
+    "hints": [
+      "Your house might have one of these in its backyard"
+    ]
   },
   "garden hose": {
     "word": "garden hose",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long, flexible pipe that shoots out water",
+    "hints": [
+      "These are usually green and are used to water plants and crops"
+    ]
   },
   "giraffe": {
     "word": "giraffe",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A yellow animal that has a really long neck",
+    "hints": [
+      "They have black tongues and like to eat celery"
+    ]
   },
   "goatee": {
     "word": "goatee",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Facial hair that is grown only on the chin",
+    "hints": [
+      "They look like the hair that goats have on their chin"
+    ]
   },
   "golf club": {
     "word": "golf club",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment used to play golf",
+    "hints": [
+      "They are used to hit golf balls"
+    ]
   },
   "grapes": {
     "word": "grapes",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small round fruit that comes in bunches and grows on a vine",
+    "hints": [
+      "These fruits are used to make wine"
+    ]
   },
   "grass": {
     "word": "grass",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A collection of green short plants and narrow leaves",
+    "hints": [
+      "Cows eat this all the time"
+    ]
   },
   "guitar": {
     "word": "guitar",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A musical string instrument that people strum with their hands",
+    "hints": [
+      "This instrument has a fretted fingerboard"
+    ]
   },
   "hamburger": {
     "word": "hamburger",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of food that has two buns, a patty, cheese and vegetables",
+    "hints": [
+      "McDonalds sells a lot of these"
+    ]
   },
   "hammer": {
     "word": "hammer",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A building tool use to hit nails",
+    "hints": [
+      "The head of this tool is made out of metal"
+    ]
   },
   "hand": {
     "word": "hand",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have one of these attached to each arm",
+    "hints": [
+      "They are used to hold things"
+    ]
   },
   "harp": {
     "word": "harp",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A musical string instrument with pedals",
+    "hints": [
+      "Rhymes with tarp"
+    ]
   },
   "hat": {
     "word": "hat",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing worn on people's heads",
+    "hints": [
+      "Used to shade peoples heads from the sun"
+    ]
   },
   "headphones": {
     "word": "headphones",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An electronic device used to listen to things in private",
+    "hints": [
+      "These are worn on your head and cover both your ears"
+    ]
   },
   "hedgehog": {
     "word": "hedgehog",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A spiky animal that can be found in your garden",
+    "hints": [
+      "These animals can roll themselves into balls for defense"
+    ]
   },
   "helicopter": {
     "word": "helicopter",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A flying vehicle with big rotating blades on the top",
+    "hints": [
+      "This is sometimes referred to as a 'chopper'"
+    ]
   },
   "helmet": {
     "word": "helmet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "People wear these to protect their heads",
+    "hints": [
+      "Usually worn when people ride their bikes"
+    ]
   },
   "hexagon": {
     "word": "hexagon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A 6 sided shape with 6 corners",
+    "hints": [
+      "Their internal angles add up to 720 degrees"
+    ]
   },
   "hockey puck": {
     "word": "hockey puck",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Used to score goals in hockey",
+    "hints": [
+      "They are hit with a hockey stick"
+    ]
   },
   "hockey stick": {
     "word": "hockey stick",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment used to play hockey",
+    "hints": [
+      "They are used to hit hockey pucks"
+    ]
   },
   "horse": {
     "word": "horse",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A big farm animal that are ridden by humans",
+    "hints": [
+      "They have hair on the back of their necks",
+      "Neigh"
+    ]
   },
   "hospital": {
     "word": "hospital",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A place where sick and injured people stay",
+    "hints": [
+      "Doctors, nurses and surgeons can be found working here"
+    ]
   },
   "hot air balloon": {
     "word": "hot air balloon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A basket attached to a large balloon that people ride in",
+    "hints": [
+      "The balloon is filled with heated air"
+    ]
   },
   "hot dog": {
     "word": "hot dog",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of food that has a bun and a sausage in the middle",
+    "hints": [
+      "Sometimes they are served with ketchup and mustard"
+    ]
   },
   "hot tub": {
     "word": "hot tub",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large container filled with hot water that people sit in to relax",
+    "hints": [
+      "A brand called 'Jaccuzi' makes a lot of these"
+    ]
   },
   "hourglass": {
     "word": "hourglass",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of timing equipment made out of two connected glass bulbs",
+    "hints": [
+      "These are filled with sand"
+    ]
   },
   "house": {
     "word": "house",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of building that people live in and use as homes",
+    "hints": [
+      "These have a door, a roof and windows"
+    ]
   },
   "house plant": {
     "word": "house plant",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A plant you keep inside your home",
+    "hints": [
+      "These plants are usually used as house decorations"
+    ]
   },
   "hurricane": {
     "word": "hurricane",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of storm with very strong winds",
+    "hints": [
+      "Sometimes it is also known as a 'cyclone'"
+    ]
   },
   "ice cream": {
     "word": "ice cream",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A creamy, sweet food that is eaten for desert",
+    "hints": [
+      "This is eaten a lot in summer because it is cold"
+    ]
   },
   "jacket": {
     "word": "jacket",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing people usually wear when it is cold",
+    "hints": [
+      "These usually have a zipper"
+    ]
   },
   "jail": {
     "word": "jail",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A place where criminals are locked away",
+    "hints": [
+      "Another word for 'prison'"
+    ]
   },
   "kangaroo": {
     "word": "kangaroo",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An animal that hops around on two legs and has a pouch to hold its kid",
+    "hints": [
+      "These animals often represent the country Australia"
+    ]
   },
   "key": {
     "word": "key",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something you use to unlock a door",
+    "hints": [
+      "Sometimes you forget where you put these"
+    ]
   },
   "keyboard": {
     "word": "keyboard",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to type on a computer",
+    "hints": [
+      "Used alongside a computer mouse"
+    ]
   },
   "knee": {
     "word": "knee",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A join that connects your lower leg and thigh",
+    "hints": [
+      "You often scrape these when you fall over while running"
+    ]
   },
   "knife": {
     "word": "knife",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment used to cut things",
+    "hints": [
+      "Often found a kitchen and is used to prepare all kinds of food"
+    ]
   },
   "ladder": {
     "word": "ladder",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long piece of equipment with a series of steps",
+    "hints": [
+      "Used to climb up and down"
+    ]
   },
   "lantern": {
     "word": "lantern",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A flame or electric bulb that is protected by a clear case",
+    "hints": [
+      "Used to provide light and can be held or hung"
+    ]
   },
   "laptop": {
     "word": "laptop",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A portable computer",
+    "hints": [
+      "It can fold in half"
+    ]
   },
   "leaf": {
     "word": "leaf",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A plant that can grows on the branches of trees",
+    "hints": [
+      "These turn brown and fall off trees during Autumn"
+    ]
   },
   "leg": {
     "word": "leg",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You have two of these on your lower body",
+    "hints": [
+      "They are used to walk, run and jump"
+    ]
   },
   "light bulb": {
     "word": "light bulb",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device that turns electricity into light",
+    "hints": [
+      "These are round in shape and made out of glass"
+    ]
   },
   "lighter": {
     "word": "lighter",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device that creates a small flame",
+    "hints": [
+      "Used to light candles"
+    ]
   },
   "lighthouse": {
     "word": "lighthouse",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tall building found near oceans that helps guide boats during the night",
+    "hints": [
+      "These contain a bright light that spins around"
+    ]
   },
   "lightning": {
     "word": "lightning",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A bright flash of electricity in the sky",
+    "hints": [
+      "You often hear thunder after seeing this"
+    ]
   },
   "line": {
     "word": "line",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long, narrow marking",
+    "hints": [
+      "Its hard to draw these straight without a ruler"
+    ]
   },
   "lion": {
     "word": "lion",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large, strong wild animal that has big teeth, claws and manes",
+    "hints": [
+      "These animals make a roaring sound"
+    ]
   },
   "lipstick": {
     "word": "lipstick",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A common type of makeup used on the mouth",
+    "hints": [
+      "Often times it is a red colour"
+    ]
   },
   "lobster": {
     "word": "lobster",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sea animal with big pincers, a hard shell and a tail",
+    "hints": [
+      "These are often eaten at fancy restaurants"
+    ]
   },
   "lollipop": {
     "word": "lollipop",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A hard, sweet candy",
+    "hints": [
+      "These are served on a stick"
+    ]
   },
   "mailbox": {
     "word": "mailbox",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A container used to store mail",
+    "hints": [
+      "These are often numbered for each house"
+    ]
   },
   "map": {
     "word": "map",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something used to find directions to places",
+    "hints": [
+      "What people had to use before GPS' were invented"
+    ]
   },
   "marker": {
     "word": "marker",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of pen with a thick ink",
+    "hints": [
+      "Used to draw on whiteboards usually"
+    ]
   },
   "matches": {
     "word": "matches",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A collection of sticks with red tips",
+    "hints": [
+      "These are used to light candles"
+    ]
   },
   "megaphone": {
     "word": "megaphone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large funnel-shaped device used to make people's voices louder",
+    "hints": [
+      "Often seen used at rallies and protests"
+    ]
   },
   "mermaid": {
     "word": "mermaid",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A mythical creature that is half fish half human",
+    "hints": [
+      "Commonly mentioned in many cultures"
+    ]
   },
   "microphone": {
     "word": "microphone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device that people hold next to their mouth when they sing on stage",
+    "hints": [
+      "These are always used at concerts"
+    ]
   },
   "microwave": {
     "word": "microwave",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device which makes food hot again",
+    "hints": [
+      "They make a beeping sound when they've finished heating food up"
+    ]
   },
   "monkey": {
     "word": "monkey",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An animal that looks like a human and swings on trees",
+    "hints": [
+      "Oo oo ah ah"
+    ]
   },
   "moon": {
     "word": "moon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A giant rock in outerspace that you can see at night",
+    "hints": [
+      "The opposite of the sun"
+    ]
   },
   "mosquito": {
     "word": "mosquito",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An insect with wings that sucks your blood",
+    "hints": [
+      "They cause itchy bites"
+    ]
   },
   "motorbike": {
     "word": "motorbike",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A motor vehicle with two wheels",
+    "hints": [
+      "They make a loud sound often times"
+    ]
   },
   "mountain": {
     "word": "mountain",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large elevated portion of land",
+    "hints": [
+      "These often have snow on top of them"
+    ]
   },
   "mouse": {
     "word": "mouse",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small animal with whiskers and a long thin tail",
+    "hints": [
+      "These animals like to eat cheese"
+    ]
   },
   "moustache": {
     "word": "moustache",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Facial hair that grows above the top lip",
+    "hints": [
+      "Mario and Luigi from Nintendo have these"
+    ]
   },
   "mouth": {
     "word": "mouth",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "You use this to eat and speak",
+    "hints": [
+      "Your tongue and teeth are inside of it"
+    ]
   },
   "mug": {
     "word": "mug",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of cup",
+    "hints": [
+      "Usually used to hold hot liquids like hot chocolate"
+    ]
   },
   "mushroom": {
     "word": "mushroom",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A brown, squishy vegetable that has a stalk and round top",
+    "hints": [
+      "These are considered a fungus"
+    ]
   },
   "nail": {
     "word": "nail",
