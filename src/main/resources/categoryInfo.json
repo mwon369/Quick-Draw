@@ -467,7 +467,7 @@
   },
   "cello": {
     "word": "cello",
-    "definition": "A type of musical string instrument that is played with a bow",
+    "definition": "A musical string instrument that is played with a bow",
     "hints": [
       "The larger, lower pitched version of the violin"
     ]
@@ -2304,89 +2304,121 @@
   },
   "umbrella": {
     "word": "umbrella",
-    "definition": "A piece of equipment used to shelter people from the rain while they walk",
+    "definition": "A hand held cover used to shelter people from the rain",
     "hints": [
-
+      "This cover can collapse and expand"
     ]
   },
   "underwear": {
     "word": "underwear",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "What people wear under their pants",
+    "hints": [
+      "Rhymes with thunder bear"
+    ]
   },
   "van": {
     "word": "van",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A motor vehicle that is used specifically for transporting items",
+    "hints": [
+      "Used a lot by couriers when they make deliveries"
+    ]
   },
   "vase": {
     "word": "vase",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A container to hold flowers",
+    "hints": [
+      "Often made out of glass or ceramic"
+    ]
   },
   "violin": {
     "word": "violin",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A musical string instrument that is played with a bow",
+    "hints": [
+      "The smaller, higher pitched version of the Cello"
+    ]
   },
   "washing machine": {
     "word": "washing machine",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A machine used to clean clothes",
+    "hints": [
+      "The machine sometimes has a window which is circle shaped"
+    ]
   },
   "watermelon": {
     "word": "watermelon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large, green tropical fruit that is red on the inside",
+    "hints": [
+      "This fruit has a lot of water and seeds"
+    ]
   },
   "waterslide": {
     "word": "waterslide",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A slide that flows with a lot of water and has a lot of twist and turns",
+    "hints": [
+      "Always found at water parks"
+    ]
   },
   "whale": {
     "word": "whale",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A very large sea animal which can blow water out of a hole on the top of their bodies",
+    "hints": [
+      "The largest animal in the world is this type of animal"
+    ]
   },
   "wheel": {
     "word": "wheel",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Cars have four of these",
+    "hints": [
+      "Circle shaped to allow vehicles to move"
+    ]
   },
   "windmill": {
     "word": "windmill",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A giant building with rotating blades used to generate electricity",
+    "hints": [
+      "They look like giant fans with exactly 3 blades"
+    ]
   },
   "wine bottle": {
     "word": "wine bottle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A bottle used to store wine",
+    "hints": [
+      "They are wider at the bottom and narrower towards the top"
+    ]
   },
   "wine glass": {
     "word": "wine glass",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A special type of cup used to drink wine",
+    "hints": [
+      "They have three parts: the bowl, stem and foot. The bowl is wide and circular, the stem is thin and narrow and the foot is flat and circular"
+    ]
   },
   "wristwatch": {
     "word": "wristwatch",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A clock you wear around your arm",
+    "hints": [
+      "Also can be considered as a piece of jewellery that people wear"
+    ]
   },
   "yoga": {
     "word": "yoga",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of exercise which improves health, flexibility and relaxation",
+    "hints": [
+      "You might have seen your mum doing this"
+    ]
   },
   "zebra": {
     "word": "zebra",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A black and white striped animal",
+    "hints": [
+      "They look like horses and they can be found in Africa"
+    ]
   },
   "zigzag": {
     "word": "zigzag",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A line that goes from left to right again and again",
+    "hints": [
+      "A line that resembles a bunch of triangles that are missing one side"
+    ]
   }
 }
