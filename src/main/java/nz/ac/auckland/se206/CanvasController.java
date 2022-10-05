@@ -517,7 +517,6 @@ public class CanvasController {
       user.updateWordList(
           Enum.valueOf(CategoryDifficulty.class, wordDifficulty.toString().substring(0, 1)),
           targetCategory);
-      user.updateLastThreeWords(targetCategory);
     } else {
       for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
         if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
@@ -525,6 +524,7 @@ public class CanvasController {
         }
       }
     }
+    user.updateLastThreeWords(targetCategory);
 
     try {
       UsersManager.saveUsersToJson();
