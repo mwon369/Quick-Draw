@@ -15,6 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.badges.Badge;
 
@@ -30,10 +34,12 @@ public class BadgeViewController {
   @FXML private ImageView badgeIconEight;
   @FXML private ImageView badgeIconNine;
   @FXML private ImageView badgeIconTen;
+  @FXML private Pane badgeOnePane;
+  @FXML private Pane badgeTwoPane;
   @FXML private Label badgeTitleLabel;
   @FXML private Label badgeDescriptionLabel;
   private List<ImageView> badgeIcons;
-
+  private List<Pane> badgePanes;
   private ArrayList<Badge> badgeList;
 
   public void initialize() {
@@ -51,6 +57,7 @@ public class BadgeViewController {
             badgeIconEight,
             badgeIconNine,
             badgeIconTen);
+    badgePanes = Arrays.asList(badgeOnePane, badgeTwoPane);
   }
 
   @FXML
@@ -61,6 +68,7 @@ public class BadgeViewController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
+    colorCurrentTool("");
   }
 
   public void loadBadgeIcons() throws URISyntaxException, IOException {
@@ -90,5 +98,27 @@ public class BadgeViewController {
     badgeDescriptionLabel.setText(badgeList.get(0).getDescription());
     badgeTitleLabel.setVisible(true);
     badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeOnePane");
+  }
+
+  @FXML
+  private void onbadgeTwoSelect() {
+    badgeTitleLabel.setText(badgeList.get(1).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(1).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    this.colorCurrentTool("badgeTwoPane");
+  }
+
+  private void colorCurrentTool(String badgePaneId) {
+    // for each tool pane, check if its id is equal to the specific tool pane id
+    for (Pane badgePane : badgePanes) {
+      // if id is equal, change the color to a specific color, otherwise, change to
+      // transparent
+      badgePane.setBackground(
+          badgePane.getId().equals(badgePaneId)
+              ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
+              : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+    }
   }
 }
