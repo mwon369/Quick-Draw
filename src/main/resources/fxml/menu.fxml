@@ -54,53 +54,41 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
+            <HBox alignment="CENTER" minHeight="36.0" />
+            <HBox alignment="CENTER" minHeight="36.0" />
+            <HBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
-                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" text="My Profile">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
+                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/personIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/settingsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logoutIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Button fx:id="badgeViewButton" mnemonicParsing="false" onAction="#onBadgeView" text="Badges">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" text="Settings">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" text="Logout">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-               </children>
+               <VBox.margin>
+                  <Insets left="60.0" right="60.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
