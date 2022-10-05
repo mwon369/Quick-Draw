@@ -207,7 +207,7 @@
   "blueberry": {
     "definition": "A small, round blue fruit",
     "hints": [
-      "These can be found in orchards and fruit farms"
+      "A type of berry"
     ]
   },
   "book": {
@@ -225,7 +225,7 @@
   "bottlecap": {
     "definition": "A small circular thing that's used to seal the top of your bottle",
     "hints": [
-      "You twist these to open and close them"
+      "You twist these to open and close bottles"
     ]
   },
   "bowtie": {
@@ -235,9 +235,131 @@
     ]
   },
   "bracelet": {
-    "definition": "A fashion accessory people wear around their wrists",
+    "definition": "A fashion item people wear around their wrists",
     "hints": [
       "Best friends sometimes make these for each other"
+    ]
+  },
+  "brain": {
+    "definition": "Everyone has one of these inside their head",
+    "hints": [
+      "You use this to think"
+    ]
+  },
+  "bread": {
+    "definition": "A baked food made from flour, water and yeast",
+    "hints": [
+      "You often eat this with butter or some other kind of spread"
+    ]
+  },
+  "bridge": {
+    "definition": "A platform which helps people cross over obstacles",
+    "hints": [
+      "You can find these built over rivers to help people cross"
+    ]
+  },
+  "broccoli": {
+    "definition": "A green vegetable with a large stem and a flowering head",
+    "hints": [
+      "They look like mini trees"
+    ]
+  },
+  "broom": {
+    "definition": "A tool you use to sweep the floor",
+    "hints": [
+      "Witches fly around on these"
+    ]
+  },
+  "bucket": {
+    "definition": "A large container with a handle that is used to hold water",
+    "hints": [
+      "This thing is similar to a basket"
+    ]
+  },
+  "bulldozer": {
+    "definition": "A large vehicle used to push things",
+    "hints": [
+      "You can often find these at building sites"
+    ]
+  },
+  "bus": {
+    "definition": "A long vehicle with many seats",
+    "hints": [
+      "You might use this to travel to or from school"
+    ]
+  },
+  "bush": {
+    "definition": "A green plant with lots of leaves",
+    "hints": [
+      "This is not a tree"
+    ]
+  },
+  "butterfly": {
+    "definition": "An insect with pretty (usually orange) wings",
+    "hints": [
+      "These have to hatch from a cocoon"
+    ]
+  },
+  "cactus": {
+    "definition": "A green prickly plant with spikes",
+    "hints": [
+      "You can find a lot of these in the desert"
+    ]
+  },
+  "cake": {
+    "definition": "A sweet dessert that a lot of people eat on their birthday",
+    "hints": [
+      "This usually has a lot of cream or icing and sometimes sprinkles on top"
+    ]
+  },
+  "calculator": {
+    "definition": "A device you use for maths",
+    "hints": [
+      "These can calculate math equations really fast"
+    ]
+  },
+  "calendar": {
+    "definition": "Something you use to keep track of the date",
+    "hints": [
+      "Often used to schedule important events"
+    ]
+  },
+  "camel": {
+    "definition": "An animal with two big lumps on its back",
+    "hints": [
+      "These animals live in the desert"
+    ]
+  },
+  "camera": {
+    "definition": "A device used to take pictures",
+    "hints": [
+      "A lot of phones have these on the back"
+    ]
+  },
+  "camouflage": {
+    "definition": "A word to describe something that can't be seen easily",
+    "hints": [
+      "People in the army wear green uniforms to help them do this",
+      "Chameleons change colour in order to do this"
+    ]
+  },
+  "campfire": {
+    "definition": "A type of fire used to cook in the wild",
+    "hints": [
+      "People like to roast marshmallows over these"
+    ]
+  },
+  "candle": {
+    "definition": "A long piece of wax that is lit",
+    "hints": [
+      "These are often seen on birthday cakes"
+    ]
+  },
+  "cannon": {
+    "definition": "A weapon used to fire big round balls",
+    "hints": [
+      "Pirate ships have a lot of these on the sides",
+      "The first type of defense building you can build in Clash of Clans"
     ]
   }
 }
