@@ -36,9 +36,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.imageio.ImageIO;
+import nz.ac.auckland.se206.DifficultyManager.Difficulty;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -235,7 +237,7 @@ public class CanvasController {
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
 
-    targetCategory = user.giveWordToDraw();
+    targetCategory = user.giveWordToDraw(user.getWordDifficulty());
     wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
 
@@ -509,8 +511,20 @@ public class CanvasController {
     }
     user.updateBadges();
     // update and save both instance word lists fields after game ends
-    user.updateWordList(targetCategory);
-    user.updateLastThreeWords(targetCategory);
+    Difficulty wordDifficulty = user.getWordDifficulty();
+    // if wordDifficulty is EASY, MEDIUM or HARD, just use the first character as the category enum
+    if (!user.getWordDifficulty().equals(Difficulty.MASTER)) {
+      user.updateWordList(
+          Enum.valueOf(CategoryDifficulty.class, wordDifficulty.toString().substring(0, 1)),
+          targetCategory);
+      user.updateLastThreeWords(targetCategory);
+    } else {
+      for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
+        if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+          user.updateWordList(categoryDifficulty, targetCategory);
+        }
+      }
+    }
 
     try {
       UsersManager.saveUsersToJson();
