@@ -12,6 +12,14 @@
 	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
 	-fx-opacity: 97%
 }
+
+.title {
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 42px;
+}
+
 #badgeDescriptionVBox {
 	-fx-background-color: #EDCC7C;
 	-fx-background-radius: 10px;
@@ -41,7 +49,7 @@
 	-fx-font-style: normal;
 	-fx-font-weight: 700;
 	-fx-font-size: 22px;
-	-fx-pref-width: 125px;
+	-fx-pref-width: 110px;
 	-fx-pref-height:35px;
 	-fx-padding: 6 0 5 0;
 }

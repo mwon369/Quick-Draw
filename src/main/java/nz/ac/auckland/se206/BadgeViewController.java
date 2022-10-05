@@ -81,11 +81,11 @@ public class BadgeViewController {
   }
 
   @FXML
-  private void onGoBackToMenu(ActionEvent event) {
-    // retrieve the source of button and switch to the login page
+  private void onGoBack(ActionEvent event) {
+    // retrieve the source of button and switch to the user stats page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.USER_STATS));
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
     colorCurrentTool("");

@@ -1,11 +1,16 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserStatsController {
 
@@ -19,6 +24,25 @@ public class UserStatsController {
   @FXML private Label totalGamesLabel;
   @FXML private Label previousWordsLabel;
   @FXML private Label winStreakLabel;
+
+  private Parent badgeViewScene;
+  private BadgeViewController badgeViewController;
+
+  /**
+   * This method loads the badgeview FXML. The reason we load it here instead of in App.java is
+   * because this class needs a reference to the corresponding controller for the badgeview FXML
+   *
+   * <p>
+   *
+   * @throws IOException
+   */
+  public void initialize() throws IOException {
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/badgeview.fxml"));
+    badgeViewScene = loader.load();
+    badgeViewController = loader.getController();
+    SceneManager.addUi(AppUi.BADGE_VIEW, badgeViewScene);
+    SceneManager.getUiRoot(AppUi.BADGE_VIEW).getStylesheets().add("/css/badgeview.css");
+  }
 
   /** This method retrieves and displays the user's profile statistics */
   protected void onRetrieveStats() {
@@ -111,5 +135,18 @@ public class UserStatsController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
+  }
+
+  @FXML
+  private void onBadgeView(ActionEvent event) {
+    // retrieve the source of button and switch to the badge view page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.BADGE_VIEW));
+    try {
+      badgeViewController.loadBadgeIcons();
+    } catch (URISyntaxException | IOException e) {
+      e.printStackTrace();
+    }
   }
 }

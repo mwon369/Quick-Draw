@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.BadgeViewController">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.BadgeViewController">
    <children>
-      <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+      <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/DoodleBackground9to8.jpg" />
+            <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
       <VBox fx:id="badgeViewVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="610.0" spacing="15.0">
          <children>
-            <Label fx:id="badgesTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Badges" textAlignment="CENTER">
+            <Label fx:id="badgesTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" styleClass="title" text="Badges" textAlignment="CENTER">
                <font>
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>
@@ -147,7 +147,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onGoBackToMenu" text="Main Menu">
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onGoBack" text="Back">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>

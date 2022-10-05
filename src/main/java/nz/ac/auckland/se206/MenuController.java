@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +19,6 @@ public class MenuController {
 
   private Parent canvasScene;
   private CanvasController canvasController;
-
-  private Parent badgeViewScene;
-  private BadgeViewController badgeViewController;
 
   @FXML private Button playButton;
 
@@ -56,12 +52,6 @@ public class MenuController {
     canvasController = loader.getController();
     SceneManager.addUi(AppUi.CANVAS, canvasScene);
     SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
-
-    loader = new FXMLLoader(App.class.getResource("/fxml/badgeview.fxml"));
-    badgeViewScene = loader.load();
-    badgeViewController = loader.getController();
-    SceneManager.addUi(AppUi.BADGE_VIEW, badgeViewScene);
-    SceneManager.getUiRoot(AppUi.BADGE_VIEW).getStylesheets().add("/css/badgeview.css");
   }
 
   /**
@@ -127,18 +117,5 @@ public class MenuController {
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.SETTINGS));
     settingsController.loadUserDifficulties();
-  }
-
-  @FXML
-  private void onBadgeView(ActionEvent event) {
-    // retrieve the source of button and switch to the badge view page
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.BADGE_VIEW));
-    try {
-      badgeViewController.loadBadgeIcons();
-    } catch (URISyntaxException | IOException e) {
-      e.printStackTrace();
-    }
   }
 }
