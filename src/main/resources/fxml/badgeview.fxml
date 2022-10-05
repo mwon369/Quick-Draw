@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.BadgeViewController">
+   <children>
+      <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+         <image>
+            <Image url="@../images/DoodleBackground9to8.jpg" />
+         </image>
+      </ImageView>
+      <VBox fx:id="badgeViewVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="610.0" spacing="15.0">
+         <children>
+            <Label fx:id="badgesTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Badges" textAlignment="CENTER">
+               <font>
+                  <Font name="Bradley Hand ITC" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="-15.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="610.0" spacing="50.0">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconOne" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconTwo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconThree" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconFour" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconFive" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="610.0" spacing="50.0">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconSix" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconSeven" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconEight" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconNine" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="badgeIconTen" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/questionicon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onGoBackToMenu" text="Main Menu">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
