@@ -36,6 +36,8 @@ public class User {
   // difficulty settings
   private Difficulty accuracyDifficulty;
   private Difficulty timeLimitDifficulty;
+  private Difficulty confidenceDifficulty;
+
   private transient ArrayList<Badge> badgeList;
 
   public User(String username, String password) {
@@ -62,6 +64,7 @@ public class User {
     wordList = (ArrayList<String>) this.selector.getWordList(CategoryDifficulty.E);
     accuracyDifficulty = Difficulty.EASY;
     timeLimitDifficulty = Difficulty.EASY;
+    confidenceDifficulty = Difficulty.EASY;
   }
 
   public String getUsername() {
@@ -127,6 +130,14 @@ public class User {
 
   public void setTimeLimitDifficulty(Difficulty difficulty) {
     this.timeLimitDifficulty = difficulty;
+  }
+
+  public Difficulty getConfidenceDifficulty() {
+    return this.confidenceDifficulty;
+  }
+
+  public void setConfidenceDifficulty(Difficulty difficulty) {
+    this.confidenceDifficulty = difficulty;
   }
 
   /**

@@ -25,6 +25,14 @@ public class DifficultyManager {
           entry(Difficulty.HARD, 30),
           entry(Difficulty.MASTER, 15));
 
+  // easy difficulty is 1%, medium is 10%, hard is 25%, master is 50%
+  private static Map<Difficulty, Double> confidenceMap =
+      Map.ofEntries(
+          entry(Difficulty.EASY, 0.01),
+          entry(Difficulty.MEDIUM, 0.1),
+          entry(Difficulty.HARD, 0.25),
+          entry(Difficulty.MASTER, 0.5));
+
   /**
    * This method returns the top 'X' guesses which the user must aim to hit
    *
@@ -43,5 +51,15 @@ public class DifficultyManager {
    */
   public static int getTimeLimit(Difficulty difficulty) {
     return timeLimitMap.get(difficulty);
+  }
+
+  /**
+   * This method returns the confidence percentage
+   *
+   * @param difficulty confidence difficulty setting
+   * @return the confidence percentage
+   */
+  public static double getConfidence(Difficulty difficulty) {
+    return confidenceMap.get(difficulty);
   }
 }

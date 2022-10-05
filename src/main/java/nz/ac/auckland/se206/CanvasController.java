@@ -54,8 +54,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class CanvasController {
 
-  private int timeLimit;
-
   @FXML private Canvas canvas;
   @FXML private Label wordLabel;
   private String targetCategory;
@@ -108,6 +106,8 @@ public class CanvasController {
 
   // difficulties
   private int accuracy;
+  private int timeLimit;
+  private double confidence;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -145,7 +145,7 @@ public class CanvasController {
     // initialise difficulties
     accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
     timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
-
+    confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
     timerLabel.setText(String.valueOf(timeLimit));
   }
 
@@ -304,7 +304,7 @@ public class CanvasController {
                       // topNum value will depend on game difficulty later on
                       colourTopPredictions(predictionsListView, accuracy);
                       // check if player has won
-                      if (isWin(classifications, accuracy)) {
+                      if (isWin(classifications, accuracy, confidence)) {
                         timer.cancel();
                         stopGame(true, timerLabel.getText());
                         return;
@@ -380,7 +380,7 @@ public class CanvasController {
    * @param predictionsListClassification the predictions list that is a list of Classification
    *     objects
    * @return a formatted list of predictions. Each string is of the format "n : classification :
-   *     xx.xx%" where n is the top n prediction and xx.xx is the probability
+   *     xx%" where n is the top n prediction and xx is the probability
    */
   private List<String> getPredictionsListForDisplay(
       List<Classification> predictionsListClassification) {
@@ -408,10 +408,13 @@ public class CanvasController {
    * @param classifications a list of classifications
    * @return true if the target word is in the list of classifications, false otherwise
    */
-  private boolean isWin(List<Classification> classifications, int margin) {
-    // scan through classifications and check if the target word is in it
+  private boolean isWin(List<Classification> classifications, int margin, double confidence) {
+    // scan through classifications and check if the target word is in it and confidence is
+    // sufficient with rounding
     for (int i = 0; i < margin; i++) {
-      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)) {
+      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)
+          && Math.round(classifications.get(i).getProbability() * 100)
+              >= Math.round(confidence * 100)) {
         return true;
       }
     }
