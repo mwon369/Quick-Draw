@@ -16,8 +16,7 @@ public class CategoryManager {
   public static void loadCategoryInfoFromJson() throws IOException {
 
     // instantiate File object by going to directory with categoryInfo.json and reading it in
-    File dataFile =
-        new File(String.valueOf(CategoryManager.class.getResource("categoryInfo.json")));
+    File dataFile = new File("src/main/resources/categoryInfo.json");
     Reader reader = new BufferedReader(new FileReader(dataFile));
     Gson gson = new Gson();
 
@@ -28,9 +27,12 @@ public class CategoryManager {
     if (categoryMap == null) {
       categoryMap = new HashMap<>();
     }
+
+    // test code
+    System.out.println(categoryMap.get("aircraft carrier").getDefinition());
   }
 
-  public static Category getCategory(String word) {
-    return categoryMap.get(word);
+  public static Category getCategory(String category) {
+    return categoryMap.get(category);
   }
 }

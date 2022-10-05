@@ -4,13 +4,19 @@ import java.util.ArrayList;
 
 public class Category {
 
-  private String word;
   private String definition;
   private ArrayList<String> hints;
 
-  public Category(String word, String definition, ArrayList<String> hints) {
-    this.word = word;
+  public Category(String definition, ArrayList<String> hints) {
     this.definition = definition;
     this.hints = hints;
+  }
+
+  public String getDefinition() {
+    return this.definition;
+  }
+
+  public ArrayList<String> getHints() {
+    return this.hints;
   }
 }
