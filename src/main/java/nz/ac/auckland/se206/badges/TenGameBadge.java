@@ -6,6 +6,8 @@ public class TenGameBadge extends Badge {
 
   public TenGameBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "Novice";
+    this.description = "Complete 10 games in classic mode";
   }
 
   @Override

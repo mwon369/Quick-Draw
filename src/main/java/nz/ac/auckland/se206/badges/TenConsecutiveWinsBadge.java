@@ -6,6 +6,8 @@ public class TenConsecutiveWinsBadge extends Badge {
 
   public TenConsecutiveWinsBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "I'm On Fire!!";
+    this.description = "Achieve 10 consecutive wins in classic mode";
   }
 
   @Override

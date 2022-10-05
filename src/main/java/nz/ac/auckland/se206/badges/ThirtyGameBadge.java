@@ -6,6 +6,8 @@ public class ThirtyGameBadge extends Badge {
 
   public ThirtyGameBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "Intermediate";
+    this.description = "Complete 30 games in classic mode";
   }
 
   @Override

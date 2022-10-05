@@ -6,6 +6,8 @@ public class OneSecondWonderBadge extends Badge {
 
   public OneSecondWonderBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "One Second Wonder";
+    this.description = "Win a game in classic mode in 1 second";
   }
 
   @Override

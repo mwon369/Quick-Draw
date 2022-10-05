@@ -6,6 +6,8 @@ public class UnderThirtySecondWinBadge extends Badge {
 
   public UnderThirtySecondWinBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "Speedster";
+    this.description = "Win a game in classic mode in less than 30 seconds";
   }
 
   @Override

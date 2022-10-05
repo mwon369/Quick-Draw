@@ -7,6 +7,8 @@ public class DiscoverGreatWallBadge extends Badge {
 
   public DiscoverGreatWallBadge(boolean isCompleted) {
     super(isCompleted);
+    this.title = "The Great Wall";
+    this.description = "Complete a game in classic mode with the word 'The Great Wall of China'";
   }
 
   @Override
