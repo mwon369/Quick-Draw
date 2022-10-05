@@ -18,6 +18,7 @@ public class UserStatsController {
   @FXML private Label userLabel;
   @FXML private Label totalGamesLabel;
   @FXML private Label previousWordsLabel;
+  @FXML private Label winStreakLabel;
 
   /** This method retrieves and displays the user's profile statistics */
   protected void onRetrieveStats() {
@@ -44,6 +45,12 @@ public class UserStatsController {
     sb.append("Total Losses:  ");
     sb.append(currentUser.getLosses());
     userLossesLabel.setText(sb.toString());
+    sb.setLength(0);
+
+    // show losses
+    sb.append("Win Streak:  ");
+    sb.append(currentUser.getWinStreak());
+    winStreakLabel.setText(sb.toString());
     sb.setLength(0);
 
     // show win ratio and previous words but only if user has played

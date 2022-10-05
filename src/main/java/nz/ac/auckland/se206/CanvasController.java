@@ -100,6 +100,7 @@ public class CanvasController {
   private int userWins;
   private int userLosses;
   private int userFastestWin;
+  private int userStreak;
 
   // mouse coordinates
   private double currentX;
@@ -229,6 +230,7 @@ public class CanvasController {
 
     resetCanvas();
     // select and display random category (easy)
+    userStreak = user.getWinStreak();
     userWins = user.getWins();
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
@@ -494,13 +496,15 @@ public class CanvasController {
     int time = Integer.parseInt(timeString);
     if (isWin) {
       user.setWins(++userWins);
+      user.setWinStreak(++userStreak);
       if (timeLimit - time < userFastestWin) {
         user.setFastestWin(timeLimit - time);
       }
     } else {
       user.setLosses(++userLosses);
+      user.setWinStreak(0);
     }
-
+    user.updateBadges();
     // update and save both instance word lists fields after game ends
     user.updateWordList(targetCategory);
     user.updateLastThreeWords(targetCategory);
