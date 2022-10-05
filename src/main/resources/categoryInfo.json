@@ -1877,313 +1877,437 @@
   },
   "smiley face": {
     "word": "smiley face",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something people do with their faces when they are happy",
+    "hints": [
+      "Rhymes with tile"
+    ]
   },
   "snail": {
     "word": "snail",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A slimey animal with a shell that moves very slowly",
+    "hints": [
+      "They often leave a trail of slime behind them when they move"
+    ]
   },
   "snake": {
     "word": "snake",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long, scaley reptile animal that has fangs and is sometimes poisonous",
+    "hints": [
+      "These animals sometimes hiss and have fork-shaped tongues"
+    ]
   },
   "snorkel": {
     "word": "snorkel",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment divers use to help them breathe underwater",
+    "hints": [
+      "Rhymes with morsel"
+    ]
   },
   "snowflake": {
     "word": "snowflake",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A small piece of ice that falls from the sky",
+    "hints": [
+      "These pieces of ice look a bit like this: *"
+    ]
   },
   "snowman": {
     "word": "snowman",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A round human figure that people make out of snow for fun",
+    "hints": [
+      "People often use twigs for the arms and carrots for the nose"
+    ]
   },
   "soccer ball": {
     "word": "soccer ball",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A black and white ball that is used to score goals in soccer",
+    "hints": [
+      "This ball has a hexagon pattern"
+    ]
   },
   "sock": {
     "word": "sock",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing you wear on your feet to help keep them warm",
+    "hints": [
+      "Rhymes with rock"
+    ]
   },
   "speedboat": {
     "word": "speedboat",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A boat that is particularly fast",
+    "hints": [
+      "Also known as a motor boat"
+    ]
   },
   "spider": {
     "word": "spider",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An eight-legged animal which often has multiple eyes and fangs",
+    "hints": [
+      "These animals can produce silk and make webs"
+    ]
   },
   "spoon": {
     "word": "spoon",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of cutlery used to drink soup",
+    "hints": [
+      "Commonly used alongside a fork"
+    ]
   },
   "spreadsheet": {
     "word": "spreadsheet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sheet that is arranged into rows and columns",
+    "hints": [
+      "These sheets are used to represent data in tables"
+    ]
   },
   "square": {
     "word": "square",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A shape with 4 corners where each of its sides are the same length",
+    "hints": [
+      "Each corner has a right angle of 90 degrees"
+    ]
   },
   "squiggle": {
     "word": "squiggle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A drawn line that curls and loops randomly",
+    "hints": [
+      "Rhymes with wiggle"
+    ]
   },
   "squirrel": {
     "word": "squirrel",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An animal that lives in trees, has a bushy tail and eats nuts and seeds",
+    "hints": [
+      "They are sometimes confused with chipmunks"
+    ]
   },
   "stairs": {
     "word": "stairs",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A series of steps that increase in height",
+    "hints": [
+      "You walk on these to get to a higher floor in a building"
+    ]
   },
   "star": {
     "word": "star",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A bright spot in the night sky",
+    "hints": [
+      "Can be drawn as a shape with 5 tip corners"
+    ]
   },
   "steak": {
     "word": "steak",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A slice of cooked beef",
+    "hints": [
+      "Usually cooked by grilling, searing or frying"
+    ]
   },
   "stereo": {
     "word": "stereo",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sound system of two more speakers",
+    "hints": [
+      "Used to play music out loud"
+    ]
   },
   "stethoscope": {
     "word": "stethoscope",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A medical tool used to listen for heartbeats",
+    "hints": [
+      "Doctors often have these hanging around their neck"
+    ]
   },
   "stitches": {
     "word": "stitches",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something that holds pieces of clothes together",
+    "hints": [
+      "These can also be used to big cuts in the skin heal"
+    ]
   },
   "stop sign": {
     "word": "stop sign",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A red warning sign that is seen on roads",
+    "hints": [
+      "They tell drivers to come to a stop"
+    ]
   },
   "stove": {
     "word": "stove",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Kitchen equipment used to heat up other pieces of equipment",
+    "hints": [
+      "Found on kitchen bench tops and are usually powered by electricity or gas"
+    ]
   },
   "strawberry": {
     "word": "strawberry",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A red, sweet, bite-size fruit that has its seeds on the outside",
+    "hints": [
+      "They are shaped like rounded triangles"
+    ]
   },
   "streetlight": {
     "word": "streetlight",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A light on the side of the road",
+    "hints": [
+      "These lights are usually attached to a tall post"
+    ]
   },
   "string bean": {
     "word": "string bean",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A long, green pod with beans inside",
+    "hints": [
+      "This category has two words"
+    ]
   },
   "submarine": {
     "word": "submarine",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A vehicle that is able to travel underwater",
+    "hints": [
+      "These vehicles often make what's known as a 'sonar' sound"
+    ]
   },
   "suitcase": {
     "word": "suitcase",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A type of briefcase",
+    "hints": [
+      "Often held by business people wearing suits"
+    ]
   },
   "sun": {
     "word": "sun",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A bright, yellow ball in the sky which can be seen during the day",
+    "hints": [
+      "This thing provides warmth"
+    ]
   },
   "swan": {
     "word": "swan",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A large waterbird with a long flexible neck",
+    "hints": [
+      "They are usually white, but sometimes black and look a bit like ducks"
+    ]
   },
   "sweater": {
     "word": "sweater",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of clothing used to keep warm",
+    "hints": [
+      "Another word for 'jumper'"
+    ]
   },
   "swing set": {
     "word": "swing set",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A frame has swings attached for children to play on",
+    "hints": [
+      "Often found at playgrounds"
+    ]
   },
   "sword": {
     "word": "sword",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A sharp weapon used in the olden days",
+    "hints": [
+      "It's the bigger version of a knife"
+    ]
   },
   "syringe": {
     "word": "syringe",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A needle used to inject things into people",
+    "hints": [
+      "Sounds like the word 'cringe'"
+    ]
   },
   "table": {
     "word": "table",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of furniture with a flat top",
+    "hints": [
+      "Can be used for eating, writing or working"
+    ]
   },
   "teapot": {
     "word": "teapot",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A pot with a handle, lid and a long nozzle to pour liquid",
+    "hints": [
+      "Used to brew tea"
+    ]
   },
   "teddy-bear": {
     "word": "teddy-bear",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A common type of stuffed toy that looks like a bear",
+    "hints": [
+      "You may use this to help you sleep at night"
+    ]
   },
   "telephone": {
     "word": "telephone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A device used to make calls",
+    "hints": [
+      "Has a coiled wire and a dial pad used to punch in numbers"
+    ]
   },
   "television": {
     "word": "television",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "An electronic device that displays moving pictures",
+    "hints": [
+      "Called 'TV' for short"
+    ]
   },
   "tennis racquet": {
     "word": "tennis racquet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment used to hit tennis balls",
+    "hints": [
+      "Has a handle and a net made out of firm wire"
+    ]
   },
   "tent": {
     "word": "tent",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A portable home that can be built and taken apart easily",
+    "hints": [
+      "Used a lot by campers"
+    ]
   },
   "The Eiffel Tower": {
     "word": "The Eiffel Tower",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A tall building landmark in France",
+    "hints": [
+      "Can be found in the capital city of Paris"
+    ]
   },
   "The Great Wall of China": {
     "word": "The Great Wall of China",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A very long building landmark in China",
+    "hints": [
+      "Tourists can visit and walk along this building"
+    ]
   },
   "The Mona Lisa": {
     "word": "The Mona Lisa",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A very famous painting of a woman",
+    "hints": [
+      "This painting was made by Leonardo Da Vinci"
+    ]
   },
   "tiger": {
     "word": "tiger",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A giant cat which is orange with black stripes",
+    "hints": [
+      "These animals have very big teeth and claws"
+    ]
   },
   "toaster": {
     "word": "toaster",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A kitchen appliance used to make toast",
+    "hints": [
+      "Bread slices pop out of this"
+    ]
   },
   "toe": {
     "word": "toe",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A part of your foot that helps you balance",
+    "hints": [
+      "Like a finger but for your foot instead"
+    ]
   },
   "toilet": {
     "word": "toilet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A white seat found in bathrooms that has water in it",
+    "hints": [
+      "Used by people to do their poos and wees"
+    ]
   },
   "tooth": {
     "word": "tooth",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A hard, bony structure inside your mouth",
+    "hints": [
+      "These allow you to chew your food"
+    ]
   },
   "toothbrush": {
     "word": "toothbrush",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment you use to clean your teeth",
+    "hints": [
+      "It has bristles"
+    ]
   },
   "toothpaste": {
     "word": "toothpaste",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Something you put on your toothbrush to help with cleaning your teeth",
+    "hints": [
+      "It is usually white in colour and tastes/smells like mint"
+    ]
   },
   "tornado": {
     "word": "tornado",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "Strong rotating winds that look like a funnel-shaped cloud",
+    "hints": [
+      "These usually happen when there is a storm"
+    ]
   },
   "tractor": {
     "word": "tractor",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A vehicle commonly used by farmers",
+    "hints": [
+      "Has two large rear wheels"
+    ]
   },
   "traffic light": {
     "word": "traffic light",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A light which can turn red, yellow or green",
+    "hints": [
+      "Used on roads to direct traffic"
+    ]
   },
   "train": {
     "word": "train",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A special type of vehicle that travels along railways",
+    "hints": [
+      "Thomas the Tank Engine is this vehicle"
+    ]
   },
   "tree": {
     "word": "tree",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A plant that has lots of branches and leaves",
+    "hints": [
+      "These are often cut down for wood"
+    ]
   },
   "triangle": {
     "word": "triangle",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A three sided shape",
+    "hints": [
+      "The internal angles of this shape add up to 180 degrees"
+    ]
   },
   "trombone": {
     "word": "trombone",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A brass musical instrument with a long cylinder tube",
+    "hints": [
+      "It is not a trumpet and is lower pitched than a trumpet"
+    ]
   },
   "truck": {
     "word": "truck",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A big car that usually has more than 4 wheels and is used to move a lot of stuff",
+    "hints": [
+      "Sometimes has long trailers attached to it"
+    ]
   },
   "trumpet": {
     "word": "trumpet",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A brass musical instrument with a flared bell and a high-pitched tone",
+    "hints": [
+      "Rhymes with crumpet"
+    ]
   },
   "t-shirt": {
     "word": "t-shirt",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A short-sleeved piece of clothing worn on the upper-body",
+    "hints": [
+      "It is T-shaped"
+    ]
   },
   "umbrella": {
     "word": "umbrella",
-    "definition": "fill this later",
-    "hints": []
+    "definition": "A piece of equipment used to shelter people from the rain while they walk",
+    "hints": [
+
+    ]
   },
   "underwear": {
     "word": "underwear",
