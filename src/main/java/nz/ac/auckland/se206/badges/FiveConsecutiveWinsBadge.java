@@ -10,6 +10,6 @@ public class FiveConsecutiveWinsBadge extends Badge {
 
   @Override
   public void checkCompletion(User user) {
-    isCompleted = user.getWinStreak() == 3;
+    isCompleted = user.getWinStreak() == 5;
   }
 }
