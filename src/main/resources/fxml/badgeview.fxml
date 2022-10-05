@@ -20,7 +20,7 @@
       </ImageView>
       <VBox fx:id="badgeViewVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="610.0" spacing="15.0">
          <children>
-            <Label fx:id="badgesTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Badges" textAlignment="CENTER">
+            <Label fx:id="badgesTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" styleClass="title" text="Badges" textAlignment="CENTER">
                <font>
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>
