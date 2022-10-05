@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
    <children>
-       <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-           <image>
-               <Image url="@../images/DoodleBackground9to8.jpg" />
-           </image>
-       </ImageView>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground.jpg" />
+         </image>
+      </ImageView>
       <VBox fx:id="userStatsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="610.0" spacing="15.0">
           <children>
               <Label fx:id="statsTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Statistics" textAlignment="CENTER">
