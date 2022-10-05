@@ -68,6 +68,18 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
+                  <Button fx:id="badgeViewButton" mnemonicParsing="false" onAction="#onBadgeView" text="Badges">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
                   <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" text="Settings">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />

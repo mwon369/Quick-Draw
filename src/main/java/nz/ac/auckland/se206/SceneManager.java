@@ -14,6 +14,7 @@ public class SceneManager {
     ZEN_MODE,
     WORD_CHOOSER,
     SETTINGS,
+    BADGE_VIEW
   }
 
   // hashmap that maps enum AppUi to the corresponding root note

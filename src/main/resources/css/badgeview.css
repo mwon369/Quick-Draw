@@ -1,0 +1,53 @@
+@font-face {
+    src: url("IndieFlower-Regular.ttf"),
+}
+
+@font-face {
+    src: url("AmaticSC-Bold.ttf"),
+}
+
+#badgeViewVBox{
+	-fx-background-color: #F8ECC4;
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-opacity: 97%
+}
+#badgeDescriptionVBox {
+	-fx-background-color: #EDCC7C;
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-opacity: 97%
+}
+#badgeTitleLabel, #badgeDescriptionLabel{
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 16px;
+}
+.title {
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 42px;
+}
+
+.button, .button:focused{
+	-fx-text-fill: black;
+    -fx-background-radius: 10px;
+    -fx-background-color: #E29F00;
+    -fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
+	-fx-border-radius: 10px;
+    -fx-font-family: 'Amatic SC', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 700;
+	-fx-font-size: 22px;
+	-fx-pref-width: 125px;
+	-fx-pref-height:35px;
+	-fx-padding: 6 0 5 0;
+}
+
+.button:pressed{
+	-fx-translate-y: 4;
+	-fx-padding: 6 0 5 0;
+	-fx-background-insets:0;
+}
