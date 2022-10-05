@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.imageio.ImageIO;
@@ -29,10 +30,15 @@ public class BadgeViewController {
   @FXML private ImageView badgeIconEight;
   @FXML private ImageView badgeIconNine;
   @FXML private ImageView badgeIconTen;
-
+  @FXML private Label badgeTitleLabel;
+  @FXML private Label badgeDescriptionLabel;
   private List<ImageView> badgeIcons;
 
+  private ArrayList<Badge> badgeList;
+
   public void initialize() {
+    badgeTitleLabel.setVisible(false);
+    badgeDescriptionLabel.setVisible(false);
     badgeIcons =
         Arrays.asList(
             badgeIconOne,
@@ -53,24 +59,36 @@ public class BadgeViewController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
+    badgeTitleLabel.setVisible(false);
+    badgeDescriptionLabel.setVisible(false);
   }
 
   public void loadBadgeIcons() throws URISyntaxException, IOException {
 
     User user = UsersManager.getSelectedUser();
-    ArrayList<Badge> badgeList = user.getBadgeList();
+    badgeList = user.getBadgeList();
     for (int i = 0; i < badgeIcons.size(); i++) {
       if (badgeList.get(i).isCompleted()) {
-        badgeIcons.get(i).setImage(loadImage());
+        badgeIcons.get(i).setImage(loadImage("achieveIcon"));
+      } else {
+        badgeIcons.get(i).setImage(loadImage("questionicon"));
       }
     }
   }
 
-  private Image loadImage() throws URISyntaxException, IOException {
+  private Image loadImage(String imageName) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
-    file = new File(getClass().getResource("/images/achieveIcon.png").toURI());
+    file = new File(getClass().getResource("/images/" + imageName + ".png").toURI());
     BufferedImage bufferImage = ImageIO.read(file);
     return SwingFXUtils.toFXImage(bufferImage, null);
+  }
+
+  @FXML
+  private void onbadgeOneSelect() {
+    badgeTitleLabel.setText(badgeList.get(0).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(0).getDescription());
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
   }
 }
