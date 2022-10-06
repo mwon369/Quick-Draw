@@ -56,8 +56,6 @@ public class App extends Application {
 
     // Load users
     UsersManager.loadUsersFromJson();
-    //    // Write categories to JSON to speed up definition/hint writing
-    //    CategoryManager.saveCategoriesToJson();
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
 

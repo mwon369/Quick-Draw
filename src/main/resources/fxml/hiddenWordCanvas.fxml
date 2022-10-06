@@ -52,7 +52,7 @@
                         <Insets top="-20.0" />
                     </VBox.margin>
                 </Label>
-                <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" prefWidth="355.0" textAlignment="CENTER">
+                <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" textAlignment="CENTER">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -170,6 +170,7 @@
                     <children>
                         <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" text="New Game" />
                         <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
+                  <Button fx:id="hintButton" mnemonicParsing="false" onAction="#onGetHint" text="Hint" />
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />

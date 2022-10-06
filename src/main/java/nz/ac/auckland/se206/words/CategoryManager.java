@@ -11,11 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CategoryManager {
 
@@ -92,14 +88,19 @@ public class CategoryManager {
     if (categoryMap == null) {
       categoryMap = new HashMap<>();
     }
-
-    // test code
-    System.out.println(categoryMap.size());
-    System.out.println(categoryMap.get("zigzag").getDefinition());
-    System.out.println(categoryMap.get("zigzag").getHints().get(0));
   }
 
   public static Category getCategory(String category) {
     return categoryMap.get(category);
+  }
+
+  public static String getDefinition(String category) {
+    System.out.println(category);
+    return categoryMap.get(category).getDefinition();
+  }
+
+  public static String getHint(String category) {
+    ArrayList<String> hints = categoryMap.get(category).getHints();
+    return hints.get(new Random().nextInt(hints.size()));
   }
 }

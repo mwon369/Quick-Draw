@@ -1809,7 +1809,7 @@
     "word": "shark",
     "definition": "A very big type of fish with sharp teeth",
     "hints": [
-      "They can smell blood very well"
+      "They can smell blood very easily"
     ]
   },
   "sheep": {
@@ -2052,9 +2052,9 @@
   },
   "string bean": {
     "word": "string bean",
-    "definition": "A long, green pod with beans inside",
+    "definition": "A long, green vegetable with beans inside",
     "hints": [
-      "This category has two words"
+      "Created the giant beanstalk in the story 'Jack and the Beanstalk'"
     ]
   },
   "submarine": {

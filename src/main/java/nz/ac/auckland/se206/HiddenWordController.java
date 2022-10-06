@@ -21,10 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -39,6 +36,7 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.words.CategoryManager;
 import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 /**
@@ -66,6 +64,7 @@ public class HiddenWordController {
   @FXML private Button mainMenuButton;
   @FXML private Button startNewGameButton;
   @FXML private Button readyButton;
+  @FXML private Button hintButton;
 
   private GraphicsContext graphic;
   private DoodlePrediction model;
@@ -218,6 +217,7 @@ public class HiddenWordController {
     canvas.setDisable(true);
     onClear();
     readyButton.setDisable(true);
+    hintButton.setDisable(true);
     savePane.setDisable(true);
     winLossLabel.setVisible(false);
   }
@@ -237,10 +237,11 @@ public class HiddenWordController {
     userFastestWin = user.getFastestWin();
 
     targetCategory = user.giveWordToDraw(user.getWordDifficulty());
-    wordLabel.setText("Your word is: " + targetCategory);
-    // configure, disable and clear the canvas, disable the ready button
+    wordLabel.setText("Word Definition: " + CategoryManager.getDefinition(targetCategory));
 
+    // configure, disable and clear the canvas, disable the ready button
     readyButton.setDisable(false);
+    hintButton.setDisable(false);
 
     // reset the timer label and cancel previous timer if needed
     timerLabel.setText(String.valueOf(timeLimit));
@@ -368,6 +369,19 @@ public class HiddenWordController {
   }
 
   @FXML
+  private void onGetHint() {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+    DialogPane dialogPane = alert.getDialogPane();
+    dialogPane.getStylesheets().add(getClass().getResource("/css/canvas.css").toExternalForm());
+    dialogPane.getStyleClass().add("hintDialog");
+
+    alert.setTitle("Word Hint");
+    alert.setHeaderText(CategoryManager.getHint(targetCategory));
+    alert.showAndWait();
+  }
+
+  @FXML
   private void isDrawing() {
     if (isPenDrawn) {
       isDrawing = true;
@@ -487,6 +501,7 @@ public class HiddenWordController {
    * @param isWin boolean representing whether the user won the game or not
    */
   private void stopGame(boolean isWin, String timeString) {
+    hintButton.setDisable(true);
     savePane.setDisable(false);
     canvas.setDisable(true);
     // disable mouse dragging on canvas
