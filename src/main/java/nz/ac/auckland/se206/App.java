@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.words.CategoryManager;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -59,6 +60,9 @@ public class App extends Application {
 
     SceneManager.addUi(AppUi.ZEN_MODE, loadFxml("zenCanvas"));
     SceneManager.getUiRoot(AppUi.ZEN_MODE).getStylesheets().add("/css/canvas.css");
+
+    // Load category info
+    CategoryManager.loadCategoryInfoFromJson();
 
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 760, 680);
     stage.setScene(scene);
