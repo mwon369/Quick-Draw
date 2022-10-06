@@ -17,17 +17,12 @@ import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 public class User {
 
-  private String username; // first column
+  private String username;
 
-  private String password; // second column
-
-  private int wins; // third column
-
-  private int losses; // fourth column
-
-  private int fastestWin; // fifth column
-
-  private int winStreak; // sixth column
+  private int wins;
+  private int losses;
+  private int fastestWin;
+  private int winStreak;
 
   private ArrayList<BadgeData> badgeDataList;
   private Map<CategoryDifficulty, ArrayList<String>> wordsGiven;
@@ -46,10 +41,9 @@ public class User {
 
   private transient ArrayList<Badge> badgeList;
 
-  public User(String username, String password) {
+  public User(String username) {
     // assign the fields for each new user created
     this.username = username;
-    this.password = password;
     this.fastestWin = 60;
     this.lastThreeWords = new ArrayList<String>();
     this.badgeList = new ArrayList<>();
@@ -89,10 +83,6 @@ public class User {
 
   public String getUsername() {
     return this.username;
-  }
-
-  public String getPassword() {
-    return this.password;
   }
 
   public int getWins() {
