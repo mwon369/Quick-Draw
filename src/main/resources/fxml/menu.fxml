@@ -44,6 +44,18 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
+                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" prefHeight="30.0" text="Hidden Word Mode">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
                   <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" text="Zen Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
@@ -53,6 +65,9 @@
                      </font>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="-40.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0" />
             <HBox alignment="CENTER" minHeight="36.0" />

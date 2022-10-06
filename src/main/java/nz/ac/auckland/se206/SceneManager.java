@@ -8,6 +8,7 @@ public class SceneManager {
   public enum AppUi {
     MENU,
     CANVAS,
+    HIDDEN_WORD,
     LOGIN,
     USER_CREATION,
     USER_STATS,
