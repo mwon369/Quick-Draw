@@ -56,7 +56,7 @@ public class App extends Application {
     // Load users
     UsersManager.loadUsersFromJson();
 
-    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 720, 640);
+    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 760, 680);
     stage.setScene(scene);
     stage.show();
 

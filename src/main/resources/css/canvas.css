@@ -13,6 +13,14 @@
 	-fx-opacity: 97%
 }
 
+
+.label{
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 18px;
+}
+
 .title {
 	-fx-font-family: 'Indie Flower', cursive;
 	-fx-font-style: normal;
