@@ -10,74 +10,110 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserStatsController">
    <children>
-       <ImageView fitHeight="629.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-           <image>
-               <Image url="@../images/DoodleBackground9to8.jpg" />
-           </image>
-       </ImageView>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground.jpg" />
+         </image>
+      </ImageView>
       <VBox fx:id="userStatsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="610.0" spacing="15.0">
           <children>
               <Label fx:id="statsTitleLabel" alignment="CENTER" prefHeight="52.0" prefWidth="710.0" text="Statistics" textAlignment="CENTER">
                   <font>
                       <Font name="Bradley Hand ITC" size="36.0" />
                   </font>
-                  <VBox.margin>
-                      <Insets bottom="-15.0" />
-                  </VBox.margin>
               </Label>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
                   <Label fx:id="userLabel" styleClass="statLabel" text="User" />
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <Label fx:id="totalGamesLabel" styleClass="statLabel" text="Total Games: " />
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="totalGamesLabel" styleClass="statLabel" text="Total Games: " />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="userWinsLabel" styleClass="statLabel" text="Total Wins:  " />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="userLossesLabel" styleClass="statLabel" text="Total Losses:  " />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="userWinRatioLabel" styleClass="statLabel" text="Win Ratio:  " />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="userFastestWinLabel" styleClass="statLabel" text="Fastest Win Time:  ">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="winStreakLabel" styleClass="statLabel" text="Win Streak: ">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0">
+                           <children>
+                              <Label fx:id="previousWordsLabel" styleClass="statLabel" text="Previous Words: ">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button fx:id="badgeViewButton" mnemonicParsing="false" onAction="#onBadgeView" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/trophyIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/historyIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Label fx:id="userWinsLabel" styleClass="statLabel" text="Total Wins:  " />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Label fx:id="userLossesLabel" styleClass="statLabel" text="Total Losses:  " />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Label fx:id="userWinRatioLabel" styleClass="statLabel" text="Win Ratio:  " />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Label fx:id="userFastestWinLabel" styleClass="statLabel" text="Fastest Win Time:  ">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Label fx:id="previousWordsLabel" styleClass="statLabel" text="Previous Words: ">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </HBox>
               <HBox alignment="CENTER" minHeight="36.0">
                   <children>

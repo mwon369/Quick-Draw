@@ -6,7 +6,7 @@
     src: url("AmaticSC-Bold.ttf"),
 }
 
-#menuVBox {
+#settingsVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;
 	-fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
@@ -18,6 +18,20 @@
 	-fx-font-style: normal;
 	-fx-font-weight: 400;
 	-fx-font-size: 42px;
+}
+
+.setting {
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+}
+
+.radio-button {
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 16px;
 }
 
 .button, .button:focused{
@@ -36,19 +50,6 @@
 }
 
 .button:pressed{
-	-fx-translate-y: 4;
-	-fx-padding: 6 0 5 0;
-	-fx-background-insets:0;
-}
-
-.iconButtons, .iconButtons:focused{
-	-fx-background-color: #E29F00;
-	-fx-background-radius: 100px;
-	-fx-pref-width: 40px;
-	-fx-pref-height: 40px;
-}
-
-.iconButtons:pressed{
 	-fx-translate-y: 4;
 	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;

@@ -18,13 +18,12 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -39,7 +38,6 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
-import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -53,19 +51,19 @@ import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
  * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
  * the canvas and brush sizes, make sure that the prediction works fine.
  */
-public class CanvasController {
+public class ZenCanvasController {
 
   @FXML private Canvas canvas;
-  @FXML private Label wordLabel;
-  private String targetCategory;
+  @FXML protected Label wordLabel;
+  @FXML private Label outcomeLabel;
 
-  // items for the timer
-  @FXML private Label timerLabel;
+  protected String targetCategory;
+
   private Timer timer;
 
   @FXML private Button mainMenuButton;
-  @FXML private Button startNewGameButton;
-  @FXML private Button readyButton;
+  @FXML protected Button readyButton;
+  @FXML private Button chooseWordButton;
 
   private GraphicsContext graphic;
   private DoodlePrediction model;
@@ -73,19 +71,20 @@ public class CanvasController {
   @FXML private ListView<String> predictionsListView;
   private List<Classification> classifications;
 
-  @FXML private Label winLossLabel;
-
   // items for the canvas tools
   @FXML private Pane penPane;
   @FXML private Pane eraserPane;
   @FXML private Pane clearPane;
   @FXML private Pane savePane;
   @FXML private Pane soundPane;
+  @FXML private Pane colorPane;
   @FXML private ImageView penIcon;
   @FXML private ImageView eraserIcon;
   @FXML private ImageView clearIcon;
   @FXML private ImageView saveIcon;
   @FXML private ImageView soundIcon;
+  @FXML private ImageView colorIcon;
+  @FXML private ColorPicker colorPicker;
 
   private List<Pane> toolPanes;
 
@@ -95,20 +94,13 @@ public class CanvasController {
   private boolean isDrawing;
   private boolean isPenDrawn = false;
   private boolean isMuted;
-  private User user;
-  private int userWins;
-  private int userLosses;
-  private int userFastestWin;
-  private int userStreak;
 
   // mouse coordinates
   private double currentX;
   private double currentY;
 
-  // difficulties
-  private int accuracy;
-  private int timeLimit;
-  private double confidence;
+  private Parent wordChooserScene;
+  private WordChooserController wordChooserController;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -118,7 +110,19 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
-    isMuted = false;
+    // load in wordChooser FXML and its respective controller so that we can
+    // reference it from this controller
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/wordChooser.fxml"));
+    wordChooserScene = loader.load();
+    wordChooserController = loader.getController();
+    SceneManager.addUi(AppUi.WORD_CHOOSER, wordChooserScene);
+    SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/wordChooser.css");
+
+    // will need to reference this controller from the wordChooserController
+    // in order to set the target category during word selection
+    wordChooserController.zenCanvasController = this;
+
+    isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -138,16 +142,6 @@ public class CanvasController {
     // initialise text to speech
     textToSpeech = new TextToSpeech();
     speakPredictionsTimer = new Timer();
-  }
-
-  /** This method sets up the difficulties */
-  protected void setUpDifficulty() {
-    user = UsersManager.getSelectedUser();
-    // initialise difficulties
-    accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
-    timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
-    confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
-    timerLabel.setText(String.valueOf(timeLimit));
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -189,11 +183,11 @@ public class CanvasController {
    */
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
-    isMuted = false;
-    soundIcon.setImage(loadImage("unmute"));
+    isMuted = true;
+    soundIcon.setImage(loadImage("mute"));
+    colorPicker.setValue(Color.BLACK);
     resetCanvas();
-    // reset the timer and cancel the timer if needed
-    timerLabel.setText(String.valueOf(timeLimit));
+
     if (timer != null) {
       timer.cancel();
     }
@@ -207,6 +201,9 @@ public class CanvasController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
 
+  /**
+   * This method clears the canvas and resets all interactive UI elements to their default values
+   */
   private void resetCanvas() {
     isPenDrawn = false;
     isGameOver = true;
@@ -218,32 +215,25 @@ public class CanvasController {
     canvas.setDisable(true);
     onClear();
     readyButton.setDisable(true);
-    savePane.setDisable(true);
-    winLossLabel.setVisible(false);
+    // user will be able to save their drawing at any point in zen mode
+    savePane.setDisable(false);
+    outcomeLabel.setVisible(false);
+    // reset pen colour to black
+    colorPicker.setValue(Color.BLACK);
   }
 
   /**
-   * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
-   * the ready button
+   * This method switches the scene and sets the target category to whatever the user selects in the
+   * wordChooser FXML scene
+   *
+   * @param event, a button click
    */
   @FXML
-  private void onStartNewGame() {
-
+  private void onChooseWord(ActionEvent event) {
+    // erase all drawing and reset all GUI elements
     resetCanvas();
-    // select and display random category (easy)
-    userStreak = user.getWinStreak();
-    userWins = user.getWins();
-    userLosses = user.getLosses();
-    userFastestWin = user.getFastestWin();
 
-    targetCategory = user.giveWordToDraw(user.getWordDifficulty());
-    wordLabel.setText("Your word is: " + targetCategory);
-    // configure, disable and clear the canvas, disable the ready button
-
-    readyButton.setDisable(false);
-
-    // reset the timer label and cancel previous timer if needed
-    timerLabel.setText(String.valueOf(timeLimit));
+    // reset timer
     if (timer != null) {
       timer.cancel();
     }
@@ -251,6 +241,11 @@ public class CanvasController {
 
     // clear the predictions list
     predictionsListView.getItems().clear();
+
+    // retrieve the source of button and switch to word chooser scene
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_CHOOSER));
   }
 
   /**
@@ -276,7 +271,7 @@ public class CanvasController {
     canvas.setDisable(false);
     readyButton.setDisable(true);
     startTimer();
-    speakPredictions();
+    speakPredictions(1);
   }
 
   /**
@@ -287,12 +282,9 @@ public class CanvasController {
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
-          private int time = timeLimit;
 
           @Override
           public void run() {
-            // create temporary variable for the time
-            int temp = time;
             Platform.runLater(
                 () -> {
                   try {
@@ -303,41 +295,31 @@ public class CanvasController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourTopPredictions(predictionsListView, accuracy);
-                      // check if player has won
-                      if (isWin(classifications, accuracy, confidence)) {
-                        timer.cancel();
-                        stopGame(true, timerLabel.getText());
-                        return;
+                      colourTopPredictions(predictionsListView, 1);
+                      if (isWin(classifications, 1)) {
+                        outcomeLabel.setText(
+                            "Nice, you've won! Feel free to keep drawing or choose a new word!");
+                        outcomeLabel.setVisible(true);
                       }
                     }
                   } catch (TranslateException e) {
                     System.out.println("Unable to retrieve predictions");
                     e.printStackTrace();
                   }
-
-                  // update timer
-                  timerLabel.setText(String.valueOf(temp));
                 });
-
-            // if time has run out, cancel timer
-            if (time == 0) {
-              timer.cancel();
-              Platform.runLater(
-                  () -> {
-                    stopGame(false, timerLabel.getText());
-                  });
-              return;
-            } else {
-              // otherwise, decrement the time by 1 second
-              time -= 1;
-            }
           }
         },
         0,
         1000);
   }
 
+  /**
+   * This method colours the top 'x' predictions so that the user can have an easier time seeing the
+   * top predictions made by the model
+   *
+   * @param predictionsListView, a list of the top 10 guesses
+   * @param topNum, an integer specifying how many 'x' predictions should be coloured
+   */
   private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
 
     // set the CellFactory field for the ListView
@@ -381,7 +363,7 @@ public class CanvasController {
    * @param predictionsListClassification the predictions list that is a list of Classification
    *     objects
    * @return a formatted list of predictions. Each string is of the format "n : classification :
-   *     xx%" where n is the top n prediction and xx is the probability
+   *     xx.xx%" where n is the top n prediction and xx.xx is the probability
    */
   private List<String> getPredictionsListForDisplay(
       List<Classification> predictionsListClassification) {
@@ -409,13 +391,10 @@ public class CanvasController {
    * @param classifications a list of classifications
    * @return true if the target word is in the list of classifications, false otherwise
    */
-  private boolean isWin(List<Classification> classifications, int margin, double confidence) {
-    // scan through classifications and check if the target word is in it and confidence is
-    // sufficient with rounding
+  private boolean isWin(List<Classification> classifications, int margin) {
+    // scan through classifications and check if the target word is in it
     for (int i = 0; i < margin; i++) {
-      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)
-          && Math.round(classifications.get(i).getProbability() * 100)
-              >= Math.round(confidence * 100)) {
+      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)) {
         return true;
       }
     }
@@ -426,7 +405,7 @@ public class CanvasController {
    * This method speaks the top 3 predictions of the user's drawings every 10 seconds, terminating
    * whenever the game is over
    */
-  private void speakPredictions() {
+  private void speakPredictions(int topNum) {
     // schedule the speaking for every 10 seconds and starts after 1 second
     speakPredictionsTimer.schedule(
         new TimerTask() {
@@ -445,7 +424,7 @@ public class CanvasController {
             List<Classification> temporaryList = classifications;
 
             // run through the top three predictions
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < topNum; i++) {
               if (isGameOver) {
                 this.cancel();
                 return;
@@ -465,6 +444,12 @@ public class CanvasController {
         10000);
   }
 
+  /**
+   * This method changes the state of the mute button
+   *
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
     isMuted = isMuted ? false : true;
@@ -472,91 +457,20 @@ public class CanvasController {
     soundIcon.setImage(loadImage(soundState));
   }
 
+  /**
+   * This method changes the mute button icon depending on the mute button's state
+   *
+   * @param soundState, a string to indicate the state of the mute button
+   * @return Image, based on the state
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   private Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
     file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
     BufferedImage bufferImage = ImageIO.read(file);
     return SwingFXUtils.toFXImage(bufferImage, null);
-  }
-
-  /**
-   * This method stops the game and disables the canvas. It displays "You win!" or "You lose" if
-   * user wins or loses the game respectively
-   *
-   * @param isWin boolean representing whether the user won the game or not
-   */
-  private void stopGame(boolean isWin, String timeString) {
-    savePane.setDisable(false);
-    canvas.setDisable(true);
-    // disable mouse dragging on canvas
-    canvas.setOnMouseDragged(e -> {});
-
-    // set and display the win/loss
-    winLossLabel.setText(isWin ? "You win!" : "You Lose!");
-    winLossLabel.setVisible(true);
-
-    // update stats after the game ends
-    int time = Integer.parseInt(timeString);
-    if (isWin) {
-      user.setWins(++userWins);
-      user.setWinStreak(++userStreak);
-      if (timeLimit - time < userFastestWin) {
-        user.setFastestWin(timeLimit - time);
-      }
-    } else {
-      user.setLosses(++userLosses);
-      user.setWinStreak(0);
-    }
-    user.updateBadges();
-    // update and save both instance word lists fields after game ends
-
-    // update the word list
-    switch (user.getWordDifficulty()) {
-      case EASY:
-        user.updateWordList(CategoryDifficulty.E, targetCategory);
-        break;
-      case MEDIUM:
-        for (CategoryDifficulty categoryDifficulty :
-            Arrays.asList(CategoryDifficulty.E, CategoryDifficulty.M)) {
-          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
-            user.updateWordList(categoryDifficulty, targetCategory);
-          }
-        }
-        break;
-      case HARD:
-        for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
-          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
-            user.updateWordList(categoryDifficulty, targetCategory);
-          }
-        }
-        break;
-      case MASTER:
-        user.updateWordList(CategoryDifficulty.H, targetCategory);
-        break;
-    }
-    user.updateLastThreeWords(targetCategory);
-
-    try {
-      UsersManager.saveUsersToJson();
-    } catch (IOException e1) {
-      e1.printStackTrace();
-    }
-
-    isGameOver = true;
-
-    // speak whether user won or lost
-    Task<Void> endSpeechTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");
-            return null;
-          }
-        };
-
-    Thread endSpeechThread = new Thread(endSpeechTask);
-    endSpeechThread.start();
   }
 
   /** This method changes the user's input to simulate an eraser for the canvas */
@@ -583,7 +497,7 @@ public class CanvasController {
           final double y = e.getY() - size / 2;
 
           // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
+          graphic.setStroke(colorPicker.getValue());
           graphic.setLineWidth(size);
 
           // Create a line that goes from the point (currentX, currentY) and (x,y)

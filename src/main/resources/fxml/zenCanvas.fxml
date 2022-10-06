@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
@@ -14,9 +15,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.ZenCanvasController">
    <children>
       <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
         <children>
@@ -24,9 +26,14 @@
                <children>
                   <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" text="Main Menu">
                      <HBox.margin>
-                        <Insets right="450.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                  <font>
+                    <Font size="18.0" />
+                  </font>
+                </Label>
                   <MenuButton fx:id="helpMenuButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="31.0">
                     <items>
                       <MenuItem fx:id="infoMenuItem" mnemonicParsing="false" text="Click 'New Game' button to get word. Click 'I'm Ready' button to start game" />
@@ -44,29 +51,18 @@
                   </MenuButton>
                </children>
             </HBox>
-          <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
-            <font>
-              <Font size="18.0" />
-            </font>
-               <VBox.margin>
-                  <Insets top="-20.0" />
-               </VBox.margin>
-          </Label>
-            <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" prefWidth="355.0" textAlignment="CENTER">
+            <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label id="timer" fx:id="timerLabel" alignment="CENTER" text="60" textAlignment="CENTER">
+            <Label fx:id="outcomeLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="-10.0" top="-20.0" />
-               </padding>
             </Label>
             <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="20.0">
                <children>
@@ -117,9 +113,23 @@
                                  <children>
                                     <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
-                                          <Image url="@../images/unmute.png" />
+                                          <Image url="@../images/mute.png" />
                                        </image>
                                     </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="colorPane" prefHeight="30.0" prefWidth="30.0">
+                                 <children>
+                                    <ImageView fx:id="colorIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                       <image>
+                                          <Image url="@../images/colouricon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ColorPicker fx:id="colorPicker" layoutY="5.0" minHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="30.0">
+                                       <value>
+                                          <Color />
+                                       </value>
+                                    </ColorPicker>
                                  </children>
                               </Pane>
                            </children>
@@ -134,11 +144,6 @@
                                     <Insets />
                                  </StackPane.margin>
                             </Canvas>
-                              <Label fx:id="winLossLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </StackPane>
                      </children>
@@ -168,7 +173,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
-                  <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" text="New Game" />
+                  <Button fx:id="chooseWordButton" mnemonicParsing="false" onAction="#onChooseWord" text="Choose Word" />
                   <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
                </children>
                <VBox.margin>

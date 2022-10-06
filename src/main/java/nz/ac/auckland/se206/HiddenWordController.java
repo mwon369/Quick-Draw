@@ -21,7 +21,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -34,11 +37,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.dict.DictionaryLookup;
-import nz.ac.auckland.se206.dict.WordEntry;
-import nz.ac.auckland.se206.dict.WordInfo;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -53,8 +54,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class HiddenWordController {
-
-  private static final int TIMER_START_TIME = 60;
 
   @FXML private Canvas canvas;
   @FXML private Label wordLabel;
@@ -100,10 +99,16 @@ public class HiddenWordController {
   private int userWins;
   private int userLosses;
   private int userFastestWin;
+  private int userStreak;
 
   // mouse coordinates
   private double currentX;
   private double currentY;
+
+  // difficulties
+  private int accuracy;
+  private int timeLimit;
+  private double confidence;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -133,6 +138,16 @@ public class HiddenWordController {
     // initialise text to speech
     textToSpeech = new TextToSpeech();
     speakPredictionsTimer = new Timer();
+  }
+
+  /** This method sets up the difficulties */
+  protected void setUpDifficulty() {
+    user = UsersManager.getSelectedUser();
+    // initialise difficulties
+    accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
+    timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
+    confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
+    timerLabel.setText(String.valueOf(timeLimit));
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -178,7 +193,7 @@ public class HiddenWordController {
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
     // reset the timer and cancel the timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
+    timerLabel.setText(String.valueOf(timeLimit));
     if (timer != null) {
       timer.cancel();
     }
@@ -213,21 +228,22 @@ public class HiddenWordController {
    */
   @FXML
   private void onStartNewGame() {
+
     resetCanvas();
     // select and display random category (easy)
-    user = UsersManager.getSelectedUser();
+    userStreak = user.getWinStreak();
     userWins = user.getWins();
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
-    targetCategory = user.giveWordToDraw();
-    wordLabel.setText("Getting word meaning...");
-    getCategoryDefinition(targetCategory, wordLabel);
 
+    targetCategory = user.giveWordToDraw(user.getWordDifficulty());
+    wordLabel.setText("Your word is: " + targetCategory);
     // configure, disable and clear the canvas, disable the ready button
+
     readyButton.setDisable(false);
 
     // reset the timer label and cancel previous timer if needed
-    timerLabel.setText(String.valueOf(TIMER_START_TIME));
+    timerLabel.setText(String.valueOf(timeLimit));
     if (timer != null) {
       timer.cancel();
     }
@@ -235,56 +251,6 @@ public class HiddenWordController {
 
     // clear the predictions list
     predictionsListView.getItems().clear();
-  }
-
-  /**
-   * This method calls an API and returns the definition of the targetCategory
-   *
-   * @param targetCategory, the generated word that the user will play
-   */
-  private void getCategoryDefinition(String targetCategory, Label wordLabel) {
-
-    Task<Void> fetchDefinitionsTask =
-        new Task<>() {
-          @Override
-          protected Void call() throws Exception {
-            WordInfo wordResults = DictionaryLookup.searchWordInfo(targetCategory);
-
-            // entries represent all the use cases the word has, for e.g.,
-            // the word contract will have 2 entries, i.e., the use case
-            // where it is an adjective, and the use case where it is a verb
-            List<WordEntry> entries = wordResults.getWordEntries();
-
-            // we will get the definitions for the first entry of each word
-            // since the first entry is the most popular use case for that word
-            List<String> definitions = entries.get(0).getDefinitions();
-
-            // iterate through all definitions to find the shortest one
-            int shortestLength = definitions.get(0).length();
-            int indexOfShortestLength = 0;
-
-            for (int i = 1; i < definitions.size(); i++) {
-              if (shortestLength < definitions.get(i).length()) {
-                shortestLength = definitions.get(i).length();
-                indexOfShortestLength = i;
-              }
-            }
-            String definition = definitions.get(indexOfShortestLength);
-
-            // use FX thread to change GUI element
-            Platform.runLater(
-                () -> {
-                  wordLabel.setText(definition);
-                });
-
-            System.out.println("Fetched definition is: " + definition);
-            return null;
-          }
-        };
-
-    // start thread
-    Thread definitionsApiThread = new Thread(fetchDefinitionsTask);
-    definitionsApiThread.start();
   }
 
   /**
@@ -321,7 +287,7 @@ public class HiddenWordController {
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
-          private int time = TIMER_START_TIME;
+          private int time = timeLimit;
 
           @Override
           public void run() {
@@ -337,9 +303,9 @@ public class HiddenWordController {
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
-                      colourTopPredictions(predictionsListView, 3);
+                      colourTopPredictions(predictionsListView, accuracy);
                       // check if player has won
-                      if (isWin(classifications, 3)) {
+                      if (isWin(classifications, accuracy, confidence)) {
                         timer.cancel();
                         stopGame(true, timerLabel.getText());
                         return;
@@ -415,7 +381,7 @@ public class HiddenWordController {
    * @param predictionsListClassification the predictions list that is a list of Classification
    *     objects
    * @return a formatted list of predictions. Each string is of the format "n : classification :
-   *     xx.xx%" where n is the top n prediction and xx.xx is the probability
+   *     xx%" where n is the top n prediction and xx is the probability
    */
   private List<String> getPredictionsListForDisplay(
       List<Classification> predictionsListClassification) {
@@ -443,10 +409,13 @@ public class HiddenWordController {
    * @param classifications a list of classifications
    * @return true if the target word is in the list of classifications, false otherwise
    */
-  private boolean isWin(List<Classification> classifications, int margin) {
-    // scan through classifications and check if the target word is in it
+  private boolean isWin(List<Classification> classifications, int margin, double confidence) {
+    // scan through classifications and check if the target word is in it and confidence is
+    // sufficient with rounding
     for (int i = 0; i < margin; i++) {
-      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)) {
+      if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)
+          && Math.round(classifications.get(i).getProbability() * 100)
+              >= Math.round(confidence * 100)) {
         return true;
       }
     }
@@ -531,15 +500,41 @@ public class HiddenWordController {
     int time = Integer.parseInt(timeString);
     if (isWin) {
       user.setWins(++userWins);
-      if (60 - time < userFastestWin) {
-        user.setFastestWin(60 - time);
+      user.setWinStreak(++userStreak);
+      if (timeLimit - time < userFastestWin) {
+        user.setFastestWin(timeLimit - time);
       }
     } else {
       user.setLosses(++userLosses);
+      user.setWinStreak(0);
     }
-
+    user.updateBadges();
     // update and save both instance word lists fields after game ends
-    user.updateWordList(targetCategory);
+
+    // update the word list
+    switch (user.getWordDifficulty()) {
+      case EASY:
+        user.updateWordList(CategoryDifficulty.E, targetCategory);
+        break;
+      case MEDIUM:
+        for (CategoryDifficulty categoryDifficulty :
+            Arrays.asList(CategoryDifficulty.E, CategoryDifficulty.M)) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
+        }
+        break;
+      case HARD:
+        for (CategoryDifficulty categoryDifficulty : user.getWordList().keySet()) {
+          if (user.getWordList().get(categoryDifficulty).contains(targetCategory)) {
+            user.updateWordList(categoryDifficulty, targetCategory);
+          }
+        }
+        break;
+      case MASTER:
+        user.updateWordList(CategoryDifficulty.H, targetCategory);
+        break;
+    }
     user.updateLastThreeWords(targetCategory);
 
     try {

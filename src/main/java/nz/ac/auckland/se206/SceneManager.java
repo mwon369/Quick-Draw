@@ -12,6 +12,10 @@ public class SceneManager {
     LOGIN,
     USER_CREATION,
     USER_STATS,
+    ZEN_MODE,
+    WORD_CHOOSER,
+    SETTINGS,
+    BADGE_VIEW
   }
 
   // hashmap that maps enum AppUi to the corresponding root note

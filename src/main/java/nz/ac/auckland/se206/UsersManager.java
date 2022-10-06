@@ -105,6 +105,9 @@ public class UsersManager {
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
     }
+    for (User user : usersMap.values()) {
+      user.loadBadgeList();
+    }
   }
 
   /**
