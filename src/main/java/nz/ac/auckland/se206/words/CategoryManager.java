@@ -4,9 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.opencsv.exceptions.CsvException;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CategoryManager {
 
@@ -86,6 +95,8 @@ public class CategoryManager {
 
     // test code
     System.out.println(categoryMap.size());
+    System.out.println(categoryMap.get("zigzag").getDefinition());
+    System.out.println(categoryMap.get("zigzag").getHints().get(0));
   }
 
   public static Category getCategory(String category) {
