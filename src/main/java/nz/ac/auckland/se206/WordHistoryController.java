@@ -31,7 +31,6 @@ public class WordHistoryController {
   private ArrayList<String> userEasyWordHistory;
   private ArrayList<String> userMediumWordHistory;
   private ArrayList<String> userHardWordHistory;
-  private User user;
 
   private enum difficultyFilters {
     E,
@@ -44,15 +43,23 @@ public class WordHistoryController {
 
   protected void showWordHistory() {
     // initialize variables to store user words
-    user = UsersManager.getSelectedUser();
+    User user = UsersManager.getSelectedUser();
     userWordHistory = user.getAllPreviousWords();
     userEasyWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.E);
     userMediumWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.M);
     userHardWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.H);
 
-    // set list view to display all the words played
+    //    wordListView.getItems().clear();
+
+    // set list view to display all the words played if the user has played a game before
     difficultyFilter = difficultyFilters.ALL;
-    wordListView.getItems().setAll(userWordHistory);
+    if (!userWordHistory.isEmpty()) {
+      noWordsLabel.setText("");
+      wordListView.getItems().setAll(userWordHistory);
+      return;
+    }
+    // otherwise notify them that they haven't played a game
+    noWordsLabel.setText("You haven't played a game yet!");
   }
 
   /** This method displays all the easy words the user has played */
@@ -61,7 +68,16 @@ public class WordHistoryController {
     difficultyFilter = difficultyFilters.E;
     searchTextField.clear();
     wordListView.getItems().clear();
-    wordListView.getItems().addAll(userEasyWordHistory);
+
+    // set list view to display all the easy words played if user has played
+    // at least one easy word
+    if (!userEasyWordHistory.isEmpty()) {
+      noWordsLabel.setText("");
+      wordListView.getItems().addAll(userEasyWordHistory);
+      return;
+    }
+    // otherwise notify them that they haven't played any easy words
+    noWordsLabel.setText("You haven't played any easy words yet!");
   }
 
   /** This method displays all the medium words the user has played */
@@ -70,7 +86,16 @@ public class WordHistoryController {
     difficultyFilter = difficultyFilters.M;
     searchTextField.clear();
     wordListView.getItems().clear();
-    wordListView.getItems().addAll(userMediumWordHistory);
+
+    // set list view to display all the medium words played if user has played
+    // at least one medium word
+    if (!userMediumWordHistory.isEmpty()) {
+      noWordsLabel.setText("");
+      wordListView.getItems().addAll(userMediumWordHistory);
+      return;
+    }
+    // otherwise notify them that they haven't played any medium words
+    noWordsLabel.setText("You haven't played any medium words yet!");
   }
 
   /** This method displays all the hard words the user has played */
@@ -79,7 +104,16 @@ public class WordHistoryController {
     difficultyFilter = difficultyFilters.H;
     searchTextField.clear();
     wordListView.getItems().clear();
-    wordListView.getItems().addAll(userHardWordHistory);
+
+    // set list view to display all the hard words played if user has played
+    // at least one hard word
+    if (!userHardWordHistory.isEmpty()) {
+      noWordsLabel.setText("");
+      wordListView.getItems().addAll(userHardWordHistory);
+      return;
+    }
+    // otherwise notify them that they haven't played any hard words
+    noWordsLabel.setText("You haven't played any hard words yet!");
   }
 
   /** This method clears any filters so that all played words are displayed */
@@ -88,7 +122,15 @@ public class WordHistoryController {
     difficultyFilter = difficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
-    wordListView.getItems().addAll(userWordHistory);
+
+    // set list view to display all the words played if the user has played a game before
+    if (!userWordHistory.isEmpty()) {
+      noWordsLabel.setText("");
+      wordListView.getItems().setAll(userWordHistory);
+      return;
+    }
+    // otherwise notify them that they haven't played a game
+    noWordsLabel.setText("You haven't played a game yet!");
   }
 
   /**
@@ -157,7 +199,9 @@ public class WordHistoryController {
    */
   @FXML
   private void onGoBackToProfile(ActionEvent event) {
-    onClearFilters();
+    difficultyFilter = difficultyFilters.ALL;
+    searchTextField.clear();
+    wordListView.getItems().clear();
     // retrieve the source of button and switch to the badge view page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
