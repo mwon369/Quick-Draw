@@ -65,6 +65,9 @@
                      </font>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="-40.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0" />
             <HBox alignment="CENTER" minHeight="36.0" />

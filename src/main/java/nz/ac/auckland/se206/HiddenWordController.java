@@ -230,13 +230,21 @@ public class HiddenWordController {
   private void onStartNewGame() {
 
     resetCanvas();
-    // select and display random category (easy)
+    // get user fields and target category
     userStreak = user.getWinStreak();
     userWins = user.getWins();
     userLosses = user.getLosses();
     userFastestWin = user.getFastestWin();
-
     targetCategory = user.giveWordToDraw(user.getWordDifficulty());
+
+    // the first line of the CSV file is always read wrong no matter the word
+    // so loop until we dont get ?aircraft carrier
+    while (targetCategory.equals("?aircraft carrier")) {
+      targetCategory = user.giveWordToDraw(user.getWordDifficulty());
+    }
+
+    // make sure label can go over two lines if needed
+    wordLabel.setWrapText(true);
     wordLabel.setText("Word Definition: " + CategoryManager.getDefinition(targetCategory));
 
     // configure, disable and clear the canvas, disable the ready button
@@ -368,14 +376,17 @@ public class HiddenWordController {
         });
   }
 
+  /** This method displays a pop-up window when the user clicks the 'Hint' button */
   @FXML
   private void onGetHint() {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+    // create a style class so it can be styled through canvas.css
     DialogPane dialogPane = alert.getDialogPane();
     dialogPane.getStylesheets().add(getClass().getResource("/css/canvas.css").toExternalForm());
     dialogPane.getStyleClass().add("hintDialog");
 
+    // set visual attributes
     alert.setTitle("Word Hint");
     alert.setHeaderText(CategoryManager.getHint(targetCategory));
     alert.showAndWait();
@@ -501,6 +512,12 @@ public class HiddenWordController {
    * @param isWin boolean representing whether the user won the game or not
    */
   private void stopGame(boolean isWin, String timeString) {
+    // reveal the word to the user
+    wordLabel.setText(
+        isWin
+            ? "You got it! The word was: " + targetCategory
+            : "The word was: " + targetCategory + ". Better luck next time!");
+
     hintButton.setDisable(true);
     savePane.setDisable(false);
     canvas.setDisable(true);

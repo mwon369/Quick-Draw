@@ -24,9 +24,14 @@
                     <children>
                         <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" text="Main Menu">
                             <HBox.margin>
-                                <Insets right="450.0" />
+                                <Insets />
                             </HBox.margin>
                         </Button>
+                      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
                         <MenuButton fx:id="helpMenuButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="31.0">
                             <items>
                                 <MenuItem fx:id="infoMenuItem" mnemonicParsing="false" text="Click 'New Game' button to get word meaning. Click 'I'm Ready' button to start game" />
@@ -44,18 +49,13 @@
                         </MenuButton>
                     </children>
                 </HBox>
-                <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets top="-20.0" />
-                    </VBox.margin>
-                </Label>
                 <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" textAlignment="CENTER">
                     <font>
                         <Font size="18.0" />
                     </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+               </VBox.margin>
                 </Label>
                 <Label id="timer" fx:id="timerLabel" alignment="CENTER" text="60" textAlignment="CENTER">
                     <font>
