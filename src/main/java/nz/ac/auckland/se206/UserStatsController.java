@@ -27,6 +27,8 @@ public class UserStatsController {
 
   private Parent badgeViewScene;
   private BadgeViewController badgeViewController;
+  private Parent wordHistoryScene;
+  private WordHistoryController wordHistoryController;
 
   /**
    * This method loads the badgeview FXML. The reason we load it here instead of in App.java is
@@ -42,6 +44,12 @@ public class UserStatsController {
     badgeViewController = loader.getController();
     SceneManager.addUi(AppUi.BADGE_VIEW, badgeViewScene);
     SceneManager.getUiRoot(AppUi.BADGE_VIEW).getStylesheets().add("/css/badgeview.css");
+
+    loader = new FXMLLoader(App.class.getResource("/fxml/wordHistory.fxml"));
+    wordHistoryScene = loader.load();
+    wordHistoryController = loader.getController();
+    SceneManager.addUi(AppUi.WORD_HISTORY, wordHistoryScene);
+    SceneManager.getUiRoot(AppUi.WORD_HISTORY).getStylesheets().add("/css/wordChooser.css");
   }
 
   /** This method retrieves and displays the user's profile statistics */
@@ -97,7 +105,7 @@ public class UserStatsController {
       sb.setLength(0);
 
       sb.append("Previous Words: ");
-      ArrayList<String> previousWords = currentUser.getLastThreeWords();
+      ArrayList<String> previousWords = currentUser.getAllPreviousWords();
 
       // iterate through the words and append to string builder
       for (int i = 0; i < previousWords.size(); i++) {
@@ -131,7 +139,7 @@ public class UserStatsController {
    */
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
-    // retrieve the source of button and switch to the login page
+    // retrieve the source of button and switch to the main menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
@@ -148,5 +156,13 @@ public class UserStatsController {
     } catch (URISyntaxException | IOException e) {
       e.printStackTrace();
     }
+  }
+
+  @FXML
+  private void onWordHistory(ActionEvent event) {
+    // retrieve the source of button and switch to the badge view page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_HISTORY));
   }
 }

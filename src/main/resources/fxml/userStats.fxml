@@ -99,7 +99,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                        <Button fx:id="wordHistoryButton" mnemonicParsing="false" onAction="#onWordHistory" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
