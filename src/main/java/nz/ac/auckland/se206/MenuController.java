@@ -20,6 +20,9 @@ public class MenuController {
   private Parent canvasScene;
   private CanvasController canvasController;
 
+  private Parent hiddenWordCanvasScene;
+  private HiddenWordController hiddenWordController;
+
   @FXML private Button playButton;
 
   /**
@@ -52,6 +55,12 @@ public class MenuController {
     canvasController = loader.getController();
     SceneManager.addUi(AppUi.CANVAS, canvasScene);
     SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
+
+    loader = new FXMLLoader(App.class.getResource("/fxml/hiddenWordCanvas.fxml"));
+    hiddenWordCanvasScene = loader.load();
+    hiddenWordController = loader.getController();
+    SceneManager.addUi(AppUi.HIDDEN_WORD, hiddenWordCanvasScene);
+    SceneManager.getUiRoot(AppUi.HIDDEN_WORD).getStylesheets().add("/css/canvas.css");
   }
 
   /**
@@ -68,6 +77,21 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.CANVAS));
+  }
+
+  /**
+   * This method switches the root of the scene from the main menu to the hidden word mode
+   *
+   * @param event an ActionEvent representing when the play button has been clicked
+   */
+  @FXML
+  private void onPlayHiddenWord(ActionEvent event) {
+    // retrieve the source of button and switch to the canvas
+    hiddenWordController.setUpDifficulty();
+
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.HIDDEN_WORD));
   }
 
   /**
