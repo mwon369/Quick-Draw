@@ -144,24 +144,54 @@ public class WordHistoryController {
       case E:
         // only searches through the easy words
         wordListView.getItems().clear();
-        wordListView.getItems().addAll(searchList(searchTextField.getText(), userEasyWordHistory));
+        List<String> easyWords = searchList(searchTextField.getText(), userEasyWordHistory);
+
+        if (!easyWords.isEmpty()) {
+          wordListView.getItems().addAll(easyWords);
+          return;
+        }
+        // display message if no matches found
+        noWordsLabel.setText("No results found");
+
         break;
       case M:
         // only searches through the medium words
         wordListView.getItems().clear();
-        wordListView
-            .getItems()
-            .addAll(searchList(searchTextField.getText(), userMediumWordHistory));
+        List<String> mediumWords = searchList(searchTextField.getText(), userMediumWordHistory);
+
+        if (!mediumWords.isEmpty()) {
+          wordListView.getItems().addAll(mediumWords);
+          return;
+        }
+        // display message if no matches found
+        noWordsLabel.setText("No results found");
+
         break;
       case H:
         // only searches through the hard words
         wordListView.getItems().clear();
-        wordListView.getItems().addAll(searchList(searchTextField.getText(), userHardWordHistory));
+        List<String> hardWords = searchList(searchTextField.getText(), userHardWordHistory);
+
+        if (!hardWords.isEmpty()) {
+          wordListView.getItems().addAll(hardWords);
+          return;
+        }
+        // display message if no matches found
+        noWordsLabel.setText("No results found");
+
         break;
       case ALL:
         // searches through all words
         wordListView.getItems().clear();
-        wordListView.getItems().addAll(searchList(searchTextField.getText(), userWordHistory));
+        List<String> allWords = searchList(searchTextField.getText(), userWordHistory);
+
+        if (!allWords.isEmpty()) {
+          wordListView.getItems().addAll(allWords);
+          return;
+        }
+        // display message if no matches found
+        noWordsLabel.setText("No results found");
+
         break;
     }
   }
