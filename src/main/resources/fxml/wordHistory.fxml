@@ -18,17 +18,18 @@
             <children>
             <HBox prefHeight="28.0" prefWidth="760.0">
                <children>
-                        <Button fx:id="backToProfileButton" mnemonicParsing="false" onAction="#onGoBackToStats" text="Back to Profile">
+                        <Button fx:id="backToProfileButton" mnemonicParsing="false" onAction="#onGoBackToProfile" text="Back to Profile">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="80.0" />
                      </HBox.margin></Button>
                   <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#onClearFilters" text="Clear Filters">
                      <HBox.margin>
-                        <Insets left="565.0" />
-                     </HBox.margin></Button>
+                        <Insets left="380.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
-                  <Insets top="-30.0" />
+                  <Insets bottom="45.0" top="-15.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
@@ -69,13 +70,15 @@
             </StackPane>
                 <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                     <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="60.0" />
                     </VBox.margin>
                <children>
-                  <Label fx:id="filterLabel" text="Filter by:" />
                   <Button fx:id="easyWordsButton" mnemonicParsing="false" onAction="#onFilterEasyWords" text="Easy Words" />
                   <Button fx:id="mediumWordsButton" mnemonicParsing="false" onAction="#onFilterMediumWords" text="Medium Words" />
-                  <Button fx:id="hardWordsButton" mnemonicParsing="false" onAction="#onFilterHardWords" text="Hard Words" />
+                  <Button fx:id="hardWordsButton" mnemonicParsing="false" onAction="#onFilterHardWords" text="Hard Words">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                </children>
                 </HBox>
 

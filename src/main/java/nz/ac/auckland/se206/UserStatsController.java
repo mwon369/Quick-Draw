@@ -160,6 +160,7 @@ public class UserStatsController {
 
   @FXML
   private void onWordHistory(ActionEvent event) {
+    wordHistoryController.showWordHistory();
     // retrieve the source of button and switch to the badge view page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();

@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordHistoryController {
 
@@ -27,19 +30,16 @@ public class WordHistoryController {
   private ArrayList<String> userHardWordHistory;
   private User user;
 
-  public void initialize() {
+  protected void showWordHistory() {
+    user = UsersManager.getSelectedUser();
+    userWordHistory = user.getAllPreviousWords();
+    userEasyWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.E);
+    userMediumWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.M);
+    userHardWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.H);
 
-    //        user = UsersManager.getSelectedUser();
-    //        userWordHistory = user.getAllPreviousWords();
-    //        userEasyWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.E);
-    //        userMediumWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.M);
-    //        userHardWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.H);
-    //
-    //        // set list view to contain all the words loaded
-    //        wordListView.getItems().setAll(userWordHistory);
+    // set list view to contain all the words loaded
+    wordListView.getItems().setAll(userWordHistory);
   }
-
-  protected void showWordHistory() {}
 
   @FXML
   private void onFilterEasyWords() {}
@@ -51,7 +51,12 @@ public class WordHistoryController {
   private void onFilterHardWords() {}
 
   @FXML
-  private void onGoBackToStats() {}
+  private void onGoBackToProfile(ActionEvent event) {
+    // retrieve the source of button and switch to the badge view page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.USER_STATS));
+  }
 
   @FXML
   private void onClearFilters() {}
