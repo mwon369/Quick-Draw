@@ -16,6 +16,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
  * remain as the class that runs the JavaFX application.
  */
 public class App extends Application {
+  private static LoginController loginController;
+
   public static void main(final String[] args) {
     launch();
   }
@@ -40,6 +42,9 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    // Load users
+    UsersManager.loadUsersFromJson();
+
     // Add scenes and stylesheets
     SceneManager.addUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.getUiRoot(AppUi.MENU).getStylesheets().add("/css/menu.css");
@@ -47,14 +52,13 @@ public class App extends Application {
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.getUiRoot(AppUi.USER_CREATION).getStylesheets().add("/css/userCreation.css");
 
-    SceneManager.addUi(AppUi.LOGIN, loadFxml("login"));
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
+    SceneManager.addUi(AppUi.LOGIN, loader.load());
     SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
+    loginController = loader.getController();
 
     SceneManager.addUi(AppUi.ZEN_MODE, loadFxml("zenCanvas"));
     SceneManager.getUiRoot(AppUi.ZEN_MODE).getStylesheets().add("/css/canvas.css");
-
-    // Load users
-    UsersManager.loadUsersFromJson();
 
     final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 760, 680);
     stage.setScene(scene);
@@ -69,5 +73,9 @@ public class App extends Application {
             System.exit(0);
           }
         });
+  }
+
+  public static LoginController getLoginController() {
+    return loginController;
   }
 }
