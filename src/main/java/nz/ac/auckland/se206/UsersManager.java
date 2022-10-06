@@ -31,6 +31,10 @@ public class UsersManager {
     userSelected = usersMap.get(username);
   }
 
+  public static Map<String, User> getUsersMap() {
+    return usersMap;
+  }
+
   /**
    * This method returns a set of all usernames
    *
@@ -114,15 +118,11 @@ public class UsersManager {
    * canLogIn checks if the user has entered the correct user details of an existing user
    *
    * @param username username given by user
-   * @param password password given by user
-   * @return true if a user with the correct username and password is entered. False otherwise
+   * @return true if a there is a user with the username
    */
-  public static boolean canLogIn(String username, String password) {
+  public static boolean canLogIn(String username) {
     User user = usersMap.get(username);
     // checks if valid user details have been added
-    if (user == null || !user.getPassword().equals(password)) {
-      return false;
-    }
-    return true;
+    return user != null;
   }
 }

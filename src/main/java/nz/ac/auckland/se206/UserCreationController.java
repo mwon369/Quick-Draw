@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserCreationController {
@@ -14,17 +14,12 @@ public class UserCreationController {
 
   @FXML private TextField usernameField;
 
-  @FXML private PasswordField passwordField;
-
-  @FXML private PasswordField passwordCheckerField;
-
   /** This method creates an account for a new user */
   @FXML
   private void onCreateAccount() {
     // check if username or password is empty
-    if (usernameField.getText().isBlank()
-        || passwordField.getText().isBlank()
-        || passwordCheckerField.getText().isBlank()) {
+    if (usernameField.getText().isBlank()) {
+      errorMessageLabel.setTextFill(Color.RED);
       errorMessageLabel.setText("You have not entered a username and/or a password");
       errorMessageLabel.setVisible(true);
       return;
@@ -32,28 +27,23 @@ public class UserCreationController {
 
     // check if username is already taken
     if (UsersManager.getAllUsernames().contains(usernameField.getText())) {
+      errorMessageLabel.setTextFill(Color.RED);
       errorMessageLabel.setText("This username is already in use");
       errorMessageLabel.setVisible(true);
       return;
     }
 
-    // check if passwords match
-    if (!passwordField.getText().equals(passwordCheckerField.getText())) {
-      errorMessageLabel.setText("Passwords do not match");
-      errorMessageLabel.setVisible(true);
-      return;
-    }
-
     // create user
-    User newUser = new User(usernameField.getText(), passwordField.getText());
+    User newUser = new User(usernameField.getText());
     UsersManager.createUser(newUser);
+    errorMessageLabel.setTextFill(Color.GREEN);
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
 
+    App.getLoginController().loadUserGUI(newUser);
+
     // clear all fields
     usernameField.clear();
-    passwordField.clear();
-    passwordCheckerField.clear();
   }
 
   /**
@@ -63,6 +53,7 @@ public class UserCreationController {
    */
   @FXML
   private void onLoginPage(ActionEvent event) {
+    usernameField.clear();
     errorMessageLabel.setText("");
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
