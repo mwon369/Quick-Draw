@@ -112,12 +112,17 @@ public class BadgeViewController {
     return SwingFXUtils.toFXImage(bufferImage, null);
   }
 
+  private void showInformation() {
+    badgeTitleLabel.setVisible(true);
+    badgeDescriptionLabel.setVisible(true);
+    badgeDescriptionLabel.setWrapText(true);
+  }
+
   @FXML
   private void onBadgeOneSelect() {
     badgeTitleLabel.setText(badgeList.get(0).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(0).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeOnePane");
   }
 
@@ -125,8 +130,7 @@ public class BadgeViewController {
   private void onBadgeTwoSelect() {
     badgeTitleLabel.setText(badgeList.get(1).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(1).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeTwoPane");
   }
 
@@ -134,8 +138,7 @@ public class BadgeViewController {
   private void onBadgeThreeSelect() {
     badgeTitleLabel.setText(badgeList.get(2).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(2).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeThreePane");
   }
 
@@ -143,8 +146,7 @@ public class BadgeViewController {
   private void onBadgeFourSelect() {
     badgeTitleLabel.setText(badgeList.get(3).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(3).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeFourPane");
   }
 
@@ -152,8 +154,7 @@ public class BadgeViewController {
   private void onBadgeFiveSelect() {
     badgeTitleLabel.setText(badgeList.get(4).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(4).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeFivePane");
   }
 
@@ -161,8 +162,7 @@ public class BadgeViewController {
   private void onBadgeSixSelect() {
     badgeTitleLabel.setText(badgeList.get(5).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(5).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeSixPane");
   }
 
@@ -170,8 +170,7 @@ public class BadgeViewController {
   private void onBadgeSevenSelect() {
     badgeTitleLabel.setText(badgeList.get(6).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(6).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeSevenPane");
   }
 
@@ -179,8 +178,7 @@ public class BadgeViewController {
   private void onBadgeEightSelect() {
     badgeTitleLabel.setText(badgeList.get(7).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(7).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeEightPane");
   }
 
@@ -188,8 +186,7 @@ public class BadgeViewController {
   private void onBadgeNineSelect() {
     badgeTitleLabel.setText(badgeList.get(8).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(8).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeNinePane");
   }
 
@@ -197,8 +194,7 @@ public class BadgeViewController {
   private void onBadgeTenSelect() {
     badgeTitleLabel.setText(badgeList.get(9).getTitle());
     badgeDescriptionLabel.setText(badgeList.get(9).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
+    showInformation();
     this.colorCurrentTool("badgeTenPane");
   }
 

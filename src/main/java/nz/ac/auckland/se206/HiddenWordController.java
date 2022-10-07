@@ -21,7 +21,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -435,7 +440,8 @@ public class HiddenWordController {
    * @return true if the target word is in the list of classifications, false otherwise
    */
   private boolean isWin(List<Classification> classifications, int margin, double confidence) {
-    // scan through classifications and check if the target word is in it and confidence is
+    // scan through classifications and check if the target word is in it and
+    // confidence is
     // sufficient with rounding
     for (int i = 0; i < margin; i++) {
       if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)
