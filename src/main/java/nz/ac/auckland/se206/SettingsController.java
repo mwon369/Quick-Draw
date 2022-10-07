@@ -2,19 +2,24 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.animation.Animation;
+import javafx.animation.ScaleTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.DifficultyManager.Difficulty;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class SettingsController {
+  @FXML private Label title;
   @FXML private ToggleGroup accuracy;
   @FXML private RadioButton easyAccuracy;
   @FXML private RadioButton mediumAccuracy;
@@ -103,6 +108,16 @@ public class SettingsController {
                 }
               }
             });
+
+    // define title animation
+    ScaleTransition st = new ScaleTransition(Duration.millis(750), title);
+    st.setFromX(1);
+    st.setFromY(1);
+    st.setToX(1.15);
+    st.setToY(1.15);
+    st.setCycleCount(Animation.INDEFINITE);
+    st.setAutoReverse(true);
+    st.play();
   }
 
   /** This method loads the user's selected difficulties and makes certain radio buttons selected */
