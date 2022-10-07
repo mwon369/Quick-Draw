@@ -2,6 +2,10 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Map;
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
+import javafx.animation.PathTransition.OrientationType;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LoginController {
@@ -21,11 +27,14 @@ public class LoginController {
 
   @FXML private ScrollPane profilesScrollPane;
 
+  @FXML private Path path;
+  @FXML private ImageView borderIcon;
+
   private Map<String, User> users;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
-   * vboxes
+   * vboxes. Also starts the animation for the border
    *
    * @throws IOException
    */
@@ -38,6 +47,16 @@ public class LoginController {
     for (User user : users.values()) {
       loadUserGUI(user);
     }
+
+    // set animation for the border
+    PathTransition pathTransition = new PathTransition();
+    pathTransition.setDuration(Duration.millis(5000));
+    pathTransition.setPath(path);
+    pathTransition.setNode(borderIcon);
+    pathTransition.setCycleCount(Timeline.INDEFINITE);
+    pathTransition.setInterpolator(Interpolator.LINEAR);
+    pathTransition.setOrientation(OrientationType.ORTHOGONAL_TO_TANGENT);
+    pathTransition.play();
   }
 
   public void loadUserGUI(User user) {

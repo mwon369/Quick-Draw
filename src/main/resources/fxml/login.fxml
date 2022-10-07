@@ -8,6 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.ClosePath?>
+<?import javafx.scene.shape.LineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
 <?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="643.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.LoginController">
@@ -17,6 +21,15 @@
             <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
+      <Path fx:id="path" fill="#1f93ff00" stroke="TRANSPARENT" strokeType="INSIDE">
+         <elements>
+            <MoveTo x="-305.0" y="-240.0" />
+            <LineTo x="410.0" y="-240.0" />
+            <LineTo x="410.0" y="260.0" />
+            <LineTo x="-305.0" y="260.0" />
+            <ClosePath />
+         </elements>
+      </Path>
       <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" spacing="30.0">
          <children>
             <Label styleClass="title" text="Welcome to Quick, Draw!">
@@ -75,6 +88,11 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-125.0">
          <image>
             <Image url="@../videos/penDrawing.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="borderIcon" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/borderIcon.png" />
          </image>
       </ImageView>
    </children>
