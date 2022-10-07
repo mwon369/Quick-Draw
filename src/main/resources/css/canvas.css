@@ -178,6 +178,7 @@
 .hintDialog > *.button-bar > *.container{
     -fx-background-color: #F8ECC4;
 }
+
 .hintDialog:header *.header-panel *.label{
     -fx-font-family: 'Indie Flower', cursive;
     -fx-font-size: 18px;
