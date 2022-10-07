@@ -29,6 +29,7 @@ public class WordHistoryController {
   @FXML private TextField searchTextField;
 
   @FXML private Label noWordsLabel;
+  @FXML private Label filterLabel;
 
   private ArrayList<String> userWordHistory;
   private ArrayList<String> userEasyWordHistory;
@@ -65,7 +66,8 @@ public class WordHistoryController {
     userMediumWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.M);
     userHardWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.H);
 
-    //    wordListView.getItems().clear();
+    // tell user what theyre filtering by
+    filterLabel.setText("Filtering search by: ALL words");
 
     // set list view to display all the words played if the user has played a game before
     difficultyFilter = difficultyFilters.ALL;
@@ -75,6 +77,7 @@ public class WordHistoryController {
       return;
     }
     // otherwise notify them that they haven't played a game
+    noWordsLabel.setWrapText(true);
     noWordsLabel.setText("You haven't played a game yet!");
   }
 
@@ -85,6 +88,9 @@ public class WordHistoryController {
     searchTextField.clear();
     wordListView.getItems().clear();
 
+    // tell user what theyre filtering by
+    filterLabel.setText("Filtering search by: EASY words");
+
     // set list view to display all the easy words played if user has played
     // at least one easy word
     if (!userEasyWordHistory.isEmpty()) {
@@ -93,6 +99,7 @@ public class WordHistoryController {
       return;
     }
     // otherwise notify them that they haven't played any easy words
+    noWordsLabel.setWrapText(true);
     noWordsLabel.setText("You haven't played any easy words yet!");
   }
 
@@ -103,6 +110,9 @@ public class WordHistoryController {
     searchTextField.clear();
     wordListView.getItems().clear();
 
+    // tell user what theyre filtering by
+    filterLabel.setText("Filtering search by: MEDIUM words");
+
     // set list view to display all the medium words played if user has played
     // at least one medium word
     if (!userMediumWordHistory.isEmpty()) {
@@ -111,6 +121,7 @@ public class WordHistoryController {
       return;
     }
     // otherwise notify them that they haven't played any medium words
+    noWordsLabel.setWrapText(true);
     noWordsLabel.setText("You haven't played any medium words yet!");
   }
 
@@ -121,6 +132,9 @@ public class WordHistoryController {
     searchTextField.clear();
     wordListView.getItems().clear();
 
+    // tell user what theyre filtering by
+    filterLabel.setText("Filtering search by: HARD words");
+
     // set list view to display all the hard words played if user has played
     // at least one hard word
     if (!userHardWordHistory.isEmpty()) {
@@ -129,6 +143,7 @@ public class WordHistoryController {
       return;
     }
     // otherwise notify them that they haven't played any hard words
+    noWordsLabel.setWrapText(true);
     noWordsLabel.setText("You haven't played any hard words yet!");
   }
 
@@ -139,6 +154,8 @@ public class WordHistoryController {
     searchTextField.clear();
     wordListView.getItems().clear();
 
+    filterLabel.setText("Filtering search by: ALL words");
+
     // set list view to display all the words played if the user has played a game before
     if (!userWordHistory.isEmpty()) {
       noWordsLabel.setText("");
@@ -146,6 +163,7 @@ public class WordHistoryController {
       return;
     }
     // otherwise notify them that they haven't played a game
+    noWordsLabel.setWrapText(true);
     noWordsLabel.setText("You haven't played a game yet!");
   }
 
@@ -167,6 +185,7 @@ public class WordHistoryController {
           return;
         }
         // display message if no matches found
+        noWordsLabel.setWrapText(true);
         noWordsLabel.setText("No results found");
 
         break;
@@ -180,6 +199,7 @@ public class WordHistoryController {
           return;
         }
         // display message if no matches found
+        noWordsLabel.setWrapText(true);
         noWordsLabel.setText("No results found");
 
         break;
@@ -193,6 +213,7 @@ public class WordHistoryController {
           return;
         }
         // display message if no matches found
+        noWordsLabel.setWrapText(true);
         noWordsLabel.setText("No results found");
 
         break;
@@ -206,6 +227,7 @@ public class WordHistoryController {
           return;
         }
         // display message if no matches found
+        noWordsLabel.setWrapText(true);
         noWordsLabel.setText("No results found");
 
         break;

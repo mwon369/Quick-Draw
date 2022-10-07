@@ -77,15 +77,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="previousWordsLabel" styleClass="statLabel" text="Previous Words: ">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <HBox alignment="CENTER" minHeight="36.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="20.0">

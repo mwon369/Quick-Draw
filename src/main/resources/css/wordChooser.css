@@ -85,3 +85,17 @@
 	-fx-font-size: 16px;
 	-fx-font-style: normal;
 }
+
+#noWordsLabel {
+    -fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 20px;
+}
+
+#filterLabel {
+    -fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 24px;
+}
