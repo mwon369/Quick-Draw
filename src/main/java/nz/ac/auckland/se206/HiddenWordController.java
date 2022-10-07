@@ -33,6 +33,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -91,6 +92,11 @@ public class HiddenWordController {
   @FXML private ImageView saveIcon;
   @FXML private ImageView soundIcon;
 
+  @FXML private Circle topTwoHundredCircle;
+  @FXML private Circle topOneHundredCircle;
+  @FXML private Circle topFiftyCircle;
+  @FXML private Circle topTwentyFiveCircle;
+
   private List<Pane> toolPanes;
 
   private TextToSpeech textToSpeech;
@@ -104,6 +110,7 @@ public class HiddenWordController {
   private int userLosses;
   private int userFastestWin;
   private int userStreak;
+  private int wordPosition = -1;
 
   // mouse coordinates
   private double currentX;
@@ -313,8 +320,12 @@ public class HiddenWordController {
                     // Only starts predicting once the player has started drawing
                     if (isDrawing) {
                       // retrieve predictions list and update the JavaFx ListView component
-                      classifications = model.getPredictions(getCurrentSnapshot(), 10);
+                      classifications = model.getPredictions(getCurrentSnapshot(), 340);
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
+                      wordPosition = findWordPosition() + 1;
+                      if (wordPosition != 0) {
+                        updateIndicator();
+                      }
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
                       colourTopPredictions(predictionsListView, accuracy);
@@ -701,5 +712,44 @@ public class HiddenWordController {
         e.printStackTrace();
       }
     }
+  }
+
+  private void updateIndicator() {
+    if (wordPosition <= 200) {
+      topTwoHundredCircle.setFill(Color.GREEN);
+    } else {
+      topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 100) {
+      topOneHundredCircle.setFill(Color.GREEN);
+    } else {
+      topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 50) {
+      topFiftyCircle.setFill(Color.GREEN);
+    } else {
+      topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 25) {
+      topTwentyFiveCircle.setFill(Color.GREEN);
+    } else {
+      topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+  }
+
+  private void resetIndicator() {
+    topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+  }
+
+  private int findWordPosition() {
+    for (Classification classification : classifications) {
+      if (classification.getClassName().equals(targetCategory)) {
+        return classifications.indexOf(classification);
+      }
+    }
+    return -1;
   }
 }
