@@ -8,10 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.ClosePath?>
-<?import javafx.scene.shape.LineTo?>
-<?import javafx.scene.shape.MoveTo?>
-<?import javafx.scene.shape.Path?>
 <?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="643.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.LoginController">
@@ -21,25 +17,22 @@
             <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
-      <Path fx:id="path" fill="#1f93ff00" stroke="TRANSPARENT" strokeType="INSIDE">
-         <elements>
-            <MoveTo x="-305.0" y="-240.0" />
-            <LineTo x="410.0" y="-240.0" />
-            <LineTo x="410.0" y="260.0" />
-            <LineTo x="-305.0" y="260.0" />
-            <ClosePath />
-         </elements>
-      </Path>
       <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" spacing="30.0">
          <children>
-            <Label styleClass="title" text="Welcome to Quick, Draw!">
-               <font>
-                  <Font size="42.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="40.0" />
-               </VBox.margin>
-            </Label>
+            <StackPane>
+               <children>
+                  <Label fx:id="smallTitle" styleClass="title" text="Welcome to Quick, Draw!">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="bigTitle" styleClass="title" text="Welcome to Quick, Draw!">
+                     <font>
+                        <Font size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
             <Label id="signInTitle" text="Sign in">
                <font>
                   <Font name="System Bold" size="36.0" />
@@ -56,14 +49,14 @@
                   <Insets bottom="-20.0" top="-20.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane fx:id="profilesScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="150.0" prefWidth="680.0" vbarPolicy="NEVER">
+            <ScrollPane fx:id="profilesScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="180.0" prefWidth="680.0" vbarPolicy="NEVER">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
                <content>
                   <HBox fx:id="profilesHBox" alignment="CENTER" spacing="20.0">
                      <children>
-                        <VBox alignment="CENTER" minWidth="105.0" prefWidth="105.0">
+                        <VBox alignment="CENTER" maxHeight="130.0" minWidth="105.0" onMouseEntered="#onProfileHover" onMouseExited="#onProfileExited" prefHeight="130.0" prefWidth="105.0">
                            <children>
                               <ImageView fx:id="registerButton" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onRegister" pickOnBounds="true" preserveRatio="true" styleClass="registerButton">
                                  <image>
@@ -77,6 +70,9 @@
                            </HBox.margin>
                         </VBox>
                      </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
                   </HBox>
                </content>
             </ScrollPane>
@@ -85,14 +81,9 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-125.0">
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="230.0" translateY="-125.0">
          <image>
             <Image url="@../videos/penDrawing.gif" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="borderIcon" fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/borderIcon.png" />
          </image>
       </ImageView>
    </children>

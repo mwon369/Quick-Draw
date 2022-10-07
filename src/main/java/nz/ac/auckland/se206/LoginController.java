@@ -2,10 +2,11 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Map;
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
-import javafx.animation.Timeline;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -16,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -27,14 +27,16 @@ public class LoginController {
 
   @FXML private ScrollPane profilesScrollPane;
 
-  @FXML private Path path;
-  @FXML private ImageView borderIcon;
+  @FXML private Label smallTitle;
+  @FXML private Label bigTitle;
+
+  private RotateTransition rotation;
 
   private Map<String, User> users;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
-   * vboxes. Also starts the animation for the border
+   * vboxes. Also starts the animation for the title
    *
    * @throws IOException
    */
@@ -48,27 +50,44 @@ public class LoginController {
       loadUserGUI(user);
     }
 
-    // set animation for the border
-    PathTransition pathTransition = new PathTransition();
-    pathTransition.setDuration(Duration.millis(5000));
-    pathTransition.setPath(path);
-    pathTransition.setNode(borderIcon);
-    pathTransition.setCycleCount(Timeline.INDEFINITE);
-    pathTransition.setInterpolator(Interpolator.LINEAR);
-    pathTransition.setOrientation(OrientationType.ORTHOGONAL_TO_TANGENT);
-    pathTransition.play();
+    // set animation for the title
+    Timer timer = new Timer();
+    bigTitle.setVisible(false);
+    timer.scheduleAtFixedRate(
+        new TimerTask() {
+          @Override
+          public void run() {
+            Platform.runLater(
+                () -> {
+                  bigTitle.setVisible(!bigTitle.isVisible());
+                  smallTitle.setVisible(!smallTitle.isVisible());
+                });
+          }
+        },
+        0,
+        430);
   }
 
+  /**
+   * This method loads a user into a vbox on the login page
+   *
+   * @param user The user to be loaded
+   */
   public void loadUserGUI(User user) {
     VBox vbox = new VBox();
     Label username = new Label(user.getUsername());
     username.getStyleClass().add("username");
+    // create image
     ImageView image = new ImageView("/images/personIcon.png");
     image.setFitHeight(100);
+    // add vbox details
     vbox.getChildren().add(image);
     vbox.getChildren().add(username);
     vbox.getStyleClass().add("profileCard");
     vbox.setOnMouseClicked((e) -> onLogin(e));
+    vbox.setOnMouseEntered((e) -> onProfileHover(e));
+    vbox.setOnMouseExited((e) -> onProfileExited(e));
+    vbox.setMaxHeight(130);
     profilesHBox.getChildren().add(0, vbox);
   }
 
@@ -96,6 +115,35 @@ public class LoginController {
         return;
       }
     }
+  }
+
+  /**
+   * This method makes the profile vbox wobble left and right upon mouse hover
+   *
+   * @param event
+   */
+  @FXML
+  private void onProfileHover(MouseEvent event) {
+    VBox vbox = (VBox) event.getSource();
+    // set the rotation details
+    rotation = new RotateTransition(Duration.seconds(0.4), vbox);
+    rotation.setCycleCount(Animation.INDEFINITE);
+    rotation.setByAngle(15);
+    rotation.setFromAngle(-7.5);
+    rotation.setAutoReverse(true);
+    rotation.play();
+  }
+
+  /**
+   * This method stops the profile vbox wobble upon mouse exit
+   *
+   * @param event
+   */
+  @FXML
+  private void onProfileExited(MouseEvent event) {
+    VBox vbox = (VBox) event.getSource();
+    vbox.setRotate(0);
+    rotation.stop();
   }
 
   /**
