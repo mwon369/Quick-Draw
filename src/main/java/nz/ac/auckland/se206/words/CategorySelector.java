@@ -66,4 +66,13 @@ public class CategorySelector {
   public List<String> getWordList(CategoryDifficulty difficulty) {
     return difficultyToCategories.get(difficulty);
   }
+
+  public String getRandomWord() throws IOException, URISyntaxException, CsvException {
+    List<String[]> lines = getLines();
+    ArrayList<String> words = new ArrayList<>();
+    for (String[] line : lines) {
+      words.add(line[0]);
+    }
+    return words.get(new Random().nextInt(words.size()));
+  }
 }

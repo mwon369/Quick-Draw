@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
+import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -38,6 +39,7 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.words.CategorySelector;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -64,6 +66,7 @@ public class ZenCanvasController {
   @FXML private Button mainMenuButton;
   @FXML protected Button readyButton;
   @FXML private Button chooseWordButton;
+  @FXML private Button randomWordButton;
 
   private GraphicsContext graphic;
   private DoodlePrediction model;
@@ -101,6 +104,8 @@ public class ZenCanvasController {
 
   private Parent wordChooserScene;
   private WordChooserController wordChooserController;
+
+  private CategorySelector categorySelector;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -249,6 +254,31 @@ public class ZenCanvasController {
   }
 
   /**
+   * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
+   * the ready button
+   */
+  @FXML
+  private void onGetRandomWord() throws IOException, URISyntaxException, CsvException {
+    // clear canvas
+    resetCanvas();
+
+    // get random category and display to user
+    categorySelector = new CategorySelector();
+    targetCategory = categorySelector.getRandomWord();
+    wordLabel.setText("Your word is: " + targetCategory);
+    readyButton.setDisable(false);
+
+    // cancel timer
+    if (timer != null) {
+      timer.cancel();
+    }
+    timer = new Timer();
+
+    // clear the predictions list
+    predictionsListView.getItems().clear();
+  }
+
+  /**
    * Readies the game by enabling the canvas and starting the timer. Will disable the ready button
    */
   @FXML
@@ -300,6 +330,9 @@ public class ZenCanvasController {
                         outcomeLabel.setText(
                             "Nice, you've won! Feel free to keep drawing or choose a new word!");
                         outcomeLabel.setVisible(true);
+
+                        // stop making predictions after user has won
+                        timer.cancel();
                       }
                     }
                   } catch (TranslateException e) {
