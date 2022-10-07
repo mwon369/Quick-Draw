@@ -2,11 +2,8 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -27,16 +24,13 @@ public class LoginController {
 
   @FXML private ScrollPane profilesScrollPane;
 
-  @FXML private Label smallTitle;
-  @FXML private Label bigTitle;
-
   private RotateTransition rotation;
 
   private Map<String, User> users;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
-   * vboxes. Also starts the animation for the title
+   * vboxes
    *
    * @throws IOException
    */
@@ -49,23 +43,6 @@ public class LoginController {
     for (User user : users.values()) {
       loadUserGUI(user);
     }
-
-    // set animation for the title
-    Timer timer = new Timer();
-    bigTitle.setVisible(false);
-    timer.scheduleAtFixedRate(
-        new TimerTask() {
-          @Override
-          public void run() {
-            Platform.runLater(
-                () -> {
-                  bigTitle.setVisible(!bigTitle.isVisible());
-                  smallTitle.setVisible(!smallTitle.isVisible());
-                });
-          }
-        },
-        0,
-        430);
   }
 
   /**
