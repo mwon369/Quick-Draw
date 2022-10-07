@@ -5,12 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordHistoryController {
@@ -40,6 +43,19 @@ public class WordHistoryController {
   }
 
   protected static difficultyFilters difficultyFilter;
+
+  public void initialize() {
+    // add event handler so user can search by pressing the ENTER key
+    searchTextField.setOnKeyPressed(
+        new EventHandler<KeyEvent>() {
+          @Override
+          public void handle(KeyEvent key) {
+            if (key.getCode().equals(KeyCode.ENTER)) {
+              onSearch();
+            }
+          }
+        });
+  }
 
   protected void showWordHistory() {
     // initialize variables to store user words

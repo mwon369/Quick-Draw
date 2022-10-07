@@ -49,7 +49,7 @@ public class CategorySelector {
         .get(new Random().nextInt(difficultyToCategories.get(difficulty).size()));
   }
 
-  protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
+  public List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File fileName =
         new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());
 
