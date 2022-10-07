@@ -22,7 +22,7 @@
       </ImageView>
       <VBox id="settingsVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="660.0" spacing="40.0">
          <children>
-            <Label styleClass="title" text="Choose your difficulty">
+            <Label fx:id="title" styleClass="title" text="Choose your difficulty">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>

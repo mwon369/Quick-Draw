@@ -2,6 +2,8 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Map;
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LoginController {
@@ -20,6 +23,8 @@ public class LoginController {
   @FXML private HBox profilesHBox;
 
   @FXML private ScrollPane profilesScrollPane;
+
+  private RotateTransition rotation;
 
   private Map<String, User> users;
 
@@ -40,16 +45,26 @@ public class LoginController {
     }
   }
 
+  /**
+   * This method loads a user into a vbox on the login page
+   *
+   * @param user The user to be loaded
+   */
   public void loadUserGUI(User user) {
     VBox vbox = new VBox();
     Label username = new Label(user.getUsername());
     username.getStyleClass().add("username");
+    // create image
     ImageView image = new ImageView("/images/personIcon.png");
     image.setFitHeight(100);
+    // add vbox details
     vbox.getChildren().add(image);
     vbox.getChildren().add(username);
     vbox.getStyleClass().add("profileCard");
     vbox.setOnMouseClicked((e) -> onLogin(e));
+    vbox.setOnMouseEntered((e) -> onProfileHover(e));
+    vbox.setOnMouseExited((e) -> onProfileExited(e));
+    vbox.setMaxHeight(130);
     profilesHBox.getChildren().add(0, vbox);
   }
 
@@ -62,8 +77,10 @@ public class LoginController {
   private void onLogin(MouseEvent event) {
     VBox vbox = (VBox) event.getSource();
     for (Node node : vbox.getChildren()) {
+      // retrieve username in vbox
       if (node instanceof Label) {
         Label username = (Label) node;
+        // if user cannot log in for some reason, display error message
         if (!UsersManager.canLogIn(username.getText())) {
           errorMessageLabel.setTextFill(Color.RED);
           errorMessageLabel.setText("Error occured while signing you in!");
@@ -77,6 +94,35 @@ public class LoginController {
         return;
       }
     }
+  }
+
+  /**
+   * This method makes the profile vbox wobble left and right upon mouse hover
+   *
+   * @param event
+   */
+  @FXML
+  private void onProfileHover(MouseEvent event) {
+    VBox vbox = (VBox) event.getSource();
+    // set the rotation details
+    rotation = new RotateTransition(Duration.seconds(0.4), vbox);
+    rotation.setCycleCount(Animation.INDEFINITE);
+    rotation.setByAngle(15);
+    rotation.setFromAngle(-7.5);
+    rotation.setAutoReverse(true);
+    rotation.play();
+  }
+
+  /**
+   * This method stops the profile vbox wobble upon mouse exit
+   *
+   * @param event
+   */
+  @FXML
+  private void onProfileExited(MouseEvent event) {
+    VBox vbox = (VBox) event.getSource();
+    vbox.setRotate(0);
+    rotation.stop();
   }
 
   /**
