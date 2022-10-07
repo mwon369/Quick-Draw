@@ -16,15 +16,15 @@
     <children>
         <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
             <children>
-            <HBox prefHeight="28.0" prefWidth="760.0">
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="760.0">
                <children>
                         <Button fx:id="backToProfileButton" mnemonicParsing="false" onAction="#onGoBackToProfile" text="Back to Profile">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets />
                      </HBox.margin></Button>
                   <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#onClearFilters" text="Clear Filters">
                      <HBox.margin>
-                        <Insets left="380.0" />
+                        <Insets left="450.0" />
                      </HBox.margin>
                   </Button>
                </children>
