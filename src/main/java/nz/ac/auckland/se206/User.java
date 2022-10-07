@@ -31,7 +31,7 @@ public class User {
   // private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
 
-  private ArrayList<String> lastThreeWords;
+  private ArrayList<String> allPreviousWords;
 
   // difficulty settings
   private Difficulty accuracyDifficulty;
@@ -45,7 +45,7 @@ public class User {
     // assign the fields for each new user created
     this.username = username;
     this.fastestWin = 60;
-    this.lastThreeWords = new ArrayList<String>();
+    this.allPreviousWords = new ArrayList<String>();
     this.badgeList = new ArrayList<>();
     this.badgeDataList = new ArrayList<>();
 
@@ -170,7 +170,7 @@ public class User {
    */
   public void updateWordList(CategoryDifficulty difficulty, String word) {
     wordList.get(difficulty).remove(word);
-    wordsGiven.get(difficulty).add(word);
+    wordsGiven.get(difficulty).add(0, word);
   }
 
   public ArrayList<String> getWordsGiven(CategoryDifficulty difficulty) {
@@ -276,15 +276,12 @@ public class User {
    *
    * @param category the new word to add in
    */
-  public void updateLastThreeWords(String category) {
-    lastThreeWords.add(0, category);
-    if (lastThreeWords.size() > 3) {
-      lastThreeWords.remove(lastThreeWords.size() - 1);
-    }
+  public void updatePreviousWords(String category) {
+    allPreviousWords.add(0, category);
   }
 
-  public ArrayList<String> getLastThreeWords() {
-    return this.lastThreeWords;
+  public ArrayList<String> getAllPreviousWords() {
+    return this.allPreviousWords;
   }
 
   public void loadBadgeList() {

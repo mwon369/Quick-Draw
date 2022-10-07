@@ -49,7 +49,7 @@ public class CategorySelector {
         .get(new Random().nextInt(difficultyToCategories.get(difficulty).size()));
   }
 
-  protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
+  public List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File fileName =
         new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());
 
@@ -65,5 +65,14 @@ public class CategorySelector {
 
   public List<String> getWordList(CategoryDifficulty difficulty) {
     return difficultyToCategories.get(difficulty);
+  }
+
+  public String getRandomWord() throws IOException, URISyntaxException, CsvException {
+    List<String[]> lines = getLines();
+    ArrayList<String> words = new ArrayList<>();
+    for (String[] line : lines) {
+      words.add(line[0]);
+    }
+    return words.get(new Random().nextInt(words.size()));
   }
 }
