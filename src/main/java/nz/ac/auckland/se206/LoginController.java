@@ -100,8 +100,10 @@ public class LoginController {
   private void onLogin(MouseEvent event) {
     VBox vbox = (VBox) event.getSource();
     for (Node node : vbox.getChildren()) {
+      // retrieve username in vbox
       if (node instanceof Label) {
         Label username = (Label) node;
+        // if user cannot log in for some reason, display error message
         if (!UsersManager.canLogIn(username.getText())) {
           errorMessageLabel.setTextFill(Color.RED);
           errorMessageLabel.setText("Error occured while signing you in!");
