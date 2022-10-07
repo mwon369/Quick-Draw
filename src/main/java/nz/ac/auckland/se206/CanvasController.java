@@ -412,7 +412,7 @@ public class CanvasController {
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
-      if (i == 10) {
+      if (i == 11) {
         break;
       }
     }
@@ -663,7 +663,7 @@ public class CanvasController {
 
   private int findWordPosition() {
     for (Classification classification : classifications) {
-      if (classification.getClassName().equals(targetCategory)) {
+      if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
         return classifications.indexOf(classification);
       }
     }

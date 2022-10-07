@@ -168,6 +168,7 @@ public class HiddenWordController {
     isPenDrawn = false;
     isDrawing = false;
     predictionsListView.getItems().setAll("");
+    resetIndicator();
   }
 
   /**
@@ -219,6 +220,7 @@ public class HiddenWordController {
   }
 
   private void resetCanvas() {
+    resetIndicator();
     isPenDrawn = false;
     isGameOver = true;
     // reset the category label
@@ -240,7 +242,6 @@ public class HiddenWordController {
    */
   @FXML
   private void onStartNewGame() {
-
     resetCanvas();
     // get user fields and target category
     userStreak = user.getWinStreak();
@@ -440,6 +441,9 @@ public class HiddenWordController {
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
+      if (i == 11) {
+        break;
+      }
     }
     return predictionsListForDisplay;
   }
@@ -746,7 +750,7 @@ public class HiddenWordController {
 
   private int findWordPosition() {
     for (Classification classification : classifications) {
-      if (classification.getClassName().equals(targetCategory)) {
+      if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
         return classifications.indexOf(classification);
       }
     }
