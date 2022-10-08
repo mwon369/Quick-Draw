@@ -629,7 +629,14 @@ public class ZenCanvasController {
     }
   }
 
+  /**
+   * This method updates the indicators depending on the current position of the word being drawn
+   */
   private void updateIndicator() {
+    /*
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
+     */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
     } else {
@@ -652,14 +659,22 @@ public class ZenCanvasController {
     }
   }
 
+  /** This method resets the all indicators of the word's current position to transparent */
   private void resetIndicator() {
+    // Resetting all indicators
     topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
     topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
     topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
     topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
   }
 
+  /**
+   * This method finds the position of the word in the prediction list
+   *
+   * @return the index of the location of the word to draw
+   */
   private int findWordPosition() {
+    // Finding the position of the word in the prediction list
     for (Classification classification : classifications) {
       if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
         return classifications.indexOf(classification);

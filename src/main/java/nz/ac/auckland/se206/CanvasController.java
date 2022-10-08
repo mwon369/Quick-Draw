@@ -482,6 +482,12 @@ public class CanvasController {
         10000);
   }
 
+  /**
+   * This method mutes and unmutes the text to speech from speaking the top 3 predictions
+   *
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
     isMuted = isMuted ? false : true;
@@ -489,6 +495,14 @@ public class CanvasController {
     soundIcon.setImage(loadImage(soundState));
   }
 
+  /**
+   * This method loads an image into an image class to be used by an ImageView class
+   *
+   * @param soundState the name of the image to be loaded
+   * @return
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   private Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
@@ -631,7 +645,14 @@ public class CanvasController {
     }
   }
 
+  /**
+   * This method updates the indicators depending on the current position of the word being drawn
+   */
   private void updateIndicator() {
+    /*
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
+     */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
     } else {
@@ -654,14 +675,22 @@ public class CanvasController {
     }
   }
 
+  /** This method resets the all indicators of the word's current position to transparent */
   private void resetIndicator() {
+    // Resetting all indicators
     topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
     topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
     topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
     topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
   }
 
+  /**
+   * This method finds the position of the word in the prediction list
+   *
+   * @return the index of the location of the word to draw
+   */
   private int findWordPosition() {
+    // Finding the position of the word in the prediction list
     for (Classification classification : classifications) {
       if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
         return classifications.indexOf(classification);
