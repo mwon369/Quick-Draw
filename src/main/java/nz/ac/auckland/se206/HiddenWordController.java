@@ -21,13 +21,19 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -86,6 +92,11 @@ public class HiddenWordController {
   @FXML private ImageView saveIcon;
   @FXML private ImageView soundIcon;
 
+  @FXML private Circle topTwoHundredCircle;
+  @FXML private Circle topOneHundredCircle;
+  @FXML private Circle topFiftyCircle;
+  @FXML private Circle topTwentyFiveCircle;
+
   private List<Pane> toolPanes;
 
   private TextToSpeech textToSpeech;
@@ -99,6 +110,7 @@ public class HiddenWordController {
   private int userLosses;
   private int userFastestWin;
   private int userStreak;
+  private int wordPosition = -1;
 
   // mouse coordinates
   private double currentX;
@@ -156,6 +168,7 @@ public class HiddenWordController {
     isPenDrawn = false;
     isDrawing = false;
     predictionsListView.getItems().setAll("");
+    resetIndicator();
   }
 
   /**
@@ -207,6 +220,7 @@ public class HiddenWordController {
   }
 
   private void resetCanvas() {
+    resetIndicator();
     isPenDrawn = false;
     isGameOver = true;
     // reset the category label
@@ -228,7 +242,6 @@ public class HiddenWordController {
    */
   @FXML
   private void onStartNewGame() {
-
     resetCanvas();
     // get user fields and target category
     userStreak = user.getWinStreak();
@@ -308,8 +321,12 @@ public class HiddenWordController {
                     // Only starts predicting once the player has started drawing
                     if (isDrawing) {
                       // retrieve predictions list and update the JavaFx ListView component
-                      classifications = model.getPredictions(getCurrentSnapshot(), 10);
+                      classifications = model.getPredictions(getCurrentSnapshot(), 340);
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
+                      wordPosition = findWordPosition() + 1;
+                      if (wordPosition != 0) {
+                        updateIndicator();
+                      }
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
                       colourTopPredictions(predictionsListView, accuracy);
@@ -424,6 +441,9 @@ public class HiddenWordController {
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
+      if (i == 11) {
+        break;
+      }
     }
     return predictionsListForDisplay;
   }
@@ -435,7 +455,8 @@ public class HiddenWordController {
    * @return true if the target word is in the list of classifications, false otherwise
    */
   private boolean isWin(List<Classification> classifications, int margin, double confidence) {
-    // scan through classifications and check if the target word is in it and confidence is
+    // scan through classifications and check if the target word is in it and
+    // confidence is
     // sufficient with rounding
     for (int i = 0; i < margin; i++) {
       if (classifications.get(i).getClassName().replace("_", " ").equals(targetCategory)
@@ -490,6 +511,12 @@ public class HiddenWordController {
         10000);
   }
 
+  /**
+   * This method mutes and unmutes the text to speech from speaking the top 3 predictions
+   *
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
     isMuted = isMuted ? false : true;
@@ -497,6 +524,14 @@ public class HiddenWordController {
     soundIcon.setImage(loadImage(soundState));
   }
 
+  /**
+   * This method loads an image into an image class to be used by an ImageView class
+   *
+   * @param soundState the name of the image to be loaded
+   * @return
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   private Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
@@ -695,5 +730,59 @@ public class HiddenWordController {
         e.printStackTrace();
       }
     }
+  }
+
+  /**
+   * This method updates the indicators depending on the current position of the word being drawn
+   */
+  private void updateIndicator() {
+    /*
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
+     */
+    if (wordPosition <= 200) {
+      topTwoHundredCircle.setFill(Color.GREEN);
+    } else {
+      topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 100) {
+      topOneHundredCircle.setFill(Color.GREEN);
+    } else {
+      topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 50) {
+      topFiftyCircle.setFill(Color.GREEN);
+    } else {
+      topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 25) {
+      topTwentyFiveCircle.setFill(Color.GREEN);
+    } else {
+      topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+  }
+
+  /** This method resets the all indicators of the word's current position to transparent */
+  private void resetIndicator() {
+    // Resetting all indicators
+    topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+  }
+
+  /**
+   * This method finds the position of the word in the prediction list
+   *
+   * @return the index of the location of the word to draw
+   */
+  private int findWordPosition() {
+    // Finding the position of the word in the prediction list
+    for (Classification classification : classifications) {
+      if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
+        return classifications.indexOf(classification);
+      }
+    }
+    return -1;
   }
 }

@@ -80,6 +80,11 @@ public class BadgeViewController {
             badgeTenPane);
   }
 
+  /**
+   * Method changes the scene back to the user stats GUI
+   *
+   * @param event
+   */
   @FXML
   private void onGoBack(ActionEvent event) {
     // retrieve the source of button and switch to the user stats page
@@ -91,10 +96,18 @@ public class BadgeViewController {
     colorCurrentTool("");
   }
 
+  /**
+   * This method loads the correct icon for each of the badges the user has earned. If they have not
+   * earned the badge, it will show a question mark instead
+   *
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   public void loadBadgeIcons() throws URISyntaxException, IOException {
 
     User user = UsersManager.getSelectedUser();
     badgeList = user.getBadgeList();
+    // Going through each badge and loading the correct icon
     for (int i = 0; i < badgeIcons.size(); i++) {
       if (badgeList.get(i).isCompleted()) {
         badgeIcons.get(i).setImage(loadImage("achieveIcon"));
@@ -104,6 +117,14 @@ public class BadgeViewController {
     }
   }
 
+  /**
+   * Thus method loads an image into an Image class to be used for ImageView
+   *
+   * @param imageName The name of the image
+   * @return the loaded image
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   private Image loadImage(String imageName) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
@@ -112,96 +133,74 @@ public class BadgeViewController {
     return SwingFXUtils.toFXImage(bufferImage, null);
   }
 
-  @FXML
-  private void onBadgeOneSelect() {
-    badgeTitleLabel.setText(badgeList.get(0).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(0).getDescription());
+  /** This method displays the badge information when a badge is selected */
+  private void showInformation(int badgeId, String paneName) {
+    // Displaying the badge's info to user
+    badgeTitleLabel.setText(badgeList.get(badgeId).getTitle());
+    badgeDescriptionLabel.setText(badgeList.get(badgeId).getDescription());
     badgeTitleLabel.setVisible(true);
     badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeOnePane");
+    badgeDescriptionLabel.setWrapText(true);
+    // Highlighting the current badge selected
+    this.colorCurrentTool(paneName);
+  }
+
+  @FXML
+  private void onBadgeOneSelect() {
+    showInformation(0, "badgeOnePane");
   }
 
   @FXML
   private void onBadgeTwoSelect() {
-    badgeTitleLabel.setText(badgeList.get(1).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(1).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeTwoPane");
+    showInformation(1, "badgeTwoPane");
   }
 
   @FXML
   private void onBadgeThreeSelect() {
-    badgeTitleLabel.setText(badgeList.get(2).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(2).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeThreePane");
+    showInformation(2, "badgeThreePane");
   }
 
   @FXML
   private void onBadgeFourSelect() {
-    badgeTitleLabel.setText(badgeList.get(3).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(3).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeFourPane");
+    showInformation(3, "badgeFourPane");
   }
 
   @FXML
   private void onBadgeFiveSelect() {
-    badgeTitleLabel.setText(badgeList.get(4).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(4).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeFivePane");
+    showInformation(4, "badgeFivePane");
   }
 
   @FXML
   private void onBadgeSixSelect() {
-    badgeTitleLabel.setText(badgeList.get(5).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(5).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeSixPane");
+    showInformation(5, "badgeSixPane");
   }
 
   @FXML
   private void onBadgeSevenSelect() {
-    badgeTitleLabel.setText(badgeList.get(6).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(6).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeSevenPane");
+    showInformation(6, "badgeSevenPane");
   }
 
   @FXML
   private void onBadgeEightSelect() {
-    badgeTitleLabel.setText(badgeList.get(7).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(7).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeEightPane");
+    showInformation(7, "badgeEightPane");
   }
 
   @FXML
   private void onBadgeNineSelect() {
-    badgeTitleLabel.setText(badgeList.get(8).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(8).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeNinePane");
+    showInformation(8, "badgeNinePane");
   }
 
   @FXML
   private void onBadgeTenSelect() {
-    badgeTitleLabel.setText(badgeList.get(9).getTitle());
-    badgeDescriptionLabel.setText(badgeList.get(9).getDescription());
-    badgeTitleLabel.setVisible(true);
-    badgeDescriptionLabel.setVisible(true);
-    this.colorCurrentTool("badgeTenPane");
+    showInformation(9, "badgeTenPane");
   }
 
+  /**
+   * This method changes the color of the currently selected badge so the user knows which badge is
+   * currently selected
+   *
+   * @param badgePaneId the pane Id of the badge
+   */
   private void colorCurrentTool(String badgePaneId) {
     // for each tool pane, check if its id is equal to the specific tool pane id
     for (Pane badgePane : badgePanes) {

@@ -24,13 +24,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -89,6 +94,11 @@ public class ZenCanvasController {
   @FXML private ImageView colorIcon;
   @FXML private ColorPicker colorPicker;
 
+  @FXML private Circle topTwoHundredCircle;
+  @FXML private Circle topOneHundredCircle;
+  @FXML private Circle topFiftyCircle;
+  @FXML private Circle topTwentyFiveCircle;
+
   private List<Pane> toolPanes;
 
   private TextToSpeech textToSpeech;
@@ -97,6 +107,7 @@ public class ZenCanvasController {
   private boolean isDrawing;
   private boolean isPenDrawn = false;
   private boolean isMuted;
+  private int wordPosition = -1;
 
   // mouse coordinates
   private double currentX;
@@ -156,6 +167,7 @@ public class ZenCanvasController {
     isPenDrawn = false;
     isDrawing = false;
     predictionsListView.getItems().setAll("");
+    resetIndicator();
   }
 
   /**
@@ -210,6 +222,7 @@ public class ZenCanvasController {
    * This method clears the canvas and resets all interactive UI elements to their default values
    */
   private void resetCanvas() {
+    resetIndicator();
     isPenDrawn = false;
     isGameOver = true;
     // reset the category label
@@ -321,8 +334,12 @@ public class ZenCanvasController {
                     // Only starts predicting once the player has started drawing
                     if (isDrawing) {
                       // retrieve predictions list and update the JavaFx ListView component
-                      classifications = model.getPredictions(getCurrentSnapshot(), 10);
+                      classifications = model.getPredictions(getCurrentSnapshot(), 340);
                       List<String> predictionsList = getPredictionsListForDisplay(classifications);
+                      wordPosition = findWordPosition() + 1;
+                      if (wordPosition != 0) {
+                        updateIndicator();
+                      }
                       predictionsListView.getItems().setAll(predictionsList);
                       // topNum value will depend on game difficulty later on
                       colourTopPredictions(predictionsListView, 1);
@@ -610,5 +627,59 @@ public class ZenCanvasController {
         e.printStackTrace();
       }
     }
+  }
+
+  /**
+   * This method updates the indicators depending on the current position of the word being drawn
+   */
+  private void updateIndicator() {
+    /*
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
+     */
+    if (wordPosition <= 200) {
+      topTwoHundredCircle.setFill(Color.GREEN);
+    } else {
+      topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 100) {
+      topOneHundredCircle.setFill(Color.GREEN);
+    } else {
+      topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 50) {
+      topFiftyCircle.setFill(Color.GREEN);
+    } else {
+      topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+    if (wordPosition <= 25) {
+      topTwentyFiveCircle.setFill(Color.GREEN);
+    } else {
+      topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+    }
+  }
+
+  /** This method resets the all indicators of the word's current position to transparent */
+  private void resetIndicator() {
+    // Resetting all indicators
+    topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topFiftyCircle.setFill(Color.rgb(247, 236, 198, 1));
+    topTwentyFiveCircle.setFill(Color.rgb(247, 236, 198, 1));
+  }
+
+  /**
+   * This method finds the position of the word in the prediction list
+   *
+   * @return the index of the location of the word to draw
+   */
+  private int findWordPosition() {
+    // Finding the position of the word in the prediction list
+    for (Classification classification : classifications) {
+      if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
+        return classifications.indexOf(classification);
+      }
+    }
+    return -1;
   }
 }
