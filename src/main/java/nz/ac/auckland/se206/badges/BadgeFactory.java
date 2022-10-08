@@ -1,7 +1,18 @@
 package nz.ac.auckland.se206.badges;
 
 public class BadgeFactory {
+  /**
+   * This method creates a child class of Badge depending on their id
+   *
+   * @param badgeID the id of the badge
+   * @param isCompleted whether the badge has been earned
+   * @return
+   */
   public static Badge createBadge(int badgeID, boolean isCompleted) {
+    /*
+     * This switch case statement is used to create a sub-class of Badge depending
+     * on their id
+     */
     switch (badgeID) {
       case 1:
         return new UnderThirtySecondWinBadge(isCompleted);

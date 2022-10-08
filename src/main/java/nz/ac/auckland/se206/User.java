@@ -284,6 +284,10 @@ public class User {
     return this.allPreviousWords;
   }
 
+  /**
+   * This method loads and creates all badge instances for the user that has been saved in the
+   * BadgedataList
+   */
   public void loadBadgeList() {
     badgeList = new ArrayList<>();
     for (BadgeData data : badgeDataList) {
@@ -291,8 +295,10 @@ public class User {
     }
   }
 
+  /** This method checks to see if the user has earned any new badges after completing a game */
   public void updateBadges() {
     for (int i = 0; i < badgeList.size(); i++) {
+      // Checks if any unearned badges have be achieved
       if (!badgeList.get(i).isCompleted()) {
         badgeList.get(i).checkCompletion(this);
         badgeDataList.get(i).setCompleted(badgeList.get(i).isCompleted());
