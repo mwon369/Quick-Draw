@@ -17,7 +17,7 @@
 	-fx-font-family: 'Indie Flower', cursive;
 	-fx-font-style: normal;
 	-fx-font-weight: 400;
-	-fx-font-size: 42px;
+	-fx-font-size: 48px;
 }
 
 .button, .button:focused{
@@ -30,7 +30,7 @@
 	-fx-font-style: normal;
 	-fx-font-weight: 700;
 	-fx-font-size: 22px;
-	-fx-pref-width: 125px;
+	-fx-pref-width: 160px;
 	-fx-pref-height:35px;
 	-fx-padding: 6 0 5 0;
 }

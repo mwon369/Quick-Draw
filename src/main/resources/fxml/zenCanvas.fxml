@@ -209,6 +209,7 @@
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
                   <Button fx:id="chooseWordButton" mnemonicParsing="false" onAction="#onChooseWord" text="Choose Word" />
+                  <Button fx:id="randomWordButton" mnemonicParsing="false" onAction="#onGetRandomWord" text="Random Word" />
                   <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
                </children>
                <VBox.margin>

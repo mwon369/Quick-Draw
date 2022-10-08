@@ -552,7 +552,7 @@ public class CanvasController {
         user.updateWordList(CategoryDifficulty.H, targetCategory);
         break;
     }
-    user.updateLastThreeWords(targetCategory);
+    user.updatePreviousWords(targetCategory);
 
     try {
       UsersManager.saveUsersToJson();

@@ -8,12 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordChooserController {
@@ -22,6 +25,7 @@ public class WordChooserController {
   @FXML private Label chosenWordLabel;
   @FXML private TextField searchTextField;
 
+  private List<String[]> lines;
   private ArrayList<String> words = new ArrayList<>();
   protected ZenCanvasController zenCanvasController = null;
   private final StringBuilder sb = new StringBuilder();
@@ -30,7 +34,7 @@ public class WordChooserController {
    * This method initializes the wordChooser scene which involves loading all the words into the
    * list view and enabling word selection
    */
-  public void initialize() {
+  public void initialize() throws IOException, URISyntaxException, CsvException {
 
     // declare variables required to load in all words
     CategorySelector categorySelector;
@@ -41,11 +45,11 @@ public class WordChooserController {
       throw new RuntimeException(e);
     }
 
-    // get words from every difficulty
-    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.E));
-    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.M));
-    words.addAll(categorySelector.getWordList(CategorySelector.CategoryDifficulty.H));
-
+    // get all words in exact alphabetical order
+    lines = categorySelector.getLines();
+    for (String[] line : lines) {
+      words.add(line[0]);
+    }
     // set list view to contain all the words loaded
     wordListView.getItems().setAll(words);
 
@@ -63,6 +67,17 @@ public class WordChooserController {
                 sb.setLength(0);
               }
             });
+
+    // add event handler so user can search by pressing the ENTER key
+    searchTextField.setOnKeyPressed(
+        new EventHandler<KeyEvent>() {
+          @Override
+          public void handle(KeyEvent key) {
+            if (key.getCode().equals(KeyCode.ENTER)) {
+              onSearch();
+            }
+          }
+        });
   }
 
   /**

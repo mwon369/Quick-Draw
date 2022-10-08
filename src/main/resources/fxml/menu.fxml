@@ -19,7 +19,7 @@
       </ImageView>
       <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="555.0" spacing="15.0">
          <children>
-            <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+            <Label fx:id="title" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
                <font>
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>

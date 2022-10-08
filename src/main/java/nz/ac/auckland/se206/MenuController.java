@@ -1,12 +1,16 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import javafx.animation.Animation;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
@@ -23,6 +27,8 @@ public class MenuController {
   private Parent hiddenWordCanvasScene;
   private HiddenWordController hiddenWordController;
 
+  @FXML private Label title;
+
   @FXML private Button playButton;
 
   /**
@@ -38,29 +44,43 @@ public class MenuController {
    * @throws IOException
    */
   public void initialize() throws IOException {
+    // add user stats controller
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/userStats.fxml"));
     userStatsScene = loader.load();
     userStatsController = loader.getController();
     SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
     SceneManager.getUiRoot(AppUi.USER_STATS).getStylesheets().add("/css/userStats.css");
 
+    // add settings controller
     loader = new FXMLLoader(App.class.getResource("/fxml/settings.fxml"));
     settingsScene = loader.load();
     settingsController = loader.getController();
     SceneManager.addUi(AppUi.SETTINGS, settingsScene);
     SceneManager.getUiRoot(AppUi.SETTINGS).getStylesheets().add("/css/settings.css");
 
+    // add canvas controller
     loader = new FXMLLoader(App.class.getResource("/fxml/canvas.fxml"));
     canvasScene = loader.load();
     canvasController = loader.getController();
     SceneManager.addUi(AppUi.CANVAS, canvasScene);
     SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
 
+    // add hidden word controller
     loader = new FXMLLoader(App.class.getResource("/fxml/hiddenWordCanvas.fxml"));
     hiddenWordCanvasScene = loader.load();
     hiddenWordController = loader.getController();
     SceneManager.addUi(AppUi.HIDDEN_WORD, hiddenWordCanvasScene);
     SceneManager.getUiRoot(AppUi.HIDDEN_WORD).getStylesheets().add("/css/canvas.css");
+
+    // define title animation
+    ScaleTransition st = new ScaleTransition(Duration.millis(750), title);
+    st.setFromX(1);
+    st.setFromY(1);
+    st.setToX(1.15);
+    st.setToY(1.15);
+    st.setCycleCount(Animation.INDEFINITE);
+    st.setAutoReverse(true);
+    st.play();
   }
 
   /**
