@@ -69,11 +69,11 @@
                 </HBox>
                 <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                     <children>
-                        <Button fx:id="backToGameButton" mnemonicParsing="false" onAction="#onGoBackToGame" text="Back to Game">
+                        <Button fx:id="backToGameButton" mnemonicParsing="false" onAction="#onGoBackToGame" onMouseEntered="#onButtonHover" text="Back to Game">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                  <Button fx:id="clearSearchButton" mnemonicParsing="false" onAction="#onClearSearch" text="Clear Search" />
+                  <Button fx:id="clearSearchButton" mnemonicParsing="false" onAction="#onClearSearch" onMouseEntered="#onButtonHover" text="Clear Search" />
                     </children>
                     <VBox.margin>
                         <Insets top="40.0" />

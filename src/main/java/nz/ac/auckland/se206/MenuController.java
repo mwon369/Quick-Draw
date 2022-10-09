@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javafx.animation.Animation;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -27,9 +30,14 @@ public class MenuController {
   private Parent hiddenWordCanvasScene;
   private HiddenWordController hiddenWordController;
 
+  private static final String BUTTON_HOVER_SOUND = "buttonHoverSound.wav";
+
   @FXML private Label title;
 
   @FXML private Button playButton;
+
+  @FXML private ImageView musicIcon;
+  private boolean isMusicOn = true;
 
   /**
    * This method loads the userStats FXML and settings FXML when the menu FXML is loaded. The reason
@@ -161,5 +169,26 @@ public class MenuController {
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.SETTINGS));
     settingsController.loadUserDifficulties();
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
+  }
+
+  /** This method toggles on and off the background music */
+  @FXML
+  private void onToggleMusic() {
+    SoundManager.onToggleMusic();
+    try {
+      musicIcon.setImage(
+          isMusicOn
+              ? new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString())
+              : new Image(this.getClass().getResource("/images/music.png").toURI().toString()));
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+    isMusicOn = !isMusicOn;
   }
 }

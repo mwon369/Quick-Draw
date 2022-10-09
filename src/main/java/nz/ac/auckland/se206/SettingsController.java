@@ -175,4 +175,10 @@ public class SettingsController {
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
+  }
 }

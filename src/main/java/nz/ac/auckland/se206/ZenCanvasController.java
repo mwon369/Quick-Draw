@@ -634,8 +634,8 @@ public class ZenCanvasController {
    */
   private void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the
-     * indicator's requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the indicator's
+     * requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
@@ -681,5 +681,11 @@ public class ZenCanvasController {
       }
     }
     return -1;
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
   }
 }

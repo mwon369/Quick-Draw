@@ -23,7 +23,7 @@
         <children>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0" spacing="30.0">
                <children>
-                  <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" text="Main Menu">
+                  <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" onMouseEntered="#onButtonHover" text="Main Menu">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -212,8 +212,8 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
-                  <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" text="New Game" />
-                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
+                  <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" onMouseEntered="#onButtonHover" text="New Game" />
+                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" onMouseEntered="#onButtonHover" text="I'm Ready" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />

@@ -151,4 +151,10 @@ public class WordChooserController {
     wordListView.getItems().setAll(words);
     searchTextField.clear();
   }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
+  }
 }

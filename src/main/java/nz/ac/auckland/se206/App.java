@@ -68,6 +68,8 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
 
+    SoundManager.playBackgroundMusic();
+
     // ensure everything terminates when user closes the window
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() {

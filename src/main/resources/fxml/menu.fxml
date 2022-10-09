@@ -29,7 +29,7 @@
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" text="Classic Mode">
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Classic Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -44,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" prefHeight="30.0" text="Hidden Word Mode">
+                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Hidden Word Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -56,7 +56,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" text="Zen Mode">
+                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" onMouseEntered="#onButtonHover" text="Zen Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
@@ -71,16 +71,16 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
-                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/personIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,11 +89,20 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/logoutIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="musicButton" mnemonicParsing="false" onAction="#onToggleMusic" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fx:id="musicIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/music.png" />
                            </image>
                         </ImageView>
                      </graphic>

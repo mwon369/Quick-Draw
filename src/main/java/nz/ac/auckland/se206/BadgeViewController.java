@@ -212,4 +212,10 @@ public class BadgeViewController {
               : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
     }
   }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
+  }
 }

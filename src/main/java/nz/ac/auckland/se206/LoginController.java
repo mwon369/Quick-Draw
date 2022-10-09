@@ -103,6 +103,7 @@ public class LoginController {
    */
   @FXML
   private void onProfileHover(MouseEvent event) {
+    onButtonHover();
     VBox vbox = (VBox) event.getSource();
     // set the rotation details
     rotation = new RotateTransition(Duration.seconds(0.4), vbox);
@@ -137,5 +138,11 @@ public class LoginController {
     ImageView button = (ImageView) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.onButtonHover();
   }
 }

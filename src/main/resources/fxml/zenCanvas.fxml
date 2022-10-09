@@ -25,7 +25,7 @@
         <children>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
                <children>
-                  <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" text="Main Menu">
+                  <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" onMouseEntered="#onButtonHover" text="Main Menu">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -208,9 +208,9 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                <children>
-                  <Button fx:id="chooseWordButton" mnemonicParsing="false" onAction="#onChooseWord" text="Choose Word" />
-                  <Button fx:id="randomWordButton" mnemonicParsing="false" onAction="#onGetRandomWord" text="Random Word" />
-                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" text="I'm Ready" />
+                  <Button fx:id="chooseWordButton" mnemonicParsing="false" onAction="#onChooseWord" onMouseEntered="#onButtonHover" text="Choose Word" />
+                  <Button fx:id="randomWordButton" mnemonicParsing="false" onAction="#onGetRandomWord" onMouseEntered="#onButtonHover" text="Random Word" />
+                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" onMouseEntered="#onButtonHover" text="I'm Ready" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
