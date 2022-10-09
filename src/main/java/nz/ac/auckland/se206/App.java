@@ -64,7 +64,7 @@ public class App extends Application {
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
 
-    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 760, 680);
+    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 800, 720);
     stage.setScene(scene);
     stage.show();
 

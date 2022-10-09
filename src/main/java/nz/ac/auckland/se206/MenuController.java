@@ -30,8 +30,6 @@ public class MenuController {
   private Parent hiddenWordCanvasScene;
   private HiddenWordController hiddenWordController;
 
-  private static final String BUTTON_HOVER_SOUND = "buttonHoverSound.wav";
-
   @FXML private Label title;
 
   @FXML private Button playButton;
@@ -180,7 +178,7 @@ public class MenuController {
   /** This method toggles on and off the background music */
   @FXML
   private void onToggleMusic() {
-    SoundManager.onToggleMusic();
+    SoundManager.toggleBackgroundMusic();
     try {
       musicIcon.setImage(
           isMusicOn

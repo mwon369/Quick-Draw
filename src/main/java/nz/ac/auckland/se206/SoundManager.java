@@ -12,8 +12,10 @@ public class SoundManager {
   private static final String BACKGROUND_MUSIC = "/sounds/backgroundMusic1.mp3";
   private static final String BUTTON_HOVER_SOUND = "/sounds/buttonHoverSound.wav";
 
+  /** This method plays the background music */
   public static void playBackgroundMusic() {
     if (backgroundMusic == null) {
+      // initialise background music player if not initialised
       try {
         backgroundMusic =
             new MediaPlayer(
@@ -24,12 +26,15 @@ public class SoundManager {
         e.printStackTrace();
       }
     }
+    // play from the start
     backgroundMusic.seek(backgroundMusic.getStartTime());
     backgroundMusic.play();
   }
 
-  public static void onToggleMusic() {
+  /** this method toggles the background music on and off */
+  public static void toggleBackgroundMusic() {
     if (backgroundMusic != null) {
+      // pauses if media player is playing, otherwise plays it
       if (backgroundMusic.getStatus() == MediaPlayer.Status.PLAYING) {
         backgroundMusic.pause();
       } else {
@@ -38,6 +43,7 @@ public class SoundManager {
     }
   }
 
+  /** This method plays the button hover sound effect */
   public static void onButtonHover() {
     if (buttonHoverSound == null) {
       try {
@@ -49,6 +55,7 @@ public class SoundManager {
         e.printStackTrace();
       }
     }
+    // play from the start
     buttonHoverSound.seek(buttonHoverSound.getStartTime());
     buttonHoverSound.play();
   }
