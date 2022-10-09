@@ -18,7 +18,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LoginController {
-  @FXML private ImageView registerButton;
+  @FXML private VBox registerButton;
   @FXML private Label errorMessageLabel;
   @FXML private HBox profilesHBox;
 
@@ -137,9 +137,9 @@ public class LoginController {
     SoundManager.playButtonClick();
     errorMessageLabel.setVisible(false);
     // retrieve the source of ImageView and switch to the create user scene
-    ImageView button = (ImageView) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    VBox vbox = (VBox) event.getSource();
+    Scene sceneVBoxIsIn = vbox.getScene();
+    sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
   }
 
   /** This method plays the on button hover sound effect */

@@ -50,9 +50,9 @@
                <content>
                   <HBox fx:id="profilesHBox" alignment="CENTER" spacing="20.0">
                      <children>
-                        <VBox alignment="CENTER" maxHeight="130.0" minWidth="105.0" onMouseEntered="#onProfileHover" onMouseExited="#onProfileExited" prefHeight="130.0" prefWidth="105.0">
+                        <VBox fx:id="registerButton" alignment="CENTER" maxHeight="130.0" minWidth="105.0" onMouseClicked="#onRegister" onMouseEntered="#onProfileHover" onMouseExited="#onProfileExited" prefHeight="130.0" prefWidth="105.0">
                            <children>
-                              <ImageView fx:id="registerButton" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onRegister" pickOnBounds="true" preserveRatio="true" styleClass="registerButton">
+                              <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="registerButton">
                                  <image>
                                     <Image url="@../images/plusSign.png" />
                                  </image>
