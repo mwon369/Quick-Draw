@@ -8,9 +8,11 @@ public class SoundManager {
 
   private static MediaPlayer buttonHoverSound = null;
   private static MediaPlayer backgroundMusic = null;
+  private static MediaPlayer buttonClickSound = null;
 
   private static final String BACKGROUND_MUSIC = "/sounds/backgroundMusic1.mp3";
   private static final String BUTTON_HOVER_SOUND = "/sounds/buttonHoverSound.wav";
+  private static final String BUTTON_CLICK_SOUND = "/sounds/buttonClickSound.wav";
 
   /** This method plays the background music */
   public static void playBackgroundMusic() {
@@ -58,5 +60,22 @@ public class SoundManager {
     // play from the start
     buttonHoverSound.seek(buttonHoverSound.getStartTime());
     buttonHoverSound.play();
+  }
+
+  /** This method plays the button click sound effect */
+  public static void onButtonClick() {
+    if (buttonClickSound == null) {
+      try {
+        buttonClickSound =
+            new MediaPlayer(
+                new Media(SoundManager.class.getResource(BUTTON_CLICK_SOUND).toURI().toString()));
+        buttonClickSound.setVolume(0.2);
+      } catch (URISyntaxException e) {
+        e.printStackTrace();
+      }
+    }
+    // play from the start
+    buttonClickSound.seek(buttonClickSound.getStartTime());
+    buttonClickSound.play();
   }
 }

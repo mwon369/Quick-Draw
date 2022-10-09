@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -36,6 +37,9 @@
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Jump right into classic mode!&#10;You'll be given a random word to draw!" />
+                     </tooltip>
                   </Button>
                </children>
                <VBox.margin>
@@ -51,6 +55,9 @@
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Challenge yourself with our Hidden Word Mode!&#10;You'll be given the definition of a word. &#10;Guess the word, and draw it well to win!" />
+                     </tooltip>
                   </Button>
                </children>
             </HBox>
@@ -63,6 +70,9 @@
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
+                     </tooltip>
                   </Button>
                </children>
                <VBox.margin>

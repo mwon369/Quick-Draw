@@ -6,6 +6,10 @@
     src: url("AmaticSC-Bold.ttf"),
 }
 
+@font-face {
+    src: url("Kalam-Regular.ttf"),
+}
+
 #menuVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;
@@ -64,3 +68,10 @@
 	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;
 }
+
+.tooltip {
+    -fx-show-delay: 100ms;
+    -fx-show-duration: 12000ms;
+    -fx-font-family: "Kalam";
+}
+

@@ -62,6 +62,7 @@
 .tooltip {
     -fx-show-delay: 100ms;
     -fx-show-duration: 12000ms;
+    -fx-font-family: "Kalam";
 }
 
 .questionMark{

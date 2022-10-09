@@ -19,7 +19,12 @@
 
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.HiddenWordController">
     <children>
-        <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground.jpg" />
+         </image>
+      </ImageView>
+        <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="780.0" prefHeight="676.0" prefWidth="760.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0">
                     <children>
@@ -78,7 +83,7 @@
                   </Label>
                </children>
             </StackPane>
-                <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="20.0">
+                <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="10.0">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
@@ -174,42 +179,39 @@
                                 </VBox>
                             </children>
                         </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                           <children>
+                              <Circle fx:id="topTwentyFiveCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Label text="Top 25" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                           <children>
+                              <Circle fx:id="topFiftyCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Label text="Top 50" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                           <children>
+                              <Circle fx:id="topOneHundredCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Label text="Top 100" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                           <children>
+                              <Circle fx:id="topTwoHundredCircle" fill="#f8ecc4" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Label text="Top 200" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="-10.0" right="-10.0" />
+                     </padding>
+                  </VBox>
                     </children>
                 </HBox>
-            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="695.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
-                     <children>
-                        <Circle fx:id="topTwoHundredCircle" fill="#f8ecc4" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label text="Top 200" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
-                     <children>
-                        <Circle fx:id="topOneHundredCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label text="Top 100" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
-                     <children>
-                        <Circle fx:id="topFiftyCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label text="Top 50" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
-                     <children>
-                        <Circle fx:id="topTwentyFiveCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label text="Top 25" />
-                     </children>
-                  </VBox>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
                 <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
                     <children>
                         <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" onMouseEntered="#onButtonHover" text="New Game" />
