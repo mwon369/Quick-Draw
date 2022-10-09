@@ -14,6 +14,11 @@
 
 <StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.WordHistoryController">
     <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground.jpg" />
+         </image>
+      </ImageView>
         <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
             <children>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="760.0">
@@ -29,7 +34,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="-15.0" />
+                  <Insets left="30.0" right="30.0" top="-15.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="760.0">
