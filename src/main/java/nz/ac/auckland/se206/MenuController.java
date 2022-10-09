@@ -99,6 +99,8 @@ public class MenuController {
     // load the time limit for the set dificulty
     canvasController.setUpDifficulty();
 
+    SoundManager.playButtonClick();
+
     // retrieve the source of button and switch to the canvas
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -114,7 +116,7 @@ public class MenuController {
   private void onPlayHiddenWord(ActionEvent event) {
     // retrieve the source of button and switch to the canvas
     hiddenWordController.setUpDifficulty();
-
+    SoundManager.playButtonClick();
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.HIDDEN_WORD));
@@ -127,6 +129,7 @@ public class MenuController {
    */
   @FXML
   private void onLogout(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the login page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -140,6 +143,7 @@ public class MenuController {
    */
   @FXML
   private void onCheckStats(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the user stats page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -149,6 +153,7 @@ public class MenuController {
 
   @FXML
   private void onPlayZenMode(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to zen mode canvas
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -162,6 +167,7 @@ public class MenuController {
    */
   @FXML
   private void onSettings(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the settings page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -172,12 +178,13 @@ public class MenuController {
   /** This method plays the on button hover sound effect */
   @FXML
   private void onButtonHover() {
-    SoundManager.onButtonHover();
+    SoundManager.playButtonHover();
   }
 
   /** This method toggles on and off the background music */
   @FXML
   private void onToggleMusic() {
+    SoundManager.playButtonClick();
     SoundManager.toggleBackgroundMusic();
     try {
       musicIcon.setImage(

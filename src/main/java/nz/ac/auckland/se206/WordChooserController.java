@@ -88,6 +88,7 @@ public class WordChooserController {
    */
   @FXML
   private void onGoBackToGame(ActionEvent event) {
+    SoundManager.playButtonClick();
     String[] labelSplit = chosenWordLabel.getText().split(": ");
 
     // set the target category, word label and enable the ready button
@@ -114,6 +115,7 @@ public class WordChooserController {
   /** Allows the user to search for specific words when the search button is clicked */
   @FXML
   private void onSearch() {
+    SoundManager.playButtonClick();
     wordListView.getItems().clear();
     wordListView.getItems().addAll(searchList(searchTextField.getText(), words));
   }
@@ -147,6 +149,7 @@ public class WordChooserController {
   /** Clears any searches the user has made */
   @FXML
   private void onClearSearch() {
+    SoundManager.playButtonClick();
     // reset any player searches
     wordListView.getItems().setAll(words);
     searchTextField.clear();
@@ -155,6 +158,6 @@ public class WordChooserController {
   /** This method plays the on button hover sound effect */
   @FXML
   private void onButtonHover() {
-    SoundManager.onButtonHover();
+    SoundManager.playButtonHover();
   }
 }

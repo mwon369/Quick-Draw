@@ -75,6 +75,7 @@ public class LoginController {
    */
   @FXML
   private void onLogin(MouseEvent event) {
+    SoundManager.playButtonClick();
     VBox vbox = (VBox) event.getSource();
     for (Node node : vbox.getChildren()) {
       // retrieve username in vbox
@@ -133,6 +134,7 @@ public class LoginController {
    */
   @FXML
   private void onRegister(MouseEvent event) {
+    SoundManager.playButtonClick();
     errorMessageLabel.setVisible(false);
     // retrieve the source of ImageView and switch to the create user scene
     ImageView button = (ImageView) event.getSource();
@@ -143,6 +145,6 @@ public class LoginController {
   /** This method plays the on button hover sound effect */
   @FXML
   private void onButtonHover() {
-    SoundManager.onButtonHover();
+    SoundManager.playButtonHover();
   }
 }

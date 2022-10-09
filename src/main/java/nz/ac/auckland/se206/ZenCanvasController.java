@@ -200,6 +200,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
+    SoundManager.playButtonClick();
     isMuted = true;
     soundIcon.setImage(loadImage("mute"));
     colorPicker.setValue(Color.BLACK);
@@ -248,6 +249,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onChooseWord(ActionEvent event) {
+    SoundManager.playButtonClick();
     // erase all drawing and reset all GUI elements
     resetCanvas();
 
@@ -272,6 +274,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onGetRandomWord() throws IOException, URISyntaxException, CsvException {
+    SoundManager.playButtonClick();
     // clear canvas
     resetCanvas();
 
@@ -502,6 +505,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
+    SoundManager.playButtonClick();
     isMuted = isMuted ? false : true;
     String soundState = isMuted ? "mute" : "unmute";
     soundIcon.setImage(loadImage(soundState));
@@ -584,6 +588,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onSave() {
+    SoundManager.playButtonClick();
     // create /drawings folder if not already made
     final File tmpFolder = new File("drawings");
 
@@ -686,6 +691,6 @@ public class ZenCanvasController {
   /** This method plays the on button hover sound effect */
   @FXML
   private void onButtonHover() {
-    SoundManager.onButtonHover();
+    SoundManager.playButtonHover();
   }
 }
