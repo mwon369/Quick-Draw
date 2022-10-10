@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserStatsController {
@@ -69,6 +70,16 @@ public class UserStatsController {
             new PieChart.Data("Losses", currentUser.getLosses()));
 
     statsPieChart.setData(pieChartData);
+
+    // show individual numbers for each wedge
+    statsPieChart
+        .getData()
+        .forEach(
+            data -> {
+              String number = String.format(String.valueOf(data.getPieValue()));
+              Tooltip toolTip = new Tooltip(number);
+              Tooltip.install(data.getNode(), toolTip);
+            });
   }
 
   /**
