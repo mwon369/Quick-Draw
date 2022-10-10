@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +17,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserStatsController {
 
-  private final StringBuilder sb = new StringBuilder();
-
   @FXML private Label userLabel;
   @FXML private PieChart statsPieChart;
-  final Label caption = new Label("");
 
   private Parent badgeViewScene;
   private BadgeViewController badgeViewController;
@@ -54,28 +50,14 @@ public class UserStatsController {
   /** This method retrieves and displays the user's profile statistics */
   protected void onRetrieveStats() {
     User currentUser = UsersManager.getSelectedUser();
-
+    userLabel.setText(currentUser.getUsername());
     ObservableList<PieChart.Data> pieChartData =
         FXCollections.observableArrayList(
             new PieChart.Data("Wins", currentUser.getWins()),
             new PieChart.Data("Losses", currentUser.getLosses()));
-
-    for (final PieChart.Data data : statsPieChart.getData()) {
-      data.getNode()
-          .addEventHandler(
-              MouseEvent.MOUSE_PRESSED,
-              new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent e) {
-                  caption.setTranslateX(e.getSceneX());
-                  caption.setTranslateY(e.getSceneY());
-                  caption.setText(data.getPieValue() + "%");
-                }
-              });
-    }
+    if (statsPieChart.isHover()) {}
 
     statsPieChart.setData(pieChartData);
-    statsPieChart.setTitle("Your Wins and Losses");
   }
 
   /**
@@ -120,5 +102,10 @@ public class UserStatsController {
   @FXML
   private void onButtonHover() {
     SoundManager.playButtonHover();
+  }
+
+  @FXML
+  private void onShowStatData(MouseEvent mouseEvent) {
+    System.out.println("test");
   }
 }
