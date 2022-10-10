@@ -85,6 +85,7 @@ public class UserStatsController {
    */
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the main menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -93,6 +94,7 @@ public class UserStatsController {
 
   @FXML
   private void onBadgeView(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the badge view page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -106,10 +108,17 @@ public class UserStatsController {
 
   @FXML
   private void onWordHistory(ActionEvent event) {
+    SoundManager.playButtonClick();
     wordHistoryController.showWordHistory();
     // retrieve the source of button and switch to the badge view page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.WORD_HISTORY));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }

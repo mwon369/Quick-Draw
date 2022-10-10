@@ -147,7 +147,7 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onGoBack" text="Back">
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onGoBack" onMouseEntered="#onButtonHover" text="Back">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>

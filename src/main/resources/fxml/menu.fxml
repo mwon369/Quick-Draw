@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -29,13 +30,16 @@
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" prefHeight="30.0" text="Classic Mode">
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Classic Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Jump right into classic mode!&#10;You'll be given a random word to draw!" />
+                     </tooltip>
                   </Button>
                </children>
                <VBox.margin>
@@ -44,25 +48,31 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" prefHeight="30.0" text="Hidden Word Mode">
+                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Hidden Word Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Challenge yourself with our Hidden Word Mode!&#10;You'll be given the definition of a word. &#10;Guess the word, and draw it well to win!" />
+                     </tooltip>
                   </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" text="Zen Mode">
+                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" onMouseEntered="#onButtonHover" text="Zen Mode">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
+                     </tooltip>
                   </Button>
                </children>
                <VBox.margin>
@@ -71,16 +81,25 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
-                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logoutIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/personIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,11 +108,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="musicButton" mnemonicParsing="false" onAction="#onToggleMusic" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="musicIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/logoutIcon.png" />
+                              <Image url="@../images/music.png" />
                            </image>
                         </ImageView>
                      </graphic>

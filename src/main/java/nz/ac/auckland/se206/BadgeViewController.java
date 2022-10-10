@@ -87,6 +87,7 @@ public class BadgeViewController {
    */
   @FXML
   private void onGoBack(ActionEvent event) {
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the user stats page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -147,51 +148,61 @@ public class BadgeViewController {
 
   @FXML
   private void onBadgeOneSelect() {
+    SoundManager.playButtonClick();
     showInformation(0, "badgeOnePane");
   }
 
   @FXML
   private void onBadgeTwoSelect() {
+    SoundManager.playButtonClick();
     showInformation(1, "badgeTwoPane");
   }
 
   @FXML
   private void onBadgeThreeSelect() {
+    SoundManager.playButtonClick();
     showInformation(2, "badgeThreePane");
   }
 
   @FXML
   private void onBadgeFourSelect() {
+    SoundManager.playButtonClick();
     showInformation(3, "badgeFourPane");
   }
 
   @FXML
   private void onBadgeFiveSelect() {
+    SoundManager.playButtonClick();
     showInformation(4, "badgeFivePane");
   }
 
   @FXML
   private void onBadgeSixSelect() {
+    SoundManager.playButtonClick();
     showInformation(5, "badgeSixPane");
   }
 
   @FXML
   private void onBadgeSevenSelect() {
+    SoundManager.playButtonClick();
     showInformation(6, "badgeSevenPane");
   }
 
   @FXML
   private void onBadgeEightSelect() {
+    SoundManager.playButtonClick();
     showInformation(7, "badgeEightPane");
   }
 
   @FXML
   private void onBadgeNineSelect() {
+    SoundManager.playButtonClick();
     showInformation(8, "badgeNinePane");
   }
 
   @FXML
   private void onBadgeTenSelect() {
+    SoundManager.playButtonClick();
     showInformation(9, "badgeTenPane");
   }
 
@@ -211,5 +222,11 @@ public class BadgeViewController {
               ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
               : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
     }
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }
