@@ -31,7 +31,6 @@ public class LoginController {
   private Map<String, User> users;
 
   @FXML private ImageView musicIcon;
-  private boolean isMusicOn = true;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
@@ -158,21 +157,17 @@ public class LoginController {
   private void onToggleMusic() {
     SoundManager.playButtonClick();
     SoundManager.toggleBackgroundMusic();
-    App.getMenuController().toggleMusicIcon(isMusicOn);
-    toggleMusicIcon(isMusicOn);
+    // toggle music icon
+    App.getMenuController().setMusicIcon();
+    setMusicIcon();
   }
 
-  /**
-   * This method sets the music icon
-   *
-   * @param isMusicOn
-   */
-  public void toggleMusicIcon(boolean isMusicOn) {
-    this.isMusicOn = !isMusicOn;
+  /** This method sets the music icon according to whether background music is playing or not */
+  public void setMusicIcon() {
     try {
       // if music off, display noMusic icon
       musicIcon.setImage(
-          this.isMusicOn
+          SoundManager.isBackgroundMusicOn()
               ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())
               : new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString()));
     } catch (URISyntaxException e) {

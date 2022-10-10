@@ -6,6 +6,9 @@
     src: url("AmaticSC-Bold.ttf"),
 }
 
+@font-face {
+	src: url("Kalam-Regular.ttf"),
+}
 #settingsVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;

@@ -13,6 +13,7 @@ public class SoundManager {
   private static MediaPlayer timerTickSoundFast = null;
   private static MediaPlayer alarmBellSound = null;
   private static MediaPlayer winSound = null;
+  private static MediaPlayer enterGameSound = null;
 
   private static final String BACKGROUND_MUSIC = "/sounds/backgroundMusic1.mp3";
   private static final String BUTTON_HOVER_SOUND = "/sounds/buttonHoverSound.wav";
@@ -21,6 +22,9 @@ public class SoundManager {
   private static final String TIMER_TICK_SOUND_FAST = "/sounds/timerTickSoundFast.mp3";
   private static final String ALARM_BELL_SOUND = "/sounds/alarmBellSound.wav";
   private static final String WIN_SOUND = "/sounds/winSound.wav";
+  private static final String ENTER_GAME_SOUND = "/sounds/enterGameSound.wav";
+
+  private static boolean isBackgroundMusicOn = true;
 
   /** This method plays the background music */
   public static void playBackgroundMusic() {
@@ -51,6 +55,25 @@ public class SoundManager {
         playBackgroundMusic();
       }
     }
+    isBackgroundMusicOn = !isBackgroundMusicOn;
+  }
+
+  /**
+   * This method sets the background music volume
+   *
+   * @param volume the volume from 0.0 to 1.0
+   */
+  public static void setBackgroundMusicVolume(Double volume) {
+    backgroundMusic.setVolume(volume);
+  }
+
+  /**
+   * This method returns whether the background music is on or not
+   *
+   * @return
+   */
+  public static boolean isBackgroundMusicOn() {
+    return isBackgroundMusicOn;
   }
 
   /** This method plays the button hover sound effect */
@@ -139,7 +162,7 @@ public class SoundManager {
     alarmBellSound.play();
   }
 
-  /** This method plays the alarm bell sound effect */
+  /** This method plays the win sound effect */
   public static void playWinSound() {
     if (winSound == null) {
       try {
@@ -154,5 +177,22 @@ public class SoundManager {
     // play from the start
     winSound.seek(winSound.getStartTime());
     winSound.play();
+  }
+
+  /** This method plays the enter game sound effect */
+  public static void playEnterGameSound() {
+    if (enterGameSound == null) {
+      try {
+        enterGameSound =
+            new MediaPlayer(
+                new Media(SoundManager.class.getResource(ENTER_GAME_SOUND).toURI().toString()));
+        enterGameSound.setVolume(0.4);
+      } catch (URISyntaxException e) {
+        e.printStackTrace();
+      }
+    }
+    // play from the start
+    enterGameSound.seek(enterGameSound.getStartTime());
+    enterGameSound.play();
   }
 }

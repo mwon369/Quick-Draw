@@ -100,6 +100,8 @@ public class MenuController {
     canvasController.setUpDifficulty();
 
     SoundManager.playButtonClick();
+    SoundManager.playEnterGameSound();
+    SoundManager.setBackgroundMusicVolume(0.05);
 
     // retrieve the source of button and switch to the canvas
     Button button = (Button) event.getSource();
@@ -117,6 +119,9 @@ public class MenuController {
     // retrieve the source of button and switch to the canvas
     hiddenWordController.setUpDifficulty();
     SoundManager.playButtonClick();
+    SoundManager.playEnterGameSound();
+    SoundManager.setBackgroundMusicVolume(0.05);
+
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.HIDDEN_WORD));
@@ -154,6 +159,8 @@ public class MenuController {
   @FXML
   private void onPlayZenMode(ActionEvent event) {
     SoundManager.playButtonClick();
+    SoundManager.playEnterGameSound();
+    SoundManager.setBackgroundMusicVolume(0.05);
     // retrieve the source of button and switch to zen mode canvas
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -187,21 +194,16 @@ public class MenuController {
     SoundManager.playButtonClick();
     SoundManager.toggleBackgroundMusic();
     // toggle music icon
-    App.getLoginController().toggleMusicIcon(isMusicOn);
-    toggleMusicIcon(isMusicOn);
+    App.getLoginController().setMusicIcon();
+    setMusicIcon();
   }
 
-  /**
-   * This method toggles the music icon
-   *
-   * @param isMusicOn
-   */
-  public void toggleMusicIcon(boolean isMusicOn) {
-    this.isMusicOn = !isMusicOn;
+  /** This method sets the music icon according to whether background music is playing or not */
+  public void setMusicIcon() {
     try {
       // if music off, display noMusic icon
       musicIcon.setImage(
-          this.isMusicOn
+          SoundManager.isBackgroundMusicOn()
               ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())
               : new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString()));
     } catch (URISyntaxException e) {

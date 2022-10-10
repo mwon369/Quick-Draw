@@ -6,6 +6,11 @@
     src: url("AmaticSC-Bold.ttf"),
 }
 
+
+@font-face {
+    src: url("Kalam-Regular.ttf"),
+}
+
 #sceneVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;
@@ -136,22 +141,6 @@
 	-fx-font-size: 20px;
 }
 
-#helpMenuButton{
-	-fx-background-radius: 10px;
-    -fx-background-color: #E29F00;
-    -fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
-	-fx-border-radius: 10px;
-	-fx-padding: 6 0 5 0;
-}
-
-#infoMenuItem{
-	-fx-text-fill: black;
-     -fx-font-family: 'Amatic SC', cursive;
-	-fx-font-style: normal;
-	-fx-font-weight: 700;
-	-fx-font-size: 22px;
-}
-
 .button, .button:focused{
 	-fx-text-fill: black;
     -fx-background-radius: 10px;
@@ -204,4 +193,26 @@
     -fx-font-size: 18px;
     -fx-font-style: italic;
     -fx-fill: #292929;
+}
+
+.tooltip {
+    -fx-show-delay: 100ms;
+    -fx-show-duration: 12000ms;
+    -fx-font-family: "Kalam";
+}
+
+.questionMark{
+	-fx-background-color: #E29F00;
+	-fx-background-radius: 100px;
+	-fx-pref-width: 22px;
+	-fx-border-color: black;
+	-fx-border-width: 0.4px;
+	-fx-border-radius: 100px;
+	-fx-font-family: "Century Schoolbook";
+	-fx-font-weight: bold;
+}
+
+.questionMark:hover{
+	-fx-scale-y: 1.2;
+	-fx-scale-x: 1.2;
 }

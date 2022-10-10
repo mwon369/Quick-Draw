@@ -201,6 +201,8 @@ public class ZenCanvasController {
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
     SoundManager.playButtonClick();
+    SoundManager.setBackgroundMusicVolume(0.2);
+
     isMuted = true;
     soundIcon.setImage(loadImage("mute"));
     colorPicker.setValue(Color.BLACK);

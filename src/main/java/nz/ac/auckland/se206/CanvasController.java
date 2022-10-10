@@ -198,6 +198,8 @@ public class CanvasController {
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
     SoundManager.playButtonClick();
+    SoundManager.setBackgroundMusicVolume(0.2);
+
     isMuted = false;
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();

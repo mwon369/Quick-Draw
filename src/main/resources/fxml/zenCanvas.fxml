@@ -7,8 +7,7 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -40,21 +39,21 @@
                     <Font size="18.0" />
                   </font>
                 </Label>
-                  <MenuButton fx:id="helpMenuButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="31.0">
-                    <items>
-                      <MenuItem fx:id="infoMenuItem" mnemonicParsing="false" text="Click 'New Game' button to get word. Click 'I'm Ready' button to start game" />
-                    </items>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/questionicon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuButton>
+                  <StackPane prefHeight="0.0" prefWidth="120.0" styleClass="about">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                           <font>
+                              <Font name="Century Schoolbook Bold" size="18.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Click &quot;Choose&quot; to choose a word to draw!&#10;Or click &quot;Random Word&quot; to get given a random word!&#10;Click &quot;I'm Ready&quot; to start drawing!&#10;If the game guesses your word, you win!&#10;However, you can keep drawing to your heart's content after you win!" />
+                           </tooltip>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
                </children>
             </HBox>
             <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" textAlignment="CENTER">
