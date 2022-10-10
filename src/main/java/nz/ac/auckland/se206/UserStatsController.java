@@ -12,13 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserStatsController {
 
   @FXML private Label userLabel;
   @FXML private PieChart statsPieChart;
+  @FXML private Label noGamesLabel;
 
   private Parent badgeViewScene;
   private BadgeViewController badgeViewController;
@@ -49,13 +49,24 @@ public class UserStatsController {
 
   /** This method retrieves and displays the user's profile statistics */
   protected void onRetrieveStats() {
+    // get logged in user
     User currentUser = UsersManager.getSelectedUser();
     userLabel.setText(currentUser.getUsername());
+
+    // don't show pie chart if user has no games played
+    if (currentUser.getWins() + currentUser.getLosses() == 0) {
+      statsPieChart.setVisible(false);
+      noGamesLabel.setVisible(true);
+      return;
+    }
+
+    // show pie chart
+    noGamesLabel.setVisible(false);
+    statsPieChart.setVisible(true);
     ObservableList<PieChart.Data> pieChartData =
         FXCollections.observableArrayList(
             new PieChart.Data("Wins", currentUser.getWins()),
             new PieChart.Data("Losses", currentUser.getLosses()));
-    if (statsPieChart.isHover()) {}
 
     statsPieChart.setData(pieChartData);
   }
@@ -102,10 +113,5 @@ public class UserStatsController {
   @FXML
   private void onButtonHover() {
     SoundManager.playButtonHover();
-  }
-
-  @FXML
-  private void onShowStatData(MouseEvent mouseEvent) {
-    System.out.println("test");
   }
 }

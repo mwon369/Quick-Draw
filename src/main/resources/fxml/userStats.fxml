@@ -30,7 +30,7 @@
                   <Label fx:id="userLabel" styleClass="statLabel" text="User" />
                </children>
                <VBox.margin>
-                  <Insets top="-15.0" />
+                  <Insets top="-20.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
@@ -39,10 +39,15 @@
                      <children>
                         <HBox fx:id="pieChartHBox" alignment="CENTER">
                            <children>
-                              <PieChart fx:id="statsPieChart" labelLineLength="30.0" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#onShowStatData" prefHeight="400.0" prefWidth="450.0" />
+                              <StackPane>
+                                 <children>
+                                    <PieChart fx:id="statsPieChart" labelLineLength="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" />
+                                    <Label fx:id="noGamesLabel" text="You haven't played any games yet!" visible="false" />
+                                 </children>
+                              </StackPane>
                            </children>
                            <VBox.margin>
-                              <Insets top="-20.0" />
+                              <Insets top="-10.0" />
                            </VBox.margin></HBox>
                      </children>
                   </VBox>
