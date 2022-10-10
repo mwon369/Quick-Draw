@@ -76,7 +76,7 @@ public class UserStatsController {
         .getData()
         .forEach(
             data -> {
-              String number = String.format(String.valueOf(data.getPieValue()));
+              String number = String.format(String.valueOf((int) data.getPieValue()));
               Tooltip toolTip = new Tooltip(number);
               Tooltip.install(data.getNode(), toolTip);
             });

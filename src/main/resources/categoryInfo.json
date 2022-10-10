@@ -643,7 +643,7 @@
   },
   "dog": {
     "word": "dog",
-    "definition": "A common house pet which love playing fetch",
+    "definition": "A common house pet which loves playing fetch",
     "hints": [
       "Woof"
     ]
@@ -1303,7 +1303,7 @@
   },
   "microwave": {
     "word": "microwave",
-    "definition": "A device which makes food hot again",
+    "definition": "A device which spins your food around and makes it hot again",
     "hints": [
       "They make a beeping sound when they've finished heating food up"
     ]

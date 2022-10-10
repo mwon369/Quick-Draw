@@ -6,6 +6,10 @@
     src: url("AmaticSC-Bold.ttf"),
 }
 
+@font-face {
+    src: url("Kalam-Regular.ttf"),
+}
+
 #userStatsVBox {
 	-fx-background-color: #F8ECC4;
 	-fx-background-radius: 10px;
@@ -108,4 +112,10 @@
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-font-size: 28px;
+}
+
+.tooltip {
+    -fx-show-delay: 0ms;
+    -fx-font-family: "Kalam";
+    -fx-font-size: 21px;
 }
