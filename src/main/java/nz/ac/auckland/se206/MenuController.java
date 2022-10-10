@@ -186,14 +186,26 @@ public class MenuController {
   private void onToggleMusic() {
     SoundManager.playButtonClick();
     SoundManager.toggleBackgroundMusic();
+    // toggle music icon
+    App.getLoginController().toggleMusicIcon(isMusicOn);
+    toggleMusicIcon(isMusicOn);
+  }
+
+  /**
+   * This method toggles the music icon
+   *
+   * @param isMusicOn
+   */
+  public void toggleMusicIcon(boolean isMusicOn) {
+    this.isMusicOn = !isMusicOn;
     try {
+      // if music off, display noMusic icon
       musicIcon.setImage(
-          isMusicOn
-              ? new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString())
-              : new Image(this.getClass().getResource("/images/music.png").toURI().toString()));
+          this.isMusicOn
+              ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())
+              : new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString()));
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
-    isMusicOn = !isMusicOn;
   }
 }

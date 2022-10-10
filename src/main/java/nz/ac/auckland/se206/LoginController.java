@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Map;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -27,6 +29,9 @@ public class LoginController {
   private RotateTransition rotation;
 
   private Map<String, User> users;
+
+  @FXML private ImageView musicIcon;
+  private boolean isMusicOn = true;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
@@ -146,5 +151,32 @@ public class LoginController {
   @FXML
   private void onButtonHover() {
     SoundManager.playButtonHover();
+  }
+
+  /** This method toggles on and off the background music */
+  @FXML
+  private void onToggleMusic() {
+    SoundManager.playButtonClick();
+    SoundManager.toggleBackgroundMusic();
+    App.getMenuController().toggleMusicIcon(isMusicOn);
+    toggleMusicIcon(isMusicOn);
+  }
+
+  /**
+   * This method sets the music icon
+   *
+   * @param isMusicOn
+   */
+  public void toggleMusicIcon(boolean isMusicOn) {
+    this.isMusicOn = !isMusicOn;
+    try {
+      // if music off, display noMusic icon
+      musicIcon.setImage(
+          this.isMusicOn
+              ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())
+              : new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString()));
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
   }
 }
