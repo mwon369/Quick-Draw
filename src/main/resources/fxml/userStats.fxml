@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -33,51 +34,10 @@
                <children>
                   <VBox>
                      <children>
-                        <HBox alignment="CENTER" minHeight="36.0">
+                        <HBox fx:id="pieChartHBox" alignment="CENTER">
                            <children>
-                              <Label fx:id="totalGamesLabel" styleClass="statLabel" text="Total Games: " />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="userWinsLabel" styleClass="statLabel" text="Total Wins:  " />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="userLossesLabel" styleClass="statLabel" text="Total Losses:  " />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="userWinRatioLabel" styleClass="statLabel" text="Win Ratio:  " />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="userFastestWinLabel" styleClass="statLabel" text="Fastest Win Time:  ">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0">
-                           <children>
-                              <Label fx:id="winStreakLabel" styleClass="statLabel" text="Win Streak: ">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" minHeight="36.0" />
+                              <PieChart fx:id="statsPieChart" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" />
+                           </children></HBox>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="20.0">
