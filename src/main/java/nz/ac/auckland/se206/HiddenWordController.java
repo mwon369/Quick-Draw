@@ -18,11 +18,13 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -419,6 +421,21 @@ public class HiddenWordController {
     // set visual attributes
     alert.setTitle("Word Hint");
     alert.setHeaderText(CategoryManager.getHint(targetCategory));
+
+    for (Node node : alert.getDialogPane().getChildren()) {
+      // set button hover sounds
+      if (node instanceof ButtonBar) {
+        ButtonBar buttonBar = (ButtonBar) node;
+        for (Node button : buttonBar.getButtons()) {
+          button.setOnMouseEntered(
+              event -> {
+                SoundManager.playButtonHover();
+              });
+        }
+      }
+    }
+
+    alert.getDialogPane().getChildren();
     alert.showAndWait();
   }
 
