@@ -15,7 +15,7 @@
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
          <image>
-            <Image url="@../images/DoodleBackgroundColoured.jpg" />
+            <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
       <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" spacing="30.0">
