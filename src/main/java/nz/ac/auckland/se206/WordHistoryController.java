@@ -84,6 +84,7 @@ public class WordHistoryController {
   /** This method displays all the easy words the user has played */
   @FXML
   private void onFilterEasyWords() {
+    SoundManager.playButtonClick();
     difficultyFilter = difficultyFilters.E;
     searchTextField.clear();
     wordListView.getItems().clear();
@@ -106,6 +107,7 @@ public class WordHistoryController {
   /** This method displays all the medium words the user has played */
   @FXML
   private void onFilterMediumWords() {
+    SoundManager.playButtonClick();
     difficultyFilter = difficultyFilters.M;
     searchTextField.clear();
     wordListView.getItems().clear();
@@ -128,6 +130,7 @@ public class WordHistoryController {
   /** This method displays all the hard words the user has played */
   @FXML
   private void onFilterHardWords() {
+    SoundManager.playButtonClick();
     difficultyFilter = difficultyFilters.H;
     searchTextField.clear();
     wordListView.getItems().clear();
@@ -150,6 +153,7 @@ public class WordHistoryController {
   /** This method clears any filters so that all played words are displayed */
   @FXML
   private void onClearFilters() {
+    SoundManager.playButtonClick();
     difficultyFilter = difficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
@@ -174,6 +178,7 @@ public class WordHistoryController {
    */
   @FXML
   private void onSearch() {
+    SoundManager.playButtonClick();
     switch (difficultyFilter) {
       case E:
         // only searches through the easy words
@@ -267,6 +272,7 @@ public class WordHistoryController {
    */
   @FXML
   private void onGoBackToProfile(ActionEvent event) {
+    SoundManager.playButtonClick();
     difficultyFilter = difficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
@@ -274,5 +280,11 @@ public class WordHistoryController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.USER_STATS));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }

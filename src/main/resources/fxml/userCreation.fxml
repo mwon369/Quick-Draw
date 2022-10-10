@@ -50,12 +50,12 @@
             </HBox>
             <HBox alignment="CENTER" minHeight="40.0" spacing="60.0">
                <children>
-                  <Button fx:id="loginPageButton" mnemonicParsing="false" onAction="#onLoginPage" text="Back to Login">
+                  <Button fx:id="loginPageButton" mnemonicParsing="false" onAction="#onLoginPage" onMouseEntered="#onButtonHover" text="Back to Login">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account">
+                  <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccount" onMouseEntered="#onButtonHover" text="Create Account">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

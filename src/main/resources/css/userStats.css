@@ -34,42 +34,44 @@
 .button, .button:focused{
 	-fx-text-fill: black;
     -fx-background-radius: 10px;
-    -fx-background-color: #E29F00;
-    -fx-effect: dropshadow( gaussian , rgba(143,103,3,0.25) , 1,1,0,1 );
-	-fx-border-radius: 10px;
+	-fx-background-radius: 15px;
     -fx-font-family: 'Amatic SC', cursive;
 	-fx-font-style: normal;
 	-fx-font-weight: 700;
 	-fx-font-size: 22px;
-	-fx-padding: 6 0 5 0;
+	-fx-pref-width: 140px;
+	-fx-pref-height:35px;
+	-fx-padding: 8 0 12 0;
+    -fx-background-insets: 0,0 0 6 0, 0 0 7 0, 0 0 7 0;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #b58004 0%, #b58004 100%),
+        #cc9208,
+        #E29F00,
+        radial-gradient(center 50% 50%, radius 100%, #E29F00, #de9c02);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
 }
 
 .button:pressed{
-	-fx-translate-y: 4;
-	-fx-padding: 6 0 5 0;
-	-fx-background-insets:0;
+	-fx-padding: 11 0 8.5 0;
+	-fx-background-insets: 4 0 0 0,4 0 1 0, 4 0 1 0, 4 0 1 0;
 }
 
-#menuButton {
-	-fx-pref-width: 125px;
-	-fx-max-height: 20px;
-	-fx-font-size: 24px;
+.button:hover, .iconButtons:hover{
+	-fx-scale-y:1.1;
+	-fx-scale-x:1.1;
 }
+
 
 .iconButtons, .iconButtons:focused{
 	-fx-background-color: #E29F00;
 	-fx-background-radius: 100px;
 	-fx-pref-width: 40px;
 	-fx-pref-height: 40px;
+	-fx-padding: 6 0 6 0;
 }
 
 .iconButtons:pressed{
-	-fx-translate-y: 4;
+	-fx-translate-y: 3;
 	-fx-padding: 6 0 5 0;
 	-fx-background-insets:0;
-}
-
-.button:hover, .iconButtons:hover{
-	-fx-scale-y:1.1;
-	-fx-scale-x:1.1;
 }

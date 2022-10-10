@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Map;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -18,7 +20,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LoginController {
-  @FXML private ImageView registerButton;
+  @FXML private VBox registerButton;
   @FXML private Label errorMessageLabel;
   @FXML private HBox profilesHBox;
 
@@ -27,6 +29,8 @@ public class LoginController {
   private RotateTransition rotation;
 
   private Map<String, User> users;
+
+  @FXML private ImageView musicIcon;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
@@ -75,6 +79,7 @@ public class LoginController {
    */
   @FXML
   private void onLogin(MouseEvent event) {
+    SoundManager.playButtonClick();
     VBox vbox = (VBox) event.getSource();
     for (Node node : vbox.getChildren()) {
       // retrieve username in vbox
@@ -103,6 +108,7 @@ public class LoginController {
    */
   @FXML
   private void onProfileHover(MouseEvent event) {
+    onButtonHover();
     VBox vbox = (VBox) event.getSource();
     // set the rotation details
     rotation = new RotateTransition(Duration.seconds(0.4), vbox);
@@ -132,10 +138,40 @@ public class LoginController {
    */
   @FXML
   private void onRegister(MouseEvent event) {
+    SoundManager.playButtonClick();
     errorMessageLabel.setVisible(false);
     // retrieve the source of ImageView and switch to the create user scene
-    ImageView button = (ImageView) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    VBox vbox = (VBox) event.getSource();
+    Scene sceneVBoxIsIn = vbox.getScene();
+    sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
+  }
+
+  /** This method toggles on and off the background music */
+  @FXML
+  private void onToggleMusic() {
+    SoundManager.playButtonClick();
+    SoundManager.toggleBackgroundMusic();
+    // toggle music icon
+    App.getMenuController().setMusicIcon();
+    setMusicIcon();
+  }
+
+  /** This method sets the music icon according to whether background music is playing or not */
+  public void setMusicIcon() {
+    try {
+      // if music off, display noMusic icon
+      musicIcon.setImage(
+          SoundManager.isBackgroundMusicOn()
+              ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())
+              : new Image(this.getClass().getResource("/images/noMusic.png").toURI().toString()));
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
   }
 }

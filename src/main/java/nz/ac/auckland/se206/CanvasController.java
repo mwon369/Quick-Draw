@@ -197,6 +197,9 @@ public class CanvasController {
    */
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
+    SoundManager.playButtonClick();
+    SoundManager.setBackgroundMusicVolume(0.2);
+
     isMuted = false;
     soundIcon.setImage(loadImage("unmute"));
     resetCanvas();
@@ -237,6 +240,7 @@ public class CanvasController {
    */
   @FXML
   private void onStartNewGame() {
+    SoundManager.playButtonClick();
 
     resetCanvas();
     // select and display random category (easy)
@@ -267,6 +271,7 @@ public class CanvasController {
    */
   @FXML
   private void onReady() {
+    SoundManager.playButtonClick();
     isGameOver = false;
 
     // tell the player to start drawing
@@ -319,6 +324,7 @@ public class CanvasController {
                       colourTopPredictions(predictionsListView, accuracy);
                       // check if player has won
                       if (isWin(classifications, accuracy, confidence)) {
+                        SoundManager.playWinSound();
                         timer.cancel();
                         stopGame(true, timerLabel.getText());
                         return;
@@ -335,6 +341,7 @@ public class CanvasController {
 
             // if time has run out, cancel timer
             if (time == 0) {
+              SoundManager.playAlarmBell();
               timer.cancel();
               Platform.runLater(
                   () -> {
@@ -342,6 +349,11 @@ public class CanvasController {
                   });
               return;
             } else {
+              if (time <= 5) {
+                SoundManager.playTimerTickFast();
+              } else {
+                SoundManager.playTimerTick();
+              }
               // otherwise, decrement the time by 1 second
               time -= 1;
             }
@@ -490,6 +502,7 @@ public class CanvasController {
    */
   @FXML
   private void onToggleSound() throws URISyntaxException, IOException {
+    SoundManager.playButtonClick();
     isMuted = isMuted ? false : true;
     String soundState = isMuted ? "mute" : "unmute";
     soundIcon.setImage(loadImage(soundState));
@@ -577,17 +590,17 @@ public class CanvasController {
     isGameOver = true;
 
     // speak whether user won or lost
-    Task<Void> endSpeechTask =
-        new Task<Void>() {
+    Timer speakOutcome = new Timer();
+    speakOutcome.schedule(
+        new java.util.TimerTask() {
           @Override
-          protected Void call() throws Exception {
+          public void run() {
             textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");
-            return null;
+            // close the thread
+            speakOutcome.cancel();
           }
-        };
-
-    Thread endSpeechThread = new Thread(endSpeechTask);
-    endSpeechThread.start();
+        },
+        500);
   }
 
   /** This method changes the user's input to simulate an eraser for the canvas */
@@ -650,8 +663,8 @@ public class CanvasController {
    */
   private void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the
-     * indicator's requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the indicator's
+     * requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
@@ -705,6 +718,7 @@ public class CanvasController {
    */
   @FXML
   private void onSave() {
+    SoundManager.playButtonClick();
     // create /drawings folder if not already made
     final File tmpFolder = new File("drawings");
 
@@ -748,5 +762,11 @@ public class CanvasController {
         e.printStackTrace();
       }
     }
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }

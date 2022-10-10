@@ -14,22 +14,27 @@
 
 <StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.WordHistoryController">
     <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/DoodleBackground.jpg" />
+         </image>
+      </ImageView>
         <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
             <children>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="760.0">
                <children>
-                        <Button fx:id="backToProfileButton" mnemonicParsing="false" onAction="#onGoBackToProfile" text="Back to Profile">
+                        <Button fx:id="backToProfileButton" mnemonicParsing="false" onAction="#onGoBackToProfile" onMouseEntered="#onButtonHover" text="Back to Profile">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                  <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#onClearFilters" text="Clear Filters">
+                  <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#onClearFilters" onMouseEntered="#onButtonHover" text="Clear Filters">
                      <HBox.margin>
                         <Insets left="450.0" />
                      </HBox.margin>
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="-15.0" />
+                  <Insets left="30.0" right="30.0" top="-15.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="760.0">
@@ -84,9 +89,9 @@
                         <Insets top="60.0" />
                     </VBox.margin>
                <children>
-                  <Button fx:id="easyWordsButton" mnemonicParsing="false" onAction="#onFilterEasyWords" text="Easy Words" />
-                  <Button fx:id="mediumWordsButton" mnemonicParsing="false" onAction="#onFilterMediumWords" text="Medium Words" />
-                  <Button fx:id="hardWordsButton" mnemonicParsing="false" onAction="#onFilterHardWords" text="Hard Words">
+                  <Button fx:id="easyWordsButton" mnemonicParsing="false" onAction="#onFilterEasyWords" onMouseEntered="#onButtonHover" text="Easy Words" />
+                  <Button fx:id="mediumWordsButton" mnemonicParsing="false" onAction="#onFilterMediumWords" onMouseEntered="#onButtonHover" text="Medium Words" />
+                  <Button fx:id="hardWordsButton" mnemonicParsing="false" onAction="#onFilterHardWords" onMouseEntered="#onButtonHover" text="Hard Words">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>

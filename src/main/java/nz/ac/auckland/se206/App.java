@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.words.CategoryManager;
  */
 public class App extends Application {
   private static LoginController loginController;
+  private static MenuController menuController;
 
   public static void main(final String[] args) {
     launch();
@@ -47,13 +48,15 @@ public class App extends Application {
     UsersManager.loadUsersFromJson();
 
     // Add scenes and stylesheets
-    SceneManager.addUi(AppUi.MENU, loadFxml("menu"));
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/menu.fxml"));
+    SceneManager.addUi(AppUi.MENU, loader.load());
     SceneManager.getUiRoot(AppUi.MENU).getStylesheets().add("/css/menu.css");
+    menuController = loader.getController();
 
     SceneManager.addUi(AppUi.USER_CREATION, loadFxml("userCreation"));
     SceneManager.getUiRoot(AppUi.USER_CREATION).getStylesheets().add("/css/userCreation.css");
 
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
+    loader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
     SceneManager.addUi(AppUi.LOGIN, loader.load());
     SceneManager.getUiRoot(AppUi.LOGIN).getStylesheets().add("/css/login.css");
     loginController = loader.getController();
@@ -64,9 +67,11 @@ public class App extends Application {
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
 
-    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 760, 680);
+    final Scene scene = new Scene(SceneManager.getUiRoot(AppUi.LOGIN), 880, 720);
     stage.setScene(scene);
     stage.show();
+
+    SoundManager.playBackgroundMusic();
 
     // ensure everything terminates when user closes the window
     stage.setOnCloseRequest(
@@ -81,5 +86,9 @@ public class App extends Application {
 
   public static LoginController getLoginController() {
     return loginController;
+  }
+
+  public static MenuController getMenuController() {
+    return menuController;
   }
 }

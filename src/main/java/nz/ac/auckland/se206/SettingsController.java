@@ -56,6 +56,7 @@ public class SettingsController {
         .addListener(
             new ChangeListener<Toggle>() {
               public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
                 if (rb != null) {
                   UsersManager.getSelectedUser()
@@ -71,6 +72,7 @@ public class SettingsController {
         .addListener(
             new ChangeListener<Toggle>() {
               public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) timeLimit.getSelectedToggle();
                 if (rb != null) {
                   UsersManager.getSelectedUser()
@@ -86,6 +88,7 @@ public class SettingsController {
         .addListener(
             new ChangeListener<Toggle>() {
               public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) confidence.getSelectedToggle();
                 if (rb != null) {
                   UsersManager.getSelectedUser()
@@ -100,6 +103,7 @@ public class SettingsController {
         .addListener(
             new ChangeListener<Toggle>() {
               public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n) {
+                SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) word.getSelectedToggle();
                 if (rb != null) {
                   UsersManager.getSelectedUser()
@@ -170,9 +174,16 @@ public class SettingsController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    SoundManager.playButtonClick();
     // retrieve the source of button and switch to the menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }

@@ -39,7 +39,7 @@
                   <RadioButton fx:id="hardAccuracy" mnemonicParsing="false" text="Hard" toggleGroup="$accuracy" />
                   <StackPane prefHeight="0.0" styleClass="about">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
                            <font>
                               <Font name="Century Schoolbook Bold" size="18.0" />
                            </font>
@@ -73,7 +73,7 @@
                   <RadioButton fx:id="masterTimeLimit" mnemonicParsing="false" text="Master" toggleGroup="$timeLimit" />
                   <StackPane prefHeight="0.0" styleClass="about">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
                            <font>
                               <Font name="Century Schoolbook Bold" size="18.0" />
                            </font>
@@ -101,7 +101,7 @@
                   <RadioButton fx:id="masterConfidence" mnemonicParsing="false" text="Master" toggleGroup="$confidence" />
                   <StackPane prefHeight="0.0" styleClass="about">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
                            <font>
                               <Font name="Century Schoolbook Bold" size="18.0" />
                            </font>
@@ -129,7 +129,7 @@
 		            <RadioButton fx:id="masterWord" mnemonicParsing="false" text="Master" toggleGroup="$word" />
                   <StackPane prefHeight="0.0" styleClass="about">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
                            <font>
                               <Font name="Century Schoolbook Bold" size="18.0" />
                            </font>
@@ -146,7 +146,7 @@
 	      	</HBox>
             <HBox alignment="CENTER" minHeight="36.0">
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu">
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" onMouseEntered="#onButtonHover" text="Menu">
                      <padding>
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                      </padding>

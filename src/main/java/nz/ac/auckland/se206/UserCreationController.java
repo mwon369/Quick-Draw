@@ -17,6 +17,7 @@ public class UserCreationController {
   /** This method creates an account for a new user */
   @FXML
   private void onCreateAccount() {
+    SoundManager.playButtonClick();
     // check if username or password is empty
     if (usernameField.getText().isBlank()) {
       errorMessageLabel.setTextFill(Color.RED);
@@ -53,10 +54,17 @@ public class UserCreationController {
    */
   @FXML
   private void onLoginPage(ActionEvent event) {
+    SoundManager.playButtonClick();
     usernameField.clear();
     errorMessageLabel.setText("");
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
+  }
+
+  /** This method plays the on button hover sound effect */
+  @FXML
+  private void onButtonHover() {
+    SoundManager.playButtonHover();
   }
 }
