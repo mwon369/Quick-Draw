@@ -301,6 +301,7 @@ public class ZenCanvasController {
    */
   @FXML
   private void onReady() {
+    SoundManager.playButtonClick();
     isGameOver = false;
 
     // tell the player to start drawing

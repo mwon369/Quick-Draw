@@ -8,16 +8,29 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -410,6 +423,19 @@ public class HiddenWordController {
     // set visual attributes
     alert.setTitle("Word Hint");
     alert.setHeaderText(CategoryManager.getHint(targetCategory));
+
+    for (Node node : alert.getDialogPane().getChildren()) {
+      // set button hover sounds
+      if (node instanceof ButtonBar) {
+        ButtonBar buttonBar = (ButtonBar) node;
+        for (Node button : buttonBar.getButtons()) {
+          button.setOnMouseEntered(
+              event -> {
+                SoundManager.playButtonHover();
+              });
+        }
+      }
+    }
 
     // play button click when user closes hint alert
     Optional<ButtonType> result = alert.showAndWait();
