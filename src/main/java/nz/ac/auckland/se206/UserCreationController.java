@@ -41,7 +41,7 @@ public class UserCreationController {
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
 
-    App.getLoginController().loadUserGUI(newUser);
+    App.getLoginController().loadUserGui(newUser);
 
     // clear all fields
     usernameField.clear();

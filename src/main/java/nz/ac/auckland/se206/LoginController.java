@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashSet;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.beans.value.ChangeListener;
@@ -34,6 +35,8 @@ public class LoginController {
 
   @FXML private TextField search;
 
+  private HashSet<String> currentDisplay;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
    * vboxes. Adds listener to the search field to search for profiles
@@ -41,6 +44,7 @@ public class LoginController {
    * @throws IOException
    */
   public void initialize() {
+    currentDisplay = new HashSet<String>();
     search
         .textProperty()
         .addListener(
@@ -48,15 +52,28 @@ public class LoginController {
               @Override
               public void changed(
                   ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                HashSet<String> newDisplay = new HashSet<String>();
                 boolean found = false;
-                profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
                 for (String username : UsersManager.getUsersMap().keySet()) {
                   // if username contains the search text as substring, count as a match
                   if (username.contains(newValue)) {
                     found = true;
-                    loadUserGUI(UsersManager.getUsersMap().get(username));
+                    newDisplay.add(username);
                   }
                 }
+                // change display only if the new list of users is different from current display
+                if (!currentDisplay.containsAll(newDisplay)
+                    || !newDisplay.containsAll(currentDisplay)) {
+                  profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
+                  for (String username : newDisplay) {
+                    loadUserGui(UsersManager.getUsersMap().get(username));
+                  }
+                  // replace current display
+                  currentDisplay.clear();
+                  currentDisplay.addAll(newDisplay);
+                }
+
+                // configure error message if needed
                 errorMessageLabel.setText(found || newValue.isEmpty() ? "" : "No users found!");
                 errorMessageLabel.setTextFill(Color.RED);
                 errorMessageLabel.setVisible(found || newValue.isEmpty() ? false : true);
@@ -68,7 +85,8 @@ public class LoginController {
       return;
     }
     for (User user : UsersManager.getUsersMap().values()) {
-      loadUserGUI(user);
+      currentDisplay.add(user.getUsername());
+      loadUserGui(user);
     }
   }
 
@@ -77,7 +95,8 @@ public class LoginController {
    *
    * @param user The user to be loaded
    */
-  public void loadUserGUI(User user) {
+  public void loadUserGui(User user) {
+    currentDisplay.add(user.getUsername());
     VBox vbox = new VBox();
     Label username = new Label(user.getUsername());
     username.getStyleClass().add("username");
