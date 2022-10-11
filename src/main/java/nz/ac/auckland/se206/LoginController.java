@@ -52,15 +52,14 @@ public class LoginController {
                 profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
                 for (String username : UsersManager.getUsersMap().keySet()) {
                   // if username contains the search text as substring, count as a match
-                  if (username.contains(search.getText())) {
+                  if (username.contains(newValue)) {
                     found = true;
                     loadUserGUI(UsersManager.getUsersMap().get(username));
                   }
                 }
-                errorMessageLabel.setText(
-                    found || search.getText().isEmpty() ? "" : "No users found!");
+                errorMessageLabel.setText(found || newValue.isEmpty() ? "" : "No users found!");
                 errorMessageLabel.setTextFill(Color.RED);
-                errorMessageLabel.setVisible(found || search.getText().isEmpty() ? false : true);
+                errorMessageLabel.setVisible(found || newValue.isEmpty() ? false : true);
               }
             });
 
