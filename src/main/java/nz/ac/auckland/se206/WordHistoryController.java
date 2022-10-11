@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordHistoryController {
@@ -31,31 +30,35 @@ public class WordHistoryController {
   @FXML private Label noWordsLabel;
   @FXML private Label filterLabel;
 
-  private ArrayList<String> userWordHistory;
+  private boolean found = false;
   private ArrayList<String> userEasyWordHistory;
-  private ArrayList<String> userMediumWordHistory;
   private ArrayList<String> userHardWordHistory;
+  private ArrayList<String> userMediumWordHistory;
+  private ArrayList<String> userWordHistory;
 
-  private enum difficultyFilters {
+  private enum DifficultyFilters {
     E,
     M,
     H,
     ALL,
   }
 
-  protected static difficultyFilters difficultyFilter;
+  protected static DifficultyFilters difficultyFilter;
 
   public void initialize() {
-    // add event handler so user can search by pressing the ENTER key
-    searchTextField.setOnKeyPressed(
-        new EventHandler<KeyEvent>() {
-          @Override
-          public void handle(KeyEvent key) {
-            if (key.getCode().equals(KeyCode.ENTER)) {
-              onSearch();
-            }
-          }
-        });
+    // add change listener so searching happens as the user types
+    searchTextField
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                found = false;
+                // call this function everytime the text input changes
+                onSearch();
+              }
+            });
   }
 
   protected void showWordHistory() {
@@ -70,7 +73,7 @@ public class WordHistoryController {
     filterLabel.setText("Filtering search by: ALL words");
 
     // set list view to display all the words played if the user has played a game before
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     if (!userWordHistory.isEmpty()) {
       noWordsLabel.setText("");
       wordListView.getItems().setAll(userWordHistory);
@@ -85,7 +88,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterEasyWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.E;
+    difficultyFilter = DifficultyFilters.E;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -108,7 +111,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterMediumWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.M;
+    difficultyFilter = DifficultyFilters.M;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -131,7 +134,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterHardWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.H;
+    difficultyFilter = DifficultyFilters.H;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -154,7 +157,7 @@ public class WordHistoryController {
   @FXML
   private void onClearFilters() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -187,6 +190,7 @@ public class WordHistoryController {
 
         if (!easyWords.isEmpty()) {
           wordListView.getItems().addAll(easyWords);
+          noWordsLabel.setText("");
           return;
         }
         // display message if no matches found
@@ -201,6 +205,7 @@ public class WordHistoryController {
 
         if (!mediumWords.isEmpty()) {
           wordListView.getItems().addAll(mediumWords);
+          noWordsLabel.setText("");
           return;
         }
         // display message if no matches found
@@ -215,6 +220,7 @@ public class WordHistoryController {
 
         if (!hardWords.isEmpty()) {
           wordListView.getItems().addAll(hardWords);
+          noWordsLabel.setText("");
           return;
         }
         // display message if no matches found
@@ -229,6 +235,7 @@ public class WordHistoryController {
 
         if (!allWords.isEmpty()) {
           wordListView.getItems().addAll(allWords);
+          noWordsLabel.setText("");
           return;
         }
         // display message if no matches found
@@ -273,7 +280,7 @@ public class WordHistoryController {
   @FXML
   private void onGoBackToProfile(ActionEvent event) {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
     // retrieve the source of button and switch to the badge view page

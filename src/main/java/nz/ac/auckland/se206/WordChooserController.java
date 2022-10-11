@@ -7,24 +7,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordChooserController {
 
   @FXML private ListView<String> wordListView;
   @FXML private Label chosenWordLabel;
+  @FXML private Label noWordsLabel;
   @FXML private TextField searchTextField;
 
+  private boolean found = false;
   private List<String[]> lines;
   private ArrayList<String> words = new ArrayList<>();
   protected ZenCanvasController zenCanvasController = null;
@@ -68,16 +69,21 @@ public class WordChooserController {
               }
             });
 
-    // add event handler so user can search by pressing the ENTER key
-    searchTextField.setOnKeyPressed(
-        new EventHandler<KeyEvent>() {
-          @Override
-          public void handle(KeyEvent key) {
-            if (key.getCode().equals(KeyCode.ENTER)) {
-              onSearch();
-            }
-          }
-        });
+    // add change listener so searching happens as the user types
+    searchTextField
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                found = false;
+                // call this function everytime the text input changes
+                onSearch();
+                noWordsLabel.setText(found || newValue.isEmpty() ? "" : "No word found!");
+                noWordsLabel.setVisible(!found && !newValue.isEmpty());
+              }
+            });
   }
 
   /**
@@ -117,7 +123,11 @@ public class WordChooserController {
   private void onSearch() {
     SoundManager.playButtonClick();
     wordListView.getItems().clear();
-    wordListView.getItems().addAll(searchList(searchTextField.getText(), words));
+    // show filtered words if something is returned
+    if (!searchList(searchTextField.getText(), words).isEmpty()) {
+      wordListView.getItems().addAll(searchList(searchTextField.getText(), words));
+      found = true;
+    }
   }
 
   /**
