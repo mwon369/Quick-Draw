@@ -2,14 +2,16 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Map;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,23 +30,44 @@ public class LoginController {
 
   private RotateTransition rotation;
 
-  private Map<String, User> users;
-
   @FXML private ImageView musicIcon;
+
+  @FXML private TextField search;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
-   * vboxes
+   * vboxes. Adds listener to the search field to search for profiles
    *
    * @throws IOException
    */
   public void initialize() {
-    users = UsersManager.getUsersMap();
-    if (users.keySet().size() == 0) {
+    search
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                boolean found = false;
+                profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
+                for (String username : UsersManager.getUsersMap().keySet()) {
+                  // if username contains the search text as substring, count as a match
+                  if (username.contains(newValue)) {
+                    found = true;
+                    loadUserGUI(UsersManager.getUsersMap().get(username));
+                  }
+                }
+                errorMessageLabel.setText(found || newValue.isEmpty() ? "" : "No users found!");
+                errorMessageLabel.setTextFill(Color.RED);
+                errorMessageLabel.setVisible(found || newValue.isEmpty() ? false : true);
+              }
+            });
+
+    if (UsersManager.getUsersMap().keySet().size() == 0) {
       // when there are no users
       return;
     }
-    for (User user : users.values()) {
+    for (User user : UsersManager.getUsersMap().values()) {
       loadUserGUI(user);
     }
   }
@@ -96,6 +119,7 @@ public class LoginController {
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
+        search.clear();
         return;
       }
     }
@@ -144,6 +168,7 @@ public class LoginController {
     VBox vbox = (VBox) event.getSource();
     Scene sceneVBoxIsIn = vbox.getScene();
     sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    search.clear();
   }
 
   /** This method plays the on button hover sound effect */

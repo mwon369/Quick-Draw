@@ -19,6 +19,17 @@
 	-fx-font-weight: 400;
 }
 
+.textField {
+	-fx-pref-width: 180px;	
+	-fx-background-color: #FFFFFF;
+	-fx-opacity: 0.7;
+	-fx-background-radius: 10px;	
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 16px;
+}
+
 #signInTitle{
 	-fx-font-family: 'Indie Flower', cursive;
 	-fx-font-style: normal;
