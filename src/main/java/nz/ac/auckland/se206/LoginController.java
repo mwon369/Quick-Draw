@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Optional;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.beans.value.ChangeListener;
@@ -11,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -234,12 +238,31 @@ public class LoginController {
    */
   private void onDelete(MouseEvent event) {
     SoundManager.playButtonClick();
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    // create a style class so it can be styled through canvas.css
+    DialogPane dialogPane = alert.getDialogPane();
+    dialogPane.getStylesheets().add(getClass().getResource("/css/canvas.css").toExternalForm());
+    dialogPane.getStyleClass().add("hintDialog");
+
+    // set visual attributes
+    alert.setTitle("Delete profile?");
+    alert.setHeaderText("Are you sure you want to delete this profile?");
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() != ButtonType.OK) {
+      SoundManager.playButtonClick();
+      return;
+    }
+    SoundManager.playButtonClick();
+
+    // find user to delete
     HBox hbox = (HBox) event.getSource();
     String usernameToDelete;
     for (Node node : ((VBox) hbox.getParent()).getChildren()) {
       if (node instanceof VBox) {
         for (Node node2 : ((VBox) node).getChildren()) {
           if (node2 instanceof Label) {
+            // get username and delete user and user gui
             usernameToDelete = ((Label) node2).getText();
             UsersManager.deleteUser(usernameToDelete);
             deleteUserGui(usernameToDelete);
