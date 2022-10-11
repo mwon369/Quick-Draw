@@ -213,6 +213,11 @@ public class WordHistoryController {
     }
   }
 
+  /**
+   * This helper method sets the ListView when the user searches using the search bar
+   *
+   * @param foundResults a list of returned Strings that match the search bar input
+   */
   private void setListOnSearch(List<String> foundResults) {
     if (!foundResults.isEmpty()) {
       wordListView.getItems().addAll(foundResults);
