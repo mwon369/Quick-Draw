@@ -187,63 +187,41 @@ public class WordHistoryController {
         // only searches through the easy words
         wordListView.getItems().clear();
         List<String> easyWords = searchList(searchTextField.getText(), userEasyWordHistory);
-
-        if (!easyWords.isEmpty()) {
-          wordListView.getItems().addAll(easyWords);
-          noWordsLabel.setText("");
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(easyWords);
         break;
+
       case M:
         // only searches through the medium words
         wordListView.getItems().clear();
         List<String> mediumWords = searchList(searchTextField.getText(), userMediumWordHistory);
-
-        if (!mediumWords.isEmpty()) {
-          wordListView.getItems().addAll(mediumWords);
-          noWordsLabel.setText("");
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(mediumWords);
         break;
+
       case H:
         // only searches through the hard words
         wordListView.getItems().clear();
         List<String> hardWords = searchList(searchTextField.getText(), userHardWordHistory);
-
-        if (!hardWords.isEmpty()) {
-          wordListView.getItems().addAll(hardWords);
-          noWordsLabel.setText("");
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(hardWords);
         break;
+
       case ALL:
         // searches through all words
         wordListView.getItems().clear();
         List<String> allWords = searchList(searchTextField.getText(), userWordHistory);
-
-        if (!allWords.isEmpty()) {
-          wordListView.getItems().addAll(allWords);
-          noWordsLabel.setText("");
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(allWords);
         break;
     }
+  }
+
+  private void setListOnSearch(List<String> foundResults) {
+    if (!foundResults.isEmpty()) {
+      wordListView.getItems().addAll(foundResults);
+      noWordsLabel.setText("");
+      return;
+    }
+    // display message if no matches found
+    noWordsLabel.setWrapText(true);
+    noWordsLabel.setText("No words found!");
   }
 
   /**

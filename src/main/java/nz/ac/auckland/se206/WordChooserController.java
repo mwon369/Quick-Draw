@@ -80,7 +80,7 @@ public class WordChooserController {
                 found = false;
                 // call this function everytime the text input changes
                 onSearch();
-                noWordsLabel.setText(found || newValue.isEmpty() ? "" : "No word found!");
+                noWordsLabel.setText(found || newValue.isEmpty() ? "" : "No words found!");
                 noWordsLabel.setVisible(!found && !newValue.isEmpty());
               }
             });
