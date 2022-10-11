@@ -216,3 +216,15 @@
 	-fx-scale-y: 1.2;
 	-fx-scale-x: 1.2;
 }
+
+.list-cell:even:hover {
+    -fx-border-color: #F8DF95;
+}
+
+.list-cell:odd:hover {
+    -fx-border-color: #F8DF95;
+}
+
+.list-cell:selected {
+    -fx-text-fill: black;
+}
