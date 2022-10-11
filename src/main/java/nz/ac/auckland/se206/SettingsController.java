@@ -167,7 +167,7 @@ public class SettingsController {
    * @param event an ActionEvent representing when the menu button has been clicked
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMainMenu(ActionEvent event) {
     // save user difficulties
     try {
       UsersManager.saveUsersToJson();
