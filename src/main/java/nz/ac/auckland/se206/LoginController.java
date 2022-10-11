@@ -119,10 +119,10 @@ public class LoginController {
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
+        search.clear();
         return;
       }
     }
-    search.clear();
   }
 
   /**
