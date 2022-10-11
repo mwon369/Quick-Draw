@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -18,7 +19,7 @@
             <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
-      <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" spacing="30.0">
+      <VBox id="loginVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="720.0" spacing="30.0">
          <children>
             <Label styleClass="title" text="Welcome to Quick, Draw!">
                <font>
@@ -42,6 +43,22 @@
                </children>
                <VBox.margin>
                   <Insets bottom="-20.0" top="-20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/searchicon.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="search" onKeyTyped="#onSearch" promptText="Search" styleClass="textField" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="-20.0" />
                </VBox.margin>
             </HBox>
             <ScrollPane fx:id="profilesScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="180.0" prefWidth="680.0" vbarPolicy="NEVER">
