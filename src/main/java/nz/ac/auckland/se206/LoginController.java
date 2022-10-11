@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,7 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,11 +36,34 @@ public class LoginController {
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
-   * vboxes
+   * vboxes. Adds listener to the search field to search for profiles
    *
    * @throws IOException
    */
   public void initialize() {
+    search
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                boolean found = false;
+                profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
+                for (String username : UsersManager.getUsersMap().keySet()) {
+                  // if username contains the search text as substring, count as a match
+                  if (username.contains(search.getText())) {
+                    found = true;
+                    loadUserGUI(UsersManager.getUsersMap().get(username));
+                  }
+                }
+                errorMessageLabel.setText(
+                    found || search.getText().isEmpty() ? "" : "No users found!");
+                errorMessageLabel.setTextFill(Color.RED);
+                errorMessageLabel.setVisible(found || search.getText().isEmpty() ? false : true);
+              }
+            });
+
     if (UsersManager.getUsersMap().keySet().size() == 0) {
       // when there are no users
       return;
@@ -99,6 +123,7 @@ public class LoginController {
         return;
       }
     }
+    search.clear();
   }
 
   /**
@@ -144,6 +169,7 @@ public class LoginController {
     VBox vbox = (VBox) event.getSource();
     Scene sceneVBoxIsIn = vbox.getScene();
     sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    search.clear();
   }
 
   /** This method plays the on button hover sound effect */
@@ -173,26 +199,5 @@ public class LoginController {
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
-  }
-
-  /**
-   * This method searches the profiles and displays the found profiles according to search field
-   *
-   * @param event
-   */
-  @FXML
-  private void onSearch(KeyEvent event) {
-    boolean found = false;
-    profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
-    for (String username : UsersManager.getUsersMap().keySet()) {
-      // if username contains the search text as substring, count as a match
-      if (username.contains(search.getText())) {
-        found = true;
-        loadUserGUI(UsersManager.getUsersMap().get(username));
-      }
-    }
-    errorMessageLabel.setText(found | search.getText().isEmpty() ? "" : "No users found!");
-    errorMessageLabel.setTextFill(Color.RED);
-    errorMessageLabel.setVisible(found | search.getText().isEmpty() ? false : true);
   }
 }

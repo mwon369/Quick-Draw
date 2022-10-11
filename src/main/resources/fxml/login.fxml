@@ -52,7 +52,7 @@
                         <Image url="@../images/searchicon.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="search" onKeyTyped="#onSearch" promptText="Search" styleClass="textField" />
+                  <TextField fx:id="search" promptText="Search" styleClass="textField" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
