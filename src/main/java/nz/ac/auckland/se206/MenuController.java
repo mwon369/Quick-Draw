@@ -11,8 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -35,6 +38,14 @@ public class MenuController {
   @FXML private Button playButton;
 
   @FXML private ImageView musicIcon;
+
+  @FXML private MenuItem settingsMenuItem;
+
+  @FXML private MenuItem statsMenuItem;
+
+  @FXML private MenuItem logOutMenuItem;
+
+  @FXML private MenuButton userMenuButton;
   private boolean isMusicOn = true;
 
   /**
@@ -136,8 +147,10 @@ public class MenuController {
   private void onLogout(ActionEvent event) {
     SoundManager.playButtonClick();
     // retrieve the source of button and switch to the login page
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
+    //		Button button = (Button) event.getSource();
+    //		Scene sceneButtonIsIn = button.getScene();
+    Stage owner = (Stage) logOutMenuItem.getParentPopup().getOwnerWindow();
+    Scene sceneButtonIsIn = owner.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
   }
 
@@ -150,8 +163,8 @@ public class MenuController {
   private void onCheckStats(ActionEvent event) {
     SoundManager.playButtonClick();
     // retrieve the source of button and switch to the user stats page
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
+    Stage owner = (Stage) statsMenuItem.getParentPopup().getOwnerWindow();
+    Scene sceneButtonIsIn = owner.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_STATS));
     userStatsController.onRetrieveStats();
   }
@@ -176,8 +189,10 @@ public class MenuController {
   private void onSettings(ActionEvent event) {
     SoundManager.playButtonClick();
     // retrieve the source of button and switch to the settings page
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
+    //		Button button = (Button) event.getSource();
+    //		Scene sceneButtonIsIn = button.getScene();
+    Stage owner = (Stage) settingsMenuItem.getParentPopup().getOwnerWindow();
+    Scene sceneButtonIsIn = owner.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.SETTINGS));
     settingsController.loadUserDifficulties();
   }
@@ -209,5 +224,9 @@ public class MenuController {
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
+  }
+
+  public void displayUsername() {
+    userMenuButton.setText(UsersManager.getSelectedUser().getUsername());
   }
 }

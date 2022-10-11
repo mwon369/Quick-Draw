@@ -32,6 +32,8 @@ public class LoginController {
 
   @FXML private ImageView musicIcon;
 
+  private MenuController menuController;
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
    * vboxes
@@ -95,6 +97,8 @@ public class LoginController {
         errorMessageLabel.setVisible(false);
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
+
+        menuController.displayUsername();
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
         return;
       }
@@ -173,5 +177,9 @@ public class LoginController {
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
+  }
+
+  public void setController(MenuController controller) {
+    this.menuController = controller;
   }
 }

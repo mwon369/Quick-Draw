@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,12 +22,53 @@
       </ImageView>
       <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="555.0" spacing="15.0">
          <children>
+            <MenuButton fx:id="userMenuButton" mnemonicParsing="false" text="User">
+              <items>
+                  <MenuItem fx:id="settingsMenuItem" mnemonicParsing="false" onAction="#onSettings" text="Settings">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/settingsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                <MenuItem fx:id="statsMenuItem" mnemonicParsing="false" onAction="#onCheckStats" text="Statistics">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/statsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="logOutMenuItem" mnemonicParsing="false" onAction="#onLogout" text="LogOut">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logoutIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+              </items>
+               <VBox.margin>
+                  <Insets left="350.0" top="30.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/personIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
             <Label fx:id="title" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
                <font>
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
