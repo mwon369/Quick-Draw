@@ -30,11 +30,7 @@ public class MenuController {
 
   @FXML private ImageView profilePictureImageView;
 
-  /**
-   * This method sets the title animation
-   *
-   * @throws IOException
-   */
+  /** This method sets the title animation to enlarge and get smaller periodically */
   public void initialize() {
     // define title animation
     ScaleTransition st = new ScaleTransition(Duration.millis(750), title);
@@ -183,7 +179,7 @@ public class MenuController {
    * This method loads the user profile picture
    *
    * @return The profile picture in an Image object
-   * @throws IOException
+   * @throws IOException if an issue occurs with loading the image
    */
   public Image loadImage() throws IOException {
     // Loading the image into a file and converting it into an Image object
