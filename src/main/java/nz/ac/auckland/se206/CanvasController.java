@@ -56,66 +56,66 @@ import nz.ac.auckland.se206.words.CategorySelector.CategoryDifficulty;
  */
 public class CanvasController {
 
-  @FXML private Canvas canvas;
-  @FXML private Label wordLabel;
-  private String targetCategory;
+  @FXML protected Canvas canvas;
+  @FXML protected Label wordLabel;
+  protected String targetCategory;
 
   // items for the timer
-  @FXML private Label timerLabel;
-  private Timer timer;
+  @FXML protected Label timerLabel;
+  protected Timer timer;
 
-  @FXML private Button mainMenuButton;
-  @FXML private Button startNewGameButton;
-  @FXML private Button readyButton;
+  @FXML protected Button mainMenuButton;
+  @FXML protected Button startNewGameButton;
+  @FXML protected Button readyButton;
 
-  private GraphicsContext graphic;
-  private DoodlePrediction model;
+  protected GraphicsContext graphic;
+  protected DoodlePrediction model;
 
-  @FXML private ListView<String> predictionsListView;
-  private List<Classification> classifications;
+  @FXML protected ListView<String> predictionsListView;
+  protected List<Classification> classifications;
 
-  @FXML private Label winLossLabel;
+  @FXML protected Label winLossLabel;
 
   // items for the canvas tools
-  @FXML private Pane penPane;
-  @FXML private Pane eraserPane;
-  @FXML private Pane clearPane;
-  @FXML private Pane savePane;
-  @FXML private Pane soundPane;
-  @FXML private ImageView penIcon;
-  @FXML private ImageView eraserIcon;
-  @FXML private ImageView clearIcon;
-  @FXML private ImageView saveIcon;
-  @FXML private ImageView soundIcon;
+  @FXML protected Pane penPane;
+  @FXML protected Pane eraserPane;
+  @FXML protected Pane clearPane;
+  @FXML protected Pane savePane;
+  @FXML protected Pane soundPane;
+  @FXML protected ImageView penIcon;
+  @FXML protected ImageView eraserIcon;
+  @FXML protected ImageView clearIcon;
+  @FXML protected ImageView saveIcon;
+  @FXML protected ImageView soundIcon;
 
-  @FXML private Circle topTwoHundredCircle;
-  @FXML private Circle topOneHundredCircle;
-  @FXML private Circle topFiftyCircle;
-  @FXML private Circle topTwentyFiveCircle;
+  @FXML protected Circle topTwoHundredCircle;
+  @FXML protected Circle topOneHundredCircle;
+  @FXML protected Circle topFiftyCircle;
+  @FXML protected Circle topTwentyFiveCircle;
 
-  private List<Pane> toolPanes;
+  protected List<Pane> toolPanes;
 
-  private TextToSpeech textToSpeech;
-  private Timer speakPredictionsTimer;
-  private boolean isGameOver;
-  private boolean isDrawing;
-  private boolean isPenDrawn = false;
-  private boolean isMuted;
-  private User user;
-  private int userWins;
-  private int userLosses;
-  private int userFastestWin;
-  private int userStreak;
-  private int wordPosition = -1;
+  protected TextToSpeech textToSpeech;
+  protected Timer speakPredictionsTimer;
+  protected boolean isGameOver;
+  protected boolean isDrawing;
+  protected boolean isPenDrawn = false;
+  protected boolean isMuted;
+  protected User user;
+  protected int userWins;
+  protected int userLosses;
+  protected int userFastestWin;
+  protected int userStreak;
+  protected int wordPosition = -1;
 
   // mouse coordinates
-  private double currentX;
-  private double currentY;
+  protected double currentX;
+  protected double currentY;
 
   // difficulties
-  private int accuracy;
-  private int timeLimit;
-  private double confidence;
+  protected int accuracy;
+  protected int timeLimit;
+  protected double confidence;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -125,7 +125,7 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
-    isMuted = false;
+    isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -159,7 +159,7 @@ public class CanvasController {
 
   /** This method is called when the "Clear" button is pressed. */
   @FXML
-  private void onClear() {
+  protected void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     isPenDrawn = false;
     isDrawing = false;
@@ -172,7 +172,7 @@ public class CanvasController {
    *
    * @return The BufferedImage corresponding to the current canvas content.
    */
-  private BufferedImage getCurrentSnapshot() {
+  protected BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
     final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
 
@@ -196,12 +196,12 @@ public class CanvasController {
    * @throws URISyntaxException
    */
   @FXML
-  private void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
+  protected void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
     SoundManager.playButtonClick();
     SoundManager.setBackgroundMusicVolume(0.2);
 
-    isMuted = false;
-    soundIcon.setImage(loadImage("unmute"));
+    isMuted = true;
+    soundIcon.setImage(loadImage("mute"));
     resetCanvas();
     // reset the timer and cancel the timer if needed
     timerLabel.setText(String.valueOf(timeLimit));
@@ -218,7 +218,7 @@ public class CanvasController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
 
-  private void resetCanvas() {
+  protected void resetCanvas() {
     resetIndicator();
     isPenDrawn = false;
     isGameOver = true;
@@ -239,7 +239,7 @@ public class CanvasController {
    * the ready button
    */
   @FXML
-  private void onStartNewGame() {
+  protected void onStartNewGame() {
     SoundManager.playButtonClick();
 
     resetCanvas();
@@ -270,7 +270,7 @@ public class CanvasController {
    * Readies the game by enabling the canvas and starting the timer. Will disable the ready button
    */
   @FXML
-  private void onReady() {
+  protected void onReady() {
     SoundManager.playButtonClick();
     isGameOver = false;
 
@@ -297,11 +297,11 @@ public class CanvasController {
    * Starts the timer starting from timerStartTime and terminates when timer reaches 0. Also
    * retrieves the predictions list every second
    */
-  private void startTimer() {
+  protected void startTimer() {
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
-          private int time = timeLimit;
+          protected int time = timeLimit;
 
           @Override
           public void run() {
@@ -363,7 +363,7 @@ public class CanvasController {
         1000);
   }
 
-  private void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
+  protected void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
 
     // set the CellFactory field for the ListView
     predictionsListView.setCellFactory(
@@ -393,7 +393,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void isDrawing() {
+  protected void isDrawing() {
     if (isPenDrawn) {
       isDrawing = true;
     }
@@ -408,7 +408,7 @@ public class CanvasController {
    * @return a formatted list of predictions. Each string is of the format "n : classification :
    *     xx%" where n is the top n prediction and xx is the probability
    */
-  private List<String> getPredictionsListForDisplay(
+  protected List<String> getPredictionsListForDisplay(
       List<Classification> predictionsListClassification) {
     List<String> predictionsListForDisplay = new ArrayList<String>();
     int i = 1;
@@ -437,7 +437,7 @@ public class CanvasController {
    * @param classifications a list of classifications
    * @return true if the target word is in the list of classifications, false otherwise
    */
-  private boolean isWin(List<Classification> classifications, int margin, double confidence) {
+  protected boolean isWin(List<Classification> classifications, int margin, double confidence) {
     // scan through classifications and check if the target word is in it and
     // confidence is
     // sufficient with rounding
@@ -455,7 +455,7 @@ public class CanvasController {
    * This method speaks the top 3 predictions of the user's drawings every 10 seconds, terminating
    * whenever the game is over
    */
-  private void speakPredictions() {
+  protected void speakPredictions() {
     // schedule the speaking for every 10 seconds and starts after 1 second
     speakPredictionsTimer.schedule(
         new TimerTask() {
@@ -501,7 +501,7 @@ public class CanvasController {
    * @throws IOException
    */
   @FXML
-  private void onToggleSound() throws URISyntaxException, IOException {
+  protected void onToggleSound() throws URISyntaxException, IOException {
     SoundManager.playButtonClick();
     isMuted = isMuted ? false : true;
     String soundState = isMuted ? "mute" : "unmute";
@@ -516,7 +516,7 @@ public class CanvasController {
    * @throws URISyntaxException
    * @throws IOException
    */
-  private Image loadImage(String soundState) throws URISyntaxException, IOException {
+  protected Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
     File file;
     file = new File(getClass().getResource("/images/" + soundState + ".png").toURI());
@@ -530,7 +530,7 @@ public class CanvasController {
    *
    * @param isWin boolean representing whether the user won the game or not
    */
-  private void stopGame(boolean isWin, String timeString) {
+  protected void stopGame(boolean isWin, String timeString) {
     savePane.setDisable(false);
     canvas.setDisable(true);
     // disable mouse dragging on canvas
@@ -605,7 +605,7 @@ public class CanvasController {
 
   /** This method changes the user's input to simulate an eraser for the canvas */
   @FXML
-  private void onSelectEraser() {
+  protected void onSelectEraser() {
     canvas.setOnMouseDragged(
         e -> {
           // clear where the user touches
@@ -616,7 +616,7 @@ public class CanvasController {
 
   /** This method changes the user's input to simulate a black pen for the canvas */
   @FXML
-  private void onSelectPen() {
+  protected void onSelectPen() {
     canvas.setOnMouseDragged(
         e -> {
           isPenDrawn = true;
@@ -646,7 +646,7 @@ public class CanvasController {
    *
    * @param toolPaneId the pane Id of the tool
    */
-  private void colorCurrentTool(String toolPaneId) {
+  protected void colorCurrentTool(String toolPaneId) {
     // for each tool pane, check if its id is equal to the specific tool pane id
     for (Pane toolPane : toolPanes) {
       // if id is equal, change the color to a specific color, otherwise, change to
@@ -661,7 +661,7 @@ public class CanvasController {
   /**
    * This method updates the indicators depending on the current position of the word being drawn
    */
-  private void updateIndicator() {
+  protected void updateIndicator() {
     /*
      * This set of conditional statements checks if the sord's position meets the indicator's
      * requirements to be highlighted
@@ -689,7 +689,7 @@ public class CanvasController {
   }
 
   /** This method resets the all indicators of the word's current position to transparent */
-  private void resetIndicator() {
+  protected void resetIndicator() {
     // Resetting all indicators
     topTwoHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
     topOneHundredCircle.setFill(Color.rgb(247, 236, 198, 1));
@@ -702,7 +702,7 @@ public class CanvasController {
    *
    * @return the index of the location of the word to draw
    */
-  private int findWordPosition() {
+  protected int findWordPosition() {
     // Finding the position of the word in the prediction list
     for (Classification classification : classifications) {
       if (classification.getClassName().replaceAll("_", " ").equals(targetCategory)) {
@@ -717,7 +717,7 @@ public class CanvasController {
    * to a bitmap file
    */
   @FXML
-  private void onSave() {
+  protected void onSave() {
     SoundManager.playButtonClick();
     // create /drawings folder if not already made
     final File tmpFolder = new File("drawings");
@@ -766,7 +766,7 @@ public class CanvasController {
 
   /** This method plays the on button hover sound effect */
   @FXML
-  private void onButtonHover() {
+  protected void onButtonHover() {
     SoundManager.playButtonHover();
   }
 }
