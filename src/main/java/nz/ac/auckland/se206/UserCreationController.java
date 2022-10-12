@@ -1,7 +1,12 @@
 package nz.ac.auckland.se206;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -11,11 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserCreationController {
@@ -85,7 +92,11 @@ public class UserCreationController {
     errorMessageLabel.setTextFill(Color.GREEN);
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
-
+    try {
+      this.saveCurrentSnapshotOnFile();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     App.getLoginController().loadUserGUI(newUser);
 
     // clear all fields
@@ -171,5 +182,40 @@ public class UserCreationController {
               ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
               : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
     }
+  }
+
+  private File saveCurrentSnapshotOnFile() throws IOException {
+    // You can change the location as you see fit.
+    final File tmpFolder = new File(".profiles/profilePictures");
+
+    if (!tmpFolder.exists()) {
+      tmpFolder.mkdir();
+    }
+    // We save the image to a file in the tmp folder.
+    final File imageToClassify =
+        new File(".profiles/profilePictures/" + usernameField.getText() + ".png");
+
+    // Save the image to a file.
+    ImageIO.write(getCurrentSnapshot(), "png", imageToClassify);
+
+    return imageToClassify;
+  }
+
+  private BufferedImage getCurrentSnapshot() {
+    final Image snapshot = canvas.snapshot(null, null);
+    final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
+
+    // Convert into a binary image.
+    final BufferedImage imageBinary =
+        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+
+    final Graphics2D graphics = imageBinary.createGraphics();
+
+    graphics.drawImage(image, 0, 0, null);
+
+    // To release memory we dispose.
+    graphics.dispose();
+
+    return imageBinary;
   }
 }

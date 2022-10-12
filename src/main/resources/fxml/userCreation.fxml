@@ -48,7 +48,7 @@
                         </Pane>
                         <Pane fx:id="eraserPane" prefHeight="30.0">
                            <children>
-                              <ImageView fx:id="eraserIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onSelectEraser" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                              <ImageView fx:id="eraserIcon" fitHeight="30.0" fitWidth="30.0" layoutX="2.0" onMouseClicked="#onSelectEraser" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                  <image>
                                     <Image url="@../images/eraserIcon.png" />
                                  </image>
@@ -57,7 +57,7 @@
                         </Pane>
                         <Pane fx:id="clearPane" prefHeight="30.0">
                            <children>
-                              <ImageView fx:id="clearIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onClear" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                              <ImageView fx:id="clearIcon" fitHeight="30.0" fitWidth="30.0" layoutX="2.0" onMouseClicked="#onClear" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                  <image>
                                     <Image url="@../images/clearCanvas.png" />
                                  </image>
