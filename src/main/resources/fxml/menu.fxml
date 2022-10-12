@@ -25,7 +25,7 @@
                   <Insets bottom="-25.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <ImageView fx:id="profilePictureImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePictureImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" styleClass="profilePic">
                      <image>
                         <Image url="@../images/personIcon.png" />
                      </image>
