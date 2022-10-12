@@ -88,16 +88,17 @@ public class UserCreationController {
 
     // create user
     User newUser = new User(usernameField.getText());
+    try {
+      this.saveCurrentSnapshotOnFile(newUser);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     UsersManager.createUser(newUser);
     errorMessageLabel.setTextFill(Color.GREEN);
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
-    try {
-      this.saveCurrentSnapshotOnFile();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    App.getLoginController().loadUserGUI(newUser);
+
+    App.getLoginController().loadUserGui(newUser);
 
     // clear all fields
     usernameField.clear();
@@ -111,6 +112,7 @@ public class UserCreationController {
   @FXML
   private void onLoginPage(ActionEvent event) {
     SoundManager.playButtonClick();
+    // clear username and error message
     usernameField.clear();
     errorMessageLabel.setText("");
     Button button = (Button) event.getSource();
@@ -184,7 +186,7 @@ public class UserCreationController {
     }
   }
 
-  private File saveCurrentSnapshotOnFile() throws IOException {
+  private File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
     final File tmpFolder = new File(".profiles/profilePictures");
 
@@ -192,8 +194,8 @@ public class UserCreationController {
       tmpFolder.mkdir();
     }
     // We save the image to a file in the tmp folder.
-    final File imageToClassify =
-        new File(".profiles/profilePictures/" + usernameField.getText() + ".png");
+    user.setProfilePic(".profiles/profilePictures/" + usernameField.getText() + ".png");
+    final File imageToClassify = new File(user.getProfilePic());
 
     // Save the image to a file.
     ImageIO.write(getCurrentSnapshot(), "png", imageToClassify);

@@ -1,14 +1,21 @@
 package nz.ac.auckland.se206;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Optional;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -24,7 +31,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class LoginController {
   @FXML private VBox registerButton;
   @FXML private Label errorMessageLabel;
-  @FXML private HBox profilesHBox;
+  @FXML private HBox profilesHbox;
 
   @FXML private ScrollPane profilesScrollPane;
 
@@ -35,14 +42,14 @@ public class LoginController {
   private MenuController menuController;
 
   private RotateTransition rotation;
+  private HashSet<String> currentDisplay;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
    * vboxes. Adds listener to the search field to search for profiles
-   *
-   * @throws IOException
    */
   public void initialize() {
+    currentDisplay = new HashSet<String>();
     search
         .textProperty()
         .addListener(
@@ -50,15 +57,29 @@ public class LoginController {
               @Override
               public void changed(
                   ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                HashSet<String> newDisplay = new HashSet<String>();
                 boolean found = false;
-                profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
                 for (String username : UsersManager.getUsersMap().keySet()) {
                   // if username contains the search text as substring, count as a match
                   if (username.contains(newValue)) {
                     found = true;
-                    loadUserGUI(UsersManager.getUsersMap().get(username));
+                    newDisplay.add(username);
                   }
                 }
+                // change display only if the new list of users is different from current
+                // display
+                if (!currentDisplay.containsAll(newDisplay)
+                    || !newDisplay.containsAll(currentDisplay)) {
+                  profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
+                  for (String username : newDisplay) {
+                    loadUserGui(UsersManager.getUsersMap().get(username));
+                  }
+                  // replace current display
+                  currentDisplay.clear();
+                  currentDisplay.addAll(newDisplay);
+                }
+
+                // configure error message if needed
                 errorMessageLabel.setText(found || newValue.isEmpty() ? "" : "No users found!");
                 errorMessageLabel.setTextFill(Color.RED);
                 errorMessageLabel.setVisible(found || newValue.isEmpty() ? false : true);
@@ -69,9 +90,7 @@ public class LoginController {
       // when there are no users
       return;
     }
-    for (User user : UsersManager.getUsersMap().values()) {
-      loadUserGUI(user);
-    }
+    loadAllUsersGui();
   }
 
   /**
@@ -79,22 +98,47 @@ public class LoginController {
    *
    * @param user The user to be loaded
    */
-  public void loadUserGUI(User user) {
-    VBox vbox = new VBox();
+  public void loadUserGui(User user) {
+    currentDisplay.add(user.getUsername());
     Label username = new Label(user.getUsername());
     username.getStyleClass().add("username");
-    // create image
-    ImageView image = new ImageView("/images/personIcon.png");
+    // create image for person icon
+    File file = new File(user.getProfilePic());
+    ImageView image = new ImageView(file.toURI().toString());
     image.setFitHeight(100);
+    image.setFitWidth(100);
+
     // add vbox details
+    VBox vbox = new VBox();
     vbox.getChildren().add(image);
     vbox.getChildren().add(username);
     vbox.getStyleClass().add("profileCard");
     vbox.setOnMouseClicked((e) -> onLogin(e));
-    vbox.setOnMouseEntered((e) -> onProfileHover(e));
-    vbox.setOnMouseExited((e) -> onProfileExited(e));
     vbox.setMaxHeight(130);
-    profilesHBox.getChildren().add(0, vbox);
+
+    // create image for delete button
+    ImageView delete = new ImageView("/images/clearCanvas.png");
+    delete.setFitHeight(20);
+    delete.setFitWidth(20);
+
+    // set hbox which will contain the delete icon
+    HBox imageHbox = new HBox(delete);
+    imageHbox.setAlignment(Pos.CENTER);
+    imageHbox.setVisible(false);
+    imageHbox.getStyleClass().add("deleteIcon");
+    imageHbox.setOnMouseEntered((e) -> onDeleteHover(e));
+    imageHbox.setOnMouseClicked((e) -> onDelete(e));
+
+    // set wrapper vbox for profile
+    VBox bigVbox = new VBox();
+    bigVbox.getChildren().add(imageHbox);
+    bigVbox.getChildren().add(vbox);
+    bigVbox.setAlignment(Pos.CENTER);
+    bigVbox.setSpacing(5);
+    bigVbox.getStyleClass().add("bigVbox");
+    bigVbox.setOnMouseEntered((e) -> onProfileHover(e));
+    bigVbox.setOnMouseExited((e) -> onProfileExited(e));
+    profilesHbox.getChildren().add(0, bigVbox);
   }
 
   /**
@@ -137,26 +181,43 @@ public class LoginController {
   @FXML
   private void onProfileHover(MouseEvent event) {
     onButtonHover();
-    VBox vbox = (VBox) event.getSource();
-    // set the rotation details
-    rotation = new RotateTransition(Duration.seconds(0.4), vbox);
-    rotation.setCycleCount(Animation.INDEFINITE);
-    rotation.setByAngle(15);
-    rotation.setFromAngle(-7.5);
-    rotation.setAutoReverse(true);
-    rotation.play();
+    VBox bigVbox = (VBox) event.getSource();
+    VBox vbox;
+    for (Node node : bigVbox.getChildren()) {
+      if (node instanceof HBox) {
+        node.setVisible(true);
+      } else if (node instanceof VBox) {
+        vbox = (VBox) node;
+        // set the rotation details
+        rotation = new RotateTransition(Duration.seconds(0.4), vbox);
+        rotation.setCycleCount(Animation.INDEFINITE);
+        rotation.setByAngle(15);
+        rotation.setFromAngle(-7.5);
+        rotation.setAutoReverse(true);
+        rotation.play();
+      }
+    }
   }
 
   /**
    * This method stops the profile vbox wobble upon mouse exit
    *
-   * @param event
+   * @param event the MouseEvent
    */
   @FXML
   private void onProfileExited(MouseEvent event) {
-    VBox vbox = (VBox) event.getSource();
-    vbox.setRotate(0);
-    rotation.stop();
+    VBox bigVbox = (VBox) event.getSource();
+    VBox vbox;
+    for (Node node : bigVbox.getChildren()) {
+      if (node instanceof HBox) {
+        node.setVisible(false);
+      } else if (node instanceof VBox) {
+        // reset and stop rotation
+        vbox = (VBox) node;
+        vbox.setRotate(0);
+        rotation.stop();
+      }
+    }
   }
 
   /**
@@ -170,9 +231,96 @@ public class LoginController {
     errorMessageLabel.setVisible(false);
     // retrieve the source of ImageView and switch to the create user scene
     VBox vbox = (VBox) event.getSource();
-    Scene sceneVBoxIsIn = vbox.getScene();
-    sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    Scene sceneVboxIsIn = vbox.getScene();
+    sceneVboxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
     search.clear();
+  }
+
+  /**
+   * This method deletes a user from data
+   *
+   * @param event MouseEvent from source
+   */
+  private void onDelete(MouseEvent event) {
+    SoundManager.playButtonClick();
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    // create a style class so it can be styled through canvas.css
+    DialogPane dialogPane = alert.getDialogPane();
+    dialogPane.getStylesheets().add(getClass().getResource("/css/canvas.css").toExternalForm());
+    dialogPane.getStyleClass().add("hintDialog");
+
+    // set visual attributes
+    alert.setTitle("Delete profile?");
+    alert.setHeaderText("Are you sure you want to delete this profile?");
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() != ButtonType.OK) {
+      SoundManager.playButtonClick();
+      return;
+    }
+    SoundManager.playButtonClick();
+
+    // find user to delete
+    HBox hbox = (HBox) event.getSource();
+    String usernameToDelete;
+    for (Node node : ((VBox) hbox.getParent()).getChildren()) {
+      if (node instanceof VBox) {
+        for (Node node2 : ((VBox) node).getChildren()) {
+          if (node2 instanceof Label) {
+            // get username and delete user and user gui
+            usernameToDelete = ((Label) node2).getText();
+            UsersManager.deleteUser(usernameToDelete);
+            deleteUserGui(usernameToDelete);
+            try {
+              UsersManager.saveUsersToJson();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * This method deletes a user GUI for a particular username
+   *
+   * @param username the user to delete
+   */
+  private void deleteUserGui(String username) {
+    for (int i = 0; i < profilesHbox.getChildren().size(); i++) {
+      if (profilesHbox.getChildren().get(i) instanceof VBox) {
+        VBox vbox = (VBox) profilesHbox.getChildren().get(i);
+        for (Node node : vbox.getChildren()) {
+          if (node instanceof VBox) {
+            VBox innerVbox = (VBox) node;
+            for (Node node2 : innerVbox.getChildren()) {
+              if (node2 instanceof Label) {
+                if (((Label) node2).getText().equals(username)) {
+                  profilesHbox.getChildren().remove(i);
+                  String keyword = search.getText();
+                  search.setText("");
+                  search.setText(keyword);
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /** This method loads all the user GUIS */
+  private void loadAllUsersGui() {
+    profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
+    for (String user : UsersManager.getUsersMap().keySet()) {
+      loadUserGui(UsersManager.getUsersMap().get(user));
+    }
+  }
+
+  private void onDeleteHover(MouseEvent event) {
+    onButtonHover();
   }
 
   /** This method plays the on button hover sound effect */

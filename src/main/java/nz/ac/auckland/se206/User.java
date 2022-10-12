@@ -23,12 +23,11 @@ public class User {
   private int losses;
   private int fastestWin;
   private int winStreak;
+  private String profilePic;
 
   private ArrayList<BadgeData> badgeDataList;
   private Map<CategoryDifficulty, ArrayList<String>> wordsGiven;
   private Map<CategoryDifficulty, ArrayList<String>> wordList;
-  // private ArrayList<String> wordsGiven;
-  // private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
 
   private ArrayList<String> allPreviousWords;
@@ -146,6 +145,10 @@ public class User {
     return this.confidenceDifficulty;
   }
 
+  public String getProfilePic() {
+    return this.profilePic;
+  }
+
   public void setConfidenceDifficulty(Difficulty difficulty) {
     this.confidenceDifficulty = difficulty;
   }
@@ -156,6 +159,10 @@ public class User {
 
   public void setWordDifficulty(Difficulty difficulty) {
     this.wordDifficulty = difficulty;
+  }
+
+  public void setProfilePic(String pic) {
+    this.profilePic = pic;
   }
 
   public Map<CategoryDifficulty, ArrayList<String>> getWordList() {

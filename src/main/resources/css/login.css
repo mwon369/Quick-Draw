@@ -60,12 +60,21 @@
 .profileCard{
 	-fx-spacing: -20px;
 	-fx-alignment: top-center;
+	-fx-border-color: rgba(0,0,0,0);
+	-fx-border-radius: 5px;
+	-fx-border-width:  5px;
+	
 }
 
 .profileCard:hover{
 	-fx-border-color: #E29F00;
 	-fx-border-radius: 5px;
 	-fx-border-width:  5px;
+}
+
+.deleteIcon:hover{
+	-fx-scale-y:1.3;
+	-fx-scale-x:1.3;
 }
 
 .registerButton:hover{
@@ -92,6 +101,10 @@
 	-fx-background-radius: 10px;
 }
 
+.iconButtons:hover{
+	-fx-scale-y:1.1;
+	-fx-scale-x:1.1;
+}
 .iconButtons, .iconButtons:focused{
 	-fx-background-color: #E29F00;
 	-fx-background-radius: 100px;
