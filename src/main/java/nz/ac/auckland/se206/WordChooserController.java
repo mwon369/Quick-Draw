@@ -116,6 +116,7 @@ public class WordChooserController {
 
     // clear existing searches
     onClearSearch();
+    chosenWordLabel.setText("Current word chosen: ");
   }
 
   /** Allows the user to search for specific words when the search button is clicked */
