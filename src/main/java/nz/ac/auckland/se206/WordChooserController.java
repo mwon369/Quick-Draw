@@ -28,7 +28,6 @@ public class WordChooserController {
   private boolean found = false;
   private List<String[]> lines;
   private ArrayList<String> words = new ArrayList<>();
-  protected ZenCanvasController zenCanvasController = null;
   private final StringBuilder sb = new StringBuilder();
 
   /**
@@ -36,7 +35,6 @@ public class WordChooserController {
    * list view and enabling word selection and making the TextField listen for input
    */
   public void initialize() throws IOException, URISyntaxException, CsvException {
-
     // declare variables required to load in all words
     CategorySelector categorySelector;
 
@@ -100,13 +98,15 @@ public class WordChooserController {
     // set the target category, word label and enable the ready button
     // but only if a category has been selected
     if (labelSplit.length > 1) {
-      zenCanvasController.targetCategory = labelSplit[1];
-      zenCanvasController.wordLabel.setText("Your word is: " + zenCanvasController.targetCategory);
-      zenCanvasController.readyButton.setDisable(false);
+      App.getZenCanvasController().targetCategory = labelSplit[1];
+      App.getZenCanvasController()
+          .wordLabel
+          .setText("Your word is: " + App.getZenCanvasController().targetCategory);
+      App.getZenCanvasController().readyButton.setDisable(false);
 
       // otherwise notify the player that they need to select a word
     } else {
-      zenCanvasController.wordLabel.setText("Select a word to play!");
+      App.getZenCanvasController().wordLabel.setText("Select a word to play!");
     }
 
     // retrieve the source of button and switch back to zen canvas

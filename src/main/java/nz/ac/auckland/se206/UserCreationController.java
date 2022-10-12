@@ -106,6 +106,7 @@ public class UserCreationController {
 
     // clear all fields
     usernameField.clear();
+    onClear();
   }
 
   /**
@@ -191,11 +192,17 @@ public class UserCreationController {
   }
 
   /**
-   * This method saves the users canvas drawing as an image and sets it as their profile picture
+   * <<<<<<< HEAD This method saves the users canvas drawing as an image and sets it as their
+   * profile picture
    *
    * @param user the user signing up
    * @return the users profile picture as an image
-   * @throws IOException if an IOException is thrown
+   * @throws IOException if an IOException is thrown ======= This method saves the current snapshot
+   *     of the canvas for a user
+   * @param user The user to save the current snapshot for
+   * @return the file to save
+   * @throws IOException throws an IO exception of an error occurs with saving image to file >>>>>>>
+   *     main
    */
   private File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
@@ -215,9 +222,10 @@ public class UserCreationController {
   }
 
   /**
-   * A helper method which captures what is currently drawn on the sign-up page canvas
+   * This method gets the current snapshot of the canvas and can snap any color of type
+   * BufferedImage.TYPE_INT_ARGB
    *
-   * @return a bit map of the image
+   * @return the BufferedImage snapshot
    */
   private BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
@@ -225,7 +233,7 @@ public class UserCreationController {
 
     // Convert into a binary image.
     final BufferedImage imageBinary =
-        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
     final Graphics2D graphics = imageBinary.createGraphics();
 

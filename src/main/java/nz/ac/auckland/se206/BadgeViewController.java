@@ -121,9 +121,10 @@ public class BadgeViewController {
     badgeList = user.getBadgeList();
     // Going through each badge and loading the correct icon
     for (int i = 0; i < badgeIcons.size(); i++) {
+      badgeIcons.get(i).getStyleClass().add("badges");
       if (badgeList.get(i).isCompleted()) {
         badgeIcons.get(i).setImage(loadImage("Badges/" + badgeList.get(i).getBadgeIcon()));
-        badgeIcons.get(i).setLayoutY(badgeIcons.get(i).getLayoutY() + 5);
+        badgeIcons.get(i).setTranslateY(10);
       } else {
         badgeIcons.get(i).setImage(loadImage("questionicon"));
       }
@@ -246,7 +247,7 @@ public class BadgeViewController {
                       Color.rgb(226, 159, 0),
                       BorderStrokeStyle.SOLID,
                       new CornerRadii(2),
-                      new BorderWidths(2)))
+                      new BorderWidths(4)))
               : new Border(
                   new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
     }

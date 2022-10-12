@@ -13,8 +13,6 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -47,8 +45,6 @@ public class ZenCanvasController extends CanvasController {
   @FXML private Pane colorPane;
   @FXML private ColorPicker colorPicker;
 
-  private Parent wordChooserScene;
-  private WordChooserController wordChooserController;
   private CategorySelector categorySelector;
 
   /**
@@ -60,18 +56,6 @@ public class ZenCanvasController extends CanvasController {
    */
   @Override
   public void initialize() throws ModelException, IOException {
-    // load in wordChooser FXML and its respective controller so that we can
-    // reference it from this controller
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/wordChooser.fxml"));
-    wordChooserScene = loader.load();
-    wordChooserController = loader.getController();
-    SceneManager.addUi(AppUi.WORD_CHOOSER, wordChooserScene);
-    SceneManager.getUiRoot(AppUi.WORD_CHOOSER).getStylesheets().add("/css/wordChooser.css");
-
-    // will need to reference this controller from the wordChooserController
-    // in order to set the target category during word selection
-    wordChooserController.zenCanvasController = this;
-
     isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas

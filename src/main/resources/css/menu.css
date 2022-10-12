@@ -99,3 +99,8 @@
     -fx-font-family: "Kalam";
 }
 
+.profilePic:hover{
+	-fx-scale-y:1.1;
+	-fx-scale-x:1.1;
+}
+

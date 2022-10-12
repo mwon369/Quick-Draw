@@ -58,11 +58,12 @@
 }
 
 .profileCard{
-	-fx-spacing: -20px;
+	-fx-spacing: -5px;
 	-fx-alignment: top-center;
 	-fx-border-color: rgba(0,0,0,0);
 	-fx-border-radius: 5px;
-	-fx-border-width:  5px;
+	-fx-border-width: 5px;
+	-fx-max-height: 130px;
 	
 }
 
@@ -70,6 +71,16 @@
 	-fx-border-color: #E29F00;
 	-fx-border-radius: 5px;
 	-fx-border-width:  5px;
+}
+
+.bigVbox{
+	-fx-fill-width: false;
+	-fx-spacing: 5;
+	-fx-alignment: center;
+}
+
+.deleteIcon {
+	-fx-alignment: center;
 }
 
 .deleteIcon:hover{
