@@ -18,6 +18,16 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
 
+  @FXML private Label title;
+
+  @FXML private Button playButton;
+
+  @FXML private ImageView musicIcon;
+
+  @FXML private Label userNameLabel;
+
+  private boolean isMusicOn = true;
+
   private Parent userStatsScene;
   private UserStatsController userStatsController;
 
@@ -29,15 +39,6 @@ public class MenuController {
 
   private Parent hiddenWordCanvasScene;
   private HiddenWordController hiddenWordController;
-
-  @FXML private Label title;
-
-  @FXML private Button playButton;
-
-  @FXML private ImageView musicIcon;
-
-  @FXML private Label userNameLabel;
-  private boolean isMusicOn = true;
 
   /**
    * This method loads the userStats FXML and settings FXML when the menu FXML is loaded. The reason
