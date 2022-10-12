@@ -46,10 +46,8 @@ public class SettingsController {
   /**
    * JavaFX calls this method once the GUI elements are loaded. We add a listener to the accuracy
    * difficulty radio buttons
-   *
-   * @throws IOException
    */
-  public void initialize() throws IOException {
+  public void initialize() {
     // add toggle listener to accuracy group
     accuracy
         .selectedToggleProperty()

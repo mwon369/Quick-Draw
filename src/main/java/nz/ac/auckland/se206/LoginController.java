@@ -45,8 +45,6 @@ public class LoginController {
   /**
    * JavaFX calls this method once the GUI elements are loaded. We load the user profiles to their
    * vboxes. Adds listener to the search field to search for profiles
-   *
-   * @throws IOException
    */
   public void initialize() {
     currentDisplay = new HashSet<String>();
