@@ -63,11 +63,15 @@
                     <children>
                         <VBox fx:id="listVBox" alignment="TOP_CENTER">
                             <children>
-                                  <ListView fx:id="wordListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0">
-                                      <VBox.margin>
-                                          <Insets />
-                                      </VBox.margin>
-                                  </ListView>
+                        <StackPane>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                                        <ListView fx:id="wordListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0" />
+                              <Label fx:id="noWordsLabel" />
+                           </children>
+                        </StackPane>
                             </children>
                         </VBox>
                     </children>

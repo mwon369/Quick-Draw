@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordHistoryController {
@@ -31,31 +30,35 @@ public class WordHistoryController {
   @FXML private Label noWordsLabel;
   @FXML private Label filterLabel;
 
-  private ArrayList<String> userWordHistory;
+  private boolean found = false;
   private ArrayList<String> userEasyWordHistory;
-  private ArrayList<String> userMediumWordHistory;
   private ArrayList<String> userHardWordHistory;
+  private ArrayList<String> userMediumWordHistory;
+  private ArrayList<String> userWordHistory;
 
-  private enum difficultyFilters {
+  private enum DifficultyFilters {
     E,
     M,
     H,
     ALL,
   }
 
-  protected static difficultyFilters difficultyFilter;
+  protected static DifficultyFilters difficultyFilter;
 
   public void initialize() {
-    // add event handler so user can search by pressing the ENTER key
-    searchTextField.setOnKeyPressed(
-        new EventHandler<KeyEvent>() {
-          @Override
-          public void handle(KeyEvent key) {
-            if (key.getCode().equals(KeyCode.ENTER)) {
-              onSearch();
-            }
-          }
-        });
+    // add change listener so searching happens as the user types
+    searchTextField
+        .textProperty()
+        .addListener(
+            new ChangeListener<String>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                found = false;
+                // call this function everytime the text input changes
+                onSearch();
+              }
+            });
   }
 
   protected void showWordHistory() {
@@ -70,7 +73,7 @@ public class WordHistoryController {
     filterLabel.setText("Filtering search by: ALL words");
 
     // set list view to display all the words played if the user has played a game before
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     if (!userWordHistory.isEmpty()) {
       noWordsLabel.setText("");
       wordListView.getItems().setAll(userWordHistory);
@@ -85,7 +88,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterEasyWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.E;
+    difficultyFilter = DifficultyFilters.E;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -108,7 +111,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterMediumWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.M;
+    difficultyFilter = DifficultyFilters.M;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -131,7 +134,7 @@ public class WordHistoryController {
   @FXML
   private void onFilterHardWords() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.H;
+    difficultyFilter = DifficultyFilters.H;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -154,7 +157,7 @@ public class WordHistoryController {
   @FXML
   private void onClearFilters() {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
 
@@ -184,59 +187,46 @@ public class WordHistoryController {
         // only searches through the easy words
         wordListView.getItems().clear();
         List<String> easyWords = searchList(searchTextField.getText(), userEasyWordHistory);
-
-        if (!easyWords.isEmpty()) {
-          wordListView.getItems().addAll(easyWords);
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(easyWords);
         break;
+
       case M:
         // only searches through the medium words
         wordListView.getItems().clear();
         List<String> mediumWords = searchList(searchTextField.getText(), userMediumWordHistory);
-
-        if (!mediumWords.isEmpty()) {
-          wordListView.getItems().addAll(mediumWords);
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(mediumWords);
         break;
+
       case H:
         // only searches through the hard words
         wordListView.getItems().clear();
         List<String> hardWords = searchList(searchTextField.getText(), userHardWordHistory);
-
-        if (!hardWords.isEmpty()) {
-          wordListView.getItems().addAll(hardWords);
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(hardWords);
         break;
+
       case ALL:
         // searches through all words
         wordListView.getItems().clear();
         List<String> allWords = searchList(searchTextField.getText(), userWordHistory);
-
-        if (!allWords.isEmpty()) {
-          wordListView.getItems().addAll(allWords);
-          return;
-        }
-        // display message if no matches found
-        noWordsLabel.setWrapText(true);
-        noWordsLabel.setText("No results found");
-
+        setListOnSearch(allWords);
         break;
     }
+  }
+
+  /**
+   * This helper method sets the ListView when the user searches using the search bar
+   *
+   * @param foundResults a list of returned Strings that match the search bar input
+   */
+  private void setListOnSearch(List<String> foundResults) {
+    if (!foundResults.isEmpty()) {
+      wordListView.getItems().addAll(foundResults);
+      noWordsLabel.setText("");
+      return;
+    }
+    // display message if no matches found
+    noWordsLabel.setWrapText(true);
+    noWordsLabel.setText("No words found!");
   }
 
   /**
@@ -273,7 +263,7 @@ public class WordHistoryController {
   @FXML
   private void onGoBackToProfile(ActionEvent event) {
     SoundManager.playButtonClick();
-    difficultyFilter = difficultyFilters.ALL;
+    difficultyFilter = DifficultyFilters.ALL;
     searchTextField.clear();
     wordListView.getItems().clear();
     // retrieve the source of button and switch to the badge view page

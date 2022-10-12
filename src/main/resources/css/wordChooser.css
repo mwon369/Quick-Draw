@@ -110,3 +110,24 @@
 	-fx-scale-y:1.1;
 	-fx-scale-x:1.1;
 }
+
+.list-cell:even {
+    -fx-background-color: white;
+}
+
+.list-cell:odd {
+    -fx-background-color: white;
+}
+
+.list-cell:even:hover {
+    -fx-border-color: #F8DF95;
+}
+
+.list-cell:odd:hover {
+    -fx-border-color: #F8DF95;
+}
+
+.list-cell:selected {
+    -fx-background-color: #F8DF95;
+    -fx-text-fill: black;
+}
