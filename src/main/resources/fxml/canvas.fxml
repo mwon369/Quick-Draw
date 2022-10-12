@@ -128,7 +128,7 @@
                                  <children>
                                     <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
-                                          <Image url="@../images/unmute.png" />
+                                          <Image url="@../images/mute.png" />
                                        </image>
                                     </ImageView>
                                  </children>
