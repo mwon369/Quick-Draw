@@ -78,6 +78,7 @@ public class SoundManager {
 
   /** This method plays the button hover sound effect */
   public static void playButtonHover() {
+    // if button media player is null, make a new one
     if (buttonHoverSound == null) {
       try {
         buttonHoverSound =
@@ -95,6 +96,7 @@ public class SoundManager {
 
   /** This method plays the button click sound effect */
   public static void playButtonClick() {
+    // if button click media player is null, create a new one
     if (buttonClickSound == null) {
       try {
         buttonClickSound =
@@ -112,6 +114,7 @@ public class SoundManager {
 
   /** This method plays the timer tick sound effect */
   public static void playTimerTick() {
+    // if timer tick sound media player is null, create a new one
     if (timerTickSound == null) {
       try {
         timerTickSound =
@@ -129,6 +132,7 @@ public class SoundManager {
 
   /** This method plays the timer tick fast sound effect */
   public static void playTimerTickFast() {
+    // if timer tick sound fast media player is null, create a new one
     if (timerTickSoundFast == null) {
       try {
         timerTickSoundFast =
@@ -147,6 +151,7 @@ public class SoundManager {
 
   /** This method plays the alarm bell sound effect */
   public static void playAlarmBell() {
+    // if alarm sound media player is null, create a new one
     if (alarmBellSound == null) {
       try {
         alarmBellSound =
@@ -164,6 +169,7 @@ public class SoundManager {
 
   /** This method plays the win sound effect */
   public static void playWinSound() {
+    // if win sound media player is null, create a new one
     if (winSound == null) {
       try {
         winSound =
@@ -181,6 +187,7 @@ public class SoundManager {
 
   /** This method plays the enter game sound effect */
   public static void playEnterGameSound() {
+    // if enter game sound media player is null, create a new one
     if (enterGameSound == null) {
       try {
         enterGameSound =

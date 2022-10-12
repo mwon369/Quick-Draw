@@ -11,7 +11,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class CategoryManager {
 
@@ -24,7 +29,7 @@ public class CategoryManager {
    * This method converts the entire list of categories from CSV to JSON. This is done to help speed
    * up the custom definition writing process.
    *
-   * @throws IOException
+   * @throws IOException if an IO exception occurs
    */
   public static void saveCategoriesToJson() throws IOException {
     // load all categories from CSV into our categoryLinkedMap
@@ -57,9 +62,9 @@ public class CategoryManager {
    * This is a helper method which loads in all the categories from the CSV file and writes each
    * category into a LinkedHashMap (so that the insertion order is maintained)
    *
-   * @throws IOException
-   * @throws URISyntaxException
-   * @throws CsvException
+   * @throws IOException if an IO exception occurs
+   * @throws URISyntaxException if a URI syntax exception occurs
+   * @throws CsvException if a Csv exception occurs
    */
   private static void loadAllCategories() throws IOException, URISyntaxException, CsvException {
     // initialize variables required to load categories
@@ -74,6 +79,11 @@ public class CategoryManager {
     }
   }
 
+  /**
+   * This method loads the category information from JSON .e.g definition and hint
+   *
+   * @throws IOException if an error occurs whilst reading the file
+   */
   public static void loadCategoryInfoFromJson() throws IOException {
 
     // instantiate File object by going to directory with categoryInfo.json and reading it in

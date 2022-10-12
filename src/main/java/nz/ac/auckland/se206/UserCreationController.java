@@ -41,7 +41,7 @@ public class UserCreationController {
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);
 
-    App.getLoginController().loadUserGUI(newUser);
+    App.getLoginController().loadUserGui(newUser);
 
     // clear all fields
     usernameField.clear();
@@ -55,6 +55,7 @@ public class UserCreationController {
   @FXML
   private void onLoginPage(ActionEvent event) {
     SoundManager.playButtonClick();
+    // clear username and error message
     usernameField.clear();
     errorMessageLabel.setText("");
     Button button = (Button) event.getSource();
