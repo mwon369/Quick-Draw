@@ -35,7 +35,6 @@ public class MenuController {
   @FXML private Button playButton;
 
   @FXML private ImageView musicIcon;
-  private boolean isMusicOn = true;
 
   /**
    * This method loads the userStats FXML and settings FXML when the menu FXML is loaded. The reason

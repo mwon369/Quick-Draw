@@ -23,6 +23,13 @@ public class CategorySelector {
 
   private Map<CategoryDifficulty, List<String>> difficultyToCategories;
 
+  /**
+   * This method creates a map of each difficulty to its corresponding list of words
+   *
+   * @throws IOException if an IO Exception occurs
+   * @throws CsvException if a Csv Exception occurs
+   * @throws URISyntaxException if a URISyntax Exception occurs
+   */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyToCategories = new HashMap<>();
     for (CategoryDifficulty difficulty : CategoryDifficulty.values()) {
@@ -40,7 +47,7 @@ public class CategorySelector {
    * This method gets a random word of a specified difficulty
    *
    * @param difficulty difficulty of words to select from
-   * @return
+   * @return a random cateogry of the specified difficlty
    */
   public String getRandomCategory(CategoryDifficulty difficulty) {
     // returns a random category of a specified difficulty
@@ -49,6 +56,14 @@ public class CategorySelector {
         .get(new Random().nextInt(difficultyToCategories.get(difficulty).size()));
   }
 
+  /**
+   * Thus method returns a list of string array where each string array is each line in the csv file
+   *
+   * @return a list of String[] where each String[] represents a line in the csv file
+   * @throws IOException if a IOException occurs
+   * @throws CsvException if a Csv Exception occurs
+   * @throws URISyntaxException if a URI syntax exception occurs
+   */
   public List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File fileName =
         new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());
@@ -67,6 +82,14 @@ public class CategorySelector {
     return difficultyToCategories.get(difficulty);
   }
 
+  /**
+   * This method gets a random word
+   *
+   * @return a random word
+   * @throws IOException if an IO Exception occurs
+   * @throws URISyntaxException if a URISyntax Exception occurs
+   * @throws CsvException if a Csv Exception occurs
+   */
   public String getRandomWord() throws IOException, URISyntaxException, CsvException {
     List<String[]> lines = getLines();
     ArrayList<String> words = new ArrayList<>();

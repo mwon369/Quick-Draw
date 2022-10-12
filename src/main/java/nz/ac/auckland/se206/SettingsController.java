@@ -46,10 +46,8 @@ public class SettingsController {
   /**
    * JavaFX calls this method once the GUI elements are loaded. We add a listener to the accuracy
    * difficulty radio buttons
-   *
-   * @throws IOException
    */
-  public void initialize() throws IOException {
+  public void initialize() {
     // add toggle listener to accuracy group
     accuracy
         .selectedToggleProperty()
@@ -59,6 +57,7 @@ public class SettingsController {
                 SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
                 if (rb != null) {
+                  // set accuracy difficulty
                   UsersManager.getSelectedUser()
                       .setAccuracyDifficulty(
                           Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
@@ -75,6 +74,7 @@ public class SettingsController {
                 SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) timeLimit.getSelectedToggle();
                 if (rb != null) {
+                  // set time limit difficulty
                   UsersManager.getSelectedUser()
                       .setTimeLimitDifficulty(
                           Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
@@ -91,6 +91,7 @@ public class SettingsController {
                 SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) confidence.getSelectedToggle();
                 if (rb != null) {
+                  // set confidence difficulty
                   UsersManager.getSelectedUser()
                       .setConfidenceDifficulty(
                           Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
@@ -106,6 +107,7 @@ public class SettingsController {
                 SoundManager.playButtonClick();
                 RadioButton rb = (RadioButton) word.getSelectedToggle();
                 if (rb != null) {
+                  // set word difficulty
                   UsersManager.getSelectedUser()
                       .setWordDifficulty(
                           Enum.valueOf(Difficulty.class, rb.getText().toUpperCase()));
@@ -119,6 +121,7 @@ public class SettingsController {
     st.setFromY(1);
     st.setToX(1.15);
     st.setToY(1.15);
+    // cycle the animation indefinitely
     st.setCycleCount(Animation.INDEFINITE);
     st.setAutoReverse(true);
     st.play();
@@ -149,6 +152,7 @@ public class SettingsController {
     // select each radio button for each setting
     for (String rbId : difficultyRbIds) {
       try {
+        // get corresponding difficulty radio button and select it
         RadioButton rb = (RadioButton) this.getClass().getDeclaredField(rbId).get(this);
         rb.setSelected(true);
         rb.requestFocus();
@@ -167,7 +171,7 @@ public class SettingsController {
    * @param event an ActionEvent representing when the menu button has been clicked
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMainMenu(ActionEvent event) {
     // save user difficulties
     try {
       UsersManager.saveUsersToJson();

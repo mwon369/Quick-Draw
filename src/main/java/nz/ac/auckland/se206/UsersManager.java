@@ -125,4 +125,13 @@ public class UsersManager {
     // checks if valid user details have been added
     return user != null;
   }
+
+  /**
+   * This method deletes a user for a given username
+   *
+   * @param username the user to delete
+   */
+  public static void deleteUser(String username) {
+    usersMap.remove(username);
+  }
 }

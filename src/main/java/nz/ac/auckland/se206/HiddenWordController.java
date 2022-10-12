@@ -211,7 +211,7 @@ public class HiddenWordController extends CanvasController {
     // speak whether user won or lost
     Timer speakOutcome = new Timer();
     speakOutcome.schedule(
-        new java.util.TimerTask() {
+        new TimerTask() {
           @Override
           public void run() {
             textToSpeech.speak(isWin ? "I got it! It is " + targetCategory : "You lose!");

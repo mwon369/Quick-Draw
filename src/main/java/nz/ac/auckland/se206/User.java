@@ -27,8 +27,6 @@ public class User {
   private ArrayList<BadgeData> badgeDataList;
   private Map<CategoryDifficulty, ArrayList<String>> wordsGiven;
   private Map<CategoryDifficulty, ArrayList<String>> wordList;
-  // private ArrayList<String> wordsGiven;
-  // private ArrayList<String> wordList;
   private transient CategorySelector selector; // transient means not saved to json file
 
   private ArrayList<String> allPreviousWords;
