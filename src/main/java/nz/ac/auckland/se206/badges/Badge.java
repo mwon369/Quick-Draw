@@ -7,11 +7,16 @@ public abstract class Badge {
   protected String title;
   protected String description;
 
+  /**
+   * This constructor method constructs a badge object, otherwise known as an instance
+   *
+   * @param isCompleted a boolean to check if a badge has been achieved
+   */
   public Badge(boolean isCompleted) {
     this.isCompleted = isCompleted;
   }
 
-  public boolean isCompleted() {
+  public boolean getCompleted() {
     return isCompleted;
   }
 

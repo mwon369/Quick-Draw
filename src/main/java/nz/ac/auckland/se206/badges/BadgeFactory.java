@@ -6,7 +6,7 @@ public class BadgeFactory {
    *
    * @param badgeId the id of the badge
    * @param isCompleted whether the badge has been earned
-   * @return
+   * @return a Badge object
    */
   public static Badge createBadge(int badgeId, boolean isCompleted) {
     /*

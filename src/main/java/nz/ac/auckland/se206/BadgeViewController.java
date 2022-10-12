@@ -110,7 +110,7 @@ public class BadgeViewController {
     badgeList = user.getBadgeList();
     // Going through each badge and loading the correct icon
     for (int i = 0; i < badgeIcons.size(); i++) {
-      if (badgeList.get(i).isCompleted()) {
+      if (badgeList.get(i).getCompleted()) {
         badgeIcons.get(i).setImage(loadImage("achieveIcon"));
       } else {
         badgeIcons.get(i).setImage(loadImage("questionicon"));

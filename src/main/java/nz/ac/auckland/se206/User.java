@@ -298,7 +298,7 @@ public class User {
   public void loadBadgeList() {
     badgeList = new ArrayList<>();
     for (BadgeData data : badgeDataList) {
-      badgeList.add(BadgeFactory.createBadge(data.getBadgeId(), data.isCompleted()));
+      badgeList.add(BadgeFactory.createBadge(data.getBadgeId(), data.getCompleted()));
     }
   }
 
@@ -306,9 +306,9 @@ public class User {
   public void updateBadges() {
     for (int i = 0; i < badgeList.size(); i++) {
       // Checks if any unearned badges have be achieved
-      if (!badgeList.get(i).isCompleted()) {
+      if (!badgeList.get(i).getCompleted()) {
         badgeList.get(i).checkCompletion(this);
-        badgeDataList.get(i).setCompleted(badgeList.get(i).isCompleted());
+        badgeDataList.get(i).setCompleted(badgeList.get(i).getCompleted());
       }
     }
   }
