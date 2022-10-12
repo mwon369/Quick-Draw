@@ -165,7 +165,11 @@ public class LoginController {
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
 
-        menuController.showUserInfo();
+        try {
+          menuController.showUserInfo();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
         search.clear();
         return;

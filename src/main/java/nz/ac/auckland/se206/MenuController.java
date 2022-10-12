@@ -1,9 +1,12 @@
 package nz.ac.auckland.se206;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import javafx.animation.Animation;
 import javafx.animation.ScaleTransition;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
@@ -25,6 +29,8 @@ public class MenuController {
   @FXML private ImageView musicIcon;
 
   @FXML private Label userNameLabel;
+
+  @FXML private ImageView profilePictureImageView;
 
   private boolean isMusicOn = true;
 
@@ -214,7 +220,26 @@ public class MenuController {
     }
   }
 
-  public void showUserInfo() {
+  /**
+   * This method displays the user's information when in the menu GUI
+   *
+   * @throws IOException
+   */
+  public void showUserInfo() throws IOException {
     userNameLabel.setText(UsersManager.getSelectedUser().getUsername());
+    profilePictureImageView.setImage(loadImage());
+  }
+
+  /**
+   * This method loads the user profile picture
+   *
+   * @return The profile picture in an Image object
+   * @throws IOException
+   */
+  public Image loadImage() throws IOException {
+    // Loading the image into a file and converting it into an Image object
+    File file = new File(UsersManager.getSelectedUser().getProfilePic());
+    BufferedImage bufferImage = ImageIO.read(file);
+    return SwingFXUtils.toFXImage(bufferImage, null);
   }
 }

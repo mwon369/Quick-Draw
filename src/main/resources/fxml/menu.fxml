@@ -20,12 +20,12 @@
       </ImageView>
       <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="575.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="5.0">
                <VBox.margin>
                   <Insets bottom="-25.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePictureImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/personIcon.png" />
                      </image>
