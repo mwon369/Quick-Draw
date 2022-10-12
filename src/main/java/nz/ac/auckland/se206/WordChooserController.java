@@ -32,7 +32,7 @@ public class WordChooserController {
 
   /**
    * This method initializes the wordChooser scene which involves loading all the words into the
-   * list view and enabling word selection
+   * list view and enabling word selection and making the TextField listen for input
    */
   public void initialize() throws IOException, URISyntaxException, CsvException {
     // declare variables required to load in all words
@@ -88,7 +88,7 @@ public class WordChooserController {
    * This method switches the scene back to the zen canvas and also updates the target category
    * based on what the user selected
    *
-   * @param event
+   * @param event a mouse click
    */
   @FXML
   private void onGoBackToGame(ActionEvent event) {
@@ -116,6 +116,7 @@ public class WordChooserController {
 
     // clear existing searches
     onClearSearch();
+    chosenWordLabel.setText("Current word chosen: ");
   }
 
   /** Allows the user to search for specific words when the search button is clicked */
@@ -134,9 +135,9 @@ public class WordChooserController {
    * This helper function handles the main logic of filtering down the list of words based on what
    * the user has entered in to the search text field
    *
-   * @param searchText
-   * @param allWords
-   * @return
+   * @param searchText the input entered into the TextField
+   * @param allWords the words that the user can choose from
+   * @return a list of all matching words
    */
   private List<String> searchList(String searchText, List<String> allWords) {
 

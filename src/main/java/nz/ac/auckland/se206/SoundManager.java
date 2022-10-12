@@ -45,7 +45,7 @@ public class SoundManager {
     backgroundMusic.play();
   }
 
-  /** this method toggles the background music on and off */
+  /** This method toggles the background music on and off */
   public static void toggleBackgroundMusic() {
     if (backgroundMusic != null) {
       // pauses if media player is playing, otherwise plays it
@@ -70,7 +70,7 @@ public class SoundManager {
   /**
    * This method returns whether the background music is on or not
    *
-   * @return
+   * @return a boolean to determine if the music is playing
    */
   public static boolean isBackgroundMusicOn() {
     return isBackgroundMusicOn;

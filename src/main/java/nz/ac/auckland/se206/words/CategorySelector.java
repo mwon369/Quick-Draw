@@ -83,7 +83,8 @@ public class CategorySelector {
   }
 
   /**
-   * This method gets a random word
+   * This method randomly retrieves a random word out of all 345 categories and returns it for the
+   * user to play
    *
    * @return a random word
    * @throws IOException if an IO Exception occurs

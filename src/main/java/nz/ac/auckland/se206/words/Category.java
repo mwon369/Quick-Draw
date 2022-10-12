@@ -8,6 +8,14 @@ public class Category {
   private String definition;
   private ArrayList<String> hints;
 
+  /**
+   * This constructor method creates a category object which is used to represent the word that is
+   * given to the user
+   *
+   * @param word the word itself
+   * @param definition the definition of the word
+   * @param hints a list of hints to help the user understand the definition
+   */
   public Category(String word, String definition, ArrayList<String> hints) {
     this.word = word;
     this.definition = definition;
