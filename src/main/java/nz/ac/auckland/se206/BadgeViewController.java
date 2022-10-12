@@ -120,7 +120,7 @@ public class BadgeViewController {
       badgeIcons.get(i).getStyleClass().add("badges");
       if (badgeList.get(i).isCompleted()) {
         badgeIcons.get(i).setImage(loadImage("Badges/" + badgeList.get(i).getBadgeIcon()));
-        badgeIcons.get(i).setLayoutY(badgeIcons.get(i).getLayoutY() + 5);
+        badgeIcons.get(i).setTranslateY(10);
       } else {
         badgeIcons.get(i).setImage(loadImage("questionicon"));
       }
