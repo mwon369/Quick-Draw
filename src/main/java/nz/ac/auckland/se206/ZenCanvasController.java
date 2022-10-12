@@ -1,12 +1,10 @@
 package nz.ac.auckland.se206;
 
-import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,8 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.ml.DoodlePrediction;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
 
 /**
@@ -46,37 +42,6 @@ public class ZenCanvasController extends CanvasController {
   @FXML private ColorPicker colorPicker;
 
   private CategorySelector categorySelector;
-
-  /**
-   * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
-   * the drawing, and we load the ML model.
-   *
-   * @throws ModelException If there is an error in reading the input/output of the DL model.
-   * @throws IOException If the model cannot be found on the file system.
-   */
-  @Override
-  public void initialize() throws ModelException, IOException {
-    isMuted = true;
-    graphic = canvas.getGraphicsContext2D();
-    // save coordinates when mouse is pressed on the canvas
-    canvas.setOnMousePressed(
-        e -> {
-          currentX = e.getX();
-          currentY = e.getY();
-        });
-
-    model = new DoodlePrediction();
-
-    // initialise tool panes and add each tool pane
-    toolPanes = Arrays.asList(penPane, eraserPane);
-
-    // configure canvas
-    resetCanvas();
-
-    // initialise text to speech
-    textToSpeech = new TextToSpeech();
-    speakPredictionsTimer = new Timer();
-  }
 
   /**
    * Switches to the main menu. Clears the word label and canvas, disables the readyButton and

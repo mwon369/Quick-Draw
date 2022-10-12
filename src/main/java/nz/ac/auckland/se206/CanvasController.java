@@ -178,7 +178,7 @@ public class CanvasController {
 
     // Convert into a binary image.
     final BufferedImage imageBinary =
-        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
     final Graphics2D graphics = imageBinary.createGraphics();
     graphics.drawImage(image, 0, 0, null);
@@ -680,8 +680,8 @@ public class CanvasController {
    */
   protected void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the
-     * indicator's requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the indicator's
+     * requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
@@ -762,8 +762,8 @@ public class CanvasController {
     fileChooser
         .getExtensionFilters()
         .addAll(
-            new ExtensionFilter("bmp", ".bmp"),
             new ExtensionFilter(".png", "*.PNG"),
+            new ExtensionFilter("bmp", ".bmp"),
             new ExtensionFilter(".jpg", "*.jpg"));
 
     // open save dialog
@@ -773,7 +773,7 @@ public class CanvasController {
     if (fileToSave != null) {
       try {
 
-        ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
+        ImageIO.write(getCurrentSnapshot(), "png", fileToSave);
       } catch (IOException e) {
         System.out.println("Error in saving file");
         e.printStackTrace();
