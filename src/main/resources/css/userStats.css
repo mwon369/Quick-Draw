@@ -115,7 +115,11 @@
 }
 
 .tooltip {
-    -fx-show-delay: 0ms;
+    -fx-show-delay: 100ms;
     -fx-font-family: "Kalam";
     -fx-font-size: 21px;
+}
+
+.chart-legend-item-symbol{
+   -fx-background-radius: 20px;
 }

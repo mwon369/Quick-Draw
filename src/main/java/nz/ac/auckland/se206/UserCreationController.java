@@ -117,6 +117,8 @@ public class UserCreationController {
   @FXML
   private void onLoginPage(ActionEvent event) {
     SoundManager.playButtonClick();
+    // clear the canvas if they exit out of the sign up screen
+    onClear();
     // clear username and error message
     usernameField.clear();
     errorMessageLabel.setText("");
