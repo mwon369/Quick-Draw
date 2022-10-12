@@ -71,7 +71,7 @@ public class BadgeViewController {
           badgeEightPane,
           badgeNinePane,
           badgeTenPane);
-  ;
+
   private ArrayList<Badge> badgeList;
 
   /**

@@ -85,10 +85,20 @@ public class App extends Application {
         });
   }
 
+  /**
+   * This method returns the LoginController field for this class
+   *
+   * @return a LoginController reference
+   */
   public static LoginController getLoginController() {
     return loginController;
   }
 
+  /**
+   * This method returns the MenuController field for this class
+   *
+   * @return a MenuController reference
+   */
   public static MenuController getMenuController() {
     return menuController;
   }

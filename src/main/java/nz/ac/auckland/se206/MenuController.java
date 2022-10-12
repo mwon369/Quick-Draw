@@ -56,7 +56,7 @@ public class MenuController {
    * settingsController.loadUserDifficulties() is called, the FXML elements in the loaded settings
    * scene are updated
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public void initialize() throws IOException {
     // add user stats controller

@@ -32,7 +32,7 @@ public class UserStatsController {
    *
    * <p>
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public void initialize() throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/badgeview.fxml"));

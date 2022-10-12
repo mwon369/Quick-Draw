@@ -512,8 +512,8 @@ public class CanvasController {
   /**
    * This method mutes and unmutes the text to speech from speaking the top 3 predictions
    *
-   * @throws URISyntaxException if a URISyntaxException
-   * @throws IOException if an IOException
+   * @throws URISyntaxException if a URISyntaxException is thrown
+   * @throws IOException if an IOException is thrown
    */
   @FXML
   protected void onToggleSound() throws URISyntaxException, IOException {
