@@ -26,32 +26,30 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class UserCreationController {
-  @FXML private Canvas canvas;
+  @FXML protected Canvas canvas;
 
-  @FXML private Label errorMessageLabel;
+  @FXML protected Label errorMessageLabel;
 
-  @FXML private TextField usernameField;
+  @FXML protected TextField usernameField;
 
   // items for the canvas tools
-  @FXML private Pane penPane;
-  @FXML private Pane eraserPane;
-  @FXML private Pane clearPane;
-  @FXML private Pane savePane;
-  @FXML private Pane soundPane;
-  @FXML private Pane colorPane;
-  @FXML private ImageView penIcon;
-  @FXML private ImageView eraserIcon;
-  @FXML private ImageView clearIcon;
-  @FXML private ImageView saveIcon;
-  @FXML private ImageView soundIcon;
-  @FXML private ImageView colorIcon;
-  @FXML private ColorPicker colorPicker;
+  @FXML protected Pane penPane;
+  @FXML protected Pane eraserPane;
+  @FXML protected Pane clearPane;
+  @FXML protected Pane savePane;
+  @FXML protected Pane soundPane;
+  @FXML protected Pane colorPane;
+  @FXML protected ImageView penIcon;
+  @FXML protected ImageView eraserIcon;
+  @FXML protected ImageView clearIcon;
+  @FXML protected ImageView colorIcon;
+  @FXML protected ColorPicker colorPicker;
 
-  private List<Pane> toolPanes;
-  private double currentX;
-  private double currentY;
+  protected List<Pane> toolPanes;
+  protected double currentX;
+  protected double currentY;
 
-  private GraphicsContext graphic;
+  protected GraphicsContext graphic;
 
   /** This method creates an account for a new user */
   public void initialize() {
@@ -129,19 +127,19 @@ public class UserCreationController {
 
   /** This method plays the on button hover sound effect */
   @FXML
-  private void onButtonHover() {
+  protected void onButtonHover() {
     SoundManager.playButtonHover();
   }
 
   /** This method is called when the "Clear" button is pressed. */
   @FXML
-  private void onClear() {
+  protected void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
   /** This method changes the user's input to simulate an eraser for the canvas */
   @FXML
-  private void onSelectEraser() {
+  protected void onSelectEraser() {
     canvas.setOnMouseDragged(
         e -> {
           // clear where the user touches
@@ -152,7 +150,7 @@ public class UserCreationController {
 
   /** This method changes the user's input to simulate a black pen for the canvas */
   @FXML
-  private void onSelectPen() {
+  protected void onSelectPen() {
     canvas.setOnMouseDragged(
         e -> {
           // Brush size (you can change this, it should not be too small or too large).
@@ -181,7 +179,7 @@ public class UserCreationController {
    *
    * @param toolPaneId the pane Id of the tool
    */
-  private void colorCurrentTool(String toolPaneId) {
+  protected void colorCurrentTool(String toolPaneId) {
     // for each tool pane, check if its id is equal to the specific tool pane id
     for (Pane toolPane : toolPanes) {
       // if id is equal, change the color to a specific color, otherwise, change to
@@ -206,7 +204,7 @@ public class UserCreationController {
    * @throws IOException throws an IO exception of an error occurs with saving image to file >>>>>>>
    *     main
    */
-  private File saveCurrentSnapshotOnFile(User user) throws IOException {
+  protected File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
     final File tmpFolder = new File(".profiles/profilePictures");
 
@@ -229,7 +227,7 @@ public class UserCreationController {
    *
    * @return the BufferedImage snapshot
    */
-  private BufferedImage getCurrentSnapshot() {
+  protected BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
     final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
 
