@@ -102,6 +102,7 @@ public class UserCreationController {
 
     // clear all fields
     usernameField.clear();
+    onClear();
   }
 
   /**
@@ -186,6 +187,13 @@ public class UserCreationController {
     }
   }
 
+  /**
+   * This method saves the current snapshot of the canvas for a user
+   *
+   * @param user The user to save the current snapshot for
+   * @return the file to save
+   * @throws IOException throws an IO exception of an error occurs with saving image to file
+   */
   private File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
     final File tmpFolder = new File(".profiles/profilePictures");
@@ -203,6 +211,12 @@ public class UserCreationController {
     return imageToClassify;
   }
 
+  /**
+   * This method gets the current snapshot of the canvas and can snap any color of type
+   * BufferedImage.TYPE_INT_ARGB
+   *
+   * @return the BufferedImage snapshot
+   */
   private BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
     final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
