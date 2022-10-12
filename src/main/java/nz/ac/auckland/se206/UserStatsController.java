@@ -56,7 +56,7 @@ public class UserStatsController {
   /**
    * This method returns the user back to the main menu
    *
-   * @param event, mouse click
+   * @param event a mouse click
    */
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
@@ -67,6 +67,11 @@ public class UserStatsController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.MENU));
   }
 
+  /**
+   * This method sets the scene to the badge viewer scene
+   *
+   * @param event a button click
+   */
   @FXML
   private void onBadgeView(ActionEvent event) {
     SoundManager.playButtonClick();
@@ -81,6 +86,11 @@ public class UserStatsController {
     }
   }
 
+  /**
+   * This method sets the scene to the word history scene
+   *
+   * @param event a button click
+   */
   @FXML
   private void onWordHistory(ActionEvent event) {
     SoundManager.playButtonClick();

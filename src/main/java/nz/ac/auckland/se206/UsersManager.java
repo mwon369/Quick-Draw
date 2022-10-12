@@ -19,18 +19,40 @@ public class UsersManager {
   private static HashMap<String, User> usersMap;
   private static User userSelected;
 
+  /**
+   * Returns a specific user reference based on the passed in username
+   *
+   * @param username a String representing the user
+   * @return a user reference that is linked to the passed in String
+   */
   public static User getUser(String username) {
     return usersMap.get(username);
   }
 
+  /**
+   * This method gets the user that is currently logged in
+   *
+   * @return the user currently logged in
+   */
   public static User getSelectedUser() {
     return userSelected;
   }
 
+  /**
+   * This method sets the user that is currently logged in
+   *
+   * @param username a String that maps to the user currently logged in
+   */
   public static void setSelectedUser(String username) {
     userSelected = usersMap.get(username);
   }
 
+  /**
+   * This method returns a hash map that contains all our user account data where each username maps
+   * to their account details
+   *
+   * @return a map containing all our user information
+   */
   public static Map<String, User> getUsersMap() {
     return usersMap;
   }
@@ -61,7 +83,7 @@ public class UsersManager {
   /**
    * This method will save the hashmap to a json map representation. Saves to a .json file
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public static void saveUsersToJson() throws IOException {
     // check if .profiles exists. If not, make it
@@ -81,7 +103,7 @@ public class UsersManager {
   /**
    * Load users from Json file, making use of GSON. Will put the users to a hashmap
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public static void loadUsersFromJson() throws IOException {
     // check if .profiles exists. If not, make it

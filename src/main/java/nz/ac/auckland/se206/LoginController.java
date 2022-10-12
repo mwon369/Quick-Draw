@@ -170,7 +170,7 @@ public class LoginController {
   /**
    * This method makes the profile vbox wobble left and right upon mouse hover
    *
-   * @param event
+   * @param event a button click
    */
   @FXML
   private void onProfileHover(MouseEvent event) {
@@ -313,6 +313,11 @@ public class LoginController {
     }
   }
 
+  /**
+   * This method plays a sound effect when the button is hovered
+   *
+   * @param event the button being hovered
+   */
   private void onDeleteHover(MouseEvent event) {
     onButtonHover();
   }

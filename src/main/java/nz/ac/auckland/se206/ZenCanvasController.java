@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -80,7 +79,8 @@ public class ZenCanvasController extends CanvasController {
   }
 
   /**
-   * Switches to the main menu. Clears the word label and canvas, disables the readyButton
+   * Switches to the main menu. Clears the word label and canvas, disables the readyButton and
+   * resets the pen colour to black
    *
    * @param event an ActionEvent representing the type of action that occurred
    * @throws IOException if there is a problem with the input/output
@@ -111,7 +111,8 @@ public class ZenCanvasController extends CanvasController {
   }
 
   /**
-   * This method clears the canvas and resets all interactive UI elements to their default values
+   * This method clears the canvas and resets all interactive UI elements to their default values.
+   * For Zen mode it also resets the pen colour to black.
    */
   @Override
   protected void resetCanvas() {
@@ -135,9 +136,9 @@ public class ZenCanvasController extends CanvasController {
 
   /**
    * This method switches the scene and sets the target category to whatever the user selects in the
-   * wordChooser FXML scene
+   * Word Chooser FXML scene
    *
-   * @param event, a button click
+   * @param event a button click
    */
   @FXML
   private void onChooseWord(ActionEvent event) {
@@ -187,36 +188,9 @@ public class ZenCanvasController extends CanvasController {
   }
 
   /**
-   * Readies the game by enabling the canvas and starting the timer. Will disable the ready button
-   */
-  @FXML
-  @Override
-  protected void onReady() {
-    SoundManager.playButtonClick();
-    isGameOver = false;
-
-    // tell the player to start drawing
-    Task<Void> startDrawingSpeechTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak("Start Drawing!");
-            return null;
-          }
-        };
-    Thread startDrawingSpeechThread = new Thread(startDrawingSpeechTask);
-    startDrawingSpeechThread.start();
-
-    // Starting the game and begin the timer and predictions
-    canvas.setDisable(false);
-    readyButton.setDisable(true);
-    startTimer();
-    speakPredictions();
-  }
-
-  /**
-   * Starts the timer starting from timerStartTime and terminates when timer reaches 0. Also
-   * retrieves the predictions list every second
+   * Uses a timer object to refresh the model guesses every second and check if the user has won.
+   * There is no associated time with the timer object so the user can draw for as long as they
+   * want, even if they have won
    */
   @Override
   protected void startTimer() {
@@ -277,7 +251,10 @@ public class ZenCanvasController extends CanvasController {
     return false;
   }
 
-  /** This method changes the user's input to simulate a black pen for the canvas */
+  /**
+   * This method changes the user's selected tool to the pen which is the colour they have selected
+   * from the colour picker
+   */
   @FXML
   @Override
   protected void onSelectPen() {

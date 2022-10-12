@@ -4,6 +4,12 @@ import nz.ac.auckland.se206.User;
 
 public class TenConsecutiveWinsBadge extends Badge {
 
+  /**
+   * This constructor method constructs the Ten Consecutive Wins Badge so that it can be saved and
+   * loaded to user profiles
+   *
+   * @param isCompleted a boolean to determine whether this badge is completed
+   */
   public TenConsecutiveWinsBadge(boolean isCompleted) {
     super(isCompleted);
     this.title = "I'm On Fire!!";
@@ -11,6 +17,11 @@ public class TenConsecutiveWinsBadge extends Badge {
     this.badgeIcon = "TenConsecutiveWinsBadge";
   }
 
+  /**
+   * This method checks if the badge is completed for the specific user that is currently playing
+   *
+   * @param user the user which is being checked
+   */
   @Override
   public void checkCompletion(User user) {
     isCompleted = user.getWinStreak() == 10;

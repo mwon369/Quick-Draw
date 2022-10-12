@@ -110,6 +110,11 @@ public class MenuController {
     App.getUserStatsController().onRetrieveStats();
   }
 
+  /**
+   * This method switches the root of the scene from the main menu to the zen mode canvas
+   *
+   * @param event a button click
+   */
   @FXML
   private void onPlayZenMode(ActionEvent event) {
     SoundManager.playButtonClick();
@@ -168,7 +173,7 @@ public class MenuController {
   /**
    * This method displays the user's information when in the menu GUI
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public void showUserInfo() throws IOException {
     userNameLabel.setText(UsersManager.getSelectedUser().getUsername());

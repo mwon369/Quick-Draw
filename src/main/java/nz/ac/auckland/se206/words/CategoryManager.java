@@ -64,7 +64,7 @@ public class CategoryManager {
    *
    * @throws IOException if an IO exception occurs
    * @throws URISyntaxException if a URI syntax exception occurs
-   * @throws CsvException if a Csv exception occurs
+   * @throws CsvException if a CSV exception occurs
    */
   private static void loadAllCategories() throws IOException, URISyntaxException, CsvException {
     // initialize variables required to load categories

@@ -67,6 +67,10 @@ public class UserCreationController {
     onSelectPen();
   }
 
+  /**
+   * This method verifies the user's sign up details and saves the users account details to the JSON
+   * file
+   */
   @FXML
   private void onCreateAccount() {
     SoundManager.playButtonClick();
@@ -188,11 +192,17 @@ public class UserCreationController {
   }
 
   /**
-   * This method saves the current snapshot of the canvas for a user
+   * <<<<<<< HEAD This method saves the users canvas drawing as an image and sets it as their
+   * profile picture
    *
+   * @param user the user signing up
+   * @return the users profile picture as an image
+   * @throws IOException if an IOException is thrown ======= This method saves the current snapshot
+   *     of the canvas for a user
    * @param user The user to save the current snapshot for
    * @return the file to save
-   * @throws IOException throws an IO exception of an error occurs with saving image to file
+   * @throws IOException throws an IO exception of an error occurs with saving image to file >>>>>>>
+   *     main
    */
   private File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
