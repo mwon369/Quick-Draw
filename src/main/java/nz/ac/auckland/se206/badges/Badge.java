@@ -7,13 +7,6 @@ public abstract class Badge {
   protected String title;
   protected String description;
 
-  /**
-   * This method checks to see if the user has completed the requirements to earnt the badge
-   *
-   * @param user the user which is being checked
-   */
-  public abstract void checkCompletion(User user);
-
   public Badge(boolean isCompleted) {
     this.isCompleted = isCompleted;
   }
@@ -29,4 +22,11 @@ public abstract class Badge {
   public String getDescription() {
     return description;
   }
+
+  /**
+   * This method checks to see if the user has completed the requirements to earnt the badge
+   *
+   * @param user the user which is being checked
+   */
+  public abstract void checkCompletion(User user);
 }

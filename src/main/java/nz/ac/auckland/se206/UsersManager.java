@@ -65,10 +65,6 @@ public class UsersManager {
    */
   public static void saveUsersToJson() throws IOException {
     // check if .profiles exists. If not, make it
-    File directory = new File(".profiles");
-    if (!directory.exists()) {
-      directory.mkdirs();
-    }
 
     // check if userData.json exists within .profiles folder. If not, make it.
     File dataFile = new File(".profiles/userData.json");
@@ -90,8 +86,10 @@ public class UsersManager {
   public static void loadUsersFromJson() throws IOException {
     // check if .profiles exists. If not, make it
     File directory = new File(".profiles");
+    File directory2 = new File(".profiles/profilePictures");
     if (!directory.exists()) {
       directory.mkdirs();
+      directory2.mkdirs();
     }
 
     // check if userData.json exists within .profiles folder. If not, make it.
@@ -132,6 +130,8 @@ public class UsersManager {
    * @param username the user to delete
    */
   public static void deleteUser(String username) {
+    File file = new File(usersMap.get(username).getProfilePic());
+    file.delete();
     usersMap.remove(username);
   }
 }

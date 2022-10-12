@@ -18,14 +18,34 @@
             <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
-      <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="555.0" spacing="15.0">
+      <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="575.0" spacing="10.0">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="5.0">
+               <VBox.margin>
+                  <Insets bottom="-25.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fx:id="profilePictureImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/personIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="userNameLabel" prefHeight="45.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <Label fx:id="title" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
                <font>
                   <Font name="Bradley Hand ITC" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER" minHeight="36.0">
@@ -94,7 +114,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/personIcon.png" />
+                              <Image url="@../images/statsIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>

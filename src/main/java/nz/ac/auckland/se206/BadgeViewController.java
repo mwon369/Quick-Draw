@@ -47,37 +47,37 @@ public class BadgeViewController {
 
   @FXML private Label badgeTitleLabel;
   @FXML private Label badgeDescriptionLabel;
-  private List<ImageView> badgeIcons;
-  private List<Pane> badgePanes;
+  private List<ImageView> badgeIcons =
+      Arrays.asList(
+          badgeIconOne,
+          badgeIconTwo,
+          badgeIconThree,
+          badgeIconFour,
+          badgeIconFive,
+          badgeIconSix,
+          badgeIconSeven,
+          badgeIconEight,
+          badgeIconNine,
+          badgeIconTen);
+  private List<Pane> badgePanes =
+      Arrays.asList(
+          badgeOnePane,
+          badgeTwoPane,
+          badgeThreePane,
+          badgeFourPane,
+          badgeFivePane,
+          badgeSixPane,
+          badgeSevenPane,
+          badgeEightPane,
+          badgeNinePane,
+          badgeTenPane);
+  ;
   private ArrayList<Badge> badgeList;
 
   public void initialize() {
+    // Setup badge GUI for display
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
-    badgeIcons =
-        Arrays.asList(
-            badgeIconOne,
-            badgeIconTwo,
-            badgeIconThree,
-            badgeIconFour,
-            badgeIconFive,
-            badgeIconSix,
-            badgeIconSeven,
-            badgeIconEight,
-            badgeIconNine,
-            badgeIconTen);
-    badgePanes =
-        Arrays.asList(
-            badgeOnePane,
-            badgeTwoPane,
-            badgeThreePane,
-            badgeFourPane,
-            badgeFivePane,
-            badgeSixPane,
-            badgeSevenPane,
-            badgeEightPane,
-            badgeNinePane,
-            badgeTenPane);
   }
 
   /**

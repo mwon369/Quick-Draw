@@ -23,6 +23,7 @@ public class User {
   private int losses;
   private int fastestWin;
   private int winStreak;
+  private String profilePic;
 
   private ArrayList<BadgeData> badgeDataList;
   private Map<CategoryDifficulty, ArrayList<String>> wordsGiven;
@@ -144,6 +145,10 @@ public class User {
     return this.confidenceDifficulty;
   }
 
+  public String getProfilePic() {
+    return this.profilePic;
+  }
+
   public void setConfidenceDifficulty(Difficulty difficulty) {
     this.confidenceDifficulty = difficulty;
   }
@@ -154,6 +159,10 @@ public class User {
 
   public void setWordDifficulty(Difficulty difficulty) {
     this.wordDifficulty = difficulty;
+  }
+
+  public void setProfilePic(String pic) {
+    this.profilePic = pic;
   }
 
   public Map<CategoryDifficulty, ArrayList<String>> getWordList() {
@@ -289,7 +298,7 @@ public class User {
   public void loadBadgeList() {
     badgeList = new ArrayList<>();
     for (BadgeData data : badgeDataList) {
-      badgeList.add(BadgeFactory.createBadge(data.getBadgeID(), data.isCompleted()));
+      badgeList.add(BadgeFactory.createBadge(data.getBadgeId(), data.isCompleted()));
     }
   }
 

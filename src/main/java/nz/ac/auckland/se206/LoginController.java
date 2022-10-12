@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashSet;
@@ -34,12 +35,13 @@ public class LoginController {
 
   @FXML private ScrollPane profilesScrollPane;
 
-  private RotateTransition rotation;
-
   @FXML private ImageView musicIcon;
 
   @FXML private TextField search;
 
+  private MenuController menuController;
+
+  private RotateTransition rotation;
   private HashSet<String> currentDisplay;
 
   /**
@@ -64,7 +66,8 @@ public class LoginController {
                     newDisplay.add(username);
                   }
                 }
-                // change display only if the new list of users is different from current display
+                // change display only if the new list of users is different from current
+                // display
                 if (!currentDisplay.containsAll(newDisplay)
                     || !newDisplay.containsAll(currentDisplay)) {
                   profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
@@ -100,7 +103,8 @@ public class LoginController {
     Label username = new Label(user.getUsername());
     username.getStyleClass().add("username");
     // create image for person icon
-    ImageView image = new ImageView("/images/personIcon.png");
+    File file = new File(user.getProfilePic());
+    ImageView image = new ImageView(file.toURI().toString());
     image.setFitHeight(100);
     image.setFitWidth(100);
 
@@ -160,6 +164,12 @@ public class LoginController {
         errorMessageLabel.setVisible(false);
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
+
+        try {
+          menuController.showUserInfo();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
         search.clear();
         return;
@@ -344,5 +354,9 @@ public class LoginController {
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
+  }
+
+  public void setController(MenuController controller) {
+    this.menuController = controller;
   }
 }

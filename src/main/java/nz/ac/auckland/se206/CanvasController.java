@@ -512,7 +512,7 @@ public class CanvasController {
    * This method loads an image into an image class to be used by an ImageView class
    *
    * @param soundState the name of the image to be loaded
-   * @return
+   * @return An Image object containing the correct image
    * @throws URISyntaxException
    * @throws IOException
    */
@@ -663,8 +663,8 @@ public class CanvasController {
    */
   protected void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the indicator's
-     * requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);

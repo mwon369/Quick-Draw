@@ -1,20 +1,20 @@
 package nz.ac.auckland.se206.badges;
 
 public class BadgeData {
-  private int badgeID;
+  private int badgeId;
   private boolean isCompleted;
 
-  public BadgeData(int badgeID, boolean isCompleted) {
+  public BadgeData(int badgeId, boolean isCompleted) {
     this.isCompleted = isCompleted;
-    this.badgeID = badgeID;
+    this.badgeId = badgeId;
   }
 
-  public int getBadgeID() {
-    return badgeID;
+  public int getBadgeId() {
+    return badgeId;
   }
 
   public void setBadgeID(int badgeID) {
-    this.badgeID = badgeID;
+    this.badgeId = badgeID;
   }
 
   public boolean isCompleted() {
