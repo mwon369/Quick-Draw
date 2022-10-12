@@ -192,8 +192,8 @@ public class CanvasController {
    * Switches to the main menu. Clears the word label and canvas, disables the readyButton
    *
    * @param event an ActionEvent representing the type of action that occurred
-   * @throws IOException
-   * @throws URISyntaxException
+   * @throws IOException if an IOException is thrown
+   * @throws URISyntaxException if a URISyntaxException is thrown
    */
   @FXML
   protected void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
@@ -218,6 +218,9 @@ public class CanvasController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
   }
 
+  /**
+   * This method clears the canvas and resets all the Gui elements to their default starting values
+   */
   protected void resetCanvas() {
     resetIndicator();
     isPenDrawn = false;
@@ -363,6 +366,14 @@ public class CanvasController {
         1000);
   }
 
+  /**
+   * This method colours the top 'x' predictions based on what the accuracy difficulty setting is
+   * set to
+   *
+   * @param predictionsListView the Gui list of the top 10 guesses
+   * @param topNum an int that represents the minimum guess rank that the target category needs to
+   *     be in order to win
+   */
   protected void colourTopPredictions(ListView<String> predictionsListView, int topNum) {
 
     // set the CellFactory field for the ListView
@@ -392,6 +403,10 @@ public class CanvasController {
         });
   }
 
+  /**
+   * This helper method switches the boolean isDrawing to true whenever the user switches back to
+   * the pen
+   */
   @FXML
   protected void isDrawing() {
     if (isPenDrawn) {
@@ -400,7 +415,7 @@ public class CanvasController {
   }
 
   /**
-   * this method retrieves a formatted predictions list. Each element is a formatted string that can
+   * This method retrieves a formatted predictions list. Each element is a formatted string that can
    * be printed to display a prediction
    *
    * @param predictionsListClassification the predictions list that is a list of Classification
@@ -497,8 +512,8 @@ public class CanvasController {
   /**
    * This method mutes and unmutes the text to speech from speaking the top 3 predictions
    *
-   * @throws URISyntaxException
-   * @throws IOException
+   * @throws URISyntaxException if a URISyntaxException
+   * @throws IOException if an IOException
    */
   @FXML
   protected void onToggleSound() throws URISyntaxException, IOException {
@@ -513,8 +528,8 @@ public class CanvasController {
    *
    * @param soundState the name of the image to be loaded
    * @return An Image object containing the correct image
-   * @throws URISyntaxException
-   * @throws IOException
+   * @throws URISyntaxException if a URISyntaxException is thrown
+   * @throws IOException if an IOException is thrown
    */
   protected Image loadImage(String soundState) throws URISyntaxException, IOException {
     // load an image to switch to
@@ -581,12 +596,14 @@ public class CanvasController {
     }
     user.updatePreviousWords(targetCategory);
 
+    // save the updated word lists for the user
     try {
       UsersManager.saveUsersToJson();
     } catch (IOException e1) {
       e1.printStackTrace();
     }
 
+    // indicate that the game is over
     isGameOver = true;
 
     // speak whether user won or lost

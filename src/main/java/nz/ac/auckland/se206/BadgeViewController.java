@@ -74,6 +74,10 @@ public class BadgeViewController {
   ;
   private ArrayList<Badge> badgeList;
 
+  /**
+   * This method initializes the Badge View Controller so that the FXML can load and display the
+   * users badges
+   */
   public void initialize() {
     // Setup badge GUI for display
     badgeTitleLabel.setVisible(false);
@@ -83,7 +87,7 @@ public class BadgeViewController {
   /**
    * Method changes the scene back to the user stats GUI
    *
-   * @param event
+   * @param event a button click
    */
   @FXML
   private void onGoBack(ActionEvent event) {
@@ -101,8 +105,8 @@ public class BadgeViewController {
    * This method loads the correct icon for each of the badges the user has earned. If they have not
    * earned the badge, it will show a question mark instead
    *
-   * @throws URISyntaxException
-   * @throws IOException
+   * @throws URISyntaxException if a URISyntaxException is thrown
+   * @throws IOException if an IOException is thrown
    */
   public void loadBadgeIcons() throws URISyntaxException, IOException {
 
@@ -123,8 +127,8 @@ public class BadgeViewController {
    *
    * @param imageName The name of the image
    * @return the loaded image
-   * @throws URISyntaxException
-   * @throws IOException
+   * @throws URISyntaxException if a URISyntaxException is thrown
+   * @throws IOException if an IOException is thrown
    */
   private Image loadImage(String imageName) throws URISyntaxException, IOException {
     // load an image to switch to
@@ -146,60 +150,70 @@ public class BadgeViewController {
     this.colorCurrentTool(paneName);
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeOneSelect() {
     SoundManager.playButtonClick();
     showInformation(0, "badgeOnePane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeTwoSelect() {
     SoundManager.playButtonClick();
     showInformation(1, "badgeTwoPane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeThreeSelect() {
     SoundManager.playButtonClick();
     showInformation(2, "badgeThreePane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeFourSelect() {
     SoundManager.playButtonClick();
     showInformation(3, "badgeFourPane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeFiveSelect() {
     SoundManager.playButtonClick();
     showInformation(4, "badgeFivePane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeSixSelect() {
     SoundManager.playButtonClick();
     showInformation(5, "badgeSixPane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeSevenSelect() {
     SoundManager.playButtonClick();
     showInformation(6, "badgeSevenPane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeEightSelect() {
     SoundManager.playButtonClick();
     showInformation(7, "badgeEightPane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeNineSelect() {
     SoundManager.playButtonClick();
     showInformation(8, "badgeNinePane");
   }
 
+  /** This method plays the button click sound and also displays the badge description */
   @FXML
   private void onBadgeTenSelect() {
     SoundManager.playButtonClick();

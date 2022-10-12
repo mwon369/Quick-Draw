@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -203,34 +202,6 @@ public class ZenCanvasController extends CanvasController {
   }
 
   /**
-   * Readies the game by enabling the canvas and starting the timer. Will disable the ready button
-   */
-  @FXML
-  @Override
-  protected void onReady() {
-    SoundManager.playButtonClick();
-    isGameOver = false;
-
-    // tell the player to start drawing
-    Task<Void> startDrawingSpeechTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak("Start Drawing!");
-            return null;
-          }
-        };
-    Thread startDrawingSpeechThread = new Thread(startDrawingSpeechTask);
-    startDrawingSpeechThread.start();
-
-    // Starting the game and begin the timer and predictions
-    canvas.setDisable(false);
-    readyButton.setDisable(true);
-    startTimer();
-    speakPredictions();
-  }
-
-  /**
    * Starts the timer starting from timerStartTime and terminates when timer reaches 0. Also
    * retrieves the predictions list every second
    */
@@ -292,7 +263,6 @@ public class ZenCanvasController extends CanvasController {
     }
     return false;
   }
-
 
   /** This method changes the user's input to simulate a black pen for the canvas */
   @FXML
