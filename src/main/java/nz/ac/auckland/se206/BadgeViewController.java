@@ -15,8 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
@@ -47,34 +50,38 @@ public class BadgeViewController {
 
   @FXML private Label badgeTitleLabel;
   @FXML private Label badgeDescriptionLabel;
-  private List<ImageView> badgeIcons =
-      Arrays.asList(
-          badgeIconOne,
-          badgeIconTwo,
-          badgeIconThree,
-          badgeIconFour,
-          badgeIconFive,
-          badgeIconSix,
-          badgeIconSeven,
-          badgeIconEight,
-          badgeIconNine,
-          badgeIconTen);
-  private List<Pane> badgePanes =
-      Arrays.asList(
-          badgeOnePane,
-          badgeTwoPane,
-          badgeThreePane,
-          badgeFourPane,
-          badgeFivePane,
-          badgeSixPane,
-          badgeSevenPane,
-          badgeEightPane,
-          badgeNinePane,
-          badgeTenPane);
-  ;
+  private List<ImageView> badgeIcons;
+  private List<Pane> badgePanes;
   private ArrayList<Badge> badgeList;
 
   public void initialize() {
+    // The next 10 lines are used to add all the badge image views and all the badge
+    // panes into their respective lists so that other methods can access these
+    // image views and panes
+    badgeIcons =
+        Arrays.asList(
+            badgeIconOne,
+            badgeIconTwo,
+            badgeIconThree,
+            badgeIconFour,
+            badgeIconFive,
+            badgeIconSix,
+            badgeIconSeven,
+            badgeIconEight,
+            badgeIconNine,
+            badgeIconTen);
+    badgePanes =
+        Arrays.asList(
+            badgeOnePane,
+            badgeTwoPane,
+            badgeThreePane,
+            badgeFourPane,
+            badgeFivePane,
+            badgeSixPane,
+            badgeSevenPane,
+            badgeEightPane,
+            badgeNinePane,
+            badgeTenPane);
     // Setup badge GUI for display
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
@@ -94,7 +101,7 @@ public class BadgeViewController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.USER_STATS));
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
-    colorCurrentTool("");
+    borderCurrentTool("");
   }
 
   /**
@@ -111,7 +118,8 @@ public class BadgeViewController {
     // Going through each badge and loading the correct icon
     for (int i = 0; i < badgeIcons.size(); i++) {
       if (badgeList.get(i).isCompleted()) {
-        badgeIcons.get(i).setImage(loadImage("achieveIcon"));
+        badgeIcons.get(i).setImage(loadImage("Badges/" + badgeList.get(i).getBadgeIcon()));
+        badgeIcons.get(i).setLayoutY(badgeIcons.get(i).getLayoutY() + 5);
       } else {
         badgeIcons.get(i).setImage(loadImage("questionicon"));
       }
@@ -143,7 +151,7 @@ public class BadgeViewController {
     badgeDescriptionLabel.setVisible(true);
     badgeDescriptionLabel.setWrapText(true);
     // Highlighting the current badge selected
-    this.colorCurrentTool(paneName);
+    this.borderCurrentTool(paneName);
   }
 
   @FXML
@@ -207,20 +215,26 @@ public class BadgeViewController {
   }
 
   /**
-   * This method changes the color of the currently selected badge so the user knows which badge is
+   * This method adds a border to the currently selected badge so the user knows which badge is
    * currently selected
    *
    * @param badgePaneId the pane Id of the badge
    */
-  private void colorCurrentTool(String badgePaneId) {
+  private void borderCurrentTool(String badgePaneId) {
     // for each tool pane, check if its id is equal to the specific tool pane id
     for (Pane badgePane : badgePanes) {
       // if id is equal, change the color to a specific color, otherwise, change to
       // transparent
-      badgePane.setBackground(
+      badgePane.setBorder(
           badgePane.getId().equals(badgePaneId)
-              ? new Background(new BackgroundFill(Color.web("#E29F00"), null, null))
-              : new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+              ? new Border(
+                  new BorderStroke(
+                      Color.rgb(226, 159, 0),
+                      BorderStrokeStyle.SOLID,
+                      new CornerRadii(2),
+                      new BorderWidths(2)))
+              : new Border(
+                  new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
     }
   }
 

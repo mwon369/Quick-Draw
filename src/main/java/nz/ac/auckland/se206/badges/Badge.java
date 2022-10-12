@@ -6,6 +6,7 @@ public abstract class Badge {
   protected boolean isCompleted;
   protected String title;
   protected String description;
+  protected String badgeIcon;
 
   public Badge(boolean isCompleted) {
     this.isCompleted = isCompleted;
@@ -13,6 +14,10 @@ public abstract class Badge {
 
   public boolean isCompleted() {
     return isCompleted;
+  }
+
+  public String getBadgeIcon() {
+    return this.badgeIcon;
   }
 
   public String getTitle() {

@@ -8,6 +8,7 @@ public class TwoConsecutiveWinsBadge extends Badge {
     super(isCompleted);
     this.title = "Just Getting Started";
     this.description = "Achieve 2 consecutive wins in either classic or hidden game mode";
+    this.badgeIcon = "TwoConsecutiveWinsBadge";
   }
 
   @Override

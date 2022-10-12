@@ -8,6 +8,7 @@ public class FiveConsecutiveWinsBadge extends Badge {
     super(isCompleted);
     this.title = "On A Roll";
     this.description = "Achieve 5 consecutive wins in either classic or hidden game mode";
+    this.badgeIcon = "FiveConsecutiveWinsBadge";
   }
 
   @Override
