@@ -23,6 +23,13 @@
 	-fx-font-weight: 400;
 	-fx-font-size: 48px;
 }
+
+#userNameLabel{
+	-fx-font-family: 'Indie Flower', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 18px;
+}
 #userMenuButton{
 	-fx-text-fill: black;
     -fx-background-radius: 10px;

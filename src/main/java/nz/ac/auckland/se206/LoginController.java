@@ -98,7 +98,7 @@ public class LoginController {
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
 
-        menuController.displayUsername();
+        menuController.showUserInfo();
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
         return;
       }

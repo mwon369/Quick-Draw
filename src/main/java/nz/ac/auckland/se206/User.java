@@ -291,7 +291,7 @@ public class User {
   public void loadBadgeList() {
     badgeList = new ArrayList<>();
     for (BadgeData data : badgeDataList) {
-      badgeList.add(BadgeFactory.createBadge(data.getBadgeID(), data.isCompleted()));
+      badgeList.add(BadgeFactory.createBadge(data.getBadgeId(), data.isCompleted()));
     }
   }
 
