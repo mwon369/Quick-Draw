@@ -16,6 +16,7 @@ public class DiscoverGreatWallBadge extends Badge {
     this.title = "The Great Wall";
     this.description =
         "Complete a game in either classic or hidden game mode with the word 'The Great Wall of China'";
+    this.badgeIcon = "DiscoverGreatWallBadge";
   }
 
   /**

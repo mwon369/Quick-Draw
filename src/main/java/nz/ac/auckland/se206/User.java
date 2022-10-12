@@ -433,9 +433,9 @@ public class User {
   public void updateBadges() {
     for (int i = 0; i < badgeList.size(); i++) {
       // Checks if any unearned badges have be achieved
-      if (!badgeList.get(i).getCompleted()) {
+      if (!badgeList.get(i).isCompleted()) {
         badgeList.get(i).checkCompletion(this);
-        badgeDataList.get(i).setCompleted(badgeList.get(i).getCompleted());
+        badgeDataList.get(i).setCompleted(badgeList.get(i).isCompleted());
       }
     }
   }

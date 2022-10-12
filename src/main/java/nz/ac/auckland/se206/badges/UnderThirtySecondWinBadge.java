@@ -14,6 +14,7 @@ public class UnderThirtySecondWinBadge extends Badge {
     super(isCompleted);
     this.title = "Speedster";
     this.description = "Win a game in either classic or hidden game mode in less than 30 seconds";
+    this.badgeIcon = "UnderThirtySecondWinBadge";
   }
 
   /**

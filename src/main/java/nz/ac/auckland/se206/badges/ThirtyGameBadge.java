@@ -14,6 +14,7 @@ public class ThirtyGameBadge extends Badge {
     super(isCompleted);
     this.title = "Intermediate";
     this.description = "Complete 30 games in either classic or hidden game mode";
+    this.badgeIcon = "ThirtyGameBadge";
   }
 
   /**

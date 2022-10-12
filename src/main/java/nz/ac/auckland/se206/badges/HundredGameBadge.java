@@ -14,6 +14,7 @@ public class HundredGameBadge extends Badge {
     super(isCompleted);
     this.title = "Master";
     this.description = "Complete 100 games in classic mode";
+    this.badgeIcon = "HundredGameBadge";
   }
 
   /**

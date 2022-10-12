@@ -6,6 +6,7 @@ public abstract class Badge {
   protected boolean isCompleted;
   protected String title;
   protected String description;
+  protected String badgeIcon;
 
   /**
    * This constructor method constructs a badge object, otherwise known as an instance
@@ -21,7 +22,7 @@ public abstract class Badge {
    *
    * @return a boolean indicating if a badge is completed
    */
-  public boolean getCompleted() {
+  public boolean isCompleted() {
     return isCompleted;
   }
 
@@ -30,6 +31,10 @@ public abstract class Badge {
    *
    * @return the title of the badge
    */
+  public String getBadgeIcon() {
+    return this.badgeIcon;
+  }
+
   public String getTitle() {
     return title;
   }
