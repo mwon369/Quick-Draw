@@ -70,7 +70,7 @@ public class SoundManager {
   /**
    * This method returns whether the background music is on or not
    *
-   * @return
+   * @return a boolean to determine if the music is playing
    */
   public static boolean isBackgroundMusicOn() {
     return isBackgroundMusicOn;

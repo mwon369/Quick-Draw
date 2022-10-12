@@ -40,6 +40,11 @@ public class User {
 
   private transient ArrayList<Badge> badgeList;
 
+  /**
+   * This constructor method creates a user object that can be saved and loaded
+   *
+   * @param username a String representing the name of the user's account
+   */
   public User(String username) {
     // assign the fields for each new user created
     this.username = username;
@@ -80,91 +85,201 @@ public class User {
     wordDifficulty = Difficulty.EASY;
   }
 
+  /**
+   * This method gets a specific user's username
+   *
+   * @return the users username
+   */
   public String getUsername() {
     return this.username;
   }
 
+  /**
+   * This method gets a specific users number of wins
+   *
+   * @return the users wins
+   */
   public int getWins() {
     return this.wins;
   }
 
+  /**
+   * This method gets a specific users number of losses
+   *
+   * @return the users losses
+   */
   public int getLosses() {
     return this.losses;
   }
 
+  /**
+   * This method gets a specific users fastest win time
+   *
+   * @return the users fastest win time
+   */
   public int getFastestWin() {
     return this.fastestWin;
   }
 
+  /**
+   * This method gets a specific users highest win streak
+   *
+   * @return the users win streak
+   */
   public int getWinStreak() {
     return this.winStreak;
   }
 
+  /**
+   * This method gets a specific users win rate
+   *
+   * @return the users win ratio
+   */
   public double getWinRatio() {
     int totalGames = wins + losses;
     return (double) wins / totalGames * 100;
   }
 
+  /**
+   * This method gets the list of badges for a specific user
+   *
+   * @return the users badge list
+   */
   public ArrayList<Badge> getBadgeList() {
     return badgeList;
   }
 
+  /**
+   * This method sets the number of wins for a specific user
+   *
+   * @param numWins the users wins
+   */
   public void setWins(int numWins) {
     this.wins = numWins;
   }
 
+  /**
+   * This method sets the number of losses for a specific user
+   *
+   * @param numLosses the users losses
+   */
   public void setLosses(int numLosses) {
     this.losses = numLosses;
   }
 
+  /**
+   * This method sets the win streak number for a specific user
+   *
+   * @param streak the users win streak
+   */
   public void setWinStreak(int streak) {
     this.winStreak = streak;
   }
 
+  /**
+   * This method sets the fastest win time for a specific user
+   *
+   * @param fastestWin the fastest win time
+   */
   public void setFastestWin(int fastestWin) {
     this.fastestWin = fastestWin;
   }
 
+  /**
+   * This method gets the accuracy difficulty for a specific user
+   *
+   * @return The accuracy difficulty setting
+   */
   public Difficulty getAccuracyDifficulty() {
     return this.accuracyDifficulty;
   }
 
+  /**
+   * This method sets the accuracy difficulty for a specific user
+   *
+   * @param difficulty the difficulty setting
+   */
   public void setAccuracyDifficulty(Difficulty difficulty) {
     this.accuracyDifficulty = difficulty;
   }
 
+  /**
+   * This method gets the time limit difficulty for a specific user
+   *
+   * @return The time limit difficulty setting
+   */
   public Difficulty getTimeLimitDifficulty() {
     return this.timeLimitDifficulty;
   }
 
+  /**
+   * This method sets the time limit difficulty for a specific user
+   *
+   * @param difficulty the difficulty setting
+   */
   public void setTimeLimitDifficulty(Difficulty difficulty) {
     this.timeLimitDifficulty = difficulty;
   }
 
+  /**
+   * This method gets the confidence difficulty for a specific user
+   *
+   * @return The confidence difficulty setting
+   */
   public Difficulty getConfidenceDifficulty() {
     return this.confidenceDifficulty;
   }
 
+  /**
+   * This method gets the profile picture directory for a specific user
+   *
+   * @return the path directory to the user's profile picture as a string
+   */
   public String getProfilePic() {
     return this.profilePic;
   }
 
+  /**
+   * This method sets the confidence difficulty for a specific user
+   *
+   * @param difficulty the difficulty setting
+   */
   public void setConfidenceDifficulty(Difficulty difficulty) {
     this.confidenceDifficulty = difficulty;
   }
 
+  /**
+   * This method gets the word difficulty for a specific user
+   *
+   * @return The word difficulty setting
+   */
   public Difficulty getWordDifficulty() {
     return this.wordDifficulty;
   }
 
+  /**
+   * This method gets the word difficulty for a specific user
+   *
+   * @param difficulty the difficulty setting
+   */
   public void setWordDifficulty(Difficulty difficulty) {
     this.wordDifficulty = difficulty;
   }
 
+  /**
+   * This method sets the profile picture directory a specific user
+   *
+   * @param pic the String representing the directory to the user's profile picture
+   */
   public void setProfilePic(String pic) {
     this.profilePic = pic;
   }
 
+  /**
+   * This method gets the entire word list for a specific user
+   *
+   * @return a map which contains lists of words associated with each difficulty
+   */
   public Map<CategoryDifficulty, ArrayList<String>> getWordList() {
     return this.wordList;
   }
@@ -180,6 +295,12 @@ public class User {
     wordsGiven.get(difficulty).add(0, word);
   }
 
+  /**
+   * This method gets a difficulty filtered list of words that the user has been given
+   *
+   * @param difficulty the word difficulty
+   * @return a list of words that belong to the passed in difficulty
+   */
   public ArrayList<String> getWordsGiven(CategoryDifficulty difficulty) {
     return wordsGiven.get(difficulty);
   }
@@ -287,6 +408,12 @@ public class User {
     allPreviousWords.add(0, category);
   }
 
+  /**
+   * This method returns the entire list of words that the user has played without any consideration
+   * for the difficulty of the words
+   *
+   * @return a list of words that the user has played
+   */
   public ArrayList<String> getAllPreviousWords() {
     return this.allPreviousWords;
   }

@@ -152,7 +152,7 @@ public class ZenCanvasController extends CanvasController {
    * This method switches the scene and sets the target category to whatever the user selects in the
    * wordChooser FXML scene
    *
-   * @param event, a button click
+   * @param event a button click
    */
   @FXML
   private void onChooseWord(ActionEvent event) {

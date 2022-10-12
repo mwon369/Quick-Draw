@@ -67,6 +67,10 @@ public class UserCreationController {
     onSelectPen();
   }
 
+  /**
+   * This method verifies the user's sign up details and saves the users account details to the JSON
+   * file
+   */
   @FXML
   private void onCreateAccount() {
     SoundManager.playButtonClick();
@@ -186,6 +190,13 @@ public class UserCreationController {
     }
   }
 
+  /**
+   * This method saves the users canvas drawing as an image and sets it as their profile picture
+   *
+   * @param user the user signing up
+   * @return the users profile picture as an image
+   * @throws IOException if an IOException is thrown
+   */
   private File saveCurrentSnapshotOnFile(User user) throws IOException {
     // You can change the location as you see fit.
     final File tmpFolder = new File(".profiles/profilePictures");
@@ -203,6 +214,11 @@ public class UserCreationController {
     return imageToClassify;
   }
 
+  /**
+   * A helper method which captures what is currently drawn on the sign-up page canvas
+   *
+   * @return a bit map of the image
+   */
   private BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
     final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);

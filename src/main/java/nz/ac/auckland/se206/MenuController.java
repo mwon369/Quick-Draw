@@ -165,6 +165,11 @@ public class MenuController {
     userStatsController.onRetrieveStats();
   }
 
+  /**
+   * This method switches the root of the scene from the main menu to the zen mode canvas
+   *
+   * @param event a button click
+   */
   @FXML
   private void onPlayZenMode(ActionEvent event) {
     SoundManager.playButtonClick();
@@ -223,7 +228,7 @@ public class MenuController {
   /**
    * This method displays the user's information when in the menu GUI
    *
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public void showUserInfo() throws IOException {
     userNameLabel.setText(UsersManager.getSelectedUser().getUsername());
@@ -234,7 +239,7 @@ public class MenuController {
    * This method loads the user profile picture
    *
    * @return The profile picture in an Image object
-   * @throws IOException
+   * @throws IOException if an IOException is thrown
    */
   public Image loadImage() throws IOException {
     // Loading the image into a file and converting it into an Image object

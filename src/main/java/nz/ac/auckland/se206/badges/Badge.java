@@ -16,14 +16,29 @@ public abstract class Badge {
     this.isCompleted = isCompleted;
   }
 
+  /**
+   * This method gets the isCompleted instance field for a specific badge
+   *
+   * @return a boolean indicating if a badge is completed
+   */
   public boolean getCompleted() {
     return isCompleted;
   }
 
+  /**
+   * This method gets the title instance field for a specific badge
+   *
+   * @return the title of the badge
+   */
   public String getTitle() {
     return title;
   }
 
+  /**
+   * This method gets the description instance field for a specific badge
+   *
+   * @return the description of the badge
+   */
   public String getDescription() {
     return description;
   }

@@ -17,6 +17,15 @@ import nz.ac.auckland.se206.words.CategorySelector;
 
 public class WordHistoryController {
 
+  private enum DifficultyFilters {
+    E,
+    M,
+    H,
+    ALL,
+  }
+
+  protected static DifficultyFilters difficultyFilter;
+
   @FXML private Button backToProfileButton;
   @FXML private Button clearFiltersButton;
   @FXML private Button searchButton;
@@ -30,21 +39,14 @@ public class WordHistoryController {
   @FXML private Label noWordsLabel;
   @FXML private Label filterLabel;
 
-  private boolean found = false;
   private ArrayList<String> userEasyWordHistory;
   private ArrayList<String> userHardWordHistory;
   private ArrayList<String> userMediumWordHistory;
   private ArrayList<String> userWordHistory;
 
-  private enum DifficultyFilters {
-    E,
-    M,
-    H,
-    ALL,
-  }
-
-  protected static DifficultyFilters difficultyFilter;
-
+  /**
+   * This method sets the TextField to have a listener which allows it to search as the user types
+   */
   public void initialize() {
     // add change listener so searching happens as the user types
     searchTextField
@@ -54,13 +56,13 @@ public class WordHistoryController {
               @Override
               public void changed(
                   ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                found = false;
                 // call this function everytime the text input changes
                 onSearch();
               }
             });
   }
 
+  /** This method shows the logged-in user's entire word history, irrespective of word difficulty */
   protected void showWordHistory() {
     // initialize variables to store user words
     User user = UsersManager.getSelectedUser();
@@ -69,7 +71,7 @@ public class WordHistoryController {
     userMediumWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.M);
     userHardWordHistory = user.getWordsGiven(CategorySelector.CategoryDifficulty.H);
 
-    // tell user what theyre filtering by
+    // tell user what they're filtering by
     filterLabel.setText("Filtering search by: ALL words");
 
     // set list view to display all the words played if the user has played a game before
@@ -233,8 +235,8 @@ public class WordHistoryController {
    * This helper method takes an input from the TextField and filters through the ArrayLists to find
    * and return Strings that match the input
    *
-   * @param searchText, the input entered into the TextField
-   * @param wordList, the words played by the user
+   * @param searchText the input entered into the TextField
+   * @param wordList the words played by the user
    * @return a list with all the matching Strings
    */
   private List<String> searchList(String searchText, List<String> wordList) {
@@ -258,7 +260,7 @@ public class WordHistoryController {
   /**
    * This method allows the user to switch back to their profile page
    *
-   * @param event, a button click
+   * @param event a button click
    */
   @FXML
   private void onGoBackToProfile(ActionEvent event) {
