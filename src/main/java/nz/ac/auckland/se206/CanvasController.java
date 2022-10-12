@@ -125,7 +125,7 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() throws ModelException, IOException {
-    isMuted = false;
+    isMuted = true;
     graphic = canvas.getGraphicsContext2D();
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMousePressed(
@@ -200,8 +200,8 @@ public class CanvasController {
     SoundManager.playButtonClick();
     SoundManager.setBackgroundMusicVolume(0.2);
 
-    isMuted = false;
-    soundIcon.setImage(loadImage("unmute"));
+    isMuted = true;
+    soundIcon.setImage(loadImage("mute"));
     resetCanvas();
     // reset the timer and cancel the timer if needed
     timerLabel.setText(String.valueOf(timeLimit));
