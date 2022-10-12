@@ -142,46 +142,101 @@ public class App extends Application {
         });
   }
 
+  /**
+   * Getter method for login controller for the game
+   *
+   * @return the LoginController
+   */
   public static LoginController getLoginController() {
     return loginController;
   }
 
+  /**
+   * Getter method for menu controller for the game
+   *
+   * @return the MenuController
+   */
   public static MenuController getMenuController() {
     return menuController;
   }
 
+  /**
+   * Getter method for user creation controller for the game
+   *
+   * @return the UserCreationController
+   */
   public static UserCreationController getUserCreationController() {
     return userCreationController;
   }
 
+  /**
+   * Getter method for user stats controller for the game
+   *
+   * @return the UserStatsController
+   */
   public static UserStatsController getUserStatsController() {
     return userStatsController;
   }
 
+  /**
+   * Getter method for canvas controller for the game
+   *
+   * @return the CanvasController
+   */
   public static CanvasController getCanvasController() {
     return canvasController;
   }
 
+  /**
+   * Getter method for settings controller for the game
+   *
+   * @return the SettingsController
+   */
   public static SettingsController getSettingsController() {
     return settingsController;
   }
 
+  /**
+   * Getter method for badge view controller for the game
+   *
+   * @return the BadgeViewController
+   */
   public static BadgeViewController getBadgeViewController() {
     return badgeViewController;
   }
 
+  /**
+   * Getter method for hidden word controller for the game
+   *
+   * @return the HiddenWordController
+   */
   public static HiddenWordController getHiddenWordController() {
     return hiddenWordController;
   }
 
+  /**
+   * Getter method for word history controller for the game
+   *
+   * @return the WordHistoryController
+   */
   public static WordHistoryController getWordHistoryController() {
     return wordHistoryController;
   }
 
+  /**
+   * Getter method for word chooser controller for the game
+   *
+   * @return the WordChooserController
+   */
   public static WordChooserController getWordChooserController() {
     return wordChooserController;
   }
 
+  /**
+   * Getter method for zen canvas controller for the game
+   *
+   * @return the ZenCanvasController
+   */
   public static ZenCanvasController getZenCanvasController() {
     return zenCanvasController;
   }
