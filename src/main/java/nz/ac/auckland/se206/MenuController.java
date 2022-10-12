@@ -9,8 +9,6 @@ import javafx.animation.ScaleTransition;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,61 +30,8 @@ public class MenuController {
 
   @FXML private ImageView profilePictureImageView;
 
-  private boolean isMusicOn = true;
-
-  private Parent userStatsScene;
-  private UserStatsController userStatsController;
-
-  private Parent settingsScene;
-  private SettingsController settingsController;
-
-  private Parent canvasScene;
-  private CanvasController canvasController;
-
-  private Parent hiddenWordCanvasScene;
-  private HiddenWordController hiddenWordController;
-
-  /**
-   * This method loads the userStats FXML and settings FXML when the menu FXML is loaded. The reason
-   * we load it here instead of in App.java is because this class needs a reference to the
-   * corresponding controller for the userStats FXML and settings FXML
-   *
-   * <p>That way when userStatsController.onRetrieveStats() is called the FXML elements in the
-   * loaded userStats scene are actually updated Additionally, when
-   * settingsController.loadUserDifficulties() is called, the FXML elements in the loaded settings
-   * scene are updated
-   *
-   * @throws IOException
-   */
-  public void initialize() throws IOException {
-    // add user stats controller
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/userStats.fxml"));
-    userStatsScene = loader.load();
-    userStatsController = loader.getController();
-    SceneManager.addUi(AppUi.USER_STATS, userStatsScene);
-    SceneManager.getUiRoot(AppUi.USER_STATS).getStylesheets().add("/css/userStats.css");
-
-    // add settings controller
-    loader = new FXMLLoader(App.class.getResource("/fxml/settings.fxml"));
-    settingsScene = loader.load();
-    settingsController = loader.getController();
-    SceneManager.addUi(AppUi.SETTINGS, settingsScene);
-    SceneManager.getUiRoot(AppUi.SETTINGS).getStylesheets().add("/css/settings.css");
-
-    // add canvas controller
-    loader = new FXMLLoader(App.class.getResource("/fxml/canvas.fxml"));
-    canvasScene = loader.load();
-    canvasController = loader.getController();
-    SceneManager.addUi(AppUi.CANVAS, canvasScene);
-    SceneManager.getUiRoot(AppUi.CANVAS).getStylesheets().add("/css/canvas.css");
-
-    // add hidden word controller
-    loader = new FXMLLoader(App.class.getResource("/fxml/hiddenWordCanvas.fxml"));
-    hiddenWordCanvasScene = loader.load();
-    hiddenWordController = loader.getController();
-    SceneManager.addUi(AppUi.HIDDEN_WORD, hiddenWordCanvasScene);
-    SceneManager.getUiRoot(AppUi.HIDDEN_WORD).getStylesheets().add("/css/canvas.css");
-
+  /** This method sets the title animation to enlarge and get smaller periodically */
+  public void initialize() {
     // define title animation
     ScaleTransition st = new ScaleTransition(Duration.millis(750), title);
     st.setFromX(1);
@@ -106,7 +51,7 @@ public class MenuController {
   @FXML
   private void onPlay(ActionEvent event) {
     // load the time limit for the set dificulty
-    canvasController.setUpDifficulty();
+    App.getCanvasController().setUpDifficulty();
 
     SoundManager.playButtonClick();
     SoundManager.playEnterGameSound();
@@ -126,7 +71,7 @@ public class MenuController {
   @FXML
   private void onPlayHiddenWord(ActionEvent event) {
     // retrieve the source of button and switch to the canvas
-    hiddenWordController.setUpDifficulty();
+    App.getHiddenWordController().setUpDifficulty();
     SoundManager.playButtonClick();
     SoundManager.playEnterGameSound();
     SoundManager.setBackgroundMusicVolume(0.05);
@@ -162,7 +107,7 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_STATS));
-    userStatsController.onRetrieveStats();
+    App.getUserStatsController().onRetrieveStats();
   }
 
   @FXML
@@ -188,7 +133,7 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.SETTINGS));
-    settingsController.loadUserDifficulties();
+    App.getSettingsController().loadUserDifficulties();
   }
 
   /** This method plays the on button hover sound effect */
@@ -234,7 +179,7 @@ public class MenuController {
    * This method loads the user profile picture
    *
    * @return The profile picture in an Image object
-   * @throws IOException
+   * @throws IOException if an issue occurs with loading the image
    */
   public Image loadImage() throws IOException {
     // Loading the image into a file and converting it into an Image object

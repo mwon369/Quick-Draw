@@ -10,7 +10,6 @@ import javafx.animation.RotateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -32,14 +31,9 @@ public class LoginController {
   @FXML private VBox registerButton;
   @FXML private Label errorMessageLabel;
   @FXML private HBox profilesHbox;
-
   @FXML private ScrollPane profilesScrollPane;
-
   @FXML private ImageView musicIcon;
-
   @FXML private TextField search;
-
-  private MenuController menuController;
 
   private RotateTransition rotation;
   private HashSet<String> currentDisplay;
@@ -114,7 +108,6 @@ public class LoginController {
     vbox.getChildren().add(username);
     vbox.getStyleClass().add("profileCard");
     vbox.setOnMouseClicked((e) -> onLogin(e));
-    vbox.setMaxHeight(130);
 
     // create image for delete button
     ImageView delete = new ImageView("/images/clearCanvas.png");
@@ -122,19 +115,16 @@ public class LoginController {
     delete.setFitWidth(20);
 
     // set hbox which will contain the delete icon
-    HBox imageHbox = new HBox(delete);
-    imageHbox.setAlignment(Pos.CENTER);
-    imageHbox.setVisible(false);
-    imageHbox.getStyleClass().add("deleteIcon");
-    imageHbox.setOnMouseEntered((e) -> onDeleteHover(e));
-    imageHbox.setOnMouseClicked((e) -> onDelete(e));
+    HBox deleteHbox = new HBox(delete);
+    deleteHbox.setVisible(false);
+    deleteHbox.getStyleClass().add("deleteIcon");
+    deleteHbox.setOnMouseEntered((e) -> onDeleteHover(e));
+    deleteHbox.setOnMouseClicked((e) -> onDelete(e));
 
     // set wrapper vbox for profile
     VBox bigVbox = new VBox();
-    bigVbox.getChildren().add(imageHbox);
+    bigVbox.getChildren().add(deleteHbox);
     bigVbox.getChildren().add(vbox);
-    bigVbox.setAlignment(Pos.CENTER);
-    bigVbox.setSpacing(5);
     bigVbox.getStyleClass().add("bigVbox");
     bigVbox.setOnMouseEntered((e) -> onProfileHover(e));
     bigVbox.setOnMouseExited((e) -> onProfileExited(e));
@@ -166,7 +156,7 @@ public class LoginController {
         Scene sceneButtonIsIn = vbox.getScene();
 
         try {
-          menuController.showUserInfo();
+          App.getMenuController().showUserInfo();
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -354,9 +344,5 @@ public class LoginController {
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
-  }
-
-  public void setController(MenuController controller) {
-    this.menuController = controller;
   }
 }
