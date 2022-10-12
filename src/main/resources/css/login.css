@@ -101,6 +101,10 @@
 	-fx-background-radius: 10px;
 }
 
+.iconButtons:hover{
+	-fx-scale-y:1.1;
+	-fx-scale-x:1.1;
+}
 .iconButtons, .iconButtons:focused{
 	-fx-background-color: #E29F00;
 	-fx-background-radius: 100px;

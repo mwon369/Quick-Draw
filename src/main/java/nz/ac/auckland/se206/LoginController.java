@@ -30,7 +30,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class LoginController {
   @FXML private VBox registerButton;
   @FXML private Label errorMessageLabel;
-  @FXML private HBox profilesHBox;
+  @FXML private HBox profilesHbox;
 
   @FXML private ScrollPane profilesScrollPane;
 
@@ -69,7 +69,7 @@ public class LoginController {
                 // change display only if the new list of users is different from current display
                 if (!currentDisplay.containsAll(newDisplay)
                     || !newDisplay.containsAll(currentDisplay)) {
-                  profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
+                  profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
                   for (String username : newDisplay) {
                     loadUserGui(UsersManager.getUsersMap().get(username));
                   }
@@ -136,7 +136,7 @@ public class LoginController {
     bigVbox.getStyleClass().add("bigVbox");
     bigVbox.setOnMouseEntered((e) -> onProfileHover(e));
     bigVbox.setOnMouseExited((e) -> onProfileExited(e));
-    profilesHBox.getChildren().add(0, bigVbox);
+    profilesHbox.getChildren().add(0, bigVbox);
   }
 
   /**
@@ -198,7 +198,7 @@ public class LoginController {
   /**
    * This method stops the profile vbox wobble upon mouse exit
    *
-   * @param event
+   * @param event the MouseEvent
    */
   @FXML
   private void onProfileExited(MouseEvent event) {
@@ -208,6 +208,7 @@ public class LoginController {
       if (node instanceof HBox) {
         node.setVisible(false);
       } else if (node instanceof VBox) {
+        // reset and stop rotation
         vbox = (VBox) node;
         vbox.setRotate(0);
         rotation.stop();
@@ -226,8 +227,8 @@ public class LoginController {
     errorMessageLabel.setVisible(false);
     // retrieve the source of ImageView and switch to the create user scene
     VBox vbox = (VBox) event.getSource();
-    Scene sceneVBoxIsIn = vbox.getScene();
-    sceneVBoxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
+    Scene sceneVboxIsIn = vbox.getScene();
+    sceneVboxIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_CREATION));
     search.clear();
   }
 
@@ -283,16 +284,16 @@ public class LoginController {
    * @param username the user to delete
    */
   private void deleteUserGui(String username) {
-    for (int i = 0; i < profilesHBox.getChildren().size(); i++) {
-      if (profilesHBox.getChildren().get(i) instanceof VBox) {
-        VBox vbox = (VBox) profilesHBox.getChildren().get(i);
+    for (int i = 0; i < profilesHbox.getChildren().size(); i++) {
+      if (profilesHbox.getChildren().get(i) instanceof VBox) {
+        VBox vbox = (VBox) profilesHbox.getChildren().get(i);
         for (Node node : vbox.getChildren()) {
           if (node instanceof VBox) {
             VBox innerVbox = (VBox) node;
             for (Node node2 : innerVbox.getChildren()) {
               if (node2 instanceof Label) {
                 if (((Label) node2).getText().equals(username)) {
-                  profilesHBox.getChildren().remove(i);
+                  profilesHbox.getChildren().remove(i);
                   String keyword = search.getText();
                   search.setText("");
                   search.setText(keyword);
@@ -308,7 +309,7 @@ public class LoginController {
 
   /** This method loads all the user GUIS */
   private void loadAllUsersGui() {
-    profilesHBox.getChildren().remove(0, profilesHBox.getChildren().size() - 1);
+    profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
     for (String user : UsersManager.getUsersMap().keySet()) {
       loadUserGui(UsersManager.getUsersMap().get(user));
     }

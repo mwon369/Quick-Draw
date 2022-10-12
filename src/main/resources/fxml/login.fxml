@@ -66,7 +66,7 @@
                   <Insets left="40.0" right="40.0" />
                </VBox.margin>
                <content>
-                  <HBox fx:id="profilesHBox" alignment="CENTER" spacing="10.0">
+                  <HBox fx:id="profilesHbox" alignment="CENTER" spacing="10.0">
                      <children>
                         <VBox fx:id="registerButton" alignment="BOTTOM_CENTER" minWidth="105.0" onMouseClicked="#onRegister" onMouseEntered="#onProfileHover" onMouseExited="#onProfileExited">
                            <children>
