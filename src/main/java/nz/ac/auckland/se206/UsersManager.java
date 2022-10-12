@@ -130,6 +130,8 @@ public class UsersManager {
    * @param username the user to delete
    */
   public static void deleteUser(String username) {
+    File file = new File(usersMap.get(username).getProfilePic());
+    file.delete();
     usersMap.remove(username);
   }
 }
