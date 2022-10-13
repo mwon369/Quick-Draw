@@ -16,6 +16,7 @@ public class LeaderBoardController {
   /** This method displays the current leader board to the user */
   public void readyLeaderBoard() {
     // Sort the users in order
+    UsersManager.resetArray();
     UsersManager.mergeSort(0, UsersManager.getuserLength() - 1);
     List<String> userList = this.userOrderForDisplay();
     // Display the results
@@ -54,6 +55,7 @@ public class LeaderBoardController {
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
     userListView.getItems().setAll("");
+    timeListView.getItems().clear();
   }
 
   /** This method plays the on button hover sound effect */
