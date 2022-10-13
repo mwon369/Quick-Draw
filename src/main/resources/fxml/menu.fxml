@@ -20,7 +20,7 @@
       </ImageView>
       <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="575.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="15.0">
                <VBox.margin>
                   <Insets bottom="-25.0" top="10.0" />
                </VBox.margin>
@@ -115,6 +115,15 @@
                         <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/statsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="userInfoButton" mnemonicParsing="false" onAction="#onUserInfo" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fx:id="UserInfoIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/personIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>

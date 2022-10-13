@@ -95,6 +95,16 @@ public class MenuController {
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LOGIN));
   }
 
+  @FXML
+  private void onUserInfo(ActionEvent event) {
+    SoundManager.playButtonClick();
+    // retrieve the source of button and switch to the login page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.USER_INFO));
+    App.getUserInfoController().loadUserInfo();
+  }
+
   /**
    * This method switches the root of the scene from the main menu to the user stats page
    *

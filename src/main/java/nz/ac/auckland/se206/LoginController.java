@@ -281,7 +281,7 @@ public class LoginController {
    *
    * @param username the user to delete
    */
-  private void deleteUserGui(String username) {
+  public void deleteUserGui(String username) {
     for (int i = 0; i < profilesHbox.getChildren().size(); i++) {
       if (profilesHbox.getChildren().get(i) instanceof VBox) {
         VBox vbox = (VBox) profilesHbox.getChildren().get(i);
@@ -306,7 +306,7 @@ public class LoginController {
   }
 
   /** This method loads all the user GUIS */
-  private void loadAllUsersGui() {
+  public void loadAllUsersGui() {
     profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
     for (String user : UsersManager.getUsersMap().keySet()) {
       loadUserGui(UsersManager.getUsersMap().get(user));
