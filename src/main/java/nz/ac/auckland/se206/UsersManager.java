@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,6 +19,9 @@ public class UsersManager {
   // hashmap will map each username to a User object
   private static HashMap<String, User> usersMap;
   private static User userSelected;
+  private static List<User> userList;
+  private static User[] userArray;
+  private static int[] userTime;
 
   /**
    * Returns a specific user reference based on the passed in username
@@ -73,6 +77,7 @@ public class UsersManager {
    */
   public static void createUser(User user) {
     usersMap.put(user.getUsername(), user);
+    userList.add(user);
     try {
       saveUsersToJson();
     } catch (IOException e) {
@@ -130,6 +135,7 @@ public class UsersManager {
       usersMap = new HashMap<String, User>();
     }
     for (User user : usersMap.values()) {
+      userList.add(user);
       user.loadBadgeList();
     }
   }
@@ -155,5 +161,52 @@ public class UsersManager {
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
     usersMap.remove(username);
+  }
+
+  public static void mergeSort(int start, int end) {
+    int median;
+    if (start < end) {
+      median = (end + start) / 2;
+      mergeSort(start, median);
+      mergeSort(median + 1, end);
+      merge(start, median + 1, end);
+    }
+  }
+
+  private static void merge(int left, int middle, int right) {
+    userArray = (User[]) userList.toArray();
+    User[] copyUserArray = (User[]) userList.toArray();
+    int[] copyUserTime = new int[userArray.length];
+    for (int a = 0; a < userArray.length; a++) {
+      userTime[a] = userArray[a].getFastestWin();
+      copyUserTime[a] = userArray[a].getFastestWin();
+    }
+    int i = left, j = middle, k = left;
+    while (i <= middle - 1 && j <= right) {
+      if (userTime[i] <= userTime[j]) {
+        copyUserTime[k] = userTime[i];
+        copyUserArray[k] = userArray[i];
+        i++;
+      } else {
+        copyUserTime[k] = userTime[j];
+        copyUserArray[k] = userArray[j];
+        j++;
+      }
+      k++;
+    }
+    while (i <= middle - 1) {
+      copyUserTime[k] = userTime[i];
+      copyUserArray[k] = userArray[i];
+      i++;
+      k++;
+    }
+    while (j <= right) {
+      copyUserTime[k] = userTime[j];
+      copyUserArray[k] = userArray[j];
+      j++;
+      k++;
+    }
+    userTime = copyUserTime;
+    userArray = copyUserArray;
   }
 }
