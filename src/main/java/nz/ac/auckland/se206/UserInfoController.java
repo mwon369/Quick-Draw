@@ -56,8 +56,7 @@ public class UserInfoController extends UserCreationController {
     App.getLoginController().deleteUserGui(user.getUsername());
 
     // update user data for profile pic directory and username
-    user.setProfilePic(
-        user.getProfilePic().replaceAll(user.getUsername(), usernameField.getText()));
+    user.setProfilePic(".profiles/profilePictures/" + usernameField.getText() + ".png");
     user.setUserName(usernameField.getText());
 
     // update users map
