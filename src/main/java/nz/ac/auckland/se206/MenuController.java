@@ -189,8 +189,8 @@ public class MenuController {
    */
   @FXML
   private void onPlayRapidFireMode(ActionEvent event) {
-    // load the time limit for the set dificulty
-    App.getCanvasController().setUpDifficulty();
+    // load the time limit for the set difficulty
+    App.getRapidFireController().setUpDifficulty();
     SoundManager.playButtonClick();
     SoundManager.playEnterGameSound();
     SoundManager.setBackgroundMusicVolume(0.05);
