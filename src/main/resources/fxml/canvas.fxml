@@ -54,7 +54,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" prefWidth="355.0" textAlignment="CENTER">
+            <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" prefWidth="495.0" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
