@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.RapidFireController">
+    <children>
+        <ImageView pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/DoodleBackground.jpg" />
+            </image>
+        </ImageView>
+        <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="780.0" prefHeight="700.0" prefWidth="720.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="32.0" prefWidth="760.0" spacing="30.0">
+                    <children>
+                        <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onSwitchToMainMenu" onMouseEntered="#onButtonHover" text="Main Menu">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Button>
+                        <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <StackPane prefHeight="0.0" prefWidth="120.0" styleClass="about">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#onButtonHover" pickOnBounds="false" prefHeight="0.0" prefWidth="10.0" styleClass="questionMark" text="?">
+                                    <font>
+                                        <Font name="Century Schoolbook Bold" size="18.0" />
+                                    </font>
+                                    <tooltip>
+                                        <Tooltip text="Click &quot;New Game&quot; to get a random word!&#10;Click &quot;I'm Ready&quot; to start drawing!&#10;If the game guesses your word, you win!" />
+                                    </tooltip>
+                                    <StackPane.margin>
+                                        <Insets />
+                                    </StackPane.margin>
+                                </Label>
+                            </children>
+                        </StackPane>
+                    </children>
+                </HBox>
+                <Label id="targetCategory" fx:id="wordLabel" alignment="CENTER" prefHeight="27.0" prefWidth="355.0" textAlignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <StackPane>
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/clock.png" />
+                            </image>
+                            <StackPane.margin>
+                                <Insets top="-5.0" />
+                            </StackPane.margin>
+                        </ImageView>
+                        <Label id="timer" fx:id="timerLabel" alignment="CENTER" text="60" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="-15.0" top="-10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </StackPane>
+                <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="10.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox id="toolsHBox" alignment="BOTTOM_CENTER" minHeight="35.0" prefHeight="30.0" prefWidth="30.0">
+                                    <children>
+                                        <Pane fx:id="penPane" prefHeight="30.0">
+                                            <children>
+                                                <ImageView fx:id="penIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onSelectPen" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                                    <image>
+                                                        <Image url="@../images/penIcon.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="eraserPane" prefHeight="30.0">
+                                            <children>
+                                                <ImageView fx:id="eraserIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onSelectEraser" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                                    <image>
+                                                        <Image url="@../images/eraserIcon.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="clearPane" prefHeight="30.0">
+                                            <children>
+                                                <ImageView fx:id="clearIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onClear" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                                    <image>
+                                                        <Image url="@../images/clearCanvas.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </Pane>
+                                        <Pane fx:id="savePane" prefHeight="30.0">
+                                            <children>
+                                                <ImageView fx:id="saveIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#onSave" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                                    <image>
+                                                        <Image url="@../images/saveIcon.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="soundPane" prefHeight="30.0">
+                                            <children>
+                                                <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                                    <image>
+                                                        <Image url="@../images/mute.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </HBox>
+                                <StackPane id="canvasStackPane" fx:id="canvasStackPane" prefHeight="272.0" prefWidth="400.0">
+                                    <children>
+                                        <Label fx:id="winLossLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <Canvas fx:id="canvas" height="315.0" onDragDetected="#isDrawing" width="400.0" StackPane.alignment="CENTER">
+                                            <cursor>
+                                                <Cursor fx:constant="CROSSHAIR" />
+                                            </cursor>
+                                            <StackPane.margin>
+                                                <Insets />
+                                            </StackPane.margin>
+                                        </Canvas>
+                                    </children>
+                                </StackPane>
+                            </children>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="330.0" prefWidth="211.0">
+                            <children>
+                                <Label id="predictionsTitle" text="Top 10 Predictions">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Label>
+                                <VBox id="listVBox" alignment="TOP_CENTER" prefHeight="315.0" prefWidth="211.0">
+                                    <children>
+                                        <ListView fx:id="predictionsListView" fixedCellSize="30.0" maxWidth="209.0" prefHeight="308.0" prefWidth="205.0">
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                        </ListView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                                    <children>
+                                        <Circle fx:id="topTwentyFiveCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Label text="Top 25" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                                    <children>
+                                        <Circle fx:id="topFiftyCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Label text="Top 50" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                                    <children>
+                                        <Circle fx:id="topOneHundredCircle" fill="#f7ecc6" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Label text="Top 100" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="62.0" prefWidth="81.0">
+                                    <children>
+                                        <Circle fx:id="topTwoHundredCircle" fill="#f8ecc4" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Label text="Top 200" />
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets left="-10.0" right="-10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
+                    <children>
+                        <Button fx:id="startNewGameButton" mnemonicParsing="false" onAction="#onStartNewGame" onMouseEntered="#onButtonHover" text="New Game" />
+                        <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" onMouseEntered="#onButtonHover" text="I'm Ready" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</StackPane>

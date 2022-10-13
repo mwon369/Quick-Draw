@@ -19,6 +19,7 @@ public class SceneManager {
     WORD_HISTORY,
     USER_INFO,
     LEADERBOARD,
+    RAPID_FIRE,
   }
 
   // hashmap that maps enum AppUi to the corresponding root note
