@@ -71,14 +71,29 @@ public class UsersManager {
     return usersMap.keySet();
   }
 
+  /**
+   * This method returns the number of users created
+   *
+   * @return the number of users
+   */
   public static int getuserLength() {
     return userList.size();
   }
 
+  /**
+   * This method returns an array of all usernames
+   *
+   * @return an array containing all the currently registered usernames
+   */
   public static String[] getUserArray() {
     return userArray;
   }
 
+  /**
+   * This method returns an array of all fastest times
+   *
+   * @return an array containing all fastest times from users
+   */
   public static Integer[] getUserTIme() {
     return userTime;
   }
@@ -178,15 +193,24 @@ public class UsersManager {
     usersMap.remove(username);
   }
 
+  /**
+   * This method sorts the users in terms of fastest time first
+   *
+   * @param start the first index
+   * @param end the last index
+   */
   public static void mergeSort(int start, int end) {
     int median;
+    // Checks to see if there is only one user
     if (start + end == 0) {
+      // return the only user in the list
       userArray = new String[1];
       userTime = new Integer[1];
       userArray[0] = userList.get(0).getUsername();
       userTime[0] = userList.get(0).getFastestWin();
       return;
     }
+    // recursively call merge sort to sort the users
     if (start < end) {
       median = (end + start) / 2;
       mergeSort(start, median);
@@ -195,11 +219,19 @@ public class UsersManager {
     }
   }
 
+  /**
+   * This method sorts the users using merge sort algorithm
+   *
+   * @param left the leftmost index
+   * @param middle the middle index
+   * @param right the rigthmost index
+   */
   private static void merge(int left, int middle, int right) {
     userArray = new String[userList.size()];
     userTime = new Integer[userList.size()];
     String[] copyUserArray = new String[userList.size()];
     Integer[] copyUserTime = new Integer[userArray.length];
+    // Intialising all lists for sorting
     for (int a = 0; a < userArray.length; a++) {
       userTime[a] = userList.get(a).getFastestWin();
       copyUserTime[a] = userList.get(a).getFastestWin();
@@ -207,7 +239,9 @@ public class UsersManager {
       copyUserArray[a] = userList.get(a).getUsername();
     }
     int i = left, j = middle, k = left;
+    // while loop checking the top half of the array
     while (i <= middle - 1 && j <= right) {
+      // checking if elements need to be swapped
       if (userTime[i] <= userTime[j]) {
         copyUserTime[k] = userTime[i];
         copyUserArray[k] = userArray[i];
@@ -219,6 +253,8 @@ public class UsersManager {
       }
       k++;
     }
+    // The next while loops are used to sort the remainder of the array that has not
+    // been sorted
     while (i <= middle - 1) {
       copyUserTime[k] = userTime[i];
       copyUserArray[k] = userArray[i];
@@ -231,6 +267,7 @@ public class UsersManager {
       j++;
       k++;
     }
+    // Returning the sorted arrays
     userTime = copyUserTime;
     userArray = copyUserArray;
   }

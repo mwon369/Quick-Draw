@@ -130,7 +130,7 @@ public class App extends Application {
     SceneManager.getUiRoot(AppUi.USER_INFO).getStylesheets().add("/css/userCreation.css");
     userInfoController = loader.getController();
 
-    // add user info controller
+    // add leader board controller
     loader = new FXMLLoader(App.class.getResource("/fxml/leaderboard.fxml"));
     SceneManager.addUi(AppUi.LEADERBOARD, loader.load());
     SceneManager.getUiRoot(AppUi.LEADERBOARD).getStylesheets().add("/css/wordChooser.css");

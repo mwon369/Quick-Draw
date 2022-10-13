@@ -167,6 +167,11 @@ public class MenuController {
     setMusicIcon();
   }
 
+  /**
+   * This method swaps to the leader board gui
+   *
+   * @param event an ActionEvent representing when the settings button has been clicked
+   */
   @FXML
   private void onLeaderBoard(ActionEvent event) {
     SoundManager.playButtonClick();
