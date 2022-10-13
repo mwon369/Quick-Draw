@@ -32,6 +32,7 @@ public class UserInfoController extends UserCreationController {
     onSelectPen();
   }
 
+  /** This method updates the user's username and changes their profile picture's name as well */
   @FXML
   private void onChangeName() {
     SoundManager.playButtonClick();
@@ -50,62 +51,94 @@ public class UserInfoController extends UserCreationController {
       errorMessageLabel.setVisible(true);
       return;
     }
+
+    // Create a temporary user object to store changes
+    User user = UsersManager.getSelectedUser();
     String oldName = UsersManager.getSelectedUser().getUsername();
     String profilePic =
         UsersManager.getSelectedUser().getProfilePic().replaceAll(oldName, usernameField.getText());
-    File file = new File(UsersManager.getSelectedUser().getProfilePic());
-    UsersManager.getSelectedUser().setProfilePic(profilePic);
-    file.renameTo(new File(UsersManager.getSelectedUser().getProfilePic()));
-    UsersManager.getSelectedUser().setUserName(usernameField.getText());
-    UsersManager.updateMap();
-    errorMessageLabel.setTextFill(Color.GREEN);
-    errorMessageLabel.setText("Username Successfully changed!");
-    errorMessageLabel.setVisible(true);
 
-    usernameField.clear();
-    usernameLabel.setText(UsersManager.getSelectedUser().getUsername());
+    // Change profile picture file name
+    File file = new File(UsersManager.getSelectedUser().getProfilePic());
+    file.renameTo(new File(user.getProfilePic()));
+
+    // Delete old user data
+    App.getLoginController().deleteUserGui(oldName);
+    UsersManager.editUser(oldName);
+
+    // Add new user data into userMap
+    user.setProfilePic(profilePic);
+    user.setUserName(usernameField.getText());
+    UsersManager.updateMap(user);
     try {
       UsersManager.saveUsersToJson();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @FXML
-  private void onChangePicture() {
-    SoundManager.playButtonClick();
-    File file = new File(UsersManager.getSelectedUser().getProfilePic());
-    file.delete();
-    try {
-      this.saveCurrentSnapshotOnFile(UsersManager.getSelectedUser());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    errorMessageLabel.setTextFill(Color.GREEN);
-    errorMessageLabel.setText("Profile Picture Successfully changed");
-    errorMessageLabel.setVisible(true);
-    try {
-      profilePictureImageView.setImage(App.getMenuController().loadImage());
     } catch (IOException e1) {
       e1.printStackTrace();
     }
     App.getLoginController().loadAllUsersGui();
+
+    // Inform user of the result of the changes
+    errorMessageLabel.setTextFill(Color.GREEN);
+    errorMessageLabel.setText("Username Successfully changed!");
+    errorMessageLabel.setVisible(true);
+
+    // Update display
+    usernameField.clear();
+    usernameLabel.setText(UsersManager.getSelectedUser().getUsername());
   }
 
+  /** This method changes the current user's profile picture with a new one that they have drawn */
+  @FXML
+  private void onChangePicture() {
+    User user = UsersManager.getSelectedUser();
+    try {
+      // save new pic
+      this.saveCurrentSnapshotOnFile(user);
+
+      // delete and load the user GUI
+      App.getLoginController().deleteUserGui(user.getUsername());
+      App.getLoginController().loadUserGui(user);
+      App.getMenuController().showUserInfo();
+
+      // display successful messsage
+      errorMessageLabel.setTextFill(Color.GREEN);
+      errorMessageLabel.setText("Profile Image Successfully Saved!");
+      errorMessageLabel.setVisible(true);
+      loadUserInfo();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * This method is called when the user clicks on the menu button and will change the GUI to the
+   * menu GUI
+   *
+   * @param event an ActionEvent representing the type of action that occurred
+   */
   @FXML
   private void onMenu(ActionEvent event) {
     SoundManager.playButtonClick();
+    // Get scene to swithc to main menu
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
+    // Update user info in the event it has been changed
     try {
       App.getMenuController().showUserInfo();
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    // reset all fields
+    onClear();
+    usernameField.clear();
+    onSelectPen();
   }
 
+  /** This method loads the user's current user name and profile picture */
   public void loadUserInfo() {
+    // Displaying the user's information in the GUI
     usernameLabel.setText(UsersManager.getSelectedUser().getUsername());
     try {
       profilePictureImageView.setImage(App.getMenuController().loadImage());

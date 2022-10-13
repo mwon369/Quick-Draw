@@ -157,8 +157,22 @@ public class UsersManager {
     usersMap.remove(username);
   }
 
-  public static void updateMap() {
-    usersMap.remove(userSelected);
-    usersMap.put(userSelected.getUsername(), userSelected);
+  /**
+   * This method sets the new selected user to the new User Object with new data
+   *
+   * @param user the new user
+   */
+  public static void updateMap(User user) {
+    usersMap.put(user.getUsername(), user);
+    userSelected = user;
+  }
+
+  /**
+   * This method removes the user object containing out-dated data
+   *
+   * @param username name of the old user object
+   */
+  public static void editUser(String username) {
+    usersMap.remove(username);
   }
 }
