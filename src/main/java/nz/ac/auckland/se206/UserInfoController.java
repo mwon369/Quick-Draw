@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -16,21 +18,6 @@ public class UserInfoController extends UserCreationController {
 
   @FXML private Label usernameLabel;
   @FXML private ImageView profilePictureImageView;
-
-  /** This method creates an account for a new user */
-  @Override
-  public void initialize() {
-    graphic = canvas.getGraphicsContext2D();
-    // save coordinates when mouse is pressed on the canvas
-    canvas.setOnMousePressed(
-        e -> {
-          currentX = e.getX();
-          currentY = e.getY();
-        });
-    // initialise tool panes and add each tool pane
-    toolPanes = Arrays.asList(penPane, eraserPane, colorPane);
-    onSelectPen();
-  }
 
   /** This method updates the user's username and changes their profile picture's name as well */
   @FXML
@@ -52,37 +39,40 @@ public class UserInfoController extends UserCreationController {
       return;
     }
 
-    // Create a temporary user object to store changes
+    // Create a temporary user object to store current details
     User user = UsersManager.getSelectedUser();
-    String oldName = UsersManager.getSelectedUser().getUsername();
-    String profilePic =
-        UsersManager.getSelectedUser().getProfilePic().replaceAll(oldName, usernameField.getText());
 
-    // Change profile picture file name
-    File file = new File(UsersManager.getSelectedUser().getProfilePic());
-    file.renameTo(new File(user.getProfilePic()));
-
-    // Delete old user data
-    App.getLoginController().deleteUserGui(oldName);
-    UsersManager.editUser(oldName);
-
-    // Add new user data into userMap
-    user.setProfilePic(profilePic);
-    user.setUserName(usernameField.getText());
-    UsersManager.updateMap(user);
+    // Copy profile pic to new file name
+    Path from = Paths.get(".profiles/profilePictures/" + user.getUsername() + ".png");
+    Path to = Paths.get(".profiles/profilePictures/" + usernameField.getText() + ".png");
     try {
-      UsersManager.saveUsersToJson();
-    } catch (IOException e1) {
-      e1.printStackTrace();
+      Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    App.getLoginController().loadAllUsersGui();
+
+    // delete the user data and gui
+    UsersManager.deleteUser(user.getUsername());
+    App.getLoginController().deleteUserGui(user.getUsername());
+
+    // update user data for profile pic directory and username
+    user.setProfilePic(
+        user.getProfilePic().replaceAll(user.getUsername(), usernameField.getText()));
+    user.setUserName(usernameField.getText());
+
+    // update users map
+    UsersManager.createUser(user);
+    UsersManager.setSelectedUser(user.getUsername());
+
+    // reload login UIs
+    App.getLoginController().loadUserGui(user);
 
     // Inform user of the result of the changes
     errorMessageLabel.setTextFill(Color.GREEN);
     errorMessageLabel.setText("Username Successfully changed!");
     errorMessageLabel.setVisible(true);
 
-    // Update display
+    // Update display username
     usernameField.clear();
     usernameLabel.setText(UsersManager.getSelectedUser().getUsername());
   }
@@ -133,6 +123,8 @@ public class UserInfoController extends UserCreationController {
     // reset all fields
     onClear();
     usernameField.clear();
+    errorMessageLabel.setText("");
+    errorMessageLabel.setVisible(false);
     onSelectPen();
     colorPicker.setValue(Color.BLACK);
   }
