@@ -119,7 +119,7 @@ public class UserInfoController extends UserCreationController {
   @FXML
   private void onMenu(ActionEvent event) {
     SoundManager.playButtonClick();
-    // Get scene to swithc to main menu
+    // Get scene to switch to main menu
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
@@ -134,6 +134,7 @@ public class UserInfoController extends UserCreationController {
     onClear();
     usernameField.clear();
     onSelectPen();
+    colorPicker.setValue(Color.BLACK);
   }
 
   /** This method loads the user's current user name and profile picture */

@@ -20,7 +20,7 @@
       </ImageView>
       <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="575.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="15.0">
                <VBox.margin>
                   <Insets bottom="-25.0" top="10.0" />
                </VBox.margin>

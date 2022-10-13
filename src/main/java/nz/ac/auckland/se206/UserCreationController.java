@@ -154,7 +154,7 @@ public class UserCreationController {
     canvas.setOnMouseDragged(
         e -> {
           // Brush size (you can change this, it should not be too small or too large).
-          final double size = 6;
+          final double size = 4;
 
           final double x = e.getX() - size / 2;
           final double y = e.getY() - size / 2;
