@@ -212,7 +212,7 @@ public class UserCreationController {
       tmpFolder.mkdir();
     }
     // We save the image to a file in the tmp folder.
-    user.setProfilePic(".profiles/profilePictures/" + usernameField.getText() + ".png");
+    user.setProfilePic(".profiles/profilePictures/" + user.getUsername() + ".png");
     final File imageToClassify = new File(user.getProfilePic());
 
     // Save the image to a file.

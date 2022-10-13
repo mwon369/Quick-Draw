@@ -28,6 +28,7 @@ public class App extends Application {
   private static BadgeViewController badgeViewController;
   private static WordChooserController wordChooserController;
   private static ZenCanvasController zenCanvasController;
+  private static UserInfoController userInfoController;
 
   public static void main(final String[] args) {
     launch();
@@ -121,6 +122,12 @@ public class App extends Application {
     SceneManager.addUi(AppUi.BADGE_VIEW, loader.load());
     SceneManager.getUiRoot(AppUi.BADGE_VIEW).getStylesheets().add("/css/badgeview.css");
     badgeViewController = loader.getController();
+
+    // add user info controller
+    loader = new FXMLLoader(App.class.getResource("/fxml/userinfo.fxml"));
+    SceneManager.addUi(AppUi.USER_INFO, loader.load());
+    SceneManager.getUiRoot(AppUi.USER_INFO).getStylesheets().add("/css/userCreation.css");
+    userInfoController = loader.getController();
 
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
@@ -239,5 +246,14 @@ public class App extends Application {
    */
   public static ZenCanvasController getZenCanvasController() {
     return zenCanvasController;
+  }
+
+  /**
+   * Getter method for user info controller
+   *
+   * @return the UserInfoController
+   */
+  public static UserInfoController getUserInfoController() {
+    return userInfoController;
   }
 }

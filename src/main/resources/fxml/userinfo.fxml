@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserCreationController">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserInfoController">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,8 +42,8 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="235.0" prefWidth="167.0">
                      <children>
-                        <Label fx:id="usernameLabel" text="Current name" />
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="17.0" prefWidth="78.0" text="Current name" textAlignment="CENTER" />
+                        <ImageView fx:id="profilePictureImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="235.0" prefWidth="200.0">
@@ -121,7 +121,7 @@
             <HBox alignment="CENTER" spacing="20.0">
                <children>
                   <Label alignment="CENTER_RIGHT" minWidth="130.0" styleClass="textFieldLabel" text="Username:" />
-                  <TextField fx:id="usernameField" minWidth="180.0" onAction="#onCreateAccount" promptText="Choose a new username" styleClass="textField" />
+                  <TextField fx:id="usernameField" minWidth="180.0" onAction="#onChangeName" promptText="Choose a new username" styleClass="textField" />
                   <Button fx:id="changeNameButton" mnemonicParsing="false" onAction="#onChangeName" onMouseEntered="#onButtonHover" text="Change Username">
                      <HBox.margin>
                         <Insets />

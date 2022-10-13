@@ -306,7 +306,7 @@ public class LoginController {
   }
 
   /** This method loads all the user GUIS */
-  private void loadAllUsersGui() {
+  public void loadAllUsersGui() {
     profilesHbox.getChildren().remove(0, profilesHbox.getChildren().size() - 1);
     for (String user : UsersManager.getUsersMap().keySet()) {
       loadUserGui(UsersManager.getUsersMap().get(user));

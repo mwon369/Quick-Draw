@@ -195,6 +195,15 @@ public class User {
   }
 
   /**
+   * This method gets the time limit difficulty for a specific user
+   *
+   * @return The time limit difficulty setting
+   */
+  public Difficulty getTimeLimitDifficulty() {
+    return this.timeLimitDifficulty;
+  }
+
+  /**
    * This method sets the accuracy difficulty for a specific user
    *
    * @param difficulty the difficulty setting
@@ -204,12 +213,12 @@ public class User {
   }
 
   /**
-   * This method gets the time limit difficulty for a specific user
+   * This method sets the username for a specific user
    *
-   * @return The time limit difficulty setting
+   * @param userName the new username
    */
-  public Difficulty getTimeLimitDifficulty() {
-    return this.timeLimitDifficulty;
+  public void setUserName(String userName) {
+    this.username = userName;
   }
 
   /**

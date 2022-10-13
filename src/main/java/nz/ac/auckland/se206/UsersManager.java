@@ -156,4 +156,9 @@ public class UsersManager {
     file.delete();
     usersMap.remove(username);
   }
+
+  public static void updateMap() {
+    usersMap.remove(userSelected);
+    usersMap.put(userSelected.getUsername(), userSelected);
+  }
 }
