@@ -182,6 +182,25 @@ public class MenuController {
     App.getLeaderBoardController().readyLeaderBoard();
   }
 
+  /**
+   * This method changes the scene to the rapid fire canvas
+   *
+   * @param event an ActionEvent representing when the rapid fire button has been clicked
+   */
+  @FXML
+  private void onPlayRapidFireMode(ActionEvent event) {
+    // load the time limit for the set dificulty
+    App.getCanvasController().setUpDifficulty();
+    SoundManager.playButtonClick();
+    SoundManager.playEnterGameSound();
+    SoundManager.setBackgroundMusicVolume(0.05);
+
+    // retrieve the source of button and switch to the settings page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.RAPID_FIRE));
+  }
+
   /** This method sets the music icon according to whether background music is playing or not */
   public void setMusicIcon() {
     try {

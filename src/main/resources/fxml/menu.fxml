@@ -18,7 +18,7 @@
             <Image url="@../images/DoodleBackground.jpg" />
          </image>
       </ImageView>
-      <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="575.0" spacing="10.0">
+      <VBox fx:id="menuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="630.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="575.0" spacing="15.0">
                <VBox.margin>
@@ -77,6 +77,21 @@
                      </font>
                      <tooltip>
                         <Tooltip text="Challenge yourself with our Hidden Word Mode!&#10;You'll be given the definition of a word. &#10;Guess the word, and draw it well to win!" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" minHeight="36.0">
+               <children>
+                  <Button fx:id="rapidFireButton" mnemonicParsing="false" onAction="#onPlayRapidFireMode" onMouseEntered="#onButtonHover" text="Rapid Fire Mode">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
                      </tooltip>
                   </Button>
                </children>
