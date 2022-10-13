@@ -9,7 +9,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,6 +20,9 @@ public class UsersManager {
   // hashmap will map each username to a User object
   private static HashMap<String, User> usersMap;
   private static User userSelected;
+  private static List<User> userList;
+  private static String[] userArray;
+  private static Integer[] userTime;
 
   /**
    * Returns a specific user reference based on the passed in username
@@ -67,12 +72,40 @@ public class UsersManager {
   }
 
   /**
+   * This method returns the number of users created
+   *
+   * @return the number of users
+   */
+  public static int getuserLength() {
+    return userList.size();
+  }
+
+  /**
+   * This method returns an array of all usernames
+   *
+   * @return an array containing all the currently registered usernames
+   */
+  public static String[] getUserArray() {
+    return userArray;
+  }
+
+  /**
+   * This method returns an array of all fastest times
+   *
+   * @return an array containing all fastest times from users
+   */
+  public static Integer[] getUserTIme() {
+    return userTime;
+  }
+
+  /**
    * This method creates and loads a user into the hashmap and saves the user to the json file
    *
    * @param user the User object to create
    */
   public static void createUser(User user) {
     usersMap.put(user.getUsername(), user);
+    userList.add(user);
     try {
       saveUsersToJson();
     } catch (IOException e) {
@@ -129,7 +162,9 @@ public class UsersManager {
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
     }
+    userList = new ArrayList<>();
     for (User user : usersMap.values()) {
+      userList.add(user);
       user.loadBadgeList();
     }
   }
@@ -154,6 +189,86 @@ public class UsersManager {
   public static void deleteUser(String username) {
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
+    userList.remove(usersMap.get(username));
     usersMap.remove(username);
+  }
+
+  /**
+   * This method sorts the users in terms of fastest time first
+   *
+   * @param start the first index
+   * @param end the last index
+   */
+  public static void mergeSort(int start, int end) {
+    int median;
+    // Checks to see if there is only one user
+    if (start + end == 0) {
+      // return the only user in the list
+      userArray = new String[1];
+      userTime = new Integer[1];
+      userArray[0] = userList.get(0).getUsername();
+      userTime[0] = userList.get(0).getFastestWin();
+      return;
+    }
+    // recursively call merge sort to sort the users
+    if (start < end) {
+      median = (end + start) / 2;
+      mergeSort(start, median);
+      mergeSort(median + 1, end);
+      merge(start, median + 1, end);
+    }
+  }
+
+  /**
+   * This method sorts the users using merge sort algorithm
+   *
+   * @param left the leftmost index
+   * @param middle the middle index
+   * @param right the rigthmost index
+   */
+  private static void merge(int left, int middle, int right) {
+    userArray = new String[userList.size()];
+    userTime = new Integer[userList.size()];
+    String[] copyUserArray = new String[userList.size()];
+    Integer[] copyUserTime = new Integer[userArray.length];
+    // Intialising all lists for sorting
+    for (int a = 0; a < userArray.length; a++) {
+      userTime[a] = userList.get(a).getFastestWin();
+      copyUserTime[a] = userList.get(a).getFastestWin();
+      userArray[a] = userList.get(a).getUsername();
+      copyUserArray[a] = userList.get(a).getUsername();
+    }
+    int i = left, j = middle, k = left;
+    // while loop checking the top half of the array
+    while (i <= middle - 1 && j <= right) {
+      // checking if elements need to be swapped
+      if (userTime[i] <= userTime[j]) {
+        copyUserTime[k] = userTime[i];
+        copyUserArray[k] = userArray[i];
+        i++;
+      } else {
+        copyUserTime[k] = userTime[j];
+        copyUserArray[k] = userArray[j];
+        j++;
+      }
+      k++;
+    }
+    // The next while loops are used to sort the remainder of the array that has not
+    // been sorted
+    while (i <= middle - 1) {
+      copyUserTime[k] = userTime[i];
+      copyUserArray[k] = userArray[i];
+      i++;
+      k++;
+    }
+    while (j <= right) {
+      copyUserTime[k] = userTime[j];
+      copyUserArray[k] = userArray[j];
+      j++;
+      k++;
+    }
+    // Returning the sorted arrays
+    userTime = copyUserTime;
+    userArray = copyUserArray;
   }
 }

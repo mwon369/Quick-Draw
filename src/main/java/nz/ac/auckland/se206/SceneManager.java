@@ -18,6 +18,7 @@ public class SceneManager {
     BADGE_VIEW,
     WORD_HISTORY,
     USER_INFO,
+    LEADERBOARD,
   }
 
   // hashmap that maps enum AppUi to the corresponding root note

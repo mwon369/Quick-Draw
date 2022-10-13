@@ -167,6 +167,21 @@ public class MenuController {
     setMusicIcon();
   }
 
+  /**
+   * This method swaps to the leader board gui
+   *
+   * @param event an ActionEvent representing when the settings button has been clicked
+   */
+  @FXML
+  private void onLeaderBoard(ActionEvent event) {
+    SoundManager.playButtonClick();
+    // retrieve the source of button and switch to the settings page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LEADERBOARD));
+    App.getLeaderBoardController().readyLeaderBoard();
+  }
+
   /** This method sets the music icon according to whether background music is playing or not */
   public void setMusicIcon() {
     try {

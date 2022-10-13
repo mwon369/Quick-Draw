@@ -110,6 +110,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#onLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/leaderboardIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">

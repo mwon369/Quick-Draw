@@ -29,6 +29,7 @@ public class App extends Application {
   private static WordChooserController wordChooserController;
   private static ZenCanvasController zenCanvasController;
   private static UserInfoController userInfoController;
+  private static LeaderBoardController leaderboardController;
 
   public static void main(final String[] args) {
     launch();
@@ -128,6 +129,12 @@ public class App extends Application {
     SceneManager.addUi(AppUi.USER_INFO, loader.load());
     SceneManager.getUiRoot(AppUi.USER_INFO).getStylesheets().add("/css/userCreation.css");
     userInfoController = loader.getController();
+
+    // add leader board controller
+    loader = new FXMLLoader(App.class.getResource("/fxml/leaderboard.fxml"));
+    SceneManager.addUi(AppUi.LEADERBOARD, loader.load());
+    SceneManager.getUiRoot(AppUi.LEADERBOARD).getStylesheets().add("/css/wordChooser.css");
+    leaderboardController = loader.getController();
 
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
@@ -255,5 +262,14 @@ public class App extends Application {
    */
   public static UserInfoController getUserInfoController() {
     return userInfoController;
+  }
+
+  /**
+   * Getter method for leader board controller
+   *
+   * @return the UserInfoController
+   */
+  public static LeaderBoardController getLeaderBoardController() {
+    return leaderboardController;
   }
 }
