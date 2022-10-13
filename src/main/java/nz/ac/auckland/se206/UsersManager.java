@@ -70,6 +70,14 @@ public class UsersManager {
     return usersMap.keySet();
   }
 
+  public static int getuserLength() {
+    return usersMap.size();
+  }
+
+  public static User[] getUserArray() {
+    return userArray;
+  }
+
   /**
    * This method creates and loads a user into the hashmap and saves the user to the json file
    *
@@ -161,6 +169,7 @@ public class UsersManager {
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
     usersMap.remove(username);
+    userList.remove(UsersManager.usersMap.get(username));
   }
 
   public static void mergeSort(int start, int end) {
