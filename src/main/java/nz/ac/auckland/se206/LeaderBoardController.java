@@ -34,7 +34,7 @@ public class LeaderBoardController {
     // For loop formatting every user to be displayed on the leaderboard
     for (int i = 0; i < usernameArray.length; i++) {
       StringBuilder sb = new StringBuilder();
-      sb.append(String.format("%1$-5s %2$s ", i + 1 + ".) ", usernameArray[i]));
+      sb.append(String.format("%1$-5s %2$s ", i + 1 + ") ", usernameArray[i]));
       userOrder.add(sb.toString());
     }
     return userOrder;
