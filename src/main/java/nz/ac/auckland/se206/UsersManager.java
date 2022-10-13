@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,8 @@ public class UsersManager {
   private static HashMap<String, User> usersMap;
   private static User userSelected;
   private static List<User> userList;
-  private static User[] userArray;
-  private static int[] userTime;
+  private static String[] userArray;
+  private static Integer[] userTime;
 
   /**
    * Returns a specific user reference based on the passed in username
@@ -71,11 +72,15 @@ public class UsersManager {
   }
 
   public static int getuserLength() {
-    return usersMap.size();
+    return userList.size();
   }
 
-  public static User[] getUserArray() {
+  public static String[] getUserArray() {
     return userArray;
+  }
+
+  public static Integer[] getUserTIme() {
+    return userTime;
   }
 
   /**
@@ -142,6 +147,7 @@ public class UsersManager {
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
     }
+    userList = new ArrayList<>();
     for (User user : usersMap.values()) {
       userList.add(user);
       user.loadBadgeList();
@@ -168,12 +174,19 @@ public class UsersManager {
   public static void deleteUser(String username) {
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
+    userList.remove(usersMap.get(username));
     usersMap.remove(username);
-    userList.remove(UsersManager.usersMap.get(username));
   }
 
   public static void mergeSort(int start, int end) {
     int median;
+    if (start + end == 0) {
+      userArray = new String[1];
+      userTime = new Integer[1];
+      userArray[0] = userList.get(0).getUsername();
+      userTime[0] = userList.get(0).getFastestWin();
+      return;
+    }
     if (start < end) {
       median = (end + start) / 2;
       mergeSort(start, median);
@@ -183,12 +196,15 @@ public class UsersManager {
   }
 
   private static void merge(int left, int middle, int right) {
-    userArray = (User[]) userList.toArray();
-    User[] copyUserArray = (User[]) userList.toArray();
-    int[] copyUserTime = new int[userArray.length];
+    userArray = new String[userList.size()];
+    userTime = new Integer[userList.size()];
+    String[] copyUserArray = new String[userList.size()];
+    Integer[] copyUserTime = new Integer[userArray.length];
     for (int a = 0; a < userArray.length; a++) {
-      userTime[a] = userArray[a].getFastestWin();
-      copyUserTime[a] = userArray[a].getFastestWin();
+      userTime[a] = userList.get(a).getFastestWin();
+      copyUserTime[a] = userList.get(a).getFastestWin();
+      userArray[a] = userList.get(a).getUsername();
+      copyUserArray[a] = userList.get(a).getUsername();
     }
     int i = left, j = middle, k = left;
     while (i <= middle - 1 && j <= right) {

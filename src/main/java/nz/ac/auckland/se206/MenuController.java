@@ -167,6 +167,16 @@ public class MenuController {
     setMusicIcon();
   }
 
+  @FXML
+  private void onLeaderBoard(ActionEvent event) {
+    SoundManager.playButtonClick();
+    // retrieve the source of button and switch to the settings page
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.LEADERBOARD));
+    App.getLeaderBoardController().readyLeaderBoard();
+  }
+
   /** This method sets the music icon according to whether background music is playing or not */
   public void setMusicIcon() {
     try {

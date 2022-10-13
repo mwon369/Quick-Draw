@@ -39,7 +39,22 @@
 	-fx-background-radius: 8px;
 	-fx-border-radius: 8px;
 }
-
+.leaderboard{
+	-fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+	-fx-fixed-cell-size: 45px;
+	-fx-border-color: white;
+	-fx-background-radius: 8px;
+	-fx-border-radius: 8px;
+}
+.leaderboardlabel{
+	-fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 24px;
+}
 #wordListView:focused {
 	-fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;
