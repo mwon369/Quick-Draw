@@ -178,7 +178,9 @@ public class ZenCanvasController extends CanvasController {
                         updateIndicator();
                       }
                       predictionsListView.getItems().setAll(predictionsList);
-                      // topNum value will depend on game difficulty later on
+
+                      // in zen mode the user will be notified if they have 'won'
+                      // only if the word they have to draw is the number 1 guess
                       colourTopPredictions(predictionsListView, 1);
                       if (isWin(classifications, 1)) {
                         outcomeLabel.setText(
