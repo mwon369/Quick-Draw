@@ -6,7 +6,10 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -48,75 +51,134 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER" minHeight="36.0">
+            <HBox alignment="CENTER" prefHeight="273.0" prefWidth="630.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Classic Mode">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <tooltip>
-                        <Tooltip text="Jump right into classic mode!&#10;You'll be given a random word to draw!" />
-                     </tooltip>
-                  </Button>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+                  <VBox alignment="CENTER" prefWidth="400.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlay" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Classic Mode">
+                           <padding>
+                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Jump right into classic mode!&#10;You'll be given a random word to draw!" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Hidden Word Mode">
+                           <padding>
+                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Challenge yourself with our Hidden Word Mode!&#10;You'll be given the definition of a word. &#10;Guess the word, and draw it well to win!" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="rapidFireButton" mnemonicParsing="false" onAction="#onPlayRapidFireMode" onMouseEntered="#onButtonHover" text="Rapid Fire Mode">
+                           <padding>
+                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Put your skills to the test with Rapid Fire Mode!&#10;Draw as many words as you can before the timer &#10;runs out!" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" onMouseEntered="#onButtonHover" text="Zen Mode">
+                           <padding>
+                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
+                           </tooltip>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="userInfoButton" mnemonicParsing="false" onAction="#onSwitchToUserInfo" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.rowIndex="1">
+                           <graphic>
+                              <ImageView fx:id="UserInfoIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/personIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#onSwitchToLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.rowIndex="2">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/leaderboardIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.rowIndex="3">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/statsIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </GridPane>
                </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button fx:id="hiddenWordButton" mnemonicParsing="false" onAction="#onPlayHiddenWord" onMouseEntered="#onButtonHover" prefHeight="30.0" text="Hidden Word Mode">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <tooltip>
-                        <Tooltip text="Challenge yourself with our Hidden Word Mode!&#10;You'll be given the definition of a word. &#10;Guess the word, and draw it well to win!" />
-                     </tooltip>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Button fx:id="rapidFireButton" mnemonicParsing="false" onAction="#onPlayRapidFireMode" onMouseEntered="#onButtonHover" text="Rapid Fire Mode">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <tooltip>
-                        <Tooltip text="Put your skills to the test with Rapid Fire Mode!&#10;Draw as many words as you can before the timer &#10;runs out!" />
-                     </tooltip>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" minHeight="36.0">
-               <children>
-                  <Button fx:id="zenButton" mnemonicParsing="false" onAction="#onPlayZenMode" onMouseEntered="#onButtonHover" text="Zen Mode">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <tooltip>
-                        <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
-                     </tooltip>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" spacing="20.0">
-               <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -125,34 +187,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#onSwitchToLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/leaderboardIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="userStatsButton" mnemonicParsing="false" onAction="#onCheckStats" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/statsIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="userInfoButton" mnemonicParsing="false" onAction="#onSwitchToUserInfo" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
-                     <graphic>
-                        <ImageView fx:id="UserInfoIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/personIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.columnIndex="9">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -161,7 +196,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="musicButton" mnemonicParsing="false" onAction="#onToggleMusic" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="musicButton" mnemonicParsing="false" onAction="#onToggleMusic" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons" GridPane.columnIndex="10">
                      <graphic>
                         <ImageView fx:id="musicIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -171,10 +206,7 @@
                      </graphic>
                   </Button>
                </children>
-               <VBox.margin>
-                  <Insets left="60.0" right="60.0" top="30.0" />
-               </VBox.margin>
-            </HBox>
+            </GridPane>
          </children>
       </VBox>
    </children>

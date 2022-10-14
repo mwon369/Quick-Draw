@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 public class RapidFireController extends CanvasController {
 
@@ -96,6 +98,15 @@ public class RapidFireController extends CanvasController {
             // if time has run out, cancel the timer
             if (time == 0) {
               SoundManager.playAlarmBell();
+              // set the rotation details
+              RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);
+              rotation.setCycleCount(12);
+              rotation.setFromAngle(-15);
+              rotation.setToAngle(15);
+              rotation.setAutoReverse(true);
+              rotation.setOnFinished((e) -> alarmIcon.setRotate(0));
+              // make the alarm rotate
+              rotation.play();
               timer.cancel();
               Platform.runLater(() -> endGame());
               return;
@@ -165,7 +176,7 @@ public class RapidFireController extends CanvasController {
     winLossLabel.setText(
         wordsDrawn > 1 || wordsDrawn == 0
             ? "You drew " + wordsDrawn + " words"
-            : "Your drew 1 word!");
+            : "You drew 1 word!");
     winLossLabel.setVisible(true);
     winLossLabel.setWrapText(true);
 
