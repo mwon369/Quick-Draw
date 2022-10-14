@@ -32,7 +32,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Classic Mode" textAlignment="CENTER">
                   <font>
                     <Font size="18.0" />
                   </font>
@@ -137,11 +137,6 @@
                         </HBox>
                         <StackPane id="canvasStackPane" fx:id="canvasStackPane" prefHeight="272.0" prefWidth="400.0">
                            <children>
-                              <Label fx:id="winLossLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
                             <Canvas fx:id="canvas" height="315.0" onDragDetected="#isDrawing" width="400.0" StackPane.alignment="CENTER">
                               <cursor>
                                 <Cursor fx:constant="CROSSHAIR" />
@@ -150,6 +145,11 @@
                                     <Insets />
                                  </StackPane.margin>
                             </Canvas>
+                              <Label fx:id="winLossLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </StackPane>
                      </children>

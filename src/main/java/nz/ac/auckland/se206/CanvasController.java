@@ -246,8 +246,11 @@ public class CanvasController {
   protected void onStartNewGame() {
     SoundManager.playButtonClick();
 
+    // check if the user skips the word midway throughout the round
+    checkSkip();
+    // reset the gui elements
     resetCanvas();
-    // select and display random category (easy)
+    // select and display random category
     userStreak = user.getWinStreak();
     userWins = user.getWins();
     userLosses = user.getLosses();
@@ -786,5 +789,19 @@ public class CanvasController {
   @FXML
   protected void onButtonHover() {
     SoundManager.playButtonHover();
+  }
+
+  /**
+   * This method checks to see if the user has given up and skipped a word after starting the round
+   * and increments the users losses if they do
+   */
+  protected void checkSkip() {
+    // check if the user skips the word midway throughout the round
+    if (!isGameOver) {
+      System.out.println("Number of losses before skip: " + user.getLosses());
+      userLosses = user.getLosses();
+      user.setLosses(++userLosses);
+      System.out.println("Number of losses after skip: " + user.getLosses());
+    }
   }
 }

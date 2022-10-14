@@ -31,6 +31,7 @@ public class App extends Application {
   private static ZenCanvasController zenCanvasController;
   private static UserInfoController userInfoController;
   private static LeaderBoardController leaderboardController;
+  private static RapidFireController rapidFireController;
 
   public static void main(final String[] args) {
     launch();
@@ -139,6 +140,12 @@ public class App extends Application {
     SceneManager.addUi(AppUi.LEADERBOARD, loader.load());
     SceneManager.getUiRoot(AppUi.LEADERBOARD).getStylesheets().add("/css/wordChooser.css");
     leaderboardController = loader.getController();
+
+    // add rapid fire controller
+    loader = new FXMLLoader(App.class.getResource("/fxml/rapidFireCanvas.fxml"));
+    SceneManager.addUi(AppUi.RAPID_FIRE, loader.load());
+    SceneManager.getUiRoot(AppUi.RAPID_FIRE).getStylesheets().add("/css/canvas.css");
+    rapidFireController = loader.getController();
 
     // Load category info
     CategoryManager.loadCategoryInfoFromJson();
@@ -271,9 +278,18 @@ public class App extends Application {
   /**
    * Getter method for leader board controller
    *
-   * @return the UserInfoController
+   * @return the LeaderBoardController
    */
   public static LeaderBoardController getLeaderBoardController() {
     return leaderboardController;
+  }
+
+  /**
+   * Getter method for the rapid fire mode controller
+   *
+   * @return the RapidFireController
+   */
+  public static RapidFireController getRapidFireController() {
+    return rapidFireController;
   }
 }
