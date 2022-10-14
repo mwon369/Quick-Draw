@@ -106,7 +106,7 @@ public class UserInfoController extends UserCreationController {
    * @param event an ActionEvent representing the type of action that occurred
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
     // Get scene to switch to main menu
     Button button = (Button) event.getSource();

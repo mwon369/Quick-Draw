@@ -134,7 +134,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu" />
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onSwitchToMenu" text="Menu" />
                </children>
             </HBox>
          </children>
