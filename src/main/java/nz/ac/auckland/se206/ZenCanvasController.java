@@ -182,11 +182,8 @@ public class ZenCanvasController extends CanvasController {
                       colourTopPredictions(predictionsListView, 1);
                       if (isWin(classifications, 1)) {
                         outcomeLabel.setText(
-                            "Nice, you've won! Feel free to keep drawing or choose a new word!");
+                            "Nice, your word was #1 ! Feel free to keep drawing or choose a new word!");
                         outcomeLabel.setVisible(true);
-
-                        // stop making predictions after user has won
-                        timer.cancel();
                       }
                     }
                   } catch (TranslateException e) {

@@ -32,7 +32,7 @@
                                 <Insets />
                             </HBox.margin>
                         </Button>
-                        <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                        <Label fx:id="gameTitleLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Rapid Fire Mode" textAlignment="CENTER">
                             <font>
                                 <Font size="18.0" />
                             </font>

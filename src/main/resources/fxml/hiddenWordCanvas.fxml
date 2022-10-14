@@ -32,7 +32,7 @@
                                 <Insets />
                             </HBox.margin>
                         </Button>
-                      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Quick, Draw!" textAlignment="CENTER">
+                      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" styleClass="title" text="Hidden Word Mode" textAlignment="CENTER">
                           <font>
                               <Font size="18.0" />
                           </font>

@@ -91,7 +91,7 @@
                         <Font size="10.0" />
                      </font>
                      <tooltip>
-                        <Tooltip text="Relax in our Zen Mode!&#10;Draw a random word or choose your own word&#10;to draw with no timer!" />
+                        <Tooltip text="Put your skills to the test with Rapid Fire Mode!&#10;Draw as many words as you can before &#10;the timer runs out!" />
                      </tooltip>
                   </Button>
                </children>
