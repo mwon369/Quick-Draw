@@ -38,8 +38,6 @@ public class RapidFireController extends CanvasController {
    */
   @Override
   protected void startTimer() {
-    // set label
-    gameTitleLabel.setText("Words Drawn: 0");
     // schedule task every 1000 milliseconds = 1 second
     timer.scheduleAtFixedRate(
         new TimerTask() {
@@ -91,16 +89,14 @@ public class RapidFireController extends CanvasController {
 
             // if time has run out, cancel the timer
             if (time == 0) {
-
               SoundManager.playAlarmBell();
               timer.cancel();
               Platform.runLater(() -> endGame());
               return;
 
+              // otherwise continue game as usual
             } else {
-
-              // play different sound effects depending
-              // on how much time the user has left
+              // play different sound effects depending on how much time the user has left
               if (time <= 5) {
                 SoundManager.playTimerTickFast();
               } else {
@@ -121,7 +117,7 @@ public class RapidFireController extends CanvasController {
     // making sure the new word given hasn't been played in the same round
     do {
       targetCategory = user.giveWordToDraw(user.getWordDifficulty());
-    } while (!wordsPlayedDuringRound.contains(targetCategory));
+    } while (wordsPlayedDuringRound.contains(targetCategory));
     wordLabel.setText("Your word is: " + targetCategory);
   }
 
