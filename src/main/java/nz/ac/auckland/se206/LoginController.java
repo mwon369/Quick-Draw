@@ -151,15 +151,19 @@ public class LoginController {
           errorMessageLabel.setVisible(true);
           return;
         }
+        // set the selected user to the username text of the profile display
         errorMessageLabel.setVisible(false);
         UsersManager.setSelectedUser(username.getText());
         Scene sceneButtonIsIn = vbox.getScene();
 
+        // show the user information in main menu
         try {
           App.getMenuController().showUserInfo();
         } catch (IOException e) {
           e.printStackTrace();
         }
+
+        // switch to menu and clear the search field
         sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.MENU));
         search.clear();
         return;
@@ -177,7 +181,9 @@ public class LoginController {
     onButtonHover();
     VBox bigVbox = (VBox) event.getSource();
     VBox vbox;
+    // find the vbox containing user pic and username
     for (Node node : bigVbox.getChildren()) {
+      // find the hbox (contains delete icon) within the bigger vbox
       if (node instanceof HBox) {
         node.setVisible(true);
       } else if (node instanceof VBox) {
@@ -202,7 +208,9 @@ public class LoginController {
   private void onProfileExited(MouseEvent event) {
     VBox bigVbox = (VBox) event.getSource();
     VBox vbox;
+    // find the vbox that contains the profile pic and username
     for (Node node : bigVbox.getChildren()) {
+      // find hbox that contains the delete icon
       if (node instanceof HBox) {
         node.setVisible(false);
       } else if (node instanceof VBox) {
@@ -284,13 +292,17 @@ public class LoginController {
   public void deleteUserGui(String username) {
     for (int i = 0; i < profilesHbox.getChildren().size(); i++) {
       if (profilesHbox.getChildren().get(i) instanceof VBox) {
+        // get the big vbox in the profiles hbox
         VBox vbox = (VBox) profilesHbox.getChildren().get(i);
         for (Node node : vbox.getChildren()) {
+          // get the smaller vbox
           if (node instanceof VBox) {
             VBox innerVbox = (VBox) node;
             for (Node node2 : innerVbox.getChildren()) {
+              // get the username label
               if (node2 instanceof Label) {
                 if (((Label) node2).getText().equals(username)) {
+                  // remove the entire profile card from the profiles hbox
                   profilesHbox.getChildren().remove(i);
                   String keyword = search.getText();
                   search.setText("");

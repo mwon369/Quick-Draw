@@ -195,7 +195,6 @@ public class UserCreationController {
    * This method saves the users canvas drawing as an image and sets it as their profile picture
    *
    * @param user the user save the current snapshot for
-   * @param user
    * @return the file to save
    * @throws IOException throws an IO exception of an error occurs with saving image to file
    */
