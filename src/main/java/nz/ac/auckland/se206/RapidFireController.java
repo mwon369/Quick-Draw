@@ -167,6 +167,7 @@ public class RapidFireController extends CanvasController {
             ? "You drew " + wordsDrawn + " words"
             : "Your drew 1 word!");
     winLossLabel.setVisible(true);
+    winLossLabel.setWrapText(true);
 
     // indicate that the game is over
     isGameOver = true;
