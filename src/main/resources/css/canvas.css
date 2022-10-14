@@ -123,14 +123,14 @@
 }
 
 #winLossLabel{
-	-fx-background-color: rgba(220,220,220,0.5);
-	-fx-background-radius: 5;
-	-fx-padding: 3 8 3 8;
-	-fx-text-fill: #ffcf5c;
+	-fx-background-radius: 15 5 5 15;
+	-fx-background-color: rgb(226, 159, 0, 0.9);
+	-fx-text-fill: #644c00;
     -fx-font-family: 'Indie Flower', cursive;
     -fx-font-style: normal;
 	-fx-font-weight: 400;
-	-fx-font-size: 52px;
+	-fx-font-size: 35px;
+	-fx-pref-width: 350px;
 }
 
 #outcomeLabel{

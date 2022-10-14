@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -36,6 +37,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -116,6 +118,8 @@ public class CanvasController {
   protected int accuracy;
   protected int timeLimit;
   protected double confidence;
+
+  @FXML protected ImageView alarmIcon;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -349,6 +353,15 @@ public class CanvasController {
             // if time has run out, cancel timer
             if (time == 0) {
               SoundManager.playAlarmBell();
+              // set the rotation details
+              RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);
+              rotation.setCycleCount(12);
+              rotation.setFromAngle(-15);
+              rotation.setToAngle(15);
+              rotation.setAutoReverse(true);
+              rotation.setOnFinished((e) -> alarmIcon.setRotate(0));
+              // make the alarm rotate
+              rotation.play();
               timer.cancel();
               Platform.runLater(
                   () -> {

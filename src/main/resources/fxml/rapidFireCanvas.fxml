@@ -9,8 +9,11 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -59,26 +62,49 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <StackPane>
-                    <children>
-                        <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/clock.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets top="-5.0" />
-                            </StackPane.margin>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label id="winLossLabel" fx:id="winLossLabel" contentDisplay="CENTER" text="You Win!">
+                     <padding>
+                        <Insets bottom="-10.0" left="15.0" top="-10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="50.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <StackPane GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fx:id="alarmIcon" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/clock.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets top="-5.0" />
+                           </StackPane.margin>
                         </ImageView>
                         <Label id="timer" fx:id="timerLabel" alignment="CENTER" text="60" textAlignment="CENTER">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <padding>
-                                <Insets bottom="-15.0" top="-10.0" />
-                            </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="-15.0" top="-10.0" />
+                           </padding>
                         </Label>
-                    </children>
-                </StackPane>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="-60.0" />
+                     </GridPane.margin>
+                  </StackPane>
+               </children>
+            </GridPane>
                 <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="10.0">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -145,14 +171,6 @@
                                                 <Insets />
                                             </StackPane.margin>
                                         </Canvas>
-                                        <Label fx:id="winLossLabel" alignment="CENTER" contentDisplay="CENTER" text="You Win!" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="System Bold" size="24.0" />
-                                            </font>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                                        </Label>
                                     </children>
                                 </StackPane>
                             </children>
