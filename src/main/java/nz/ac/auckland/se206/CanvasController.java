@@ -584,7 +584,6 @@ public class CanvasController {
       user.setLosses(++userLosses);
       user.setWinStreak(0);
     }
-    user.updateBadges();
     // update and save both instance word lists fields after game ends
 
     // update the word list
@@ -612,6 +611,7 @@ public class CanvasController {
         break;
     }
     user.updatePreviousWords(targetCategory);
+    user.updateBadges();
 
     // save the updated word lists for the user
     try {
@@ -697,8 +697,8 @@ public class CanvasController {
    */
   protected void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the indicator's
-     * requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the
+     * indicator's requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);
