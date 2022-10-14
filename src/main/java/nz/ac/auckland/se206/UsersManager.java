@@ -77,7 +77,7 @@ public class UsersManager {
    * @return the number of users
    */
   public static int getuserLength() {
-    return userList.size();
+    return usersMap.size();
   }
 
   /**
@@ -159,10 +159,10 @@ public class UsersManager {
     usersMap = gson.fromJson(reader, new TypeToken<HashMap<String, User>>() {}.getType());
 
     // if data file is empty, usersMap should be initialised
+    userList = new ArrayList<>();
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
     }
-    userList = new ArrayList<>();
     for (User user : usersMap.values()) {
       userList.add(user);
       user.loadBadgeList();
@@ -202,14 +202,6 @@ public class UsersManager {
   public static void mergeSort(int start, int end) {
     int median;
     // Checks to see if there is only one user
-    if (start + end == 0) {
-      // return the only user in the list
-      userArray = new String[1];
-      userTime = new Integer[1];
-      userArray[0] = userList.get(0).getUsername();
-      userTime[0] = userList.get(0).getFastestWin();
-      return;
-    }
     // recursively call merge sort to sort the users
     if (start < end) {
       median = (end + start) / 2;
@@ -227,17 +219,9 @@ public class UsersManager {
    * @param right the rigthmost index
    */
   private static void merge(int left, int middle, int right) {
-    userArray = new String[userList.size()];
-    userTime = new Integer[userList.size()];
-    String[] copyUserArray = new String[userList.size()];
-    Integer[] copyUserTime = new Integer[userArray.length];
     // Intialising all lists for sorting
-    for (int a = 0; a < userArray.length; a++) {
-      userTime[a] = userList.get(a).getFastestWin();
-      copyUserTime[a] = userList.get(a).getFastestWin();
-      userArray[a] = userList.get(a).getUsername();
-      copyUserArray[a] = userList.get(a).getUsername();
-    }
+    String[] copyUserArray = userArray.clone();
+    Integer[] copyUserTime = userTime.clone();
     int i = left, j = middle, k = left;
     // while loop checking the top half of the array
     while (i <= middle - 1 && j <= right) {
@@ -270,5 +254,16 @@ public class UsersManager {
     // Returning the sorted arrays
     userTime = copyUserTime;
     userArray = copyUserArray;
+  }
+
+  /** This method sets up the arrays needed to be sorted for determining the leaderboard */
+  public static void resetArray() {
+    userArray = new String[userList.size()];
+    userTime = new Integer[userList.size()];
+    // Copying user info into the arrays
+    for (int a = 0; a < userList.size(); a++) {
+      userTime[a] = userList.get(a).getFastestWin();
+      userArray[a] = userList.get(a).getUsername();
+    }
   }
 }

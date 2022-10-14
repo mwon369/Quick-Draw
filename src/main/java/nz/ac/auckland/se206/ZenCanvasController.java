@@ -38,8 +38,8 @@ public class ZenCanvasController extends CanvasController {
   @FXML private Button chooseWordButton;
   @FXML private Button randomWordButton;
 
-  @FXML private Pane colorPane;
-  @FXML private ColorPicker colorPicker;
+  @FXML protected Pane colorPane;
+  @FXML protected ColorPicker colorPicker;
 
   private CategorySelector categorySelector;
 

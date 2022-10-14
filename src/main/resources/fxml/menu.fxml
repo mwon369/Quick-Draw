@@ -125,7 +125,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#onLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#onSwitchToLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" onMouseEntered="#onButtonHover" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -143,7 +143,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="userInfoButton" mnemonicParsing="false" onAction="#onUserInfo" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
+                  <Button fx:id="userInfoButton" mnemonicParsing="false" onAction="#onSwitchToUserInfo" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="45.0" styleClass="iconButtons">
                      <graphic>
                         <ImageView fx:id="UserInfoIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

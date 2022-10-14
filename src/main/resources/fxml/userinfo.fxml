@@ -80,10 +80,9 @@
                                     <Insets />
                                  </HBox.margin>
                               </Pane>
-                              <Pane fx:id="soundPane" prefHeight="30.0" />
                               <Pane fx:id="colorPane" prefHeight="30.0" prefWidth="30.0">
                                  <children>
-                                    <ImageView fx:id="colorIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" styleClass="tools">
                                        <image>
                                           <Image url="@../images/colouricon.png" />
                                        </image>
@@ -134,7 +133,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" text="Menu" />
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onSwitchToMenu" text="Menu" />
                </children>
             </HBox>
          </children>

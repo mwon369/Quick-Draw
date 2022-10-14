@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -58,6 +59,9 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // Load users
     UsersManager.loadUsersFromJson();
+
+    stage.getIcons().add(new Image(App.class.getResourceAsStream("/images/logo.png")));
+    stage.setTitle("Quick, Draw! SE206 Edition");
 
     // Add user creation controller
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/userCreation.fxml"));

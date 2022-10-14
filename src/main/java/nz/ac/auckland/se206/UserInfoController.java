@@ -79,10 +79,11 @@ public class UserInfoController extends UserCreationController {
   /** This method changes the current user's profile picture with a new one that they have drawn */
   @FXML
   private void onChangePicture() {
+    SoundManager.playButtonClick();
     User user = UsersManager.getSelectedUser();
     try {
       // save new pic
-      this.saveCurrentSnapshotOnFile(user);
+      saveCurrentSnapshotOnFile(user);
 
       // delete and load the user GUI
       App.getLoginController().deleteUserGui(user.getUsername());
@@ -106,7 +107,7 @@ public class UserInfoController extends UserCreationController {
    * @param event an ActionEvent representing the type of action that occurred
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
     // Get scene to switch to main menu
     Button button = (Button) event.getSource();
