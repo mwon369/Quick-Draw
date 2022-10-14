@@ -197,5 +197,16 @@ public class RapidFireController extends CanvasController {
           }
         },
         500);
+
+    // update rapid fire high score
+    if (wordsDrawn > user.getRapidFireHighScore()) {
+      user.setRapidFireHighScore(wordsDrawn);
+      // save updated user data
+      try {
+        UsersManager.saveUsersToJson();
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+    }
   }
 }

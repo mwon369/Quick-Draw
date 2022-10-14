@@ -40,7 +40,7 @@ public class UserStatsController {
       return;
     }
 
-    // set pie chart data and make it visible
+    // create pie chart data and make pie chart visible
     noGamesLabel.setVisible(false);
     statsPieChart.setVisible(true);
     ObservableList<PieChart.Data> pieChartData =
@@ -48,6 +48,7 @@ public class UserStatsController {
             new PieChart.Data("Wins", currentUser.getWins()),
             new PieChart.Data("Losses", currentUser.getLosses()));
 
+    // set data to pie chart and colour it
     statsPieChart.setData(pieChartData);
     colourPieChart(pieChartData);
     changeLegendLabels();
