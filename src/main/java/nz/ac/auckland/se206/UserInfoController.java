@@ -79,10 +79,11 @@ public class UserInfoController extends UserCreationController {
   /** This method changes the current user's profile picture with a new one that they have drawn */
   @FXML
   private void onChangePicture() {
+    SoundManager.playButtonClick();
     User user = UsersManager.getSelectedUser();
     try {
       // save new pic
-      this.saveCurrentSnapshotOnFile(user);
+      saveCurrentSnapshotOnFile(user);
 
       // delete and load the user GUI
       App.getLoginController().deleteUserGui(user.getUsername());
