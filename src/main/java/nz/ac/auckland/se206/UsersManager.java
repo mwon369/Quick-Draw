@@ -77,7 +77,7 @@ public class UsersManager {
    * @return the number of users
    */
   public static int getuserLength() {
-    return usersMap.size();
+    return userList.size();
   }
 
   /**
@@ -105,7 +105,6 @@ public class UsersManager {
    */
   public static void createUser(User user) {
     usersMap.put(user.getUsername(), user);
-    userList.add(user);
     try {
       saveUsersToJson();
     } catch (IOException e) {
@@ -157,14 +156,12 @@ public class UsersManager {
 
     // retrieve the json map and convert to HashMap<String, User>
     usersMap = gson.fromJson(reader, new TypeToken<HashMap<String, User>>() {}.getType());
-
-    // if data file is empty, usersMap should be initialised
     userList = new ArrayList<>();
+    // if data file is empty, usersMap should be initialised
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
     }
     for (User user : usersMap.values()) {
-      userList.add(user);
       user.loadBadgeList();
     }
   }
@@ -256,8 +253,15 @@ public class UsersManager {
     userArray = copyUserArray;
   }
 
-  /** This method sets up the arrays needed to be sorted for determining the leaderboard */
+  /** This method sets up the arrays needed to be sorted for determining the leader board */
   public static void resetArray() {
+    userList.clear();
+    // for loop adding users that have played a game
+    for (User user : usersMap.values()) {
+      if (user.getFastestWin() != 60) {
+        userList.add(user);
+      }
+    }
     userArray = new String[userList.size()];
     userTime = new Integer[userList.size()];
     // Copying user info into the arrays
