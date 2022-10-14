@@ -91,7 +91,7 @@
                         <Font size="10.0" />
                      </font>
                      <tooltip>
-                        <Tooltip text="Put your skills to the test with Rapid Fire Mode!&#10;Draw as many words as you can before &#10;the timer runs out!" />
+                        <Tooltip text="Put your skills to the test with Rapid Fire Mode!&#10;Draw as many words as you can before the timer &#10;runs out!" />
                      </tooltip>
                   </Button>
                </children>

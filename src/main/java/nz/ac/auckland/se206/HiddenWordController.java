@@ -35,7 +35,12 @@ public class HiddenWordController extends CanvasController {
   @Override
   protected void onStartNewGame() {
     SoundManager.playButtonClick();
+    // increment losses if the user skips the word during the round
+    checkSkip();
+
+    // reset the gui
     resetCanvas();
+
     // get user fields and target category
     userStreak = user.getWinStreak();
     userWins = user.getWins();

@@ -29,6 +29,12 @@ public class RapidFireController extends CanvasController {
     wordsPlayedDuringRound = new ArrayList<>();
     wordsDrawn = 0;
     gameTitleLabel.setText("Words Drawn: 0");
+    // add conditional logic to negate the user having their
+    // losses incremented if they start a new game
+    if (!isGameOver) {
+      userLosses = user.getLosses();
+      user.setLosses(--userLosses);
+    }
     super.onStartNewGame();
   }
 
