@@ -160,6 +160,7 @@ public class CanvasController {
   /** This method is called when the "Clear" button is pressed. */
   @FXML
   protected void onClear() {
+    // clear canvas and predictions list, reset isDrawing, isPenDrawn and indicator
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     isPenDrawn = false;
     isDrawing = false;
