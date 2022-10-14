@@ -96,7 +96,7 @@ public class MenuController {
   }
 
   @FXML
-  private void onUserInfo(ActionEvent event) {
+  private void onSwitchToUserInfo(ActionEvent event) {
     SoundManager.playButtonClick();
     // retrieve the source of button and switch to the login page
     Button button = (Button) event.getSource();
@@ -173,7 +173,7 @@ public class MenuController {
    * @param event an ActionEvent representing when the settings button has been clicked
    */
   @FXML
-  private void onLeaderBoard(ActionEvent event) {
+  private void onSwitchToLeaderBoard(ActionEvent event) {
     SoundManager.playButtonClick();
     // retrieve the source of button and switch to the settings page
     Button button = (Button) event.getSource();

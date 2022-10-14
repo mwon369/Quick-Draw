@@ -20,8 +20,8 @@ public class BadgeData {
     return badgeId;
   }
 
-  public void setBadgeID(int badgeID) {
-    this.badgeId = badgeID;
+  public void setBadgeId(int badgeId) {
+    this.badgeId = badgeId;
   }
 
   public boolean getCompleted() {
