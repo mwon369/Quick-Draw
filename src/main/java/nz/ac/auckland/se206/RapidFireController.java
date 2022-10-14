@@ -57,27 +57,28 @@ public class RapidFireController extends CanvasController {
                   // update timer
                   timerLabel.setText(String.valueOf(temp));
                 });
-            checkTimer(time);
+
+            // if time has run out, cancel timer
+            if (time == 0) {
+              SoundManager.playAlarmBell();
+              timer.cancel();
+              Platform.runLater(
+                  () -> {
+                    stopGame(false, timerLabel.getText());
+                  });
+              return;
+            } else {
+              if (time <= 5) {
+                SoundManager.playTimerTickFast();
+              } else {
+                SoundManager.playTimerTick();
+              }
+              // otherwise, decrement the time by 1 second
+              time -= 1;
+            }
           }
         },
         0,
         1000);
-  }
-
-  private void checkTimer(int time) {
-    // if time has run out, cancel timer
-    if (time == 0) {
-      SoundManager.playAlarmBell();
-      timer.cancel();
-      Platform.runLater(() -> stopGame(false, timerLabel.getText()));
-    } else {
-      if (time <= 5) {
-        SoundManager.playTimerTickFast();
-      } else {
-        SoundManager.playTimerTick();
-      }
-      // otherwise, decrement the time by 1 second
-      time -= 1;
-    }
   }
 }
