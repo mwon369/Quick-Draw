@@ -74,6 +74,14 @@
                         </StackPane>
                             </children>
                         </VBox>
+                  <ImageView fitHeight="334.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pencilIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="-200.0" />
+                     </HBox.margin>
+                  </ImageView>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
