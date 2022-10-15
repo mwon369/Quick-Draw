@@ -811,10 +811,9 @@ public class CanvasController {
   protected void checkSkip() {
     // check if the user skips the word midway throughout the round
     if (!isGameOver) {
-      System.out.println("Number of losses before skip: " + user.getLosses());
       userLosses = user.getLosses();
       user.setLosses(++userLosses);
-      System.out.println("Number of losses after skip: " + user.getLosses());
+      user.setWinStreak(0);
     }
   }
 }

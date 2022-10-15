@@ -31,12 +31,6 @@ public class RapidFireController extends CanvasController {
     wordsPlayedDuringRound = new ArrayList<>();
     wordsDrawn = 0;
     gameTitleLabel.setText("Words Drawn: 0");
-    // add conditional logic to negate the user having their
-    // losses incremented if they start a new game
-    if (!isGameOver) {
-      userLosses = user.getLosses();
-      user.setLosses(--userLosses);
-    }
     super.onStartNewGame();
   }
 
@@ -207,6 +201,17 @@ public class RapidFireController extends CanvasController {
       } catch (IOException e1) {
         e1.printStackTrace();
       }
+    }
+  }
+
+  /**
+   * This method checks to see if the user has given up and skipped a word after starting the round
+   * and increments the users losses if they do
+   */
+  @Override
+  protected void checkSkip() {
+    if (!isGameOver) {
+      System.out.println("Losses don't increase when skipping in rapid fire mode");
     }
   }
 }
