@@ -33,14 +33,6 @@
                   <Insets bottom="20.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="subTitle" text="Draw Your Profile Image! Get Creative!">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="-20.0" />
-               </VBox.margin>
-            </Label>
             <VBox alignment="CENTER" prefHeight="235.0" prefWidth="200.0">
                <children>
                   <HBox id="toolsHBox" alignment="BOTTOM_CENTER" maxWidth="200.0" minHeight="35.0" prefHeight="35.0" prefWidth="465.0">
@@ -104,6 +96,9 @@
                      </children>
                   </StackPane>
                </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
             </VBox>
             <HBox alignment="CENTER" />
             <HBox alignment="CENTER">
@@ -136,5 +131,10 @@
             </HBox>
          </children>
       </VBox>
+      <ImageView fitHeight="310.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" translateX="204.0" translateY="-70.0">
+         <image>
+            <Image url="@../videos/userCreationMascot.gif" />
+         </image>
+      </ImageView>
    </children>
 </StackPane>
