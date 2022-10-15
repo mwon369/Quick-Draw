@@ -108,6 +108,6 @@ public class LeaderBoardController {
     userListView.getItems().setAll(wordUserList);
     statsListView.getItems().setAll(UsersManager.getUserMostWordsDrawn());
     statsLabel.setText("Words Drawn");
-    titleLabel.setText("Most Words Drawn Leaderboard");
+    titleLabel.setText("Rapid Fire Leaderboard");
   }
 }
