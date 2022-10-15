@@ -27,14 +27,19 @@ public abstract class Badge {
   }
 
   /**
-   * This method gets the title instance field for a specific badge
+   * This method gets the file path of the badge icon for a specific badge
    *
-   * @return the title of the badge
+   * @return the file path of the badge icon
    */
   public String getBadgeIcon() {
     return this.badgeIcon;
   }
 
+  /**
+   * This method gets the title instance field for a specific badge
+   *
+   * @return the title instance field for a specific badge
+   */
   public String getTitle() {
     return title;
   }

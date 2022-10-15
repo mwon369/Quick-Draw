@@ -107,6 +107,7 @@ public class HiddenWordController extends CanvasController {
    * user wins or loses the game respectively
    *
    * @param isWin boolean representing whether the user won the game or not
+   * @param timeString representing the time left in the game
    */
   @Override
   protected void stopGame(boolean isWin, String timeString) {

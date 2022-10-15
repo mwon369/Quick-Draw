@@ -55,16 +55,19 @@ public class User {
     this.badgeDataList = new ArrayList<>();
     this.rapidFireHighScore = 0;
 
+    // create badges of uncompleted status
     for (int i = 1; i < 11; i++) {
       badgeList.add(BadgeFactory.createBadge(i, false));
       badgeDataList.add(new BadgeData(i, false));
     }
 
+    // initialises words given with empty lists
     wordsGiven = new HashMap<CategoryDifficulty, ArrayList<String>>();
     wordsGiven.put(CategoryDifficulty.E, new ArrayList<String>());
     wordsGiven.put(CategoryDifficulty.M, new ArrayList<String>());
     wordsGiven.put(CategoryDifficulty.H, new ArrayList<String>());
 
+    // assign a category selector
     try {
       selector = new CategorySelector();
     } catch (IOException | CsvException | URISyntaxException e) {

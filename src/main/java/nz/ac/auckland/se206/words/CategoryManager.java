@@ -29,7 +29,7 @@ public class CategoryManager {
    * This method converts the entire list of categories from CSV to JSON. This is done to help speed
    * up the custom definition writing process.
    *
-   * @throws IOException if an IO exception occurs
+   * @throws IOException if an error occurs reading the categories file
    */
   public static void saveCategoriesToJson() throws IOException {
     // load all categories from CSV into our categoryLinkedMap
@@ -62,9 +62,9 @@ public class CategoryManager {
    * This is a helper method which loads in all the categories from the CSV file and writes each
    * category into a LinkedHashMap (so that the insertion order is maintained)
    *
-   * @throws IOException if an IO exception occurs
-   * @throws URISyntaxException if a URI syntax exception occurs
-   * @throws CsvException if a CSV exception occurs
+   * @throws IOException if an error occurs reading the category file
+   * @throws URISyntaxException if an error occurs reading the category file
+   * @throws CsvException if an error occurs reading the category file
    */
   private static void loadAllCategories() throws IOException, URISyntaxException, CsvException {
     // initialize variables required to load categories
@@ -100,15 +100,33 @@ public class CategoryManager {
     }
   }
 
+  /**
+   * This method gets a particular category from its string representation
+   *
+   * @param category the category to get
+   * @return the Category object
+   */
   public static Category getCategory(String category) {
     return categoryMap.get(category);
   }
 
+  /**
+   * This method gets the definition for a particular category
+   *
+   * @param category the category to retrieve the definition for
+   * @return the definition
+   */
   public static String getDefinition(String category) {
     System.out.println(category);
     return categoryMap.get(category).getDefinition();
   }
 
+  /**
+   * This method gets the hint for a particular category
+   *
+   * @param category the category to get the hint for
+   * @return the hint
+   */
   public static String getHint(String category) {
     ArrayList<String> hints = categoryMap.get(category).getHints();
     return hints.get(new Random().nextInt(hints.size()));
