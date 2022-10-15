@@ -21,32 +21,28 @@
       </ImageView>
       <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
          <children>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="760.0">
+               <children>
+                  <Label fx:id="titleLabel" text="LeaderBoard" />
+               </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-               <children>
-                  <Label fx:id="titleLabel" text="Fastest Time Leaderboard" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
             </HBox>
             <StackPane>
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="437.0" prefWidth="359.0">
+                        <VBox alignment="CENTER">
                            <children>
                               <Label styleClass="leaderboardlabel" text="User" />
-                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0" styleClass="leaderboard" />
+                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="392.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="437.0" prefWidth="158.0">
+                        <VBox alignment="CENTER">
                            <children>
                               <Label fx:id="statsLabel" styleClass="leaderboardlabel" text="Time" />
-                              <ListView fx:id="statsListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="101.0" styleClass="leaderboard" />
+                              <ListView fx:id="statsListView" fixedCellSize="30.0" maxHeight="420.0" maxWidth="138.0" prefHeight="420.0" prefWidth="138.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
                      </children>
@@ -59,13 +55,13 @@
                </VBox.margin>
                <children>
                   <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" onMouseEntered="#onButtonHover" text="Menu" />
-                  <MenuButton fx:id="filterMenuButton" maxHeight="35.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="50.0">
+                  <MenuButton fx:id="changeLeaderBoardMenuButton" maxHeight="45.0" mnemonicParsing="false" onMouseClicked="#onFilterLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="67.0">
                     <items>
-                      <MenuItem fx:id="fastestWinMenuItem" mnemonicParsing="false" onAction="#onShowFastestWin" styleClass="menuitem" text="Fastest Win" />
-                      <MenuItem fx:id="mostWordsDrawnMenuItem" mnemonicParsing="false" onAction="#onShowMostWordsDrawn" styleClass="menuitem" text="Most Words Drawn" />
+                      <MenuItem fx:id="fastestTimeMenuItem" mnemonicParsing="false" onAction="#onShowFastestWin" styleClass="menuitem" text="Fastest Time" />
+                      <MenuItem fx:id="rapidFireMenuItem" mnemonicParsing="false" onAction="#onShowRapidFireLeaderBoard" styleClass="menuitem" text="Rapid Fire" />
                     </items>
                      <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/filterIcon.png" />
                            </image>

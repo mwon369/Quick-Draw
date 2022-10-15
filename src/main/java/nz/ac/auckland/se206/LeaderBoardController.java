@@ -16,8 +16,6 @@ public class LeaderBoardController {
   @FXML private Label statsLabel;
   @FXML private Label titleLabel;
 
-  @FXML private Button changeLeaderBoardButton;
-
   private List<String> timeUserList = new ArrayList<>();
 
   private List<String> wordUserList = new ArrayList<>();
@@ -107,11 +105,17 @@ public class LeaderBoardController {
 
   /** This method displays the rapid fire leader board */
   @FXML
-  private void onShowMostWordsDrawn() {
+  private void onShowRapidFireLeaderBoard() {
     // Set all fields to show rapid fire leader board
     userListView.getItems().setAll(wordUserList);
     statsListView.getItems().setAll(UsersManager.getUserMostWordsDrawn());
     statsLabel.setText("Words Drawn");
     titleLabel.setText("Rapid Fire Leaderboard");
+  }
+
+  /** This method plays a button click sound when the menu button is clicked */
+  @FXML
+  public void onFilterLeaderBoard() {
+    SoundManager.playButtonClick();
   }
 }
