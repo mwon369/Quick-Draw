@@ -48,16 +48,18 @@
 }
 
 #predictionsTitle {
-	-fx-background-color: #FFE5A7;
-	-fx-background-radius: 10px 10px 0px 0px;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0.0, 0.0);
 	-fx-font-family: 'Indie Flower', cursive;
 	-fx-font-style: normal;
 	-fx-font-weight: 400;
 	-fx-font-size: 22px;
-	-fx-pref-width: 210px;
 	-fx-min-height: 35px;
 	-fx-alignment: center;
+}
+
+#predictionsHeaderBackground {
+	-fx-background-color: #FFE5A7;
+	-fx-background-radius: 10px 10px 0px 0px;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0.0, 0.0);	
 }
 
 #predictionsListView{
@@ -103,6 +105,11 @@
 	-fx-border-width: 0 1 0 0;	
 	-fx-padding: 0px 5px 0px 5px;
 	-fx-pref-width: 35px;
+}
+
+#soundPane{
+	-fx-border-width: 0 0 0 0;
+	-fx-background-radius: 0 10px 0px 0px;
 }
 
 #penPane {

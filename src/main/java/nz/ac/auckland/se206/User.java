@@ -408,8 +408,7 @@ public class User {
   }
 
   /**
-   * This method updates the last three words that the user has been given with a new additional
-   * word
+   * This method updates the word history that the user has been given with a new additional word
    *
    * @param category the new word to add in
    */

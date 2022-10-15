@@ -150,15 +150,6 @@
                                                 </ImageView>
                                             </children>
                                         </Pane>
-                                        <Pane fx:id="soundPane" prefHeight="30.0">
-                                            <children>
-                                                <ImageView fx:id="soundIcon" fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
-                                                    <image>
-                                                        <Image url="@../images/mute.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </children>
-                                        </Pane>
                                     </children>
                                 </HBox>
                                 <StackPane id="canvasStackPane" fx:id="canvasStackPane" prefHeight="272.0" prefWidth="400.0">
@@ -180,14 +171,27 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="330.0" prefWidth="211.0">
                             <children>
-                                <Label id="predictionsTitle" text="Top 10 Predictions">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </Label>
+                        <HBox id="predictionsHeaderBackground">
+                           <children>
+                              <Label id="predictionsTitle" text="Top 10 Predictions">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="6.0" right="1.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Pane fx:id="soundPane1" prefHeight="30.0">
+                                 <children>
+                                    <ImageView fx:id="soundIcon" fitHeight="28.0" fitWidth="28.0" layoutX="1.0" layoutY="3.0" onMouseClicked="#onToggleSound" pickOnBounds="true" preserveRatio="true" styleClass="tools">
+                                       <image>
+                                          <Image url="@../images/mute.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
                                 <VBox id="listVBox" alignment="TOP_CENTER" prefHeight="315.0" prefWidth="211.0">
                                     <children>
                                         <ListView fx:id="predictionsListView" fixedCellSize="30.0" maxWidth="209.0" prefHeight="308.0" prefWidth="205.0">
