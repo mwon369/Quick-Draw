@@ -90,7 +90,7 @@ public class UsersManager {
   }
 
   /**
-   * /** This method returns an array of all usernames for either name order for fastest win or name
+   * This method returns an array of all usernames for either name order for fastest win or name
    * order for most words drawn
    *
    * @param isfastestWin checks to see if we are returning the fastest time user array
