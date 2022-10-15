@@ -48,17 +48,26 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Label fx:id="fastestWinLabel" text="Label" textAlignment="CENTER" wrapText="true" />
+                                                <Label fx:id="fastestWinLabel" text="Label" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding></Label>
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Label fx:id="winStreakLabel" text="Label" textAlignment="CENTER" wrapText="true" />
+                                                <Label fx:id="winStreakLabel" text="Label" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding></Label>
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Label fx:id="rapidFireScoreLabel" text="Label" textAlignment="CENTER" wrapText="true" />
+                                                <Label fx:id="rapidFireScoreLabel" text="Label" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding></Label>
                                              </children>
                                           </HBox>
                                        </children>
@@ -70,7 +79,7 @@
                                     </PieChart>
                                  </children>
                               </HBox>
-                              <Label fx:id="noGamesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefWidth="375.0" text="You haven't played any games in either classic or hidden-word mode yet!" textAlignment="CENTER" wrapText="true" />
+                              <Label fx:id="noGamesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefWidth="375.0" text="You haven't played any games in a timed game mode yet!" textAlignment="CENTER" wrapText="true" />
                            </children>
                         </StackPane>
                      </children>

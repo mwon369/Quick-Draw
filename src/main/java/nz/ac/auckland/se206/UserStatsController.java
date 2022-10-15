@@ -39,7 +39,8 @@ public class UserStatsController {
     userLabel.setText(currentUser.getUsername());
 
     // don't show pie chart and other stats if user has no games played
-    if (currentUser.getWins() + currentUser.getLosses() == 0) {
+    if (currentUser.getWins() + currentUser.getLosses() == 0
+        && currentUser.getRapidFireHighScore() == 0) {
       fastestWinLabel.setVisible(false);
       winStreakLabel.setVisible(false);
       rapidFireScoreLabel.setVisible(false);
@@ -50,19 +51,44 @@ public class UserStatsController {
       return;
     }
 
-    // create pie chart data and make pie chart visible
     noGamesLabel.setVisible(false);
-    statsPieChart.setVisible(true);
-    ObservableList<PieChart.Data> pieChartData =
-        FXCollections.observableArrayList(
-            new PieChart.Data("Wins", currentUser.getWins()),
-            new PieChart.Data("Losses", currentUser.getLosses()));
+
+    // only show pie chart if user has wins/losses (rapid fire mode doesn't
+    // count towards these so we need to check)
+    if (currentUser.getWins() + currentUser.getLosses() > 0) {
+      // create pie chart data and make pie chart visible
+      statsPieChart.setVisible(true);
+      ObservableList<PieChart.Data> pieChartData =
+          FXCollections.observableArrayList(
+              new PieChart.Data("Wins", currentUser.getWins()),
+              new PieChart.Data("Losses", currentUser.getLosses()));
+
+      // set data to pie chart and colour it
+      statsPieChart.setData(pieChartData);
+      colourPieChart(pieChartData);
+      changeLegendLabels();
+      changeLegendSymbols();
+
+      // show individual numbers for each wedge
+      statsPieChart
+          .getData()
+          .forEach(
+              data -> {
+                String number = String.format(String.valueOf((int) data.getPieValue()));
+                Tooltip toolTip = new Tooltip(number);
+                Tooltip.install(data.getNode(), toolTip);
+              });
+    }
 
     // set other stat data
-    fastestWinLabel.setText(
-        currentUser.getWins() > 0
-            ? "Your fastest win time: " + currentUser.getFastestWin() + " seconds"
-            : "Your fastest win time: N/A");
+    if (currentUser.getWins() == 0) {
+      fastestWinLabel.setText("Your fastest win time: N/A");
+    } else {
+      fastestWinLabel.setText(
+          currentUser.getFastestWin() > 1 || currentUser.getFastestWin() == 0
+              ? "Your fastest win time: " + currentUser.getFastestWin() + " seconds"
+              : "Your fastest win time: 1 second");
+    }
 
     winStreakLabel.setText("Your current win streak: " + currentUser.getWinStreak());
     rapidFireScoreLabel.setText(
@@ -73,22 +99,6 @@ public class UserStatsController {
     fastestWinLabel.setVisible(true);
     winStreakLabel.setVisible(true);
     rapidFireScoreLabel.setVisible(true);
-
-    // set data to pie chart and colour it
-    statsPieChart.setData(pieChartData);
-    colourPieChart(pieChartData);
-    changeLegendLabels();
-    changeLegendSymbols();
-
-    // show individual numbers for each wedge
-    statsPieChart
-        .getData()
-        .forEach(
-            data -> {
-              String number = String.format(String.valueOf((int) data.getPieValue()));
-              Tooltip toolTip = new Tooltip(number);
-              Tooltip.install(data.getNode(), toolTip);
-            });
   }
 
   /**
