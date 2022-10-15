@@ -383,6 +383,7 @@ public class CanvasController {
 
   /** This method plays alarm clock sounds and animations when the round ends */
   protected void playSoundAndAnimation() {
+    // play sound effect
     SoundManager.playAlarmBell();
     // set the rotation details
     RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);

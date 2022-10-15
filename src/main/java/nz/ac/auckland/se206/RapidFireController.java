@@ -204,12 +204,9 @@ public class RapidFireController extends CanvasController {
   private void setPredictionsListView() throws TranslateException {
     // retrieve predictions
     classifications = model.getPredictions(getCurrentSnapshot(), 340);
-
-    // set it to the list view component
+    // set predictions to the list view component and colour top x predictions
     List<String> predictionsList = getPredictionsListForDisplay(classifications);
     predictionsListView.getItems().setAll(predictionsList);
-
-    // colour top predictions based on accuracy setting
     colourTopPredictions(predictionsListView, accuracy);
   }
 }
