@@ -52,7 +52,12 @@ public class RapidFireController extends CanvasController {
                   // Only starts predicting once the player has started drawing
                   if (isDrawing) {
                     // show predictions
-                    setPredictionsListView();
+                    try {
+                      setPredictionsListView();
+                    } catch (TranslateException e) {
+                      System.out.print("Noooo it doesn't work!");
+                      throw new RuntimeException(e);
+                    }
 
                     // indicate the word position
                     wordPosition = findWordPosition() + 1;
@@ -196,14 +201,9 @@ public class RapidFireController extends CanvasController {
   }
 
   /** This method gets the models predictions and sets it to the ListView component */
-  private void setPredictionsListView() {
+  private void setPredictionsListView() throws TranslateException {
     // retrieve predictions
-    try {
-      classifications = model.getPredictions(getCurrentSnapshot(), 340);
-    } catch (TranslateException e) {
-      System.out.println("Noooo it doesn't work!");
-      throw new RuntimeException(e);
-    }
+    classifications = model.getPredictions(getCurrentSnapshot(), 340);
 
     // set it to the list view component
     List<String> predictionsList = getPredictionsListForDisplay(classifications);
