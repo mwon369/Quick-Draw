@@ -68,6 +68,23 @@
 	-fx-pref-width: 250px;
 }
 
+#filterMenuButton{
+	-fx-text-fill: black;
+    -fx-background-radius: 10px;
+	-fx-background-radius: 15px;
+	-fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #b58004 0%, #b58004 100%),
+        #cc9208,
+        #E29F00,
+        radial-gradient(center 50% 50%, radius 100%, #E29F00, #de9c02);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+}
+.menuitem{
+	 -fx-font-family: 'Amatic SC', cursive;
+	-fx-font-style: normal;
+	-fx-font-weight: 700;
+	-fx-font-size: 22px;
+}
 .button, .button:focused{
 	-fx-text-fill: black;
     -fx-background-radius: 10px;

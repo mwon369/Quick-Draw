@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -19,28 +21,32 @@
       </ImageView>
       <VBox id="sceneVBox" alignment="CENTER" maxHeight="680.0" maxWidth="760.0" prefHeight="676.0" prefWidth="760.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="760.0">
-               <children>
-                  <Label fx:id="titleLabel" text="LeaderBoard" />
-               </children>
+            <HBox alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
+               <children>
+                  <Label fx:id="titleLabel" text="Fastest Time Leaderboard" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
             </HBox>
             <StackPane>
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER" prefHeight="437.0" prefWidth="359.0">
                            <children>
                               <Label styleClass="leaderboardlabel" text="User" />
                               <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="49.0">
+                        <VBox alignment="CENTER" prefHeight="437.0" prefWidth="158.0">
                            <children>
-                              <Label styleClass="leaderboardlabel" text="Time" />
-                              <ListView fx:id="timeListView" fixedCellSize="30.0" maxWidth="50.0" prefHeight="433.0" prefWidth="49.0" styleClass="leaderboard" />
+                              <Label fx:id="statsLabel" styleClass="leaderboardlabel" text="Time" />
+                              <ListView fx:id="statsListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="101.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
                      </children>
@@ -53,6 +59,19 @@
                </VBox.margin>
                <children>
                   <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" onMouseEntered="#onButtonHover" text="Menu" />
+                  <MenuButton fx:id="filterMenuButton" maxHeight="35.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="50.0">
+                    <items>
+                      <MenuItem fx:id="fastestWinMenuItem" mnemonicParsing="false" onAction="#onShowFastestWin" styleClass="menuitem" text="Fastest Win" />
+                      <MenuItem fx:id="mostWordsDrawnMenuItem" mnemonicParsing="false" onAction="#onShowMostWordsDrawn" styleClass="menuitem" text="Most Words Drawn" />
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuButton>
                </children>
             </HBox>
          </children>
