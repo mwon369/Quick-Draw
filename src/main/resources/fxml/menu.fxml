@@ -209,5 +209,10 @@
             </GridPane>
          </children>
       </VBox>
+      <ImageView fitHeight="350.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" translateX="-190.0" translateY="40.0">
+         <image>
+            <Image url="@../videos/menuMascot.gif" />
+         </image>
+      </ImageView>
    </children>
 </StackPane>

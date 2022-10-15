@@ -43,7 +43,7 @@ public class UserCreationController extends ZenCanvasController {
     // check if username or password is empty
     if (usernameField.getText().isBlank()) {
       errorMessageLabel.setTextFill(Color.RED);
-      errorMessageLabel.setText("You have not entered a username and/or a password");
+      errorMessageLabel.setText("You have not entered a username!");
       errorMessageLabel.setVisible(true);
       return;
     }

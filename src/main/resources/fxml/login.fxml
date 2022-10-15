@@ -116,9 +116,9 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="210.0" translateY="-125.0">
+      <ImageView fitHeight="200.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" translateX="260.0" translateY="-100.0">
          <image>
-            <Image url="@../videos/penDrawing.gif" />
+            <Image url="@../videos/mascotWobble.gif" />
          </image>
       </ImageView>
    </children>

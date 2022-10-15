@@ -26,7 +26,7 @@ public class UserInfoController extends UserCreationController {
     // check if username or password is empty
     if (usernameField.getText().isBlank()) {
       errorMessageLabel.setTextFill(Color.RED);
-      errorMessageLabel.setText("You have not entered a username");
+      errorMessageLabel.setText("You have not entered a username!");
       errorMessageLabel.setVisible(true);
       return;
     }
