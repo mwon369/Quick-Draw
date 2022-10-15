@@ -27,7 +27,7 @@ public class UserStatsController {
   @FXML private Label winStreakLabel;
   @FXML private Label rapidFireScoreLabel;
   @FXML private Label noWinsOrLossesLabel;
-  @FXML private VBox otherStatVBox;
+  @FXML private VBox otherStatVbox;
 
   private User currentUser;
 
@@ -45,7 +45,7 @@ public class UserStatsController {
       fastestWinLabel.setVisible(false);
       winStreakLabel.setVisible(false);
       rapidFireScoreLabel.setVisible(false);
-      otherStatVBox.setVisible(false);
+      otherStatVbox.setVisible(false);
       statsPieChart.setVisible(false);
       noWinsOrLossesLabel.setVisible(false);
       noGamesLabel.setVisible(true);
@@ -108,7 +108,7 @@ public class UserStatsController {
         "Your Rapid Fire high score: " + currentUser.getRapidFireHighScore());
 
     // make labels visible
-    otherStatVBox.setVisible(true);
+    otherStatVbox.setVisible(true);
     fastestWinLabel.setVisible(true);
     winStreakLabel.setVisible(true);
     rapidFireScoreLabel.setVisible(true);

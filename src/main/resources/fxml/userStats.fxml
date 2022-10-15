@@ -44,7 +44,7 @@
                            <children>
                               <HBox fx:id="pieChartHBox" alignment="CENTER">
                                  <children>
-                                    <VBox fx:id="otherStatVBox" alignment="CENTER" prefHeight="380.0" prefWidth="250.0">
+                                    <VBox fx:id="otherStatVbox" alignment="CENTER" prefHeight="380.0" prefWidth="250.0">
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>

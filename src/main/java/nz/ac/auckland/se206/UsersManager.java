@@ -82,7 +82,7 @@ public class UsersManager {
    *
    * @return the number of users for either condition
    */
-  public static int getuserLength(boolean isFastestWin) {
+  public static int getUserLength(boolean isFastestWin) {
     return isFastestWin ? timeUserList.size() : wordUserList.size();
   }
 
@@ -102,14 +102,14 @@ public class UsersManager {
    *
    * @return an array containing all fastest times from users
    */
-  public static Integer[] getUserTIme() {
+  public static Integer[] getUserTime() {
     return userTime;
   }
 
   /**
    * This method returns the sorted array of best rapid fire score
    *
-   * @return
+   * @return the sorted rapid fire array
    */
   public static Integer[] getUserMostWordsDrawn() {
     Arrays.sort(userMostWordsDrawn, Collections.reverseOrder());
@@ -253,7 +253,9 @@ public class UsersManager {
       copyUserStats = userStats.clone();
       copyUserNameArray = userNameArray.clone();
     }
-    int i = left, j = middle, k = left;
+    int i = left;
+    int j = middle;
+    int k = left;
     // while loop checking the top half of the array
     while (i <= middle - 1 && j <= right) {
       // checking if elements need to be swapped

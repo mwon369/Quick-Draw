@@ -20,15 +20,12 @@ public class LeaderBoardController {
 
   private List<String> wordUserList = new ArrayList<>();
 
-  private boolean isShowingFastestTime;
-
   /** This method displays the current leader board to the user */
   public void readyLeaderBoard() {
     // Sort the users in order
-    isShowingFastestTime = true;
     UsersManager.resetArray();
-    UsersManager.mergeSort(0, UsersManager.getuserLength(true) - 1, true);
-    UsersManager.mergeSort(0, UsersManager.getuserLength(false) - 1, false);
+    UsersManager.mergeSort(0, UsersManager.getUserLength(true) - 1, true);
+    UsersManager.mergeSort(0, UsersManager.getUserLength(false) - 1, false);
     timeUserList = this.fastestTimeOrderForDisplay();
     wordUserList = this.mostWordsDrawnOrderForDisplay();
     // Display the results
@@ -77,7 +74,7 @@ public class LeaderBoardController {
    * @param event an ActionEvent representing the type of action that occurred
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
     // Get scene to switch to main menu
     Button button = (Button) event.getSource();
@@ -98,7 +95,7 @@ public class LeaderBoardController {
   private void onShowFastestWin() {
     // Set all fields to show fastest win leader board
     userListView.getItems().setAll(timeUserList);
-    statsListView.getItems().setAll(UsersManager.getUserTIme());
+    statsListView.getItems().setAll(UsersManager.getUserTime());
     statsLabel.setText("Time");
     titleLabel.setText("Fastest Time Leaderboard");
   }
