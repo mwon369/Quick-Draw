@@ -13,6 +13,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -22,6 +23,11 @@ public class UserStatsController {
   @FXML private Label userLabel;
   @FXML private PieChart statsPieChart;
   @FXML private Label noGamesLabel;
+  @FXML private Label fastestWinLabel;
+  @FXML private Label winStreakLabel;
+  @FXML private Label rapidFireScoreLabel;
+  @FXML private Label noWinsOrLossesLabel;
+  @FXML private VBox otherStatVBox;
 
   private User currentUser;
 
@@ -33,35 +39,78 @@ public class UserStatsController {
     currentUser = UsersManager.getSelectedUser();
     userLabel.setText(currentUser.getUsername());
 
-    // don't show pie chart if user has no games played
-    if (currentUser.getWins() + currentUser.getLosses() == 0) {
+    // don't show pie chart and other stats if user has no games played
+    if (currentUser.getWins() + currentUser.getLosses() == 0
+        && currentUser.getRapidFireHighScore() == 0) {
+      fastestWinLabel.setVisible(false);
+      winStreakLabel.setVisible(false);
+      rapidFireScoreLabel.setVisible(false);
+      otherStatVBox.setVisible(false);
       statsPieChart.setVisible(false);
+      noWinsOrLossesLabel.setVisible(false);
       noGamesLabel.setVisible(true);
+      noGamesLabel.setWrapText(true);
       return;
     }
 
-    // set pie chart data and make it visible
     noGamesLabel.setVisible(false);
-    statsPieChart.setVisible(true);
-    ObservableList<PieChart.Data> pieChartData =
-        FXCollections.observableArrayList(
-            new PieChart.Data("Wins", currentUser.getWins()),
-            new PieChart.Data("Losses", currentUser.getLosses()));
 
-    statsPieChart.setData(pieChartData);
-    colourPieChart(pieChartData);
-    changeLegendLabels();
-    changeLegendSymbols();
+    // only show pie chart if user has wins/losses (rapid fire mode doesn't
+    // count towards win/losses we need to check, otherwise if the user has only
+    // played rapid fire we'll be showing an empty pie chart)
+    if (currentUser.getWins() + currentUser.getLosses() > 0) {
 
-    // show individual numbers for each wedge
-    statsPieChart
-        .getData()
-        .forEach(
-            data -> {
-              String number = String.format(String.valueOf((int) data.getPieValue()));
-              Tooltip toolTip = new Tooltip(number);
-              Tooltip.install(data.getNode(), toolTip);
-            });
+      noWinsOrLossesLabel.setVisible(false);
+
+      // create pie chart data and make pie chart visible
+      statsPieChart.setVisible(true);
+      ObservableList<PieChart.Data> pieChartData =
+          FXCollections.observableArrayList(
+              new PieChart.Data("Wins", currentUser.getWins()),
+              new PieChart.Data("Losses", currentUser.getLosses()));
+
+      // set data to pie chart and colour it
+      statsPieChart.setData(pieChartData);
+      colourPieChart(pieChartData);
+      changeLegendLabels();
+      changeLegendSymbols();
+
+      // show individual numbers for each wedge
+      statsPieChart
+          .getData()
+          .forEach(
+              data -> {
+                String number = String.format(String.valueOf((int) data.getPieValue()));
+                Tooltip toolTip = new Tooltip(number);
+                Tooltip.install(data.getNode(), toolTip);
+              });
+    } else {
+      // explain to the user why there is no pie chart/wins & losses being shown
+      noWinsOrLossesLabel.setText(
+          "Play a game in either classic or hidden word mode to get some wins!");
+      noWinsOrLossesLabel.setWrapText(true);
+      noWinsOrLossesLabel.setVisible(true);
+    }
+
+    // set other stat data
+    if (currentUser.getWins() == 0) {
+      fastestWinLabel.setText("Your fastest win time: N/A");
+    } else {
+      fastestWinLabel.setText(
+          currentUser.getFastestWin() > 1 || currentUser.getFastestWin() == 0
+              ? "Your fastest win time: " + currentUser.getFastestWin() + " seconds"
+              : "Your fastest win time: 1 second");
+    }
+
+    winStreakLabel.setText("Your current win streak: " + currentUser.getWinStreak());
+    rapidFireScoreLabel.setText(
+        "Your Rapid Fire high score: " + currentUser.getRapidFireHighScore());
+
+    // make labels visible
+    otherStatVBox.setVisible(true);
+    fastestWinLabel.setVisible(true);
+    winStreakLabel.setVisible(true);
+    rapidFireScoreLabel.setVisible(true);
   }
 
   /**
@@ -72,6 +121,7 @@ public class UserStatsController {
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
+    statsPieChart.setVisible(false);
     // retrieve the source of button and switch to the main menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();

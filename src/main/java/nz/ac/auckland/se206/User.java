@@ -23,6 +23,7 @@ public class User {
   private int losses;
   private int fastestWin;
   private int winStreak;
+  private int rapidFireHighScore;
   private String profilePic;
 
   private ArrayList<BadgeData> badgeDataList;
@@ -52,6 +53,7 @@ public class User {
     this.allPreviousWords = new ArrayList<String>();
     this.badgeList = new ArrayList<>();
     this.badgeDataList = new ArrayList<>();
+    this.rapidFireHighScore = 0;
 
     for (int i = 1; i < 11; i++) {
       badgeList.add(BadgeFactory.createBadge(i, false));
@@ -447,5 +449,13 @@ public class User {
         badgeDataList.get(i).setCompleted(badgeList.get(i).isCompleted());
       }
     }
+  }
+
+  public int getRapidFireHighScore() {
+    return this.rapidFireHighScore;
+  }
+
+  public void setRapidFireHighScore(int newHighScore) {
+    this.rapidFireHighScore = newHighScore;
   }
 }

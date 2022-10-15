@@ -107,11 +107,24 @@
 	-fx-effect: dropshadow(gaussian, rgba(143,103,3,0.25) , 1,1,0,1 );
 }
 
+#otherStatVBox {
+	-fx-background-color: #F8DF95;
+	-fx-background-radius: 30px;
+	-fx-effect: dropshadow(gaussian, rgba(143,103,3,0.25) , 1,1,0,1 );
+}
+
 #noGamesLabel {
     -fx-font-family: 'Indie Flower';
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-font-size: 28px;
+}
+
+#noWinsOrLossesLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 22px;
 }
 
 .tooltip {
@@ -122,4 +135,25 @@
 
 .chart-legend-item-symbol{
    -fx-background-radius: 20px;
+}
+
+#fastestWinLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 19px;
+}
+
+#winStreakLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 19px;
+}
+
+#rapidFireScoreLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 19px;
 }
