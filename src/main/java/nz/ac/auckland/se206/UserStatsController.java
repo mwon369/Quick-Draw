@@ -26,6 +26,7 @@ public class UserStatsController {
   @FXML private Label fastestWinLabel;
   @FXML private Label winStreakLabel;
   @FXML private Label rapidFireScoreLabel;
+  @FXML private Label noWinsOrLossesLabel;
   @FXML private VBox otherStatVBox;
 
   private User currentUser;
@@ -46,6 +47,7 @@ public class UserStatsController {
       rapidFireScoreLabel.setVisible(false);
       otherStatVBox.setVisible(false);
       statsPieChart.setVisible(false);
+      noWinsOrLossesLabel.setVisible(false);
       noGamesLabel.setVisible(true);
       noGamesLabel.setWrapText(true);
       return;
@@ -57,6 +59,9 @@ public class UserStatsController {
     // count towards win/losses we need to check, otherwise if the user has only
     // played rapid fire we'll be showing an empty pie chart)
     if (currentUser.getWins() + currentUser.getLosses() > 0) {
+
+      noWinsOrLossesLabel.setVisible(false);
+
       // create pie chart data and make pie chart visible
       statsPieChart.setVisible(true);
       ObservableList<PieChart.Data> pieChartData =
@@ -79,6 +84,12 @@ public class UserStatsController {
                 Tooltip toolTip = new Tooltip(number);
                 Tooltip.install(data.getNode(), toolTip);
               });
+    } else {
+      // explain to the user why there is no pie chart/wins & losses being shown
+      noWinsOrLossesLabel.setText(
+          "Play a game in either classic or hidden word mode to get some wins!");
+      noWinsOrLossesLabel.setWrapText(true);
+      noWinsOrLossesLabel.setVisible(true);
     }
 
     // set other stat data

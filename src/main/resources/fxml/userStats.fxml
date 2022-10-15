@@ -72,11 +72,16 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <PieChart fx:id="statsPieChart" labelLineLength="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="346.0">
-                                       <padding>
-                                          <Insets bottom="20.0" />
-                                       </padding>
-                                    </PieChart>
+                                    <StackPane>
+                                       <children>
+                                          <Label fx:id="noWinsOrLossesLabel" maxWidth="-Infinity" prefWidth="300.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                                          <PieChart fx:id="statsPieChart" labelLineLength="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="346.0">
+                                             <padding>
+                                                <Insets bottom="20.0" />
+                                             </padding>
+                                          </PieChart>
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </HBox>
                               <Label fx:id="noGamesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefWidth="375.0" text="You haven't played any games in a timed game mode yet!" textAlignment="CENTER" wrapText="true" />

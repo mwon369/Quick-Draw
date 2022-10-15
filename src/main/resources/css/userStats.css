@@ -120,6 +120,13 @@
     -fx-font-size: 28px;
 }
 
+#noWinsOrLossesLabel {
+    -fx-font-family: 'Indie Flower';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 22px;
+}
+
 .tooltip {
     -fx-show-delay: 100ms;
     -fx-font-family: "Kalam";
