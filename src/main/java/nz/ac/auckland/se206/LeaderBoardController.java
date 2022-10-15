@@ -24,8 +24,8 @@ public class LeaderBoardController {
   public void readyLeaderBoard() {
     // Sort the users in order
     UsersManager.resetArray();
-    UsersManager.mergeSort(0, UsersManager.getuserLength(true) - 1, true);
-    UsersManager.mergeSort(0, UsersManager.getuserLength(false) - 1, false);
+    UsersManager.mergeSort(0, UsersManager.getUserLength(true) - 1, true);
+    UsersManager.mergeSort(0, UsersManager.getUserLength(false) - 1, false);
     timeUserList = this.fastestTimeOrderForDisplay();
     wordUserList = this.mostWordsDrawnOrderForDisplay();
     // Display the results

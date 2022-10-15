@@ -82,7 +82,7 @@ public class UsersManager {
    *
    * @return the number of users for either condition
    */
-  public static int getuserLength(boolean isFastestWin) {
+  public static int getUserLength(boolean isFastestWin) {
     return isFastestWin ? timeUserList.size() : wordUserList.size();
   }
 
