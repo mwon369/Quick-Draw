@@ -77,9 +77,10 @@ public class UsersManager {
   }
 
   /**
-   * This method returns the number of users created
+   * This method returns either the number of users who have won a game of either classic or hidden
+   * word mode, or the number of users that has scored at least 1 in rapid fire mode
    *
-   * @return the number of users
+   * @return the number of users for either condition
    */
   public static int getuserLength(boolean isFastestWin) {
     return isFastestWin ? timeUserList.size() : wordUserList.size();
@@ -105,6 +106,11 @@ public class UsersManager {
     return userTime;
   }
 
+  /**
+   * This method returns the sorted array of best rapid fire score
+   *
+   * @return
+   */
   public static Integer[] getUserMostWordsDrawn() {
     Arrays.sort(userMostWordsDrawn, Collections.reverseOrder());
     return userMostWordsDrawn;
@@ -203,6 +209,14 @@ public class UsersManager {
     usersMap.remove(username);
   }
 
+  /**
+   * This method uses merge to sort the users based on either fastest win time or best rapid fire
+   * mode player
+   *
+   * @param start the starting index
+   * @param end the last index
+   * @param isSortTime whether to sort for fastest win or rapid fire
+   */
   public static void mergeSort(int start, int end, boolean isSortTime) {
     int median;
     // Checks to see if there is only one user
@@ -227,7 +241,7 @@ public class UsersManager {
     Integer[] userStats;
     String[] copyUserNameArray;
     Integer[] copyUserStats;
-    // Intialising all lists for sorting
+    // Conditional statement checking which leader board to sort for
     if (isSortTime) {
       userStats = userTime.clone();
       userNameArray = timeUserName.clone();
@@ -284,13 +298,17 @@ public class UsersManager {
     wordUserList.clear();
     // for loop adding users that have played a game
     for (User user : usersMap.values()) {
+      // Adding users that have won a game of either classic or hidden word mode
       if (user.getFastestWin() != 60) {
         timeUserList.add(user);
       }
+      // Adding user if they have gotten a score > 1 in rapid fire mode
       if (user.getRapidFireHighScore() != 0) {
         wordUserList.add(user);
       }
     }
+    // Intialising user info to sort based on either fastest win time or most words
+    // drawn in rapid fire
     timeUserName = new String[timeUserList.size()];
     userTime = new Integer[timeUserList.size()];
     wordUserName = new String[wordUserList.size()];

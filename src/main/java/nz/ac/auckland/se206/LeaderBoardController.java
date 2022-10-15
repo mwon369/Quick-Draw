@@ -95,16 +95,20 @@ public class LeaderBoardController {
     SoundManager.playButtonHover();
   }
 
+  /** This method displays the fastest win leader board */
   @FXML
   private void onShowFastestWin() {
+    // Set all fields to show fastest win leader board
     userListView.getItems().setAll(timeUserList);
     statsListView.getItems().setAll(UsersManager.getUserTIme());
     statsLabel.setText("Time");
     titleLabel.setText("Fastest Time Leaderboard");
   }
 
+  /** This method displays the rapid fire leader board */
   @FXML
   private void onShowMostWordsDrawn() {
+    // Set all fields to show rapid fire leader board
     userListView.getItems().setAll(wordUserList);
     statsListView.getItems().setAll(UsersManager.getUserMostWordsDrawn());
     statsLabel.setText("Words Drawn");
