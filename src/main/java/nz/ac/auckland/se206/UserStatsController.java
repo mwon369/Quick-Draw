@@ -54,7 +54,8 @@ public class UserStatsController {
     noGamesLabel.setVisible(false);
 
     // only show pie chart if user has wins/losses (rapid fire mode doesn't
-    // count towards these so we need to check)
+    // count towards win/losses we need to check, otherwise if the user has only
+    // played rapid fire we'll be showing an empty pie chart)
     if (currentUser.getWins() + currentUser.getLosses() > 0) {
       // create pie chart data and make pie chart visible
       statsPieChart.setVisible(true);
@@ -109,6 +110,7 @@ public class UserStatsController {
   @FXML
   private void onGoBackToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
+    statsPieChart.setVisible(false);
     // retrieve the source of button and switch to the main menu page
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
