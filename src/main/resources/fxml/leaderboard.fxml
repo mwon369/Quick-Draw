@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -34,13 +36,13 @@
                         <VBox alignment="CENTER">
                            <children>
                               <Label styleClass="leaderboardlabel" text="User" />
-                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0" styleClass="leaderboard" />
+                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="392.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="49.0">
+                        <VBox alignment="CENTER">
                            <children>
-                              <Label styleClass="leaderboardlabel" text="Time" />
-                              <ListView fx:id="timeListView" fixedCellSize="30.0" maxWidth="50.0" prefHeight="433.0" prefWidth="49.0" styleClass="leaderboard" />
+                              <Label fx:id="statsLabel" styleClass="leaderboardlabel" text="Time" />
+                              <ListView fx:id="statsListView" fixedCellSize="30.0" maxHeight="420.0" maxWidth="138.0" prefHeight="420.0" prefWidth="138.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
                      </children>
@@ -53,6 +55,19 @@
                </VBox.margin>
                <children>
                   <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" onMouseEntered="#onButtonHover" text="Menu" />
+                  <MenuButton fx:id="changeLeaderBoardMenuButton" maxHeight="45.0" mnemonicParsing="false" onMouseClicked="#onFilterLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="67.0">
+                    <items>
+                      <MenuItem fx:id="fastestTimeMenuItem" mnemonicParsing="false" onAction="#onShowFastestWin" styleClass="menuitem" text="Fastest Time" />
+                      <MenuItem fx:id="rapidFireMenuItem" mnemonicParsing="false" onAction="#onShowRapidFireLeaderBoard" styleClass="menuitem" text="Rapid Fire" />
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuButton>
                </children>
             </HBox>
          </children>

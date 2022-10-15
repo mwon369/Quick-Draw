@@ -86,6 +86,7 @@ public class UserStatsController {
               });
     } else {
       // explain to the user why there is no pie chart/wins & losses being shown
+      statsPieChart.setVisible(false);
       noWinsOrLossesLabel.setText(
           "Play a game in either classic or hidden word mode to get some wins!");
       noWinsOrLossesLabel.setWrapText(true);

@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +22,12 @@ public class UsersManager {
   // hashmap will map each username to a User object
   private static HashMap<String, User> usersMap;
   private static User userSelected;
-  private static List<User> userList;
-  private static String[] userArray;
+  private static List<User> timeUserList;
+  private static List<User> wordUserList;
+  private static String[] timeUserName;
+  private static String[] wordUserName;
   private static Integer[] userTime;
+  private static Integer[] userMostWordsDrawn;
 
   /**
    * Returns a specific user reference based on the passed in username
@@ -72,21 +77,24 @@ public class UsersManager {
   }
 
   /**
-   * This method returns the number of users created
+   * This method returns either the number of users who have won a game of either classic or hidden
+   * word mode, or the number of users that has scored at least 1 in rapid fire mode
    *
-   * @return the number of users
+   * @return the number of users for either condition
    */
-  public static int getuserLength() {
-    return userList.size();
+  public static int getuserLength(boolean isFastestWin) {
+    return isFastestWin ? timeUserList.size() : wordUserList.size();
   }
 
   /**
-   * This method returns an array of all usernames
+   * This method returns an array of all usernames for either name order for fastest win or name
+   * order for most words drawn
    *
    * @return an array containing all the currently registered usernames
    */
-  public static String[] getUserArray() {
-    return userArray;
+  public static String[] getUserArray(boolean isfastestWin) {
+
+    return isfastestWin ? timeUserName : wordUserName;
   }
 
   /**
@@ -96,6 +104,16 @@ public class UsersManager {
    */
   public static Integer[] getUserTIme() {
     return userTime;
+  }
+
+  /**
+   * This method returns the sorted array of best rapid fire score
+   *
+   * @return
+   */
+  public static Integer[] getUserMostWordsDrawn() {
+    Arrays.sort(userMostWordsDrawn, Collections.reverseOrder());
+    return userMostWordsDrawn;
   }
 
   /**
@@ -156,7 +174,8 @@ public class UsersManager {
 
     // retrieve the json map and convert to HashMap<String, User>
     usersMap = gson.fromJson(reader, new TypeToken<HashMap<String, User>>() {}.getType());
-    userList = new ArrayList<>();
+    timeUserList = new ArrayList<>();
+    wordUserList = new ArrayList<>();
     // if data file is empty, usersMap should be initialised
     if (usersMap == null) {
       usersMap = new HashMap<String, User>();
@@ -186,25 +205,27 @@ public class UsersManager {
   public static void deleteUser(String username) {
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
-    userList.remove(usersMap.get(username));
+    timeUserList.remove(usersMap.get(username));
     usersMap.remove(username);
   }
 
   /**
-   * This method sorts the users in terms of fastest time first
+   * This method uses merge to sort the users based on either fastest win time or best rapid fire
+   * mode player
    *
-   * @param start the first index
+   * @param start the starting index
    * @param end the last index
+   * @param isSortTime whether to sort for fastest win or rapid fire
    */
-  public static void mergeSort(int start, int end) {
+  public static void mergeSort(int start, int end, boolean isSortTime) {
     int median;
     // Checks to see if there is only one user
     // recursively call merge sort to sort the users
     if (start < end) {
       median = (end + start) / 2;
-      mergeSort(start, median);
-      mergeSort(median + 1, end);
-      merge(start, median + 1, end);
+      mergeSort(start, median, isSortTime);
+      mergeSort(median + 1, end, isSortTime);
+      merge(start, median + 1, end, isSortTime);
     }
   }
 
@@ -213,23 +234,36 @@ public class UsersManager {
    *
    * @param left the leftmost index
    * @param middle the middle index
-   * @param right the rigthmost index
+   * @param right the rightmost index
    */
-  private static void merge(int left, int middle, int right) {
-    // Intialising all lists for sorting
-    String[] copyUserArray = userArray.clone();
-    Integer[] copyUserTime = userTime.clone();
+  private static void merge(int left, int middle, int right, boolean isSortTime) {
+    String[] userNameArray;
+    Integer[] userStats;
+    String[] copyUserNameArray;
+    Integer[] copyUserStats;
+    // Conditional statement checking which leader board to sort for
+    if (isSortTime) {
+      userStats = userTime.clone();
+      userNameArray = timeUserName.clone();
+      copyUserStats = userStats.clone();
+      copyUserNameArray = userNameArray.clone();
+    } else {
+      userStats = userMostWordsDrawn.clone();
+      userNameArray = wordUserName.clone();
+      copyUserStats = userStats.clone();
+      copyUserNameArray = userNameArray.clone();
+    }
     int i = left, j = middle, k = left;
     // while loop checking the top half of the array
     while (i <= middle - 1 && j <= right) {
       // checking if elements need to be swapped
-      if (userTime[i] <= userTime[j]) {
-        copyUserTime[k] = userTime[i];
-        copyUserArray[k] = userArray[i];
+      if (userStats[i] <= userStats[j]) {
+        copyUserStats[k] = userStats[i];
+        copyUserNameArray[k] = userNameArray[i];
         i++;
       } else {
-        copyUserTime[k] = userTime[j];
-        copyUserArray[k] = userArray[j];
+        copyUserStats[k] = userStats[j];
+        copyUserNameArray[k] = userNameArray[j];
         j++;
       }
       k++;
@@ -237,37 +271,56 @@ public class UsersManager {
     // The next while loops are used to sort the remainder of the array that has not
     // been sorted
     while (i <= middle - 1) {
-      copyUserTime[k] = userTime[i];
-      copyUserArray[k] = userArray[i];
+      copyUserStats[k] = userStats[i];
+      copyUserNameArray[k] = userNameArray[i];
       i++;
       k++;
     }
     while (j <= right) {
-      copyUserTime[k] = userTime[j];
-      copyUserArray[k] = userArray[j];
+      copyUserStats[k] = userStats[j];
+      copyUserNameArray[k] = userNameArray[j];
       j++;
       k++;
     }
     // Returning the sorted arrays
-    userTime = copyUserTime;
-    userArray = copyUserArray;
+    if (isSortTime) {
+      userTime = copyUserStats;
+      timeUserName = copyUserNameArray;
+    } else {
+      userMostWordsDrawn = copyUserStats;
+      wordUserName = copyUserNameArray;
+    }
   }
 
   /** This method sets up the arrays needed to be sorted for determining the leader board */
   public static void resetArray() {
-    userList.clear();
+    timeUserList.clear();
+    wordUserList.clear();
     // for loop adding users that have played a game
     for (User user : usersMap.values()) {
+      // Adding users that have won a game of either classic or hidden word mode
       if (user.getFastestWin() != 60) {
-        userList.add(user);
+        timeUserList.add(user);
+      }
+      // Adding user if they have gotten a score > 1 in rapid fire mode
+      if (user.getRapidFireHighScore() != 0) {
+        wordUserList.add(user);
       }
     }
-    userArray = new String[userList.size()];
-    userTime = new Integer[userList.size()];
+    // Intialising user info to sort based on either fastest win time or most words
+    // drawn in rapid fire
+    timeUserName = new String[timeUserList.size()];
+    userTime = new Integer[timeUserList.size()];
+    wordUserName = new String[wordUserList.size()];
+    userMostWordsDrawn = new Integer[wordUserList.size()];
     // Copying user info into the arrays
-    for (int a = 0; a < userList.size(); a++) {
-      userTime[a] = userList.get(a).getFastestWin();
-      userArray[a] = userList.get(a).getUsername();
+    for (int i = 0; i < timeUserList.size(); i++) {
+      userTime[i] = timeUserList.get(i).getFastestWin();
+      timeUserName[i] = timeUserList.get(i).getUsername();
+    }
+    for (int j = 0; j < wordUserList.size(); j++) {
+      userMostWordsDrawn[j] = wordUserList.get(j).getRapidFireHighScore();
+      wordUserName[j] = wordUserList.get(j).getUsername();
     }
   }
 }
