@@ -107,7 +107,7 @@
 	-fx-effect: dropshadow(gaussian, rgba(143,103,3,0.25) , 1,1,0,1 );
 }
 
-#otherStatVBox {
+#otherStatVbox {
 	-fx-background-color: #F8DF95;
 	-fx-background-radius: 30px;
 	-fx-effect: dropshadow(gaussian, rgba(143,103,3,0.25) , 1,1,0,1 );
