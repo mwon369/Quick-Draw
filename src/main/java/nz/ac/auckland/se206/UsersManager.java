@@ -109,7 +109,7 @@ public class UsersManager {
   /**
    * This method returns the sorted array of best rapid fire score
    *
-   * @return
+   * @return the sorted rapid fire array
    */
   public static Integer[] getUserMostWordsDrawn() {
     Arrays.sort(userMostWordsDrawn, Collections.reverseOrder());

@@ -20,12 +20,9 @@ public class LeaderBoardController {
 
   private List<String> wordUserList = new ArrayList<>();
 
-  private boolean isShowingFastestTime;
-
   /** This method displays the current leader board to the user */
   public void readyLeaderBoard() {
     // Sort the users in order
-    isShowingFastestTime = true;
     UsersManager.resetArray();
     UsersManager.mergeSort(0, UsersManager.getuserLength(true) - 1, true);
     UsersManager.mergeSort(0, UsersManager.getuserLength(false) - 1, false);
