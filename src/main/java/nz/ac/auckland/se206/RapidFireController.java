@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.util.Duration;
 
 public class RapidFireController extends CanvasController {
 
@@ -51,39 +49,31 @@ public class RapidFireController extends CanvasController {
             int temp = time;
             Platform.runLater(
                 () -> {
-                  try {
-                    // Only starts predicting once the player has started drawing
-                    if (isDrawing) {
-                      // retrieve predictions list and update the JavaFx ListView component
-                      classifications = model.getPredictions(getCurrentSnapshot(), 340);
-                      List<String> predictionsList = getPredictionsListForDisplay(classifications);
-                      wordPosition = findWordPosition() + 1;
-                      if (wordPosition != 0) {
-                        updateIndicator();
-                      }
-                      predictionsListView.getItems().setAll(predictionsList);
+                  // Only starts predicting once the player has started drawing
+                  if (isDrawing) {
+                    // show predictions
+                    setPredictionsListView();
 
-                      // colour top predictions based on accuracy setting
-                      colourTopPredictions(predictionsListView, accuracy);
-
-                      // check to see if the player has drawn the word correctly
-                      if (isWin(classifications, accuracy, confidence)) {
-                        SoundManager.playWinSound();
-                        // add category to words played for the current round
-                        wordsPlayedDuringRound.add(targetCategory);
-
-                        // update timer label here as well otherwise the timer label skips a second
-                        timerLabel.setText(String.valueOf(temp));
-
-                        // generate new word and reset the canvas
-                        giveNewWord();
-                        updateGui();
-                        return;
-                      }
+                    // indicate the word position
+                    wordPosition = findWordPosition() + 1;
+                    if (wordPosition != 0) {
+                      updateIndicator();
                     }
-                  } catch (TranslateException e) {
-                    System.out.println("Unable to retrieve predictions");
-                    e.printStackTrace();
+
+                    // check to see if the player has drawn the word correctly
+                    if (isWin(classifications, accuracy, confidence)) {
+                      // update timer label here as well otherwise the timer label skips a second
+                      timerLabel.setText(String.valueOf(temp));
+
+                      // add category to words played for the current round
+                      wordsPlayedDuringRound.add(targetCategory);
+                      SoundManager.playWinSound();
+
+                      // generate new word and reset the canvas
+                      giveNewWord();
+                      updateGui();
+                      return;
+                    }
                   }
                   // update timer label display to user
                   timerLabel.setText(String.valueOf(temp));
@@ -91,20 +81,10 @@ public class RapidFireController extends CanvasController {
 
             // if time has run out, cancel the timer
             if (time == 0) {
-              SoundManager.playAlarmBell();
-              // set the rotation details
-              RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);
-              rotation.setCycleCount(12);
-              rotation.setFromAngle(-15);
-              rotation.setToAngle(15);
-              rotation.setAutoReverse(true);
-              rotation.setOnFinished((e) -> alarmIcon.setRotate(0));
-              // make the alarm rotate
-              rotation.play();
               timer.cancel();
+              RapidFireController.super.playSoundAndAnimation();
               Platform.runLater(() -> endGame());
               return;
-
               // otherwise continue game as usual
             } else {
               // play different sound effects depending on how much time the user has left
@@ -213,5 +193,23 @@ public class RapidFireController extends CanvasController {
     if (!isGameOver) {
       System.out.println("Losses don't increase when skipping in rapid fire mode");
     }
+  }
+
+  /** This method gets the models predictions and sets it to the ListView component */
+  private void setPredictionsListView() {
+    // retrieve predictions
+    try {
+      classifications = model.getPredictions(getCurrentSnapshot(), 340);
+    } catch (TranslateException e) {
+      System.out.println("Noooo it doesn't work!");
+      throw new RuntimeException(e);
+    }
+
+    // set it to the list view component
+    List<String> predictionsList = getPredictionsListForDisplay(classifications);
+    predictionsListView.getItems().setAll(predictionsList);
+
+    // colour top predictions based on accuracy setting
+    colourTopPredictions(predictionsListView, accuracy);
   }
 }
