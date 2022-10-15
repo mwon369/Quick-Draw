@@ -120,6 +120,7 @@ public class CanvasController {
   protected double confidence;
 
   @FXML protected ImageView alarmIcon;
+  @FXML protected Label confidenceIndicator;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -159,6 +160,12 @@ public class CanvasController {
     timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
     confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
     timerLabel.setText(String.valueOf(timeLimit));
+    StringBuilder sb = new StringBuilder();
+    sb.append("Percentage target: ")
+        .append(
+            String.format(
+                "%.0f%%", 100 * DifficultyManager.getConfidence(user.getConfidenceDifficulty())));
+    confidenceIndicator.setText(sb.toString());
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -697,8 +704,8 @@ public class CanvasController {
    */
   protected void updateIndicator() {
     /*
-     * This set of conditional statements checks if the sord's position meets the
-     * indicator's requirements to be highlighted
+     * This set of conditional statements checks if the sord's position meets the indicator's
+     * requirements to be highlighted
      */
     if (wordPosition <= 200) {
       topTwoHundredCircle.setFill(Color.GREEN);

@@ -140,6 +140,19 @@
 	-fx-pref-width: 350px;
 }
 
+#confidenceIndicator{
+	-fx-background-radius: 15;
+	-fx-background-color: rgb(226, 159, 0, 0.9);
+	-fx-text-fill: #644c00;
+    -fx-font-family: 'Indie Flower', cursive;
+    -fx-font-style: normal;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+	-fx-pref-width: 220px;
+	-fx-alignment: center;
+	-fx-min-height: 35px;
+}
+
 #outcomeLabel{
 	-fx-text-fill: black;
     -fx-font-family: 'Indie Flower', cursive;

@@ -103,6 +103,11 @@
                         <Insets left="-60.0" />
                      </GridPane.margin>
                   </StackPane>
+                  <Label id="confidenceIndicator" fx:id="confidenceIndicator" contentDisplay="CENTER" text="Percentage target" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
             <HBox alignment="CENTER" minHeight="40.0" minWidth="40.0" prefHeight="355.0" prefWidth="760.0" spacing="10.0">

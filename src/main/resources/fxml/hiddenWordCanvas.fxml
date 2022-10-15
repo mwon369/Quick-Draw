@@ -83,6 +83,10 @@
                         <Insets left="50.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
+                  <Label id="confidenceIndicator" fx:id="confidenceIndicator" alignment="CENTER" contentDisplay="CENTER" text="Percentage target" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin></Label>
                   <StackPane GridPane.columnIndex="1">
                      <children>
                         <ImageView fx:id="alarmIcon" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
