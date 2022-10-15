@@ -13,6 +13,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -25,6 +26,7 @@ public class UserStatsController {
   @FXML private Label fastestWinLabel;
   @FXML private Label winStreakLabel;
   @FXML private Label rapidFireScoreLabel;
+  @FXML private VBox otherStatVBox;
 
   private User currentUser;
 
@@ -41,6 +43,7 @@ public class UserStatsController {
       fastestWinLabel.setVisible(false);
       winStreakLabel.setVisible(false);
       rapidFireScoreLabel.setVisible(false);
+      otherStatVBox.setVisible(false);
       statsPieChart.setVisible(false);
       noGamesLabel.setVisible(true);
       noGamesLabel.setWrapText(true);
@@ -56,12 +59,17 @@ public class UserStatsController {
             new PieChart.Data("Losses", currentUser.getLosses()));
 
     // set other stat data
-    fastestWinLabel.setText("Your fastest win time: " + currentUser.getFastestWin());
+    fastestWinLabel.setText(
+        currentUser.getWins() > 0
+            ? "Your fastest win time: " + currentUser.getFastestWin() + " seconds"
+            : "Your fastest win time: N/A");
+
     winStreakLabel.setText("Your current win streak: " + currentUser.getWinStreak());
     rapidFireScoreLabel.setText(
-        "Your highest Rapid Fire Mode score: " + currentUser.getRapidFireHighScore());
+        "Your Rapid Fire high score: " + currentUser.getRapidFireHighScore());
 
     // make labels visible
+    otherStatVBox.setVisible(true);
     fastestWinLabel.setVisible(true);
     winStreakLabel.setVisible(true);
     rapidFireScoreLabel.setVisible(true);

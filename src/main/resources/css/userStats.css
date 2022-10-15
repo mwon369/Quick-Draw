@@ -108,7 +108,7 @@
 }
 
 #otherStatVBox {
-	-fx-background-color: #F6DF95;
+	-fx-background-color: #F8DF95;
 	-fx-background-radius: 30px;
 	-fx-effect: dropshadow(gaussian, rgba(143,103,3,0.25) , 1,1,0,1 );
 }
@@ -134,19 +134,19 @@
     -fx-font-family: 'Indie Flower';
     -fx-font-style: normal;
     -fx-font-weight: 400;
-    -fx-font-size: 20px;
+    -fx-font-size: 19px;
 }
 
 #winStreakLabel {
     -fx-font-family: 'Indie Flower';
     -fx-font-style: normal;
     -fx-font-weight: 400;
-    -fx-font-size: 20px;
+    -fx-font-size: 19px;
 }
 
 #rapidFireScoreLabel {
     -fx-font-family: 'Indie Flower';
     -fx-font-style: normal;
     -fx-font-weight: 400;
-    -fx-font-size: 20px;
+    -fx-font-size: 19px;
 }
