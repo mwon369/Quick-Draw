@@ -7,8 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -65,17 +68,22 @@
             </HBox>
             <StackPane>
                <children>
-                      <HBox alignment="CENTER" spacing="20.0">
-                          <children>
-                        <ImageView fitHeight="298.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="400.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
-                              <Image url="@../images/pencilIcon2.png" />
+                              <Image url="@../images/wordHistoryMascot.png" />
                            </image>
-                           <HBox.margin>
-                              <Insets right="-80.0" />
-                           </HBox.margin>
                         </ImageView>
-                              <VBox fx:id="listVBox" alignment="TOP_CENTER">
+                              <VBox fx:id="listVBox" alignment="TOP_CENTER" GridPane.columnIndex="1">
                                   <children>
                                         <ListView fx:id="wordListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="400.0">
                                             <VBox.margin>
@@ -84,16 +92,8 @@
                                         </ListView>
                                   </children>
                               </VBox>
-                        <ImageView fitHeight="263.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true" rotate="10.0">
-                           <image>
-                              <Image url="@../images/pencilIcon3.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="100.0" left="-10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                          </children>
-                      </HBox>
+                     </children>
+                  </GridPane>
                   <Label fx:id="noWordsLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="250.0" textAlignment="CENTER" wrapText="true">
                      <StackPane.margin>
                         <Insets left="10.0" right="10.0" />
