@@ -23,7 +23,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="760.0">
                <children>
-                  <Label fx:id="titleLabel" text="LeaderBoard" />
+                  <Label fx:id="titleLabel" text="Leaderboard" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -36,17 +36,22 @@
                         <VBox alignment="CENTER">
                            <children>
                               <Label styleClass="leaderboardlabel" text="User" />
-                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="392.0" styleClass="leaderboard" />
+                              <ListView fx:id="userListView" fixedCellSize="30.0" prefHeight="420.0" prefWidth="300.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER">
                            <children>
                               <Label fx:id="statsLabel" styleClass="leaderboardlabel" text="Time" />
-                              <ListView fx:id="statsListView" fixedCellSize="30.0" maxHeight="420.0" maxWidth="138.0" prefHeight="420.0" prefWidth="138.0" styleClass="leaderboard" />
+                              <ListView fx:id="statsListView" fixedCellSize="30.0" maxHeight="420.0" maxWidth="138.0" prefHeight="420.0" prefWidth="120.0" styleClass="leaderboard" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
+                  <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" translateX="-290.0">
+                     <image>
+                        <Image url="@../videos/leaderboardMascot.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </StackPane>
             <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="35.0" prefWidth="680.0" spacing="80.0">
