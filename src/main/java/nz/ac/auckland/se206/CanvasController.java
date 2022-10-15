@@ -359,22 +359,12 @@ public class CanvasController {
 
             // if time has run out, cancel timer
             if (time == 0) {
-              SoundManager.playAlarmBell();
-              // set the rotation details
-              RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);
-              rotation.setCycleCount(12);
-              rotation.setFromAngle(-15);
-              rotation.setToAngle(15);
-              rotation.setAutoReverse(true);
-              rotation.setOnFinished((e) -> alarmIcon.setRotate(0));
-              // make the alarm rotate
-              rotation.play();
+              playSoundAndAnimation();
               timer.cancel();
               Platform.runLater(
                   () -> {
                     stopGame(false, timerLabel.getText());
                   });
-              return;
             } else {
               if (time <= 5) {
                 SoundManager.playTimerTickFast();
@@ -388,6 +378,21 @@ public class CanvasController {
         },
         0,
         1000);
+  }
+
+  /** This method plays alarm clock sounds and animations when the round ends */
+  protected void playSoundAndAnimation() {
+    // play sound effect
+    SoundManager.playAlarmBell();
+    // set the rotation details
+    RotateTransition rotation = new RotateTransition(Duration.seconds(0.05), alarmIcon);
+    rotation.setCycleCount(12);
+    rotation.setFromAngle(-15);
+    rotation.setToAngle(15);
+    rotation.setAutoReverse(true);
+    rotation.setOnFinished((e) -> alarmIcon.setRotate(0));
+    // make the alarm rotate
+    rotation.play();
   }
 
   /**
