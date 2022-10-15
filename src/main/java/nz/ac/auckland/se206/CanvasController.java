@@ -365,7 +365,6 @@ public class CanvasController {
                   () -> {
                     stopGame(false, timerLabel.getText());
                   });
-              return;
             } else {
               if (time <= 5) {
                 SoundManager.playTimerTickFast();

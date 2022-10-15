@@ -89,7 +89,6 @@ public class RapidFireController extends CanvasController {
               timer.cancel();
               RapidFireController.super.playSoundAndAnimation();
               Platform.runLater(() -> endGame());
-              return;
               // otherwise continue game as usual
             } else {
               // play different sound effects depending on how much time the user has left
