@@ -22,14 +22,29 @@ public class Category {
     this.hints = hints;
   }
 
+  /**
+   * This method gets the word
+   *
+   * @return the word to get
+   */
   public String getWord() {
     return this.word;
   }
 
+  /**
+   * This method gets the definition of the word
+   *
+   * @return the definition
+   */
   public String getDefinition() {
     return this.definition;
   }
 
+  /**
+   * This method gets the list of hints for the word
+   *
+   * @return the list of hints
+   */
   public ArrayList<String> getHints() {
     return this.hints;
   }

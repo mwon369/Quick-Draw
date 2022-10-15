@@ -235,6 +235,7 @@ public class UsersManager {
    * @param left the leftmost index
    * @param middle the middle index
    * @param right the rightmost index
+   * @param isSortTime boolean representing whether to sort for fastest time or rapid fire
    */
   private static void merge(int left, int middle, int right, boolean isSortTime) {
     String[] userNameArray;
@@ -243,11 +244,13 @@ public class UsersManager {
     Integer[] copyUserStats;
     // Conditional statement checking which leader board to sort for
     if (isSortTime) {
+      // if sorting fastest time
       userStats = userTime.clone();
       userNameArray = timeUserName.clone();
       copyUserStats = userStats.clone();
       copyUserNameArray = userNameArray.clone();
     } else {
+      // if sorting rapid fire
       userStats = userMostWordsDrawn.clone();
       userNameArray = wordUserName.clone();
       copyUserStats = userStats.clone();

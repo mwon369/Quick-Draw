@@ -10,25 +10,28 @@ public class BadgeFactory {
    */
   public static Badge createBadge(int badgeId, boolean isCompleted) {
     /*
-     * This switch case statement is used to create a sub-class of Badge depending
-     * on their id
+     * This switch case statement is used to create a sub-class of Badge depending on their id
      */
     switch (badgeId) {
       case 1:
+        // if they win under 30 seconds
         return new UnderThirtySecondWinBadge(isCompleted);
       case 2:
         return new UnderTenSecondWinBadge(isCompleted);
       case 3:
         return new OneSecondWonderBadge(isCompleted);
       case 4:
+        // if they get two consecutive wins
         return new TwoConsecutiveWinsBadge(isCompleted);
       case 5:
         return new FiveConsecutiveWinsBadge(isCompleted);
       case 6:
         return new TenConsecutiveWinsBadge(isCompleted);
       case 7:
+        // if they encounter the great wall of china
         return new DiscoverGreatWallBadge(isCompleted);
       case 8:
+        // if they play ten games
         return new TenGameBadge(isCompleted);
       case 9:
         return new ThirtyGameBadge(isCompleted);

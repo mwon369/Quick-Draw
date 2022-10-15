@@ -33,6 +33,10 @@ public class WordChooserController {
   /**
    * This method initializes the wordChooser scene which involves loading all the words into the
    * list view and enabling word selection and making the TextField listen for input
+   *
+   * @throws IOException if there is an error reading the category selector file
+   * @throws URISyntaxException if there is an error reading the category selector file
+   * @throws CsvException if there is an error reading the category selector file
    */
   public void initialize() throws IOException, URISyntaxException, CsvException {
     // declare variables required to load in all words

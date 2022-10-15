@@ -26,9 +26,9 @@ public class CategorySelector {
   /**
    * This method creates a map of each difficulty to its corresponding list of words
    *
-   * @throws IOException if an IO Exception occurs
-   * @throws CsvException if a Csv Exception occurs
-   * @throws URISyntaxException if a URISyntax Exception occurs
+   * @throws IOException if an error occurs whilst reading the category file
+   * @throws CsvException if an error occurs whilst reading the category file
+   * @throws URISyntaxException if an error occurs whilst reading the category file
    */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyToCategories = new HashMap<>();
@@ -60,9 +60,9 @@ public class CategorySelector {
    * Thus method returns a list of string array where each string array is each line in the csv file
    *
    * @return a list of String[] where each String[] represents a line in the csv file
-   * @throws IOException if a IOException occurs
-   * @throws CsvException if a Csv Exception occurs
-   * @throws URISyntaxException if a URI syntax exception occurs
+   * @throws IOException if an error occurs whilst reading the category file
+   * @throws CsvException if an error occurs whilst reading the category file
+   * @throws URISyntaxException if an error occurs whilst reading the category file
    */
   public List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File fileName =
@@ -78,6 +78,12 @@ public class CategorySelector {
     }
   }
 
+  /**
+   * This method returns a list of categories of a particular difficulty
+   *
+   * @param difficulty the difficulty to retrieve the list of categories for
+   * @return the list of categories
+   */
   public List<String> getWordList(CategoryDifficulty difficulty) {
     return difficultyToCategories.get(difficulty);
   }
@@ -87,9 +93,9 @@ public class CategorySelector {
    * user to play
    *
    * @return a random word
-   * @throws IOException if an IO Exception occurs
-   * @throws URISyntaxException if a URISyntax Exception occurs
-   * @throws CsvException if a Csv Exception occurs
+   * @throws IOException if an error occurs whilst reading the category file
+   * @throws URISyntaxException if an error occurs whilst reading the category file
+   * @throws CsvException if an error occurs whilst reading the category file
    */
   public String getRandomWord() throws IOException, URISyntaxException, CsvException {
     List<String[]> lines = getLines();
@@ -97,6 +103,7 @@ public class CategorySelector {
     for (String[] line : lines) {
       words.add(line[0]);
     }
+    // returns a random word
     return words.get(new Random().nextInt(words.size()));
   }
 }

@@ -129,6 +129,10 @@ public class ZenCanvasController extends CanvasController {
   /**
    * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
    * the ready button
+   *
+   * @throws IOException if an error occurs reading the category selector file
+   * @throws URISyntaxException if an error occurs reading the category selector file
+   * @throws CsvException if an error occurs reading the category selector file
    */
   @FXML
   private void onGetRandomWord() throws IOException, URISyntaxException, CsvException {
@@ -203,6 +207,7 @@ public class ZenCanvasController extends CanvasController {
    * This method checks if the target word is within a list of classifications
    *
    * @param classifications a list of classifications
+   * @param margin the top x which constitutes a win
    * @return true if the target word is in the list of classifications, false otherwise
    */
   private boolean isWin(List<Classification> classifications, int margin) {

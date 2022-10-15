@@ -64,6 +64,7 @@ public class UserCreationController extends ZenCanvasController {
       e.printStackTrace();
     }
     UsersManager.createUser(newUser);
+    // display success message
     errorMessageLabel.setTextFill(Color.GREEN);
     errorMessageLabel.setText("Account successfully created!");
     errorMessageLabel.setVisible(true);

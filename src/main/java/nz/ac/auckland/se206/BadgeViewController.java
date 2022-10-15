@@ -103,6 +103,7 @@ public class BadgeViewController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(SceneManager.AppUi.USER_STATS));
+    // hide the badge title label and description label
     badgeTitleLabel.setVisible(false);
     badgeDescriptionLabel.setVisible(false);
     borderCurrentTool("");
@@ -112,8 +113,8 @@ public class BadgeViewController {
    * This method loads the correct icon for each of the badges the user has earned. If they have not
    * earned the badge, it will show a question mark instead
    *
-   * @throws URISyntaxException if a URISyntaxException is thrown
-   * @throws IOException if an IOException is thrown
+   * @throws URISyntaxException if there is an error reading the badge image
+   * @throws IOException if there is an error reading the badge image
    */
   public void loadBadgeIcons() throws URISyntaxException, IOException {
 
@@ -136,13 +137,14 @@ public class BadgeViewController {
    *
    * @param imageName The name of the image
    * @return the loaded image
-   * @throws URISyntaxException if a URISyntaxException is thrown
-   * @throws IOException if an IOException is thrown
+   * @throws URISyntaxException if the URL associated with the image is not formatted strictly
+   *     according toRFC2396 and cannot be converted to a URI
+   * @throws IOException if an error occurs during reading or when not able to create required
+   *     ImageInputStream
    */
   private Image loadImage(String imageName) throws URISyntaxException, IOException {
     // load an image to switch to
-    File file;
-    file = new File(getClass().getResource("/images/" + imageName + ".png").toURI());
+    File file = new File(getClass().getResource("/images/" + imageName + ".png").toURI());
     BufferedImage bufferImage = ImageIO.read(file);
     return SwingFXUtils.toFXImage(bufferImage, null);
   }

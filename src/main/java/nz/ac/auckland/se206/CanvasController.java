@@ -159,7 +159,9 @@ public class CanvasController {
     accuracy = DifficultyManager.getAccuracy(user.getAccuracyDifficulty());
     timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
     confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
+    // make sure to update the starting timer text
     timerLabel.setText(String.valueOf(timeLimit));
+    // display the confidence that the user must get over
     StringBuilder sb = new StringBuilder();
     sb.append("Percentage target: ")
         .append(
@@ -168,7 +170,10 @@ public class CanvasController {
     confidenceIndicator.setText(sb.toString());
   }
 
-  /** This method is called when the "Clear" button is pressed. */
+  /**
+   * This method is called when the "Clear" button is pressed. Clears the canvas, predictions list
+   * and resets the isPenDrawn and isDrawing boolean and predictions indicator
+   */
   @FXML
   protected void onClear() {
     // clear canvas and predictions list, reset isDrawing, isPenDrawn and indicator
@@ -468,6 +473,7 @@ public class CanvasController {
           .append(System.lineSeparator());
       predictionsListForDisplay.add(sb.toString());
       i++;
+      // if reach 11th prediction, just break;
       if (i == 11) {
         break;
       }
@@ -476,9 +482,11 @@ public class CanvasController {
   }
 
   /**
-   * This method checks if the target word is within a list of classifications
+   * /** This method checks if the target word is within a list of classifications
    *
    * @param classifications a list of classifications
+   * @param margin the top x which constitutes a win
+   * @param confidence the percentage level which constitutes a win
    * @return true if the target word is in the list of classifications, false otherwise
    */
   protected boolean isWin(List<Classification> classifications, int margin, double confidence) {
@@ -541,8 +549,8 @@ public class CanvasController {
   /**
    * This method mutes and unmutes the text to speech from speaking the top 3 predictions
    *
-   * @throws URISyntaxException if a URISyntaxException is thrown
-   * @throws IOException if an IOException is thrown
+   * @throws URISyntaxException if an error occurs loading the soundState image
+   * @throws IOException if an error occurs loading the soundState image
    */
   @FXML
   protected void onToggleSound() throws URISyntaxException, IOException {
@@ -573,6 +581,7 @@ public class CanvasController {
    * user wins or loses the game respectively
    *
    * @param isWin boolean representing whether the user won the game or not
+   * @param timeString representing the time left in the game
    */
   protected void stopGame(boolean isWin, String timeString) {
     savePane.setDisable(false);

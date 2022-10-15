@@ -53,6 +53,7 @@ public class MenuController {
     // load the time limit for the set dificulty
     App.getCanvasController().setUpDifficulty();
 
+    // play sound effects
     SoundManager.playButtonClick();
     SoundManager.playEnterGameSound();
     SoundManager.setBackgroundMusicVolume(0.05);
@@ -217,7 +218,7 @@ public class MenuController {
   /**
    * This method displays the user's information when in the menu GUI
    *
-   * @throws IOException if an IOException is thrown
+   * @throws IOException if an issue occurs when loading the profile image
    */
   public void showUserInfo() throws IOException {
     userNameLabel.setText(UsersManager.getSelectedUser().getUsername());

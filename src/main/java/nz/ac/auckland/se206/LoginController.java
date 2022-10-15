@@ -354,6 +354,7 @@ public class LoginController {
   public void setMusicIcon() {
     try {
       // if music off, display noMusic icon
+      // if music is on, display music icon
       musicIcon.setImage(
           SoundManager.isBackgroundMusicOn()
               ? new Image(this.getClass().getResource("/images/music.png").toURI().toString())

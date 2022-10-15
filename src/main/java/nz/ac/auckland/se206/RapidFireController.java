@@ -130,8 +130,8 @@ public class RapidFireController extends CanvasController {
    * Switches to the main menu. Clears the word label and canvas, disables the readyButton
    *
    * @param event an ActionEvent representing the type of action that occurred
-   * @throws IOException if an IOException is thrown
-   * @throws URISyntaxException if a URISyntaxException is thrown
+   * @throws IOException if an issue occurs with loading the user profile image on the menu
+   * @throws URISyntaxException if an issue occurs with loading the user profile image on the menu
    */
   @FXML
   protected void onSwitchToMainMenu(ActionEvent event) throws URISyntaxException, IOException {
@@ -199,7 +199,12 @@ public class RapidFireController extends CanvasController {
     }
   }
 
-  /** This method gets the models predictions and sets it to the ListView component */
+  /**
+   * This method gets the models predictions and sets it to the ListView component
+   *
+   * @throws TranslateException Thrown to indicate that an error is raised during processing of the
+   *     input or output.
+   */
   private void setPredictionsListView() throws TranslateException {
     // retrieve predictions
     classifications = model.getPredictions(getCurrentSnapshot(), 340);
