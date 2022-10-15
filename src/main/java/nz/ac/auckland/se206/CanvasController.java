@@ -160,6 +160,7 @@ public class CanvasController {
     timeLimit = DifficultyManager.getTimeLimit(user.getTimeLimitDifficulty());
     confidence = DifficultyManager.getConfidence(user.getConfidenceDifficulty());
     timerLabel.setText(String.valueOf(timeLimit));
+    // display the confidence that the user must get over
     StringBuilder sb = new StringBuilder();
     sb.append("Percentage target: ")
         .append(
