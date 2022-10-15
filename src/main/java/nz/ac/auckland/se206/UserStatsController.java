@@ -22,6 +22,9 @@ public class UserStatsController {
   @FXML private Label userLabel;
   @FXML private PieChart statsPieChart;
   @FXML private Label noGamesLabel;
+  @FXML private Label fastestWinLabel;
+  @FXML private Label winStreakLabel;
+  @FXML private Label rapidFireScoreLabel;
 
   private User currentUser;
 
@@ -33,10 +36,14 @@ public class UserStatsController {
     currentUser = UsersManager.getSelectedUser();
     userLabel.setText(currentUser.getUsername());
 
-    // don't show pie chart if user has no games played
+    // don't show pie chart and other stats if user has no games played
     if (currentUser.getWins() + currentUser.getLosses() == 0) {
+      fastestWinLabel.setVisible(false);
+      winStreakLabel.setVisible(false);
+      rapidFireScoreLabel.setVisible(false);
       statsPieChart.setVisible(false);
       noGamesLabel.setVisible(true);
+      noGamesLabel.setWrapText(true);
       return;
     }
 
@@ -47,6 +54,17 @@ public class UserStatsController {
         FXCollections.observableArrayList(
             new PieChart.Data("Wins", currentUser.getWins()),
             new PieChart.Data("Losses", currentUser.getLosses()));
+
+    // set other stat data
+    fastestWinLabel.setText("Your fastest win time: " + currentUser.getFastestWin());
+    winStreakLabel.setText("Your current win streak: " + currentUser.getWinStreak());
+    rapidFireScoreLabel.setText(
+        "Your highest Rapid Fire Mode score: " + currentUser.getRapidFireHighScore());
+
+    // make labels visible
+    fastestWinLabel.setVisible(true);
+    winStreakLabel.setVisible(true);
+    rapidFireScoreLabel.setVisible(true);
 
     // set data to pie chart and colour it
     statsPieChart.setData(pieChartData);

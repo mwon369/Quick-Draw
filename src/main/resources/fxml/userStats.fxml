@@ -37,24 +37,42 @@
                <children>
                   <VBox>
                      <children>
-                        <HBox fx:id="pieChartHBox" alignment="CENTER">
+                        <StackPane>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="-10.0" />
+                           </VBox.margin>
                            <children>
-                              <StackPane>
+                              <HBox fx:id="pieChartHBox" alignment="CENTER">
                                  <children>
+                                    <VBox fx:id="otherStatVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="fastestWinLabel" text="Label" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="winStreakLabel" text="Label" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="rapidFireScoreLabel" text="Label" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                     <PieChart fx:id="statsPieChart" labelLineLength="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="450.0">
                                        <padding>
                                           <Insets bottom="20.0" />
-                                       </padding></PieChart>
-                                    <Label fx:id="noGamesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefWidth="375.0" text="You haven't played any games in either classic or hidden-word mode yet!" textAlignment="CENTER" wrapText="true">
-                                       <StackPane.margin>
-                                          <Insets />
-                                       </StackPane.margin></Label>
+                                       </padding>
+                                    </PieChart>
                                  </children>
-                              </StackPane>
+                              </HBox>
+                              <Label fx:id="noGamesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefWidth="375.0" text="You haven't played any games in either classic or hidden-word mode yet!" textAlignment="CENTER" wrapText="true" />
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="-10.0" />
-                           </VBox.margin></HBox>
+                        </StackPane>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="20.0">
