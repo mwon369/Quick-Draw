@@ -102,7 +102,7 @@ public class UsersManager {
    *
    * @return an array containing all fastest times from users
    */
-  public static Integer[] getUserTIme() {
+  public static Integer[] getUserTime() {
     return userTime;
   }
 
@@ -253,7 +253,9 @@ public class UsersManager {
       copyUserStats = userStats.clone();
       copyUserNameArray = userNameArray.clone();
     }
-    int i = left, j = middle, k = left;
+    int i = left;
+    int j = middle;
+    int k = left;
     // while loop checking the top half of the array
     while (i <= middle - 1 && j <= right) {
       // checking if elements need to be swapped

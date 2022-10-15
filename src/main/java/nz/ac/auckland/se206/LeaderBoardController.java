@@ -77,7 +77,7 @@ public class LeaderBoardController {
    * @param event an ActionEvent representing the type of action that occurred
    */
   @FXML
-  private void onMenu(ActionEvent event) {
+  private void onSwitchToMenu(ActionEvent event) {
     SoundManager.playButtonClick();
     // Get scene to switch to main menu
     Button button = (Button) event.getSource();
@@ -98,7 +98,7 @@ public class LeaderBoardController {
   private void onShowFastestWin() {
     // Set all fields to show fastest win leader board
     userListView.getItems().setAll(timeUserList);
-    statsListView.getItems().setAll(UsersManager.getUserTIme());
+    statsListView.getItems().setAll(UsersManager.getUserTime());
     statsLabel.setText("Time");
     titleLabel.setText("Fastest Time Leaderboard");
   }

@@ -59,7 +59,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onMenu" onMouseEntered="#onButtonHover" text="Menu" />
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#onSwitchToMenu" onMouseEntered="#onButtonHover" text="Menu" />
                   <MenuButton fx:id="changeLeaderBoardMenuButton" maxHeight="45.0" mnemonicParsing="false" onMouseClicked="#onFilterLeaderBoard" onMouseEntered="#onButtonHover" prefHeight="45.0" prefWidth="67.0">
                     <items>
                       <MenuItem fx:id="fastestTimeMenuItem" mnemonicParsing="false" onAction="#onShowFastestWin" styleClass="menuitem" text="Fastest Time" />
