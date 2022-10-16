@@ -6,7 +6,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -30,51 +29,51 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="610.0" spacing="40.0">
                <children>
-                  <Pane fx:id="badgeOnePane" prefHeight="100.0" prefWidth="100.0">
+                  <VBox fx:id="badgeOneVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconOne" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeOneSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconOne" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeOneSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeTwoPane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeTwoVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconTwo" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeTwoSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconTwo" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeTwoSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeThreePane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeThreeVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconThree" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeThreeSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconThree" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeThreeSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeFourPane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeFourVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconFour" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeFourSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconFour" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeFourSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeFivePane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeFiveVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconFive" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeFiveSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconFive" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeFiveSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -82,51 +81,51 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="610.0" spacing="40.0">
                <children>
-                  <Pane fx:id="badgeSixPane" prefHeight="100.0" prefWidth="100.0">
+                  <VBox fx:id="badgeSixVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconSix" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeSixSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconSix" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeSixSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeSevenPane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeSevenVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconSeven" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeSevenSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconSeven" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeSevenSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeEightPane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeEightVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconEight" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeEightSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconEight" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeEightSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeNinePane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeNineVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconNine" fitHeight="100.0" fitWidth="100.0" layoutY="5.0" onMouseClicked="#onBadgeNineSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconNine" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeNineSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-                  <Pane fx:id="badgeTenPane" prefHeight="100.0" prefWidth="100.0">
+                  </VBox>
+                  <VBox fx:id="badgeTenVbox" alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="badgeIconTen" fitHeight="100.0" fitWidth="100.0" layoutY="4.0" onMouseClicked="#onBadgeTenSelect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="badgeIconTen" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#onBadgeTenSelect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/questionicon.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
+                  </VBox>
                </children>
                <opaqueInsets>
                   <Insets />
