@@ -106,4 +106,57 @@ public class CategorySelector {
     // returns a random word
     return words.get(new Random().nextInt(words.size()));
   }
+
+  /**
+   * This method returns a random easy word. This should be called only if the user word difficulty
+   * setting is EASY
+   *
+   * @return an easy word
+   */
+  public String getWordEasyDifficulty() {
+    // get list of all words for easy difficulty
+    List<String> easyWords = difficultyToCategories.get(CategoryDifficulty.E);
+    return easyWords.get(new Random().nextInt(easyWords.size()));
+  }
+
+  /**
+   * This method returns a random easy or medium word. This should be called only if the user word
+   * difficulty setting is MEDIUM
+   *
+   * @return an easy or medium word
+   */
+  public String getWordMediumDifficulty() {
+    // get list of all words for easy and medium difficulty
+    List<String> easyMediumWords = difficultyToCategories.get(CategoryDifficulty.E);
+    easyMediumWords.addAll(difficultyToCategories.get(CategoryDifficulty.M));
+
+    return easyMediumWords.get(new Random().nextInt(easyMediumWords.size()));
+  }
+
+  /**
+   * This method returns a random easy, medium or hard word. This should be called only if the user
+   * word difficulty is HARD
+   *
+   * @return an easy, medium or hard word
+   */
+  public String getWordHardDifficulty() {
+    // get list of all words for each difficulty
+    List<String> easyMediumHardWords = difficultyToCategories.get(CategoryDifficulty.E);
+    easyMediumHardWords.addAll(difficultyToCategories.get(CategoryDifficulty.M));
+    easyMediumHardWords.addAll(difficultyToCategories.get(CategoryDifficulty.H));
+
+    return easyMediumHardWords.get(new Random().nextInt(easyMediumHardWords.size()));
+  }
+
+  /**
+   * This method returns a random hard word. This should be called only if the user word difficulty
+   * is MASTER
+   *
+   * @return a hard word
+   */
+  public String getWordMasterDifficulty() {
+    // get list of all words for hard difficulty
+    List<String> hardWords = difficultyToCategories.get(CategoryDifficulty.H);
+    return hardWords.get(new Random().nextInt(hardWords.size()));
+  }
 }
