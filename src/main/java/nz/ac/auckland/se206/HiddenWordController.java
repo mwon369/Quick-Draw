@@ -120,4 +120,12 @@ public class HiddenWordController extends CanvasController {
     // call parent class implementation of method
     super.stopGame(isWin, timeString);
   }
+
+  /**
+   * This method is to be called when the user switches from the main menu to the hidden word canvas
+   * so they can't click the hint button before getting a word
+   */
+  protected void disableHints() {
+    hintButton.setDisable(true);
+  }
 }
