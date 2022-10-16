@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import nz.ac.auckland.se206.words.CategorySelector;
 
 public class RapidFireController extends CanvasController {
 
@@ -18,6 +20,7 @@ public class RapidFireController extends CanvasController {
 
   private int wordsDrawn = 0;
   private ArrayList<String> wordsPlayedDuringRound;
+  private CategorySelector categorySelector;
 
   /**
    * Starts a new game, gets and display a random category, disables and clears canvas. Will enable
@@ -107,12 +110,38 @@ public class RapidFireController extends CanvasController {
         1000);
   }
 
-  /** This method automatically generates a new word for the player to draw */
+  /**
+   * This method automatically generates a new word for the user to draw, based on their current
+   * word difficulty settings
+   */
   private void giveNewWord() {
-    // making sure the new word given hasn't been played in the same round
+    // initialize category selector object
+    try {
+      categorySelector = new CategorySelector();
+    } catch (IOException | CsvException | URISyntaxException e) {
+      throw new RuntimeException(e);
+    }
+    // generate new word
     do {
-      targetCategory = user.giveWordToDraw(user.getWordDifficulty());
+      switch (user.getWordDifficulty()) {
+          // switch statement to get word based on user's word difficulty setting
+        case EASY:
+          targetCategory = categorySelector.getWordEasyDifficulty();
+          break;
+        case MEDIUM:
+          targetCategory = categorySelector.getWordMediumDifficulty();
+          break;
+        case HARD:
+          targetCategory = categorySelector.getWordHardDifficulty();
+          break;
+        case MASTER:
+          targetCategory = categorySelector.getWordMasterDifficulty();
+          break;
+      }
+      // making sure the new word given hasn't been played in the same round
     } while (wordsPlayedDuringRound.contains(targetCategory));
+
+    // display the category
     wordLabel.setText("Your word is: " + targetCategory);
   }
 
