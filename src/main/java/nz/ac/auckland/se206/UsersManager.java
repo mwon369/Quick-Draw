@@ -77,12 +77,15 @@ public class UsersManager {
   }
 
   /**
-   * This method returns either the number of users who have won a game of either classic or hidden
-   * word mode, or the number of users that has scored at least 1 in rapid fire mode
+   * * This method returns either the number of users who have won a game of either classic or
+   * hidden word mode, or the number of users that has scored at least 1 in rapid fire mode * @param
+   * isFastestWin
    *
+   * @param isFastestWin checks to see if we are returning the length of fastest win users or rapid
+   *     fire users
    * @return the number of users for either condition
    */
-  public static int getUserLength(boolean isFastestWin) {
+  public static int findUserLength(boolean isFastestWin) {
     return isFastestWin ? timeUserList.size() : wordUserList.size();
   }
 
@@ -90,10 +93,10 @@ public class UsersManager {
    * This method returns an array of all usernames for either name order for fastest win or name
    * order for most words drawn
    *
+   * @param isfastestWin checks to see if we are returning the fastest time user array
    * @return an array containing all the currently registered usernames
    */
   public static String[] getUserArray(boolean isfastestWin) {
-
     return isfastestWin ? timeUserName : wordUserName;
   }
 
@@ -111,7 +114,7 @@ public class UsersManager {
    *
    * @return the sorted rapid fire array
    */
-  public static Integer[] getUserMostWordsDrawn() {
+  public static Integer[] sortUserMostWordsDrawn() {
     Arrays.sort(userMostWordsDrawn, Collections.reverseOrder());
     return userMostWordsDrawn;
   }

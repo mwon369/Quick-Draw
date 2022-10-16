@@ -24,8 +24,8 @@ public class LeaderBoardController {
   public void readyLeaderBoard() {
     // Sort the users in order
     UsersManager.resetArray();
-    UsersManager.mergeSort(0, UsersManager.getUserLength(true) - 1, true);
-    UsersManager.mergeSort(0, UsersManager.getUserLength(false) - 1, false);
+    UsersManager.mergeSort(0, UsersManager.findUserLength(true) - 1, true);
+    UsersManager.mergeSort(0, UsersManager.findUserLength(false) - 1, false);
     timeUserList = this.fastestTimeOrderForDisplay();
     wordUserList = this.mostWordsDrawnOrderForDisplay();
     // Display the results
@@ -105,7 +105,7 @@ public class LeaderBoardController {
   private void onShowRapidFireLeaderBoard() {
     // Set all fields to show rapid fire leader board
     userListView.getItems().setAll(wordUserList);
-    statsListView.getItems().setAll(UsersManager.getUserMostWordsDrawn());
+    statsListView.getItems().setAll(UsersManager.sortUserMostWordsDrawn());
     statsLabel.setText("Words Drawn");
     titleLabel.setText("Rapid Fire Leaderboard");
   }
