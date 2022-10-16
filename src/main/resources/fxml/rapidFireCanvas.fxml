@@ -47,7 +47,7 @@
                                         <Font name="Century Schoolbook Bold" size="18.0" />
                                     </font>
                                     <tooltip>
-                                        <Tooltip text="Click &quot;New Game&quot; to get a random word!&#10;Click &quot;I'm Ready&quot; to start drawing!&#10;If the game guesses your word, you win!" />
+                                        <Tooltip text="Click &quot;New Game&quot; to get a random word!&#10;Click &quot;I'm Ready&quot; to start drawing!&#10;Draw as many words as you can until the time &#10;runs out!" />
                                     </tooltip>
                                     <StackPane.margin>
                                         <Insets />
