@@ -416,7 +416,7 @@
       "triangle"
     ],
     "accuracyDifficulty": "EASY",
-    "timeLimitDifficulty": "MASTER",
+    "timeLimitDifficulty": "EASY",
     "confidenceDifficulty": "EASY",
     "wordDifficulty": "EASY"
   },
@@ -835,9 +835,9 @@
       "bush"
     ],
     "accuracyDifficulty": "EASY",
-    "timeLimitDifficulty": "MASTER",
-    "confidenceDifficulty": "MASTER",
-    "wordDifficulty": "MASTER"
+    "timeLimitDifficulty": "EASY",
+    "confidenceDifficulty": "EASY",
+    "wordDifficulty": "EASY"
   },
   "mr-V": {
     "username": "mr-V",
@@ -1260,6 +1260,6 @@
     "accuracyDifficulty": "EASY",
     "timeLimitDifficulty": "EASY",
     "confidenceDifficulty": "EASY",
-    "wordDifficulty": "MEDIUM"
+    "wordDifficulty": "EASY"
   }
 }
