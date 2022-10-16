@@ -78,8 +78,7 @@ public class UsersManager {
 
   /**
    * * This method returns either the number of users who have won a game of either classic or
-   * hidden word mode, or the number of users that has scored at least 1 in rapid fire mode * @param
-   * isFastestWin
+   * hidden word mode, or the number of users that has scored at least 1 in rapid fire mode
    *
    * @param isFastestWin checks to see if we are returning the length of fastest win users or rapid
    *     fire users
@@ -125,6 +124,7 @@ public class UsersManager {
    * @param user the User object to create
    */
   public static void createUser(User user) {
+    // put user in map and save json file
     usersMap.put(user.getUsername(), user);
     try {
       saveUsersToJson();
@@ -206,6 +206,7 @@ public class UsersManager {
    * @param username the user to delete
    */
   public static void deleteUser(String username) {
+    // delete user from map and delete their profile pic
     File file = new File(usersMap.get(username).getProfilePic());
     file.delete();
     timeUserList.remove(usersMap.get(username));
