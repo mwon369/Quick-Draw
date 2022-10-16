@@ -151,7 +151,6 @@ public class BadgeViewController {
     return SwingFXUtils.toFXImage(bufferImage, null);
   }
 
-  /** This method displays the badge information when a badge is selected */
   /**
    * This method displays the badge information when a badge is selected. Also borders the badge
    *
