@@ -71,12 +71,14 @@ public class MenuController {
    */
   @FXML
   private void onPlayHiddenWord(ActionEvent event) {
-    // retrieve the source of button and switch to the canvas
+    // setup controller fields
     App.getHiddenWordController().setUpDifficulty();
+    App.getHiddenWordController().disableHints();
+    // play sound effects
     SoundManager.playButtonClick();
     SoundManager.playEnterGameSound();
     SoundManager.setBackgroundMusicVolume(0.05);
-
+    // retrieve the source of button and switch to the canvas
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUiRoot(AppUi.HIDDEN_WORD));
