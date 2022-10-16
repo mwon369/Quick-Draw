@@ -118,7 +118,7 @@ public class BadgeViewController {
    * @throws IOException if there is an error reading the badge image
    */
   public void loadBadgeIcons() throws URISyntaxException, IOException {
-
+    // get user badge list
     User user = UsersManager.getSelectedUser();
     badgeList = user.getBadgeList();
     // Going through each badge and loading the correct icon
@@ -129,6 +129,7 @@ public class BadgeViewController {
       } else {
         badgeIcons.get(i).setImage(loadImage("questionicon"));
       }
+      // resize badge image to standard size
       badgeIcons.get(i).setFitHeight(100);
       badgeIcons.get(i).setFitWidth(100);
     }
